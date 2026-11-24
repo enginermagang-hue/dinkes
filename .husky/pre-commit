@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🖼️  Menyinkronkan diagram Mermaid..."
+npm run mermaid:export
+
+git add -- ':(glob)docs/**/diagrams/*.png' 2>/dev/null || true
+
+npx lint-staged

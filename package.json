@@ -1,0 +1,33 @@
+{
+  "name": "dinkes-markdown-tooling",
+  "version": "1.0.0",
+  "description": "Markdown formatting system with Prettier, markdownlint, and Mermaid support",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write \"**/*.md\"",
+    "format:check": "prettier --check \"**/*.md\"",
+    "lint": "markdownlint \"**/*.md\"",
+    "lint:fix": "markdownlint --fix \"**/*.md\"",
+    "md:check": "npm run format:check && npm run lint",
+    "md:fix": "npm run format && npm run lint:fix",
+    "md:format": "node scripts/format-md.js",
+    "mermaid:export": "node scripts/export-mermaid.js",
+    "mermaid:watch": "node scripts/watch-mermaid.js",
+    "mermaid:export:all": "npm run mermaid:export && npm run md:fix && npm run md:check",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.4.2",
+    "chokidar": "^6.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "markdownlint-cli": "^0.45.0",
+    "prettier": "^3.6.2"
+  },
+  "lint-staged": {
+    "*.md": [
+      "prettier --write",
+      "markdownlint --fix"
+    ]
+  }
+}
