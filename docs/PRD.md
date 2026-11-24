@@ -3,13 +3,13 @@
 | Atribut         | Nilai                                              |
 | --------------- | -------------------------------------------------- |
 | Nama Produk     | Sistem Manajemen Stok Obat dan BMHP Daerah (SMSOD) |
-| Versi Dokumen   | 1.0 (Draft)                                        |
+| Versi Dokumen   | 1.6 (Draft)                                        |
 | Status          | Untuk direview                                     |
 | Pemilik Produk  | Dinas Kesehatan Kabupaten                          |
 | Penyusun        | Tim Pengembangan                                   |
 | Tanggal         | 24 November 2026                                   |
 | Target Pembaca  | Kepala Dinas, Apoteker, Tim IT, Vendor             |
-| Dokumen Terkait | `docs/UI-MOCKUP.md`, `docs/API-CONTRACT.md`        |
+| Dokumen Terkait | `docs/mockup/`, `docs/API-CONTRACT.md`             |
 
 Dokumen ini mendefinisikan kebutuhan produk untuk aplikasi pengelolaan stok obat dan
 Bahan Medis Habis Pakai (BMHP) pada lingkup Dinas Kesehatan Kabupaten. Cakupan entitas
@@ -38,7 +38,7 @@ Sistem ini menyatukan empat kemampuan inti:
 
 - Perencanaan kebutuhan obat berbasis konsumsi, morbiditas, dan analisis ABC-VEN.
 - Pengadaan terintegrasi e-Katalog LKPP dengan jejak audit lengkap.
-- Distribusi bertingkat dari gudang Dinas Kesehatan ke Puskesmas dan RSUD.
+- Distribusi bertingkat dari Gudang Farmasi Pusat Dinas Kesehatan ke Puskesmas dan RSUD.
 - Pengendalian persediaan real-time dengan peringatan stok kritis dan kedaluwarsa.
 
 Hasil yang diharapkan adalah ketersediaan obat esensial di atas 90 persen, penurunan
@@ -185,16 +185,17 @@ keterlambatan input menyebabkan data tidak sinkron.
 
 ### 5.1 In-Scope
 
-| Area         | Cakupan                                                         |
-| ------------ | --------------------------------------------------------------- |
-| Perencanaan  | RKO Puskesmas, RKO RSUD obat program, konsolidasi Dinas         |
-| Pengadaan    | Integrasi e-Katalog, PO, penerimaan, BAST                       |
-| Penyimpanan  | Multi gudang, lokasi rak, batch, expired, FEFO                  |
-| Distribusi   | Dinas ke Puskesmas, Dinas ke RSUD (program), internal Puskesmas |
-| Pelayanan    | Dispensing Puskesmas dan RSUD, pemakaian per pasien             |
-| Pengendalian | Stock opname, reorder point, safety stock, alert                |
-| Pelaporan    | Laporan harian sampai tahunan, ekspor standar                   |
-| Administrasi | Manajemen pengguna, peran, fasilitas, master data obat          |
+| Area         | Cakupan                                                       |
+| ------------ | ------------------------------------------------------------- |
+| Perencanaan  | RKO Puskesmas, RKO RSUD obat program, konsolidasi Dinas       |
+| Pengadaan    | Integrasi e-Katalog, PO, penerimaan, BAST                     |
+| Penyimpanan  | Multi lokasi (gudang, ruang obat), rak, batch, expired, FEFO  |
+| Distribusi   | Dinas ke Puskesmas, Dinas ke RSUD (program), internal, LPLPO  |
+| Pelayanan    | Dispensing Puskesmas dan RSUD, pemakaian per pasien           |
+| Pengendalian | Stock opname, reorder point, safety stock, alert, mutasi stok |
+| Prediksi     | ROP dinamis, tren, prediksi kebutuhan, peringatan dini        |
+| Pelaporan    | Laporan harian sampai tahunan, ekspor standar                 |
+| Administrasi | Manajemen pengguna, peran, fasilitas, master data obat        |
 
 ### 5.2 Out-of-Scope
 
@@ -240,16 +241,19 @@ flowchart TD
 
 ### 6.2 Model Pengelolaan per Entitas
 
-| Kapabilitas           | Dinas Kesehatan | Puskesmas | RSUD         |
-| --------------------- | --------------- | --------- | ------------ |
-| Perencanaan kebutuhan | Konsolidasi     | Penuh     | Obat program |
-| Pengadaan             | Penuh           | Tidak     | Mandiri      |
-| Penerimaan barang     | Penuh           | Penuh     | Penuh        |
-| Distribusi keluar     | Penuh           | Internal  | Internal     |
-| Pelayanan pasien      | Tidak           | Penuh     | Penuh        |
-| Stock opname          | Supervisi       | Penuh     | Penuh        |
-| Monitoring stok       | Semua fasilitas | Sendiri   | Sendiri      |
-| Pelaporan             | Konsolidasi     | Otomatis  | Bulanan      |
+| Kapabilitas            | Dinas Kesehatan | Puskesmas   | RSUD         |
+| ---------------------- | --------------- | ----------- | ------------ |
+| Perencanaan kebutuhan  | Konsolidasi     | Penuh       | Obat program |
+| Pengadaan              | Penuh           | Tidak       | Mandiri      |
+| Penerimaan barang      | Penuh           | Penuh       | Penuh        |
+| Distribusi keluar      | Penuh           | Internal    | Internal     |
+| Pelayanan pasien       | Tidak           | Penuh       | Penuh        |
+| Stock opname           | Supervisi       | Penuh       | Penuh        |
+| Monitoring stok        | Semua fasilitas | Sendiri     | Sendiri      |
+| Pelaporan              | Konsolidasi     | Otomatis    | Bulanan      |
+| Anggaran dan realisasi | Budget holder   | Cost center | Mandiri BLUD |
+| Prediksi kebutuhan     | Konsolidasi     | Usulan      | Usulan       |
+| LPLPO bulanan          | Verifikasi      | Mengajukan  | Tidak        |
 
 ### 6.3 Prinsip Arsitektur
 
@@ -259,6 +263,9 @@ flowchart TD
 3. Soft delete untuk master data agar referensi historis tetap utuh.
 4. Idempotensi pada proses penerimaan dan distribusi untuk mencegah pencatatan ganda.
 5. Dukungan mode input tertunda untuk fasilitas dengan koneksi tidak stabil.
+6. Otorisasi berbasis peran dengan cakupan akses per fasilitas dan per modul.
+7. Hanya Dinas Kesehatan yang memiliki gudang fisik; Puskesmas dan RSUD memiliki ruang
+   obat atau instalasi farmasi untuk penyimpanan operasional.
 
 ---
 
@@ -270,7 +277,7 @@ flowchart TD
 flowchart TD
     A["Perencanaan<br/>RKO Fasilitas"] --> B["Konsolidasi<br/>Dinas Kesehatan"]
     B --> C["Pengadaan<br/>e-Katalog"]
-    C --> D["Penerimaan<br/>Gudang Dinas"]
+    C --> D["Penerimaan<br/>Gudang Farmasi Pusat"]
     D --> E["Penyimpanan<br/>FEFO dan Batch"]
     E --> F{"Jenis Distribusi"}
     F -->|"Puskesmas"| G["Distribusi ke Puskesmas"]
@@ -430,7 +437,8 @@ dengan integrasi e-Katalog untuk fasilitas yang wajib mengikuti mekanisme terseb
 
 Modul ini mencatat penerimaan barang dari penyedia, memverifikasi kesesuaian dokumen dan
 fisik, lalu menempatkan barang pada lokasi penyimpanan dengan pencatatan batch dan tanggal
-kedaluwarsa.
+kedaluwarsa. Lokasi penyimpanan terdiri atas gudang pada Dinas Kesehatan, ruang obat pada
+Puskesmas, dan instalasi farmasi pada RSUD.
 
 #### 8.3.2 Aktor dan Hak Akses Penerimaan
 
@@ -450,6 +458,7 @@ kedaluwarsa.
 6. Penerimaan sebagian dan penanganan selisih kirim.
 7. Karantina otomatis untuk barang yang belum lolos pemeriksaan mutu.
 8. Pemetaan zona penyimpanan sesuai suhu dan kategori obat.
+9. Pencatatan otomatis mutasi stok pada setiap penerimaan.
 
 #### 8.3.4 Zona Penyimpanan Standar
 
@@ -465,9 +474,13 @@ kedaluwarsa.
 | Retur     | Barang akan dikembalikan        | Sesuai jenis    |
 | Musnah    | Barang rusak atau kedaluwarsa   | Terpisah        |
 
+Gudang Farmasi Pusat menerapkan seluruh zona. Ruang obat Puskesmas umumnya hanya memakai
+zona A, B, dan C sesuai kapasitas, sedangkan Instalasi Farmasi RSUD dapat memakai zona
+lengkap termasuk cold dan frozen.
+
 #### 8.3.5 Contoh Kartu Stok
 
-Kartu stok item Amoksisilin 500 mg, gudang Dinas, periode Januari 2027:
+Kartu stok item Amoksisilin 500 mg, Gudang Farmasi Pusat, periode Januari 2027:
 
 | Tanggal    | No Dokumen   | Jenis       | Masuk | Keluar |  Sisa | Batch   | Expired    |
 | ---------- | ------------ | ----------- | ----: | -----: | ----: | ------- | ---------- |
@@ -477,6 +490,15 @@ Kartu stok item Amoksisilin 500 mg, gudang Dinas, periode Januari 2027:
 | 2027-01-20 | PO/2027/0004 | Masuk       | 3.000 |      0 | 5.900 | AMX2402 | 2029-03-31 |
 | 2027-01-25 | DO/2027/0025 | Keluar      |     0 |  1.500 | 4.400 | AMX2401 | 2028-12-31 |
 | 2027-01-28 | ADJ/2027/003 | Penyesuaian |     0 |     40 | 4.360 | AMX2401 | 2028-12-31 |
+
+#### 8.3.6 Contoh Data Lokasi Penyimpanan
+
+| ID     | Nama Lokasi            | Fasilitas       | Jenis             | Zona          |
+| ------ | ---------------------- | --------------- | ----------------- | ------------- |
+| LP-001 | Gudang Farmasi Pusat   | Dinas Kesehatan | gudang            | A, B, C, Cold |
+| LP-002 | Ruang Obat Puskesmas A | Puskesmas A     | ruang_obat        | A, B, C       |
+| LP-003 | Ruang Obat Puskesmas B | Puskesmas B     | ruang_obat        | A, B          |
+| LP-004 | Instalasi Farmasi RSUD | RSUD            | instalasi_farmasi | A, B, C, Cold |
 
 ### 8.4 Modul Distribusi
 
@@ -505,6 +527,7 @@ pengiriman, dan konfirmasi penerimaan di fasilitas tujuan.
 6. Pelacakan status pengiriman.
 7. Konfirmasi penerimaan dengan pencatatan selisih.
 8. Redistribusi antar Puskesmas untuk menyeimbangkan stok.
+9. Pencatatan otomatis mutasi stok pada setiap pengiriman.
 
 #### 8.4.4 Alur Distribusi
 
@@ -512,7 +535,7 @@ pengiriman, dan konfirmasi penerimaan di fasilitas tujuan.
 sequenceDiagram
     participant P as Puskesmas
     participant D as Dinas
-    participant G as Gudang
+    participant G as Gudang Pusat
     participant K as Kurir
 
     P->>D: Ajukan permintaan obat
@@ -570,8 +593,9 @@ riil dapat menjadi dasar perencanaan periode berikutnya.
 4. Pencatatan pemakaian per item, per pasien, dan per diagnosa.
 5. Penanganan resep racikan dengan komposisi bahan.
 6. Pencatatan obat tidak terlayani beserta alasannya.
-7. Pengembalian obat dari unit ke gudang dengan pencatatan.
+7. Pengembalian obat dari unit ke ruang obat atau gudang dengan pencatatan.
 8. Rekap pemakaian untuk umpan balik perencanaan.
+9. Pencatatan mutasi stok otomatis saat penyerahan obat.
 
 #### 8.5.4 Aturan Bisnis Pelayanan
 
@@ -617,6 +641,7 @@ pengaman, stock opname, serta peringatan dini untuk kekosongan dan kedaluwarsa.
 6. Analisis fast, slow, dan non-moving item.
 7. Usulan redistribusi antar fasilitas berdasarkan kelebihan dan kekurangan.
 8. Pencatatan pemusnahan beserta berita acara.
+9. Pencatatan mutasi stok untuk opname dan penyesuaian.
 
 #### 8.6.4 Formula Pengendalian
 
@@ -689,7 +714,7 @@ bagi pimpinan serta pengelola teknis.
 #### 8.7.3 Fitur Modul Pelaporan dan Monitoring
 
 1. Dashboard ketersediaan, kekosongan, dan nilai inventori.
-2. Laporan harian mutasi stok per gudang.
+2. Laporan harian mutasi stok per lokasi penyimpanan.
 3. Laporan bulanan ketersediaan obat dan BMHP.
 4. Laporan triwulanan realisasi RKO dan analisis ABC-VEN.
 5. Laporan kedaluwarsa dan pemusnahan.
@@ -718,6 +743,369 @@ bagi pimpinan serta pengelola teknis.
 | RSUD        |      210 |      189 |     21 |          90% |         4 |
 | Puskesmas D |      115 |       98 |     17 |          85% |         5 |
 
+### 8.8 Modul Anggaran dan Realisasi
+
+#### 8.8.1 Ringkasan Modul Anggaran
+
+Modul ini mengelola alokasi anggaran obat dan realisasinya per fasilitas kesehatan.
+Dinas Kesehatan berperan sebagai pemegang anggaran (budget holder), Puskesmas berperan
+sebagai pusat biaya (cost center) yang memakai anggaran melalui permintaan, sedangkan
+RSUD mengelola anggarannya secara mandiri sebagai BLUD dan hanya melaporkan realisasi
+obat program ke Dinas.
+
+Realisasi tercatat otomatis pada dua titik: komitmen saat PO diterbitkan dan realisasi
+aktual saat barang diterima. Dengan cara ini sisa pagu setiap fasilitas selalu dapat
+dilihat secara real-time.
+
+#### 8.8.2 Aktor dan Hak Akses Anggaran
+
+| Peran                 | Hak                                                     |
+| --------------------- | ------------------------------------------------------- |
+| Kepala Dinas          | Menetapkan pagu dan menyetujui realokasi                |
+| Kepala Bidang Farmasi | Mengelola pagu dan memantau realisasi seluruh fasilitas |
+| Pejabat Keuangan      | Mencatat komitmen, pembayaran, dan rekonsiliasi         |
+| Apoteker Puskesmas    | Melihat pagu, sisa, dan mengajukan permintaan           |
+| Apoteker RSUD         | Mengelola anggaran mandiri dan melaporkan realisasi     |
+| Auditor               | Melihat seluruh realisasi secara read-only              |
+
+#### 8.8.3 Fitur Modul Anggaran
+
+1. Penetapan pagu anggaran per fasilitas per periode dan per sumber dana.
+2. Pencatatan komitmen otomatis saat PO diterbitkan.
+3. Pencatatan realisasi aktual otomatis saat barang diterima.
+4. Perhitungan sisa pagu dan persentase serapan secara real-time.
+5. Peringatan serapan rendah pada triwulan III dan pagu hampir habis.
+6. Realokasi pagu antar fasilitas dengan persetujuan berjenjang.
+7. Pencatatan sumber dana (APBD, DAK, dan BLUD) pada setiap transaksi.
+8. Rekonsiliasi realisasi dengan dokumen pembayaran dan BAST.
+
+#### 8.8.4 Alur Alokasi dan Realisasi
+
+```mermaid
+flowchart TD
+    SUMBER["APBD dan DAK<br/>Anggaran Obat Daerah"] --> DINKES["Dinas Kesehatan<br/>Budget Holder"]
+    DINKES -->|"Pagu per fasilitas"| PKM["Puskesmas<br/>Cost Center"]
+    DINKES -->|"Pagu obat program"| RSUD["RSUD BLUD<br/>Anggaran Mandiri"]
+    PKM -->|"Permintaan obat"| CEK{"Sisa pagu cukup?"}
+    CEK -->|"Tidak"| TINDAK["Tolak, tunda,<br/>atau realokasi"]
+    CEK -->|"Ya"| PO["Penerbitan PO<br/>ke Supplier"]
+    PO --> KOMIT["Komitmen<br/>anggaran tercatat"]
+    KOMIT --> TERIMA["Penerimaan barang<br/>dan BAST"]
+    TERIMA --> REALISASI["Realisasi aktual<br/>bertambah"]
+    REALISASI --> BAYAR["Pembayaran LS atau UP"]
+    RSUD -->|"Laporan realisasi"| DINKES
+```
+
+![Alur Alokasi dan Realisasi](./diagrams/8-8-4-alur-alokasi-dan-realisasi.png)
+
+#### 8.8.5 Aturan Bisnis Anggaran
+
+- Pagu ditetapkan per tahun anggaran dan hanya dapat diubah melalui mekanisme revisi.
+- Permintaan tidak boleh melebihi sisa pagu fasilitas yang tersedia.
+- Komitmen mengurangi pagu tersedia, lalu digantikan realisasi saat barang diterima.
+- Setiap transaksi wajib mencantumkan sumber dana agar tidak terjadi duplikasi.
+- Realokasi pagu antar fasilitas memerlukan persetujuan Kepala Dinas.
+- RSUD mengelola pagu mandiri dan melaporkan realisasi obat program ke Dinas.
+- Pagu, komitmen, dan realisasi tidak boleh bernilai negatif.
+
+#### 8.8.6 Contoh Data Realisasi Anggaran
+
+| Fasilitas    | Sumber Dana |            Pagu |       Komitmen |       Realisasi |            Sisa | Serapan |
+| ------------ | ----------- | --------------: | -------------: | --------------: | --------------: | ------: |
+| Puskesmas A  | APBD        |     150.000.000 |     12.000.000 |      87.500.000 |      50.500.000 |     58% |
+| Puskesmas B  | APBD + DAK  |     120.000.000 |              0 |     108.000.000 |      12.000.000 |     90% |
+| Puskesmas C  | DAK         |      90.000.000 |      8.000.000 |      36.000.000 |      46.000.000 |     40% |
+| RSUD program | DAK         |      80.000.000 |              0 |      52.000.000 |      28.000.000 |     65% |
+| **Total**    | —           | **440.000.000** | **20.000.000** | **283.500.000** | **136.500.000** | **64%** |
+
+Sisa pagu dihitung sebagai pagu dikurangi komitmen dan realisasi. Persentase serapan
+dihitung dari realisasi dibagi pagu.
+
+#### 8.8.7 Status Serapan Anggaran
+
+| Status        | Kondisi                                | Tindakan                         |
+| ------------- | -------------------------------------- | -------------------------------- |
+| Aman          | Serapan 40–85% dan sisa di atas 15%    | Pemantauan rutin                 |
+| Rendah        | Serapan di bawah 40% pada triwulan III | Evaluasi dan percepat permintaan |
+| Hampir habis  | Sisa pagu di bawah 15%                 | Ajukan realokasi atau tambahan   |
+| Habis         | Sisa pagu sama dengan nol              | Blokir permintaan baru           |
+| Over komitmen | Komitmen melebihi pagu                 | Blokir PO dan eskalasi           |
+
+### 8.9 Modul Manajemen Pengguna
+
+#### 8.9.1 Ringkasan Modul Pengguna
+
+Modul ini mengelola akun, peran, dan penugasan pengguna ke fasilitas kesehatan. Setiap
+pengguna hanya dapat mengakses data sesuai peran dan fasilitas yang ditugaskan, sementara
+peran Dinas dapat melihat data lintas fasilitas. Modul ini juga mencatat aktivitas kritis
+pengguna untuk keperluan audit. Autentikasi dapat menggunakan kata sandi atau Google
+OAuth 2.0 untuk peran non-administrator.
+
+#### 8.9.2 Aktor dan Hak Akses Pengguna
+
+| Peran                 | Hak                                                        |
+| --------------------- | ---------------------------------------------------------- |
+| Administrator Dinas   | Mengelola seluruh akun, peran, dan penugasan               |
+| Kepala Dinas          | Melihat daftar pengguna dan menyetujui akun tingkat kepala |
+| Apoteker Gudang Dinas | Melihat pengguna pada fasilitas terkait                    |
+| Pengguna              | Mengubah profil dan kata sandi sendiri                     |
+
+#### 8.9.3 Fitur Modul Pengguna
+
+1. Pembuatan, perubahan, dan penonaktifan akun pengguna.
+2. Pengelolaan peran beserta kumpulan hak aksesnya.
+3. Penugasan pengguna ke satu atau lebih fasilitas kesehatan.
+4. Kebijakan kata sandi dan alur reset kata sandi.
+5. Autentikasi dua faktor (2FA) berbasis TOTP atau email.
+6. Pencatatan audit trail untuk login, logout, dan aksi kritis.
+7. Alur undangan, verifikasi, dan aktivasi akun baru.
+8. Penonaktifan otomatis akun yang tidak aktif dalam jangka waktu tertentu.
+9. Autentikasi dengan Google OAuth 2.0 sebagai alternatif login untuk peran non-admin.
+10. Pengelolaan whitelist akun Google yang diizinkan oleh administrator.
+
+#### 8.9.4 Alur Onboarding dan Login
+
+```mermaid
+flowchart TD
+    A["Admin membuat akun"] --> B["Kirim undangan lewat email"]
+    B --> C["Pengguna verifikasi<br/>dan atur kata sandi"]
+    C --> D{"Peran wajib 2FA?"}
+    D -->|"Ya"| E["Aktivasi TOTP"]
+    D -->|"Tidak"| F["Akun aktif"]
+    E --> F
+    F --> G["Login"]
+    G --> H{"Pilih metode login"}
+    H -->|"Kata sandi"| I{"Kredensial valid?"}
+    I -->|"Tidak"| I2["Tolak dan catat percobaan"]
+    I -->|"Ya"| M{"2FA wajib?"}
+    H -->|"Google"| G1{"Akun di whitelist?"}
+    G1 -->|"Tidak"| G2["Blokir dan catat percobaan"]
+    G1 -->|"Ya"| G3{"Akun Google<br/>sudah terhubung?"}
+    G3 -->|"Belum"| G4["Login kata sandi lalu<br/>hubungkan akun di profil"]
+    G4 --> I
+    G3 -->|"Sudah"| M
+    M -->|"Ya"| N["Verifikasi 2FA"]
+    M -->|"Tidak"| J["Akses sesuai peran<br/>dan fasilitas"]
+    N --> J
+    J --> K["Aktivitas dicatat<br/>pada audit log"]
+```
+
+![Alur Onboarding dan Login](./diagrams/8-9-4-alur-onboarding-dan-login.png)
+
+#### 8.9.5 Aturan Bisnis Pengguna
+
+- Kata sandi minimal 12 karakter dengan kombinasi huruf, angka, dan simbol.
+- Kata sandi kedaluwarsa setiap 90 hari dan tidak boleh sama dengan tiga kata sandi terakhir.
+- Akun terkunci sementara setelah lima percobaan login gagal.
+- 2FA wajib untuk peran administrator, kepala dinas, dan kepala bidang.
+- Satu pengguna dapat ditugaskan ke lebih dari satu fasilitas dengan peran berbeda.
+- Penonaktifan akun tidak menghapus riwayat audit dan transaksi.
+- Setiap perubahan peran atau penugasan dicatat pada audit log.
+- Login dengan Google hanya tersedia untuk peran non-administrator.
+- Akun Google wajib masuk whitelist yang disetujui administrator sebelum digunakan.
+- Penghubungan akun Google dilakukan manual oleh pengguna setelah login dengan kata sandi.
+- Peran yang mewajibkan 2FA tetap harus menyelesaikan 2FA setelah login dengan Google.
+
+#### 8.9.6 Contoh Data Pengguna
+
+| Nama Pengguna  | Peran                 | Fasilitas       | 2FA   | Status   |
+| -------------- | --------------------- | --------------- | ----- | -------- |
+| ratna.apoteker | Apoteker Gudang Dinas | Dinas Kesehatan | Ya    | Aktif    |
+| andi.apoteker  | Apoteker Puskesmas    | Puskesmas A     | Tidak | Aktif    |
+| sari.apoteker  | Apoteker RSUD         | RSUD            | Ya    | Aktif    |
+| hendra.kabid   | Kepala Bidang Farmasi | Dinas Kesehatan | Ya    | Aktif    |
+| budi.gudang    | Petugas Gudang        | Puskesmas A     | Tidak | Nonaktif |
+
+#### 8.9.7 Model Peran Baku
+
+| Kode Peran         | Nama Peran            | Cakupan Akses                                     |
+| ------------------ | --------------------- | ------------------------------------------------- |
+| ADMIN_DINKES       | Administrator Dinas   | Seluruh modul dan seluruh fasilitas               |
+| KEPALA_DINAS       | Kepala Dinas          | Baca seluruh fasilitas dan persetujuan            |
+| KEPALA_BIDANG      | Kepala Bidang Farmasi | Baca seluruh fasilitas, setujui RKO dan realokasi |
+| APOTEKER_GUDANG    | Apoteker Gudang Dinas | Penerimaan, penyimpanan, distribusi, dan stok     |
+| APOTEKER_PUSKESMAS | Apoteker Puskesmas    | RKO, stok, dan dispensing pada fasilitasnya       |
+| DIREKTUR_RSUD      | Direktur RSUD         | Monitoring dan pelaporan RSUD                     |
+| PETUGAS_GUDANG     | Petugas Gudang        | Penerimaan, picking, dan stock opname             |
+| AUDITOR            | Auditor               | Baca seluruh data tanpa hak ubah                  |
+
+### 8.10 Modul Prediksi dan Kecerdasan Buatan
+
+#### 8.10.1 Ringkasan Modul Prediksi
+
+Modul ini memberikan dukungan keputusan berbasis data untuk memperkirakan kebutuhan obat
+dan mendeteksi risiko kekosongan lebih awal. Cakupan versi awal mencakup empat kemampuan:
+ROP dinamis, analisis tren dan musiman, prediksi kebutuhan, serta peringatan dini.
+
+Hasil prediksi bersifat sebagai rekomendasi. Keputusan akhir pengadaan dan distribusi
+tetap berada pada apoteker dan pejabat yang berwenang.
+
+#### 8.10.2 Aktor dan Hak Akses Prediksi
+
+| Peran                 | Hak                                                   |
+| --------------------- | ----------------------------------------------------- |
+| Kepala Bidang Farmasi | Melihat prediksi seluruh fasilitas                    |
+| Apoteker Gudang Dinas | Menjalankan prediksi dan menindaklanjuti peringatan   |
+| Apoteker Fasilitas    | Melihat prediksi fasilitasnya dan memberi umpan balik |
+| Auditor               | Melihat riwayat prediksi dan peringatan               |
+
+#### 8.10.3 Fitur Modul Prediksi
+
+1. Perhitungan ROP dinamis berdasarkan konsumsi aktual dan hasil prediksi.
+2. Analisis tren dan pola musiman per item per fasilitas.
+3. Prediksi kebutuhan satu sampai tiga bulan ke depan.
+4. Peringatan dini potensi kekosongan obat beserta rekomendasi jumlah.
+5. Deteksi anomali pemakaian dengan metode statistik.
+6. Skor keyakinan (confidence) pada setiap hasil prediksi.
+7. Peninjauan dan koreksi hasil prediksi oleh apoteker.
+8. Riwayat prediksi dan pengukuran akurasi untuk evaluasi model.
+
+#### 8.10.4 Alur Prediksi dan Peringatan
+
+```mermaid
+flowchart TD
+    A["Riwayat konsumsi<br/>minimal 12 bulan"] --> B["Pembersihan dan<br/>agregasi bulanan"]
+    B --> C["Analisis tren<br/>dan musiman"]
+    C --> D["Prediksi kebutuhan<br/>1 sampai 3 bulan"]
+    D --> E["Hitung ROP dinamis<br/>dan skor risiko"]
+    E --> F{"Risiko tinggi?"}
+    F -->|"Ya"| G["Buat peringatan dini<br/>dan rekomendasi"]
+    F -->|"Tidak"| H["Simpan hasil prediksi"]
+    G --> I["Apoteker meninjau<br/>dan menindaklanjuti"]
+    H --> I
+    I --> J["Catat akurasi<br/>untuk evaluasi model"]
+```
+
+![Alur Prediksi dan Peringatan](./diagrams/8-10-4-alur-prediksi-dan-peringatan.png)
+
+#### 8.10.5 Aturan Bisnis Prediksi
+
+- Prediksi hanya dijalankan jika tersedia data historis minimal 12 bulan.
+- Hasil prediksi adalah pendukung keputusan, bukan keputusan otomatis.
+- Prediksi dengan confidence di bawah 60 persen ditandai sebagai estimasi rendah.
+- Item kategori Vital tetap wajib memiliki safety stock manual sebagai lapis pengaman.
+- Koreksi apoteker disimpan sebagai umpan balik dan tidak menimpa data historis.
+- Model dilatih ulang minimal setiap bulan atau saat pola pemakaian berubah signifikan.
+- Data pasien tidak digunakan; prediksi hanya memakai agregat pemakaian.
+
+#### 8.10.6 Metode dan Algoritma
+
+| Metode                | Kegunaan                         | Kompleksitas |
+| --------------------- | -------------------------------- | ------------ |
+| Exponential Smoothing | Prediksi kebutuhan jangka pendek | Sedang       |
+| Rata-rata bergerak    | Baseline pembanding              | Rendah       |
+| Z-score dan IQR       | Deteksi anomali pemakaian        | Rendah       |
+| Risk scoring          | Peringatan dini kekosongan       | Sedang       |
+
+```text
+Konsumsi_prediksi_t = α × Konsumsi_aktual_(t-1) + (1 − α) × Konsumsi_prediksi_(t-1)
+ROP_dinamis         = (Konsumsi_prediksi_t × Lead Time) + Safety Stock_dinamis
+Risk Score          = bobot × (hari_stok_tersisa ÷ lead_time)
+```
+
+Nilai α ditetapkan antara 0,2 sampai 0,3 agar prediksi responsif namun tetap stabil.
+
+#### 8.10.7 Contoh Data Prediksi
+
+| Obat               | Fasilitas   | Periode | Prediksi | Confidence | Tren   |
+| ------------------ | ----------- | ------- | -------: | ---------: | ------ |
+| Amoksisilin 500 mg | Puskesmas A | 2027-03 |    4.200 |        85% | Naik   |
+| Parasetamol 500 mg | Puskesmas A | 2027-03 |    5.600 |        88% | Stabil |
+| Salbutamol Inhaler | Puskesmas B | 2027-03 |       72 |        74% | Naik   |
+| Insulin Glargine   | Puskesmas B | 2027-03 |       34 |        81% | Stabil |
+| Oralit Serbuk      | Puskesmas C | 2027-03 |    1.250 |        79% | Turun  |
+
+| Obat               | Fasilitas   | Stok | Konsumsi per Hari | Estimasi Habis | Risiko  |
+| ------------------ | ----------- | ---: | ----------------: | -------------: | ------- |
+| Insulin Glargine   | Puskesmas B |   28 |                 3 |         9 hari | Kritis  |
+| Salbutamol Inhaler | Puskesmas A |   18 |                 2 |         9 hari | Kritis  |
+| Amoksisilin 500 mg | Puskesmas C |  900 |                45 |        20 hari | Waspada |
+| Oralit Serbuk      | Puskesmas B |  600 |                15 |        40 hari | Aman    |
+
+Pada kondisi kritis, sistem menyarankan jumlah permintaan berdasarkan prediksi kebutuhan
+ditambah safety stock, lalu apoteker memverifikasi sebelum diajukan.
+
+### 8.11 Modul LPLPO
+
+#### 8.11.1 Ringkasan Modul LPLPO
+
+LPLPO (Laporan Pemakaian dan Lembar Permintaan Obat) adalah dokumen bulanan yang diajukan
+fasilitas kepada Dinas Kesehatan. Dokumen ini memuat stok awal, stok akhir, jumlah pakai,
+dan jumlah permintaan per item, lalu menjadi dasar distribusi bulanan.
+
+LPLPO berjalan paralel dengan RKO. LPLPO bersifat operasional bulanan, sedangkan RKO
+bersifat perencanaan triwulanan yang lebih analitis.
+
+#### 8.11.2 Aktor dan Hak Akses LPLPO
+
+| Peran                 | Hak                                           |
+| --------------------- | --------------------------------------------- |
+| Apoteker Puskesmas    | Menyusun, mengajukan, dan merevisi LPLPO      |
+| Apoteker Gudang Dinas | Memverifikasi dan menetapkan jumlah disetujui |
+| Kepala Bidang Farmasi | Menyetujui LPLPO bernilai besar               |
+| Auditor               | Melihat riwayat LPLPO                         |
+
+#### 8.11.3 Fitur Modul LPLPO
+
+1. Pembuatan LPLPO bulanan per fasilitas.
+2. Pengisian otomatis stok awal, stok akhir, dan jumlah pakai dari mutasi stok.
+3. Input jumlah permintaan per item dengan validasi stok dan anggaran.
+4. Verifikasi dan penetapan jumlah usul oleh Dinas.
+5. Persetujuan berjenjang untuk LPLPO bernilai besar.
+6. Revisi LPLPO yang dikembalikan dengan riwayat versi.
+7. Cetak LPLPO resmi dalam format PDF.
+8. Pembentukan permintaan distribusi otomatis dari LPLPO yang disetujui.
+
+#### 8.11.4 Alur LPLPO
+
+```mermaid
+flowchart TD
+    A["Awal bulan"] --> B["Sistem tarik stok awal,<br/>stok akhir, dan pemakaian"]
+    B --> C["Apoteker Puskesmas<br/>isi jumlah permintaan"]
+    C --> D["Ajukan LPLPO ke Dinas"]
+    D --> E{"Verifikasi Dinas"}
+    E -->|"Dikembalikan"| F["Revisi oleh Puskesmas"]
+    F --> C
+    E -->|"Disetujui"| G["Tetapkan jumlah usul<br/>dan jumlah disetujui"]
+    G --> H["Bentuk permintaan<br/>distribusi bulanan"]
+    H --> I["Distribusi dan<br/>pencatatan mutasi stok"]
+```
+
+![Alur LPLPO](./diagrams/8-11-4-alur-lplpo.png)
+
+#### 8.11.5 Aturan Bisnis LPLPO
+
+- LPLPO diajukan paling lambat tanggal 5 setiap bulan.
+- Stok awal, stok akhir, dan jumlah pakai diambil otomatis dari mutasi stok.
+- Satu fasilitas hanya memiliki satu LPLPO per periode.
+- LPLPO yang telah disetujui tidak dapat diubah; perubahan dibuat dokumen baru.
+- Jumlah disetujui boleh berbeda dari jumlah diminta dengan alasan tercatat.
+- LPLPO yang disetujui menjadi dasar permintaan distribusi bulanan.
+- LPLPO tidak menggantikan RKO; keduanya berjalan paralel.
+
+#### 8.11.6 Contoh Data LPLPO
+
+LPLPO Puskesmas A, periode Januari 2027:
+
+| Kode    | Nama Obat          | Stok Awal | Stok Akhir | Dipakai | Diminta | Usul | Disetujui | Alasan                   |
+| ------- | ------------------ | --------: | ---------: | ------: | ------: | ---: | --------: | ------------------------ |
+| OBT-001 | Amoksisilin 500 mg |       500 |        200 |     300 |     400 |  400 |       400 | -                        |
+| OBT-002 | Parasetamol 500 mg |     1.000 |        600 |     400 |     500 |  500 |       500 | -                        |
+| OBT-007 | Salbutamol Inhaler |        12 |          3 |       9 |      30 |   20 |        15 | Stok pusat terbatas      |
+| OBT-009 | Vitamin A Kapsul   |       500 |        450 |      50 |     200 |  100 |       100 | Stok cukup 6 bulan       |
+| OBT-011 | Insulin Glargine   |         6 |          2 |       4 |      20 |   12 |        10 | Prioritas fasilitas lain |
+
+#### 8.11.7 Perbedaan LPLPO dan RKO
+
+| Aspek        | LPLPO                        | RKO                             |
+| ------------ | ---------------------------- | ------------------------------- |
+| Periode      | Bulanan                      | Triwulanan                      |
+| Sifat        | Operasional                  | Perencanaan strategis           |
+| Dasar hitung | Pemakaian riil dan sisa stok | Konsumsi, morbiditas, ABC-VEN   |
+| Pengaju      | Puskesmas dan Pustu          | Puskesmas dan RSUD obat program |
+| Penyetuju    | Apoteker Gudang Dinas        | Kepala Bidang Farmasi           |
+| Keluaran     | Dasar distribusi bulanan     | Dasar pengadaan triwulanan      |
+
 ---
 
 ## 9. Data Model
@@ -726,46 +1114,80 @@ bagi pimpinan serta pengelola teknis.
 
 ```mermaid
 erDiagram
-    FASILITAS ||--o{ GUDANG : memiliki
-    GUDANG ||--o{ STOK : menyimpan
+    FASILITAS ||--o{ LOKASI_PENYIMPANAN : memiliki
+    LOKASI_PENYIMPANAN ||--o{ STOK : menyimpan
     OBAT ||--o{ STOK : tercatat
     STOK ||--o{ BATCH : terdiri_dari
-    GUDANG ||--o{ PENERIMAAN : menerima
+    LOKASI_PENYIMPANAN ||--o{ PENERIMAAN : menerima
     PENERIMAAN ||--o{ PENERIMAAN_ITEM : berisi
     PENERIMAAN_ITEM }o--|| BATCH : menghasilkan
     FASILITAS ||--o{ PERMINTAAN : mengajukan
     PERMINTAAN ||--o{ PERMINTAAN_ITEM : berisi
     PERMINTAAN ||--o| PENGIRIMAN : dipenuhi
-    GUDANG ||--o{ PENGIRIMAN : mengirim
+    LOKASI_PENYIMPANAN ||--o{ PENGIRIMAN : mengirim
     PENGIRIMAN ||--o{ PENGIRIMAN_ITEM : berisi
     FASILITAS ||--o{ RKO : menyusun
     RKO ||--o{ RKO_ITEM : berisi
     FASILITAS ||--o{ PENGGUNAAN : mencatat
     PENGGUNAAN ||--o{ PENGGUNAAN_ITEM : berisi
     OBAT ||--o{ PENGGUNAAN_ITEM : dipakai
-    GUDANG ||--o{ OPNAME : melaksanakan
+    LOKASI_PENYIMPANAN ||--o{ OPNAME : melaksanakan
     OPNAME ||--o{ OPNAME_ITEM : berisi
     PENGGUNA ||--o{ AUDIT_LOG : menghasilkan
+    FASILITAS ||--o{ PAGU_ANGGARAN : memiliki
+    PAGU_ANGGARAN ||--o{ MUTASI_ANGGARAN : mencatat
+    PENGGUNA ||--o{ PENGGUNA_PERAN : memiliki
+    PERAN ||--o{ PENGGUNA_PERAN : diberikan
+    PENGGUNA ||--o{ PENGGUNA_FASILITAS : di_assign
+    FASILITAS ||--o{ PENGGUNA_FASILITAS : mencakup
+    PENGGUNA ||--o{ PENGGUNA_TERHUBUNG : memiliki
+    FASILITAS ||--o{ RIWAYAT_KONSUMSI : mencatat
+    OBAT ||--o{ RIWAYAT_KONSUMSI : tercatat
+    FASILITAS ||--o{ PREDIKSI_KEBUTUHAN : memiliki
+    OBAT ||--o{ PREDIKSI_KEBUTUHAN : diprediksi
+    FASILITAS ||--o{ PERINGATAN_DINI : menerima
+    OBAT ||--o{ PERINGATAN_DINI : terkait
+    LOKASI_PENYIMPANAN ||--o{ MUTASI_STOK : mencatat
+    OBAT ||--o{ MUTASI_STOK : tercatat
+    BATCH ||--o{ MUTASI_STOK : memiliki
+    FASILITAS ||--o{ LPLPO : mengajukan
+    LPLPO ||--o{ LPLPO_ITEM : berisi
+    OBAT ||--o{ LPLPO_ITEM : diminta
 ```
 
 ![Entitas Utama](./diagrams/9-1-entitas-utama.png)
 
+Detail atribut, tipe data, constraint, dan entitas pendukung dijelaskan pada
+`docs/DATA-MODEL.md`.
+
 ### 9.2 Kamus Entitas Inti
 
-| Entitas    | Deskripsi                        | Atribut Kunci                                    |
-| ---------- | -------------------------------- | ------------------------------------------------ |
-| Fasilitas  | Dinas, RSUD, Puskesmas, Pustu    | id, nama, jenis, status, kode_registrasi         |
-| Gudang     | Lokasi penyimpanan per fasilitas | id, fasilitas_id, nama, zona, suhu               |
-| Obat       | Master item obat dan BMHP        | id, kode, nama, satuan, kategori, formularium    |
-| Stok       | Saldo per item per gudang        | id, gudang_id, obat_id, jumlah, min, max, rop    |
-| Batch      | Rincian batch pada stok          | id, stok_id, nomor_batch, expired, jumlah        |
-| Penerimaan | Dokumen penerimaan barang        | id, gudang_id, po_id, tanggal, status            |
-| Permintaan | Permintaan dari fasilitas        | id, fasilitas_id, periode, status, prioritas     |
-| Pengiriman | Dokumen pengiriman               | id, gudang_id, permintaan_id, tanggal, status    |
-| RKO        | Rencana kebutuhan obat           | id, fasilitas_id, periode, status, versi         |
-| Penggunaan | Catatan pemakaian obat           | id, fasilitas_id, tanggal, jenis_layanan         |
-| Opname     | Sesi stock opname                | id, gudang_id, tanggal, status, selisih_nilai    |
-| Audit Log  | Jejak seluruh perubahan data     | id, pengguna_id, aksi, entitas, waktu, data_lama |
+| Entitas            | Deskripsi                              | Atribut Kunci                                                                                 |
+| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Fasilitas          | Dinas, RSUD, Puskesmas, Pustu          | id, nama, jenis, status, kode_registrasi                                                      |
+| Lokasi Penyimpanan | Lokasi penyimpanan per fasilitas       | id, fasilitas_id, nama, jenis, zona, suhu                                                     |
+| Obat               | Master item obat dan BMHP              | id, kode, nama, satuan, kategori, formularium                                                 |
+| Stok               | Saldo per item per lokasi penyimpanan  | id, lokasi_penyimpanan_id, obat_id, jumlah, min, max, rop                                     |
+| Batch              | Rincian batch pada stok                | id, stok_id, nomor_batch, expired, jumlah                                                     |
+| Penerimaan         | Dokumen penerimaan barang              | id, lokasi_penyimpanan_id, po_id, tanggal, status                                             |
+| Permintaan         | Permintaan dari fasilitas              | id, fasilitas_id, periode, status, prioritas                                                  |
+| Pengiriman         | Dokumen pengiriman                     | id, lokasi_penyimpanan_id, permintaan_id, tanggal, status                                     |
+| RKO                | Rencana kebutuhan obat                 | id, fasilitas_id, periode, status, versi                                                      |
+| Penggunaan         | Catatan pemakaian obat                 | id, fasilitas_id, tanggal, jenis_layanan                                                      |
+| Opname             | Sesi stock opname                      | id, lokasi_penyimpanan_id, tanggal, status, selisih_nilai                                     |
+| Audit Log          | Jejak seluruh perubahan data           | id, pengguna_id, aksi, entitas, waktu, data_lama                                              |
+| Pagu Anggaran      | Alokasi dana per fasilitas per periode | id, fasilitas_id, periode, sumber_dana, nilai                                                 |
+| Mutasi Anggaran    | Komitmen, realisasi, dan realokasi     | id, pagu_id, jenis, nilai, referensi                                                          |
+| Peran              | Kumpulan hak akses                     | id, kode, nama, deskripsi                                                                     |
+| Pengguna Peran     | Relasi pengguna dengan peran           | id, pengguna_id, peran_id                                                                     |
+| Pengguna Fasilitas | Penugasan pengguna ke fasilitas        | id, pengguna_id, fasilitas_id, aktif                                                          |
+| Pengguna Terhubung | Akun eksternal yang terhubung          | id, pengguna_id, provider, provider_user_id, aktif                                            |
+| Riwayat Konsumsi   | Agregat pemakaian bulanan per item     | id, obat_id, fasilitas_id, periode, jumlah_keluar                                             |
+| Prediksi Kebutuhan | Hasil prediksi kebutuhan per item      | id, obat_id, fasilitas_id, periode_prediksi, jumlah, confidence, metode                       |
+| Peringatan Dini    | Deteksi risiko kekosongan obat         | id, obat_id, fasilitas_id, tingkat, risk_score, estimasi_hari, rekomendasi                    |
+| Mutasi Stok        | Buku besar pergerakan stok             | id, lokasi_penyimpanan_id, obat_id, batch_id, jenis, jumlah, saldo_sesudah, sumber, sumber_id |
+| LPLPO              | Dokumen permintaan obat bulanan        | id, nomor, fasilitas_id, periode, status, total_diminta, total_disetujui                      |
+| LPLPO Item         | Rincian item pada dokumen LPLPO        | id, lplpo_id, obat_id, stok_awal, stok_akhir, jumlah_pakai, jumlah_minta, jumlah_disetujui    |
 
 ### 9.3 Aturan Data
 
@@ -774,6 +1196,7 @@ erDiagram
 3. Nomor batch dan tanggal kedaluwarsa wajib untuk semua item farmasi.
 4. Penghapusan master data menggunakan penonaktifan, bukan penghapusan fisik.
 5. Audit log tidak dapat diubah atau dihapus oleh pengguna mana pun.
+6. Data riwayat konsumsi yang telah dikunci periodenya tidak boleh diubah.
 
 ---
 
@@ -794,6 +1217,9 @@ Prinsip integrasi:
 - Kegagalan integrasi dicatat dan dapat dicoba ulang secara manual.
 - Data master obat mengikuti kode nasional bila tersedia.
 - Semua pertukaran data menggunakan koneksi terenkripsi.
+
+Detail mekanisme integrasi MVP untuk LKPP, SIPNAP, dan SIPD dijelaskan pada
+`docs/INTEGRATION.md`.
 
 ---
 
@@ -827,6 +1253,7 @@ Prinsip integrasi:
 4. Audit log untuk seluruh aksi kritis.
 5. Pembatasan sesi dan logout otomatis setelah tidak aktif.
 6. Pemisahan data antar fasilitas kecuali untuk peran Dinas.
+7. Kebijakan akun, peran, 2FA, dan audit aktivitas diuraikan pada bagian 8.9.
 
 ### 11.4 Usabilitas dan Aksesibilitas
 
@@ -890,15 +1317,15 @@ Prinsip kepatuhan yang diterapkan:
 
 ### 14.1 Fase Pengembangan
 
-| Fase   | Fokus                                          | Durasi    | Keluaran                       |
-| ------ | ---------------------------------------------- | --------- | ------------------------------ |
-| Fase 0 | Discovery, pembersihan data, desain arsitektur | 4 minggu  | Dokumen desain dan data bersih |
-| Fase 1 | Master data, pengguna, gudang, stok dasar      | 8 minggu  | Fondasi sistem                 |
-| Fase 2 | Penerimaan, penyimpanan, pengendalian          | 10 minggu | Gudang beroperasi              |
-| Fase 3 | Perencanaan dan pengadaan                      | 8 minggu  | RKO dan PO terintegrasi        |
-| Fase 4 | Distribusi dan pelayanan                       | 10 minggu | Alur end-to-end                |
-| Fase 5 | Pelaporan, integrasi, dan penyempurnaan        | 8 minggu  | Laporan otomatis dan integrasi |
-| Fase 6 | Peluncuran bertahap dan pendampingan           | 6 minggu  | Semua fasilitas aktif          |
+| Fase   | Fokus                                                 | Durasi    | Keluaran                         |
+| ------ | ----------------------------------------------------- | --------- | -------------------------------- |
+| Fase 0 | Discovery, pembersihan data, desain arsitektur        | 4 minggu  | Dokumen desain dan data bersih   |
+| Fase 1 | Master data, pengguna, lokasi penyimpanan, stok dasar | 8 minggu  | Fondasi sistem                   |
+| Fase 2 | Penerimaan, penyimpanan, pengendalian                 | 10 minggu | Gudang dan ruang obat beroperasi |
+| Fase 3 | Perencanaan dan pengadaan                             | 8 minggu  | RKO dan PO terintegrasi          |
+| Fase 4 | Distribusi dan pelayanan                              | 10 minggu | Alur end-to-end                  |
+| Fase 5 | Pelaporan, integrasi, dan penyempurnaan               | 8 minggu  | Laporan otomatis dan integrasi   |
+| Fase 6 | Peluncuran bertahap dan pendampingan                  | 6 minggu  | Semua fasilitas aktif            |
 
 ### 14.2 Timeline
 
@@ -910,7 +1337,7 @@ gantt
     section Fondasi
     Discovery dan desain      :a1, 2027-01-04, 28d
     Master data dan pengguna  :a2, after a1, 56d
-    section Operasi Gudang
+    section Operasi Penyimpanan
     Penerimaan dan stok       :b1, after a2, 70d
     Pengendalian persediaan   :b2, after b1, 21d
     section Rantai Pasok
@@ -937,24 +1364,32 @@ gantt
 
 ### 15.1 Glosarium
 
-| Istilah      | Definisi                                                         |
-| ------------ | ---------------------------------------------------------------- |
-| BMHP         | Bahan Medis Habis Pakai                                          |
-| BLUD         | Badan Layanan Umum Daerah                                        |
-| RKO          | Rencana Kebutuhan Obat                                           |
-| ROP          | Reorder Point, titik jumlah stok untuk memesan kembali           |
-| Safety Stock | Stok pengaman untuk mengantisipasi ketidakpastian                |
-| Buffer Stock | Stok penyangga pada perencanaan kebutuhan                        |
-| Lead Time    | Selang waktu antara pemesanan dan penerimaan barang              |
-| FEFO         | First Expired First Out, keluar berdasarkan kedaluwarsa terdekat |
-| FIFO         | First In First Out, keluar berdasarkan urutan masuk              |
-| ABC          | Klasifikasi item berdasarkan nilai pemakaian                     |
-| VEN          | Klasifikasi item berdasarkan vital, esensial, non-esensial       |
-| Stockout     | Kondisi stok suatu item kosong                                   |
-| Stagnant     | Kondisi stok tidak bergerak dalam periode tertentu               |
-| Opname       | Kegiatan penghitungan fisik persediaan                           |
-| BAST         | Berita Acara Serah Terima                                        |
-| Pustu        | Puskesmas Pembantu                                               |
+| Istilah              | Definisi                                                         |
+| -------------------- | ---------------------------------------------------------------- |
+| BMHP                 | Bahan Medis Habis Pakai                                          |
+| BLUD                 | Badan Layanan Umum Daerah                                        |
+| RKO                  | Rencana Kebutuhan Obat                                           |
+| ROP                  | Reorder Point, titik jumlah stok untuk memesan kembali           |
+| Safety Stock         | Stok pengaman untuk mengantisipasi ketidakpastian                |
+| Buffer Stock         | Stok penyangga pada perencanaan kebutuhan                        |
+| Lead Time            | Selang waktu antara pemesanan dan penerimaan barang              |
+| FEFO                 | First Expired First Out, keluar berdasarkan kedaluwarsa terdekat |
+| FIFO                 | First In First Out, keluar berdasarkan urutan masuk              |
+| ABC                  | Klasifikasi item berdasarkan nilai pemakaian                     |
+| VEN                  | Klasifikasi item berdasarkan vital, esensial, non-esensial       |
+| Stockout             | Kondisi stok suatu item kosong                                   |
+| Stagnant             | Kondisi stok tidak bergerak dalam periode tertentu               |
+| Opname               | Kegiatan penghitungan fisik persediaan                           |
+| BAST                 | Berita Acara Serah Terima                                        |
+| Gudang Farmasi Pusat | Gudang obat utama milik Dinas Kesehatan Kabupaten                |
+| Ruang Obat           | Lokasi penyimpanan obat di Puskesmas untuk pelayanan harian      |
+| Instalasi Farmasi    | Lokasi penyimpanan dan pengelolaan obat di RSUD                  |
+| ROP Dinamis          | Titik pemesanan kembali yang menyesuaikan pola konsumsi          |
+| Confidence           | Tingkat keyakinan model terhadap hasil prediksi                  |
+| Early Warning System | Sistem peringatan dini potensi kekosongan obat                   |
+| LPLPO                | Laporan Pemakaian dan Lembar Permintaan Obat, dokumen bulanan    |
+| Mutasi Stok          | Catatan setiap pergerakan stok masuk, keluar, dan penyesuaian    |
+| Pustu                | Puskesmas Pembantu                                               |
 
 ### 15.2 Daftar Regulasi Rujukan
 
@@ -988,7 +1423,7 @@ gantt
 
 ### 15.4 Contoh Checklist Implementasi Fasilitas
 
-1. Master data fasilitas dan gudang terdaftar.
+1. Master data fasilitas dan lokasi penyimpanan terdaftar.
 2. Pengguna dan peran telah dibuat serta diuji.
 3. Saldo awal stok telah dimigrasikan dan diverifikasi.
 4. Lokasi rak dan zona penyimpanan telah dipetakan.
@@ -1001,6 +1436,9 @@ gantt
 
 | Dokumen                | Isi                                     | Status   |
 | ---------------------- | --------------------------------------- | -------- |
-| `docs/UI-MOCKUP.md`    | Mockup antarmuka dan alur layar         | Terpisah |
-| `docs/API-CONTRACT.md` | Kontrak API dan skema integrasi         | Terpisah |
+| `docs/mockup/`         | Mockup antarmuka dan katalog komponen   | Tersedia |
+| `docs/API-CONTRACT.md` | Kontrak API internal dan skemanya       | Tersedia |
 | `docs/examples/`       | Contoh tabel dan diagram sesuai standar | Tersedia |
+| `docs/TECH-STACK.md`   | Tech stack dan arsitektur teknis        | Tersedia |
+| `docs/DATA-MODEL.md`   | Skema basis data dan kamus kolom        | Tersedia |
+| `docs/INTEGRATION.md`  | Panduan integrasi sistem eksternal      | Tersedia |

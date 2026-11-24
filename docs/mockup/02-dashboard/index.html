@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="dashboard" class="min-h-screen bg-slate-100 text-slate-800">
+    <div class="flex min-h-screen">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-content flex min-w-0 flex-1 flex-col">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div>
+            <h1 class="text-xl font-semibold">Dashboard Ketersediaan Obat</h1>
+            <p class="text-xs text-slate-500">Periode Januari 2027, data contoh</p>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="rounded-xl border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wide text-slate-500">Availability Rate</p>
+              <p class="mt-2 text-3xl font-bold text-emerald-600">92%</p>
+              <p class="mt-1 text-xs text-slate-500">Target minimal 90%</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wide text-slate-500">Stockout Rate</p>
+              <p class="mt-2 text-3xl font-bold text-amber-600">4%</p>
+              <p class="mt-1 text-xs text-slate-500">Target maksimal 5%</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wide text-slate-500">Nilai Inventori</p>
+              <p class="mt-2 text-3xl font-bold">Rp 2,5 M</p>
+              <p class="mt-1 text-xs text-slate-500">Obat 70%, BMHP 20%, vaksin 10%</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-4">
+              <p class="text-xs uppercase tracking-wide text-slate-500">Peringatan Aktif</p>
+              <p class="mt-2 text-3xl font-bold text-rose-600">23</p>
+              <p class="mt-1 text-xs text-slate-500">12 kritis, 11 waspada</p>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="rounded-xl border border-slate-200 bg-white p-5 xl:col-span-2">
+              <div class="mb-4 flex items-center justify-between">
+                <h2 class="font-semibold">Serapan Anggaran per Fasilitas</h2>
+                <span class="text-xs text-slate-500">Rupiah, tahun 2027</span>
+              </div>
+              <div class="space-y-4 text-sm">
+                <div>
+                  <div class="mb-1 flex justify-between"><span>Puskesmas A</span><span>58%</span></div>
+                  <div class="h-2 rounded-full bg-slate-100"><div class="h-2 rounded-full bg-brand-500" style="width: 58%"></div></div>
+                </div>
+                <div>
+                  <div class="mb-1 flex justify-between"><span>Puskesmas B</span><span>90%</span></div>
+                  <div class="h-2 rounded-full bg-slate-100"><div class="h-2 rounded-full bg-amber-500" style="width: 90%"></div></div>
+                </div>
+                <div>
+                  <div class="mb-1 flex justify-between"><span>Puskesmas C</span><span>40%</span></div>
+                  <div class="h-2 rounded-full bg-slate-100"><div class="h-2 rounded-full bg-rose-500" style="width: 40%"></div></div>
+                </div>
+                <div>
+                  <div class="mb-1 flex justify-between"><span>RSUD (obat program)</span><span>65%</span></div>
+                  <div class="h-2 rounded-full bg-slate-100"><div class="h-2 rounded-full bg-emerald-500" style="width: 65%"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-xl border border-rose-200 bg-rose-50 p-5">
+              <h2 class="font-semibold text-rose-800">Peringatan Kritis</h2>
+              <ul class="mt-3 space-y-3 text-sm text-rose-700">
+                <li class="rounded-lg bg-white p-3">
+                  <p class="font-medium">Insulin Glargine, Puskesmas B</p>
+                  <p class="text-xs">Sisa 28 vial, estimasi habis 9 hari</p>
+                </li>
+                <li class="rounded-lg bg-white p-3">
+                  <p class="font-medium">Salbutamol Inhaler, Puskesmas A</p>
+                  <p class="text-xs">Sisa 18 botol, estimasi habis 9 hari</p>
+                </li>
+                <li class="rounded-lg bg-white p-3">
+                  <p class="font-medium">Vaksin Campak, batch VC2401</p>
+                  <p class="text-xs">Kedaluwarsa 15 Februari 2027</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="rounded-xl border border-slate-200 bg-white">
+            <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+              <h2 class="font-semibold">Peringkat Ketersediaan Fasilitas</h2>
+              <a href="../03-stok/index.html" class="text-sm text-brand-600 hover:underline">Lihat stok</a>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                  <tr>
+                    <th class="px-5 py-3">Fasilitas</th>
+                    <th class="px-5 py-3 text-right">Item RKO</th>
+                    <th class="px-5 py-3 text-right">Tersedia</th>
+                    <th class="px-5 py-3 text-right">Kosong</th>
+                    <th class="px-5 py-3 text-right">Availability</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr><td class="px-5 py-3">Puskesmas A</td><td class="px-5 py-3 text-right">120</td><td class="px-5 py-3 text-right">114</td><td class="px-5 py-3 text-right">6</td><td class="px-5 py-3 text-right font-medium text-emerald-600">95%</td></tr>
+                  <tr><td class="px-5 py-3">Puskesmas B</td><td class="px-5 py-3 text-right">118</td><td class="px-5 py-3 text-right">108</td><td class="px-5 py-3 text-right">10</td><td class="px-5 py-3 text-right font-medium text-emerald-600">92%</td></tr>
+                  <tr><td class="px-5 py-3">Puskesmas C</td><td class="px-5 py-3 text-right">125</td><td class="px-5 py-3 text-right">112</td><td class="px-5 py-3 text-right">13</td><td class="px-5 py-3 text-right font-medium text-amber-600">90%</td></tr>
+                  <tr><td class="px-5 py-3">RSUD</td><td class="px-5 py-3 text-right">210</td><td class="px-5 py-3 text-right">189</td><td class="px-5 py-3 text-right">21</td><td class="px-5 py-3 text-right font-medium text-amber-600">90%</td></tr>
+                  <tr><td class="px-5 py-3">Puskesmas D</td><td class="px-5 py-3 text-right">115</td><td class="px-5 py-3 text-right">98</td><td class="px-5 py-3 text-right">17</td><td class="px-5 py-3 text-right font-medium text-rose-600">85%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>
+

@@ -14,20 +14,29 @@
     "mermaid:export": "node scripts/export-mermaid.js",
     "mermaid:watch": "node scripts/watch-mermaid.js",
     "mermaid:export:all": "npm run mermaid:export && npm run md:fix && npm run md:check",
+    "mockup:css": "tailwindcss -i ./resources/css/app.css -o ./docs/mockup/assets/mockup.css --minify",
+    "mockup:watch": "tailwindcss -i ./resources/css/app.css -o ./docs/mockup/assets/mockup.css --watch",
+    "mockup:serve": "npx serve docs",
     "prepare": "husky"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^11.4.2",
+    "@tailwindcss/cli": "^4.3.5",
     "chokidar": "^6.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.2",
     "markdownlint-cli": "^0.45.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "serve": "^14.2.8",
+    "tailwindcss": "^4.3.5"
   },
   "lint-staged": {
     "*.md": [
       "prettier --write",
       "markdownlint --fix"
     ]
+  },
+  "dependencies": {
+    "remixicon": "^4.9.1"
   }
 }
