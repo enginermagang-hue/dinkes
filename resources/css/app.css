@@ -322,6 +322,77 @@
     }
   }
 
+  .dropdown-leave {
+    animation: dropdown-out 0.12s ease-in forwards;
+  }
+
+  @keyframes dropdown-out {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-4px) scale(0.98);
+    }
+  }
+
+  .dropdown-stagger > * {
+    opacity: 0;
+    animation: dropdown-item 0.18s ease-out forwards;
+  }
+
+  .dropdown-stagger > *:nth-child(1) {
+    animation-delay: 0.02s;
+  }
+
+  .dropdown-stagger > *:nth-child(2) {
+    animation-delay: 0.04s;
+  }
+
+  .dropdown-stagger > *:nth-child(3) {
+    animation-delay: 0.06s;
+  }
+
+  .dropdown-stagger > *:nth-child(4) {
+    animation-delay: 0.08s;
+  }
+
+  .dropdown-stagger > *:nth-child(5) {
+    animation-delay: 0.1s;
+  }
+
+  .dropdown-stagger > *:nth-child(6) {
+    animation-delay: 0.12s;
+  }
+
+  .dropdown-stagger > *:nth-child(7) {
+    animation-delay: 0.14s;
+  }
+
+  .dropdown-stagger > *:nth-child(8) {
+    animation-delay: 0.16s;
+  }
+
+  @keyframes dropdown-item {
+    from {
+      opacity: 0;
+      transform: translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .chevron {
+    transition: transform 0.2s ease;
+  }
+
+  details[open] > summary .chevron {
+    transform: rotate(180deg);
+  }
+
   /* Modal dengan animasi masuk dan keluar. */
   .modal-backdrop {
     animation: fade-in 0.15s ease-out;
@@ -415,9 +486,138 @@
   .kpi-lg .kpi-value {
     font-size: 2.25rem;
   }
+
+  /* Switch kustom berbasis input asli agar dapat diklik dan diakses keyboard. */
+  .switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #334155;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .switch input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .switch-track {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 2.75rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background-color: #cbd5e1;
+    transition:
+      background-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .switch-thumb {
+    position: absolute;
+    left: 0.25rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 9999px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.25);
+    transition: transform 0.15s ease;
+  }
+
+  .switch input:checked + .switch-track {
+    background-color: #1b64d1;
+  }
+
+  .switch input:checked + .switch-track .switch-thumb {
+    transform: translateX(1.25rem);
+  }
+
+  .switch input:focus-visible + .switch-track {
+    box-shadow: 0 0 0 3px #d9ecff;
+  }
+
+  .switch input:disabled + .switch-track {
+    background-color: #e2e8f0;
+  }
+
+  .switch input:disabled + .switch-track .switch-thumb {
+    background-color: #f8fafc;
+  }
+
+  .switch input:disabled ~ .switch-text {
+    color: #94a3b8;
+  }
+
+  .switch-sm {
+    font-size: 0.75rem;
+  }
+
+  .switch-sm .switch-track {
+    width: 2.25rem;
+    height: 1.25rem;
+  }
+
+  .switch-sm .switch-thumb {
+    left: 0.1875rem;
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .switch-sm input:checked + .switch-track .switch-thumb {
+    transform: translateX(1rem);
+  }
+
+  .switch-lg {
+    font-size: 1rem;
+  }
+
+  .switch-lg .switch-track {
+    width: 3.25rem;
+    height: 1.75rem;
+  }
+
+  .switch-lg .switch-thumb {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .switch-lg input:checked + .switch-track .switch-thumb {
+    transform: translateX(1.5rem);
+  }
+
+  .switch-success input:checked + .switch-track {
+    background-color: #059669;
+  }
+
+  .switch-success input:focus-visible + .switch-track {
+    box-shadow: 0 0 0 3px #d1fae5;
+  }
+
+  .switch-warning input:checked + .switch-track {
+    background-color: #f59e0b;
+  }
+
+  .switch-warning input:focus-visible + .switch-track {
+    box-shadow: 0 0 0 3px #fef3c7;
+  }
+
+  .switch-danger input:checked + .switch-track {
+    background-color: #e11d48;
+  }
+
+  .switch-danger input:focus-visible + .switch-track {
+    box-shadow: 0 0 0 3px #ffe4e6;
+  }
 }
 
-/* Tata letak sidebar tetap dan mode mini. */
+/* Tata letak sidebar tetap dan mode mini hanya berlaku di desktop. */
 @media (min-width: 1024px) {
   .app-content {
     padding-left: 16rem;
@@ -427,28 +627,421 @@
   body.sidebar-mini .app-content {
     padding-left: 4rem;
   }
+
+  body.sidebar-mini aside[data-nav] {
+    width: 4rem;
+  }
+
+  body.sidebar-mini aside[data-nav] [data-nav-label],
+  body.sidebar-mini aside[data-nav] .sidebar-brand-text,
+  body.sidebar-mini aside[data-nav] .sidebar-section-label,
+  body.sidebar-mini aside[data-nav] .sidebar-footer-note,
+  body.sidebar-mini aside[data-nav] .sidebar-collapse-label {
+    display: none;
+  }
+
+  body.sidebar-mini aside[data-nav] a {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  body.sidebar-mini aside[data-nav] .sidebar-head {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
-body.sidebar-mini aside[data-nav] {
-  width: 4rem;
+/* Kunci scroll dokumen saat sidebar mobile terbuka, termasuk iOS. */
+html.nav-open,
+html.nav-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
-body.sidebar-mini aside[data-nav] [data-nav-label],
-body.sidebar-mini aside[data-nav] .sidebar-brand-text,
-body.sidebar-mini aside[data-nav] .sidebar-section-label,
-body.sidebar-mini aside[data-nav] .sidebar-footer-note,
-body.sidebar-mini aside[data-nav] .sidebar-collapse-label {
-  display: none;
+html.nav-open body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 }
 
-body.sidebar-mini aside[data-nav] a {
+[data-nav-backdrop] {
+  touch-action: none;
+}
+
+/* Transisi sidebar: lebar saat collapse dan geser saat overlay mobile. */
+aside[data-nav] {
+  transition:
+    width 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Di mobile, tinggi sidebar mengikuti dynamic viewport agar tidak melebihi layar. */
+@media (max-width: 1023px) {
+  aside[data-nav] {
+    top: 0;
+    bottom: auto;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+}
+
+/* Scrollbar kustom hanya pada area item sidebar. */.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 transparent;
+  overscroll-behavior: contain;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 9999px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #475569;
+}
+
+/* Animasi ikon hamburger. */
+[data-collapse-sidebar] i,
+[data-toggle-nav] i {
+  transition: transform 0.2s ease;
+}
+
+body.sidebar-mini [data-collapse-sidebar] i {
+  transform: rotate(180deg);
+}
+
+[data-toggle-nav].is-open i {
+  transform: rotate(90deg);
+}
+
+/* Animasi toast masuk dan keluar. */
+.toast-enter {
+  animation: toast-in 0.2s ease-out;
+}
+
+.toast-leave {
+  animation: toast-out 0.15s ease-in forwards;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Tema Tom Select agar selaras dengan .field. */
+.ts-wrapper .ts-control {
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  box-shadow: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.ts-wrapper.focus .ts-control,
+.ts-wrapper .ts-control.focus {
+  border-color: #1b64d1;
+  box-shadow: 0 0 0 3px #d9ecff;
+}
+
+.ts-wrapper .ts-dropdown {
+  margin-top: 0.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgb(15 23 42 / 0.12);
+  overflow: hidden;
+  animation: dropdown-in 0.15s ease-out;
+}
+
+.ts-wrapper .ts-dropdown .option {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.ts-wrapper .ts-dropdown .option.active {
+  background-color: #eef6ff;
+  color: #1750a8;
+}
+
+.ts-wrapper .ts-dropdown .option:hover {
+  background-color: #f8fafc;
+}
+
+.ts-wrapper.multi .ts-control > div {
+  background-color: #eef6ff;
+  color: #1750a8;
+  border: 1px solid #bcdcff;
+  border-radius: 0.375rem;
+  padding: 0 0.375rem;
+}
+
+.ts-wrapper.multi .ts-control > div .remove {
+  border-left: 1px solid #bcdcff;
+}
+
+/* Hormati preferensi pengguna yang mengurangi gerakan. */
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-panel,
+  .dropdown-leave,
+  .dropdown-stagger > *,
+  .modal-panel,
+  .modal-backdrop,
+  .toast-enter,
+  .toast-leave {
+    animation: none !important;
+  }
+
+  .dropdown-stagger > * {
+    opacity: 1 !important;
+  }
+
+  aside[data-nav] {
+    transition: none !important;
+  }
+}
+
+/* ===== Komponen tambahan katalog ===== */
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+}
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  z-index: 60;
+  transform: translateX(-50%) translateY(2px);
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  background-color: #0f172a;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.tooltip:hover::after,
+.tooltip:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Skeleton */
+.skeleton {
+  border-radius: 0.375rem;
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 37%, #e2e8f0 63%);
+  background-size: 400% 100%;
+  animation: skeleton 1.4s ease infinite;
+}
+@keyframes skeleton {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* Spinner */
+.spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 9999px;
+  border: 2px solid #cbd5e1;
+  border-top-color: #1b64d1;
+  animation: icon-spin 0.8s linear infinite;
+}
+.spinner-sm { width: 0.875rem; height: 0.875rem; border-width: 1.5px; }
+.spinner-lg { width: 2rem; height: 2rem; border-width: 3px; }
+
+/* Progress */
+.progress {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #e2e8f0;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background-color: #1b64d1;
+  transition: width 0.3s ease;
+}
+
+/* Avatar */
+.avatar {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding-left: 0;
-  padding-right: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background-color: #d9ecff;
+  color: #1750a8;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.avatar-sm { width: 1.75rem; height: 1.75rem; font-size: 0.75rem; }
+.avatar-lg { width: 3rem; height: 3rem; font-size: 1rem; }
+.avatar-group > * { margin-left: -0.5rem; border: 2px solid #fff; }
+.avatar-group > *:first-child { margin-left: 0; }
+
+/* Chip */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  background-color: #fff;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  color: #334155;
+}
+.chip-active { border-color: #bcdcff; background-color: #eef6ff; color: #1750a8; }
+
+/* Segmented control */
+.segment {
+  display: inline-flex;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background-color: #f1f5f9;
+  padding: 0.25rem;
+}
+.segment button {
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  color: #475569;
+}
+.segment button[aria-pressed='true'] {
+  background-color: #fff;
+  color: #1750a8;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.12);
 }
 
-body.sidebar-mini aside[data-nav] .sidebar-head {
+/* Steps */
+.steps { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
+.step { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: #64748b; }
+.step-dot {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding-left: 0;
-  padding-right: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 9999px;
+  background-color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.step-done .step-dot { background-color: #059669; border-color: #059669; color: #fff; }
+.step-active .step-dot { background-color: #1b64d1; border-color: #1b64d1; color: #fff; }
+.step-active { color: #0f172a; font-weight: 500; }
+.step-line { width: 2rem; height: 1px; background-color: #cbd5e1; }
+
+/* Dropzone */
+.dropzone {
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 0.75rem;
+  background-color: #f8fafc;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.dropzone:hover { border-color: #59a4ff; background-color: #eef6ff; }
+
+/* Tree */
+.tree { font-size: 0.875rem; }
+.tree ul { margin-left: 1rem; border-left: 1px solid #e2e8f0; padding-left: 0.75rem; }
+.tree li { padding: 0.25rem 0; }
+
+/* Quantity stepper */
+.qty {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+.qty button { width: 2.25rem; height: 2.25rem; color: #475569; }
+.qty button:hover { background-color: #f1f5f9; }
+.qty input { width: 4rem; border: 0; text-align: center; font-size: 0.875rem; }
+
+/* Barcode */
+.barcode { display: flex; align-items: flex-end; gap: 2px; height: 3rem; }
+.barcode span { display: block; height: 100%; background-color: #0f172a; }
+
+/* Signature */
+.signature {
+  width: 100%;
+  height: 10rem;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  touch-action: none;
+}
+
+/* Kertas dokumen dan cetak */
+.paper {
+  max-width: 48rem;
+  margin: 0 auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  padding: 2rem;
+}
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .app-content { padding-left: 0 !important; }
+  aside,
+  header,
+  footer { display: none !important; }
+}
+
+/* Permukaan gelap untuk pratinjau tema */
+.dark-surface {
+  border-radius: 0.75rem;
+  background-color: #0f172a;
+  color: #e2e8f0;
+  padding: 1.25rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+  .spinner { animation-duration: 3s; }
 }

@@ -1,9 +1,9 @@
 ﻿<aside
   data-nav
-  class="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col overflow-y-auto bg-slate-900 p-4 text-slate-300 lg:flex"
+  class="sidebar-panel fixed inset-y-0 left-0 z-50 flex w-64 -translate-x-full flex-col overflow-hidden bg-slate-900 text-slate-300 lg:translate-x-0"
 >
-  <div class="sidebar-head mb-6 flex items-center gap-3 px-2">
-    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600 font-bold text-white">
+  <div class="sidebar-head flex h-[57px] shrink-0 items-center gap-3 border-b border-slate-800 px-4">
+    <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-600 font-bold text-white">
       S
     </div>
     <div class="sidebar-brand-text">
@@ -12,101 +12,100 @@
     </div>
   </div>
 
-  <p class="sidebar-section-label mb-2 px-3 text-[11px] uppercase tracking-widest text-slate-500">
-    Referensi
-  </p>
-  <nav class="mb-4 space-y-1 text-sm">
-    <a
-      href="../components/index.html"
-      data-nav-item="components"
-      title="Katalog Komponen"
-      class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800"
-    >
-      <i class="ri-apps-2-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Katalog Komponen</span>
-    </a>
-  </nav>
+  <div class="sidebar-scroll flex-1 overflow-y-auto px-2 py-3">
+    <p class="sidebar-section-label mb-2 px-3 text-[11px] uppercase tracking-widest text-slate-500">
+      Referensi
+    </p>
+    <nav class="mb-4 space-y-1 text-sm">
+      <a
+        href="../components/index.html"
+        data-nav-item="components"
+        title="Katalog Komponen"
+        class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800"
+      >
+        <i class="ri-apps-2-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Katalog Komponen</span>
+      </a>
+    </nav>
 
-  <p class="sidebar-section-label mb-2 px-3 text-[11px] uppercase tracking-widest text-slate-500">
-    Modul
-  </p>
-  <nav class="space-y-1 text-sm">
-    <a href="../02-dashboard/index.html" data-nav-item="dashboard" title="Dashboard" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-dashboard-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Dashboard</span>
-    </a>
-    <a href="../03-stok/index.html" data-nav-item="stok" title="Stok dan Mutasi" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-box-3-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Stok dan Mutasi</span>
-    </a>
-    <a href="../04-pengadaan/index.html" data-nav-item="pengadaan" title="Pengadaan" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-shopping-cart-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Pengadaan</span>
-    </a>
-    <a href="../05-distribusi/index.html" data-nav-item="distribusi" title="Distribusi" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-truck-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Distribusi</span>
-    </a>
-    <a href="../06-lplpo/index.html" data-nav-item="lplpo" title="LPLPO" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>LPLPO</span>
-    </a>
-    <a href="../07-rko/index.html" data-nav-item="rko" title="RKO" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-calendar-check-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>RKO</span>
-    </a>
-    <a href="../08-pelayanan/index.html" data-nav-item="pelayanan" title="Pelayanan" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-capsule-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Pelayanan</span>
-    </a>
-    <a href="../09-pengendalian/index.html" data-nav-item="pengendalian" title="Pengendalian" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-clipboard-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Pengendalian</span>
-    </a>
-    <a href="../10-anggaran/index.html" data-nav-item="anggaran" title="Anggaran" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-money-dollar-circle-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Anggaran</span>
-    </a>
-    <a href="../11-prediksi/index.html" data-nav-item="prediksi" title="Prediksi" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-line-chart-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Prediksi</span>
-    </a>
-    <a href="../12-pengguna/index.html" data-nav-item="pengguna" title="Pengguna" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-user-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Pengguna</span>
-    </a>
-  </nav>
+    <p class="sidebar-section-label mb-2 px-3 text-[11px] uppercase tracking-widest text-slate-500">
+      Modul
+    </p>
+    <nav class="space-y-1 text-sm">
+      <a href="../02-dashboard/index.html" data-nav-item="dashboard" title="Dashboard" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-dashboard-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Dashboard</span>
+      </a>
+      <a href="../03-stok/index.html" data-nav-item="stok" title="Stok dan Mutasi" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-box-3-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Stok dan Mutasi</span>
+      </a>
+      <a href="../04-pengadaan/index.html" data-nav-item="pengadaan" title="Pengadaan" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-shopping-cart-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Pengadaan</span>
+      </a>
+      <a href="../05-distribusi/index.html" data-nav-item="distribusi" title="Distribusi" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-truck-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Distribusi</span>
+      </a>
+      <a href="../06-lplpo/index.html" data-nav-item="lplpo" title="LPLPO" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>LPLPO</span>
+      </a>
+      <a href="../07-rko/index.html" data-nav-item="rko" title="RKO" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-calendar-check-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>RKO</span>
+      </a>
+      <a href="../08-pelayanan/index.html" data-nav-item="pelayanan" title="Pelayanan" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-capsule-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Pelayanan</span>
+      </a>
+      <a href="../09-pengendalian/index.html" data-nav-item="pengendalian" title="Pengendalian" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-clipboard-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Pengendalian</span>
+      </a>
+      <a href="../10-anggaran/index.html" data-nav-item="anggaran" title="Anggaran" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-money-dollar-circle-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Anggaran</span>
+      </a>
+      <a href="../11-prediksi/index.html" data-nav-item="prediksi" title="Prediksi" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-line-chart-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Prediksi</span>
+      </a>
+      <a href="../12-pengguna/index.html" data-nav-item="pengguna" title="Pengguna" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-user-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Pengguna</span>
+      </a>
+    </nav>
 
-  <p class="sidebar-section-label mb-2 mt-4 px-3 text-[11px] uppercase tracking-widest text-slate-500">
-    Laporan
-  </p>
-  <nav class="space-y-1 text-sm">
-    <a href="#" data-nav-item="sipnap" title="Ekspor SIPNAP" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-download-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Ekspor SIPNAP</span>
-    </a>
-    <a href="#" data-nav-item="sipd" title="Ekspor SIPD" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
-      <i class="ri-download-line icon-sm icon-muted" aria-hidden="true"></i>
-      <span data-nav-label>Ekspor SIPD</span>
-    </a>
-  </nav>
+    <p class="sidebar-section-label mb-2 mt-4 px-3 text-[11px] uppercase tracking-widest text-slate-500">
+      Laporan
+    </p>
+    <nav class="space-y-1 text-sm">
+      <a href="#" data-nav-item="sipnap" title="Ekspor SIPNAP" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-download-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Ekspor SIPNAP</span>
+      </a>
+      <a href="#" data-nav-item="sipd" title="Ekspor SIPD" class="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800">
+        <i class="ri-download-line icon-sm icon-muted" aria-hidden="true"></i>
+        <span data-nav-label>Ekspor SIPD</span>
+      </a>
+    </nav>
+  </div>
 
-  <div class="mt-auto space-y-2 pt-6">
-    <button
-      type="button"
-      data-collapse-sidebar
-      class="flex w-full items-center gap-2 rounded-lg border border-slate-800 px-3 py-2 text-sm text-slate-400 hover:bg-slate-800"
-      title="Kecilkan atau besarkan sidebar"
-    >
-      <i class="ri-menu-fold-line icon-sm" aria-hidden="true"></i>
-      <span class="sidebar-collapse-label">Kecilkan</span>
-    </button>
-    <a href="../01-login/index.html" title="Keluar" class="flex items-center gap-2 rounded-lg border border-slate-800 px-3 py-2 text-sm text-slate-400 hover:bg-slate-800">
+  <div class="shrink-0 border-t border-slate-800 p-2">
+    <a href="../01-login/index.html" title="Keluar" class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-slate-400 hover:bg-slate-800">
       <i class="ri-logout-box-line icon-sm" aria-hidden="true"></i>
       <span data-nav-label>Keluar</span>
     </a>
-    <p class="sidebar-footer-note px-3 text-[11px] text-slate-600">
+    <p class="sidebar-footer-note px-3 pt-1 text-[11px] text-slate-600">
       Data dummy, bukan data nyata.
     </p>
   </div>
 </aside>
+
+<div
+  data-nav-backdrop
+  class="fixed inset-0 z-40 hidden bg-slate-900/50 opacity-0 transition-opacity duration-150 lg:hidden"
+  aria-hidden="true"
+></div>

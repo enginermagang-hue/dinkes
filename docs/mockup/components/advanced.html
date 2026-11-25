@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lanjutan - Katalog SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="components" class="min-h-screen bg-slate-100 text-slate-800">
+    <div class="flex min-h-screen">
+      <div data-include="../components/sidebar.html"></div>
+      <div class="app-content flex min-w-0 flex-1 flex-col">
+        <div data-include="../components/header.html"></div>
+
+        <main class="flex-1 space-y-8 p-4 lg:p-6">
+          <nav class="flex flex-wrap gap-2 text-sm">
+            <a href="index.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Ringkasan</a>
+            <a href="foundation.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Fondasi</a>
+            <a href="form.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Formulir</a>
+            <a href="data.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Data</a>
+            <a href="feedback.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Umpan Balik</a>
+            <a href="layout.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Tata Letak</a>
+            <a href="advanced.html" class="rounded-lg bg-brand-600 px-3 py-2 font-medium text-white">Lanjutan</a>
+          </nav>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h1 class="text-2xl font-bold">1. Command Palette</h1>
+              <p class="text-xs text-slate-500">Pencarian global dan navigasi cepat.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200 bg-white p-5">
+              <button data-command-open class="flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white">
+                <i class="ri-search-line icon-sm" aria-hidden="true"></i> Buka pencarian
+              </button>
+              <span class="text-xs text-slate-500">atau tekan <kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">Ctrl</kbd> + <kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">K</kbd></span>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">2. Barcode dan QR</h2>
+              <p class="text-xs text-slate-500">Label obat dan dokumen.</p>
+            </div>
+            <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 sm:grid-cols-2">
+              <div>
+                <p class="mb-2 text-sm font-medium">Barcode batch</p>
+                <div class="barcode" aria-label="Barcode contoh">
+                  <span style="width: 2px"></span><span style="width: 4px"></span><span style="width: 2px"></span>
+                  <span style="width: 6px"></span><span style="width: 2px"></span><span style="width: 3px"></span>
+                  <span style="width: 5px"></span><span style="width: 2px"></span><span style="width: 4px"></span>
+                  <span style="width: 2px"></span><span style="width: 6px"></span><span style="width: 3px"></span>
+                  <span style="width: 2px"></span><span style="width: 5px"></span><span style="width: 2px"></span>
+                  <span style="width: 4px"></span><span style="width: 3px"></span><span style="width: 2px"></span>
+                </div>
+                <p class="mt-2 font-mono text-xs text-slate-500">AMX2401 · 8991234567890</p>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium">QR dokumen</p>
+                <svg viewBox="0 0 21 21" class="h-24 w-24" role="img" aria-label="QR contoh">
+                  <rect width="21" height="21" fill="#fff" />
+                  <g fill="#0f172a">
+                    <rect x="0" y="0" width="7" height="7" /><rect x="1" y="1" width="5" height="5" fill="#fff" /><rect x="2" y="2" width="3" height="3" />
+                    <rect x="14" y="0" width="7" height="7" /><rect x="15" y="1" width="5" height="5" fill="#fff" /><rect x="16" y="2" width="3" height="3" />
+                    <rect x="0" y="14" width="7" height="7" /><rect x="1" y="15" width="5" height="5" fill="#fff" /><rect x="2" y="16" width="3" height="3" />
+                    <rect x="9" y="1" width="1" height="1" /><rect x="11" y="2" width="1" height="1" /><rect x="10" y="4" width="1" height="1" />
+                    <rect x="9" y="9" width="3" height="3" /><rect x="14" y="10" width="1" height="1" /><rect x="16" y="9" width="1" height="1" />
+                    <rect x="18" y="11" width="1" height="1" /><rect x="9" y="14" width="1" height="1" /><rect x="11" y="16" width="1" height="1" />
+                    <rect x="13" y="14" width="1" height="1" /><rect x="15" y="16" width="1" height="1" /><rect x="17" y="18" width="1" height="1" />
+                  </g>
+                </svg>
+                <p class="mt-2 font-mono text-xs text-slate-500">BAST/2027/0012</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">3. Shortcut Keyboard</h2>
+              <p class="text-xs text-slate-500">Rujukan tombol pintas.</p>
+            </div>
+            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
+                  <tr><th class="px-5 py-3">Aksi</th><th class="px-5 py-3">Pintasan</th></tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr><td class="px-5 py-3">Pencarian global</td><td class="px-5 py-3"><kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">Ctrl</kbd> + <kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">K</kbd></td></tr>
+                  <tr><td class="px-5 py-3">Tutup dialog</td><td class="px-5 py-3"><kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">Esc</kbd></td></tr>
+                  <tr><td class="px-5 py-3">Simpan formulir</td><td class="px-5 py-3"><kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">Ctrl</kbd> + <kbd class="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 text-[11px]">S</kbd></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">4. Halaman Galat</h2>
+              <p class="text-xs text-slate-500">Tampilan 403, 404, dan 500.</p>
+            </div>
+            <div class="grid gap-4 md:grid-cols-3">
+              <div class="rounded-xl border border-slate-200 bg-white p-6 text-center">
+                <p class="text-4xl font-extrabold text-brand-200">403</p>
+                <p class="mt-2 font-semibold">Akses ditolak</p>
+                <p class="mt-1 text-xs text-slate-500">Anda tidak berhak membuka halaman ini.</p>
+                <button class="mt-3 rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Kembali</button>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white p-6 text-center">
+                <p class="text-4xl font-extrabold text-brand-200">404</p>
+                <p class="mt-2 font-semibold">Halaman tidak ditemukan</p>
+                <p class="mt-1 text-xs text-slate-500">Periksa kembali alamat tujuan.</p>
+                <button class="mt-3 rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Ke beranda</button>
+              </div>
+              <div class="rounded-xl border border-slate-200 bg-white p-6 text-center">
+                <p class="text-4xl font-extrabold text-brand-200">500</p>
+                <p class="mt-2 font-semibold">Galat server</p>
+                <p class="mt-1 text-xs text-slate-500">Coba lagi beberapa saat lagi.</p>
+                <button class="mt-3 rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Muat ulang</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">5. Pratinjau Permukaan Gelap</h2>
+              <p class="text-xs text-slate-500">Contoh komponen pada latar gelap (belum tema penuh).</p>
+            </div>
+            <div class="dark-surface">
+              <div class="flex flex-wrap items-center gap-3">
+                <button class="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white">Tombol</button>
+                <span class="rounded-full bg-emerald-500/20 px-2.5 py-0.5 text-xs font-medium text-emerald-300">Aman</span>
+                <span class="rounded-full bg-amber-500/20 px-2.5 py-0.5 text-xs font-medium text-amber-300">Waspada</span>
+                <span class="rounded-full bg-rose-500/20 px-2.5 py-0.5 text-xs font-medium text-rose-300">Kritis</span>
+              </div>
+              <input class="mt-4 w-full max-w-sm rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500" placeholder="Input pada latar gelap" />
+              <p class="mt-3 text-xs text-slate-400">Tema gelap penuh belum termasuk; ini hanya pratinjau permukaan.</p>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div data-command-palette class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-slate-900/50" data-command-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-lg overflow-hidden rounded-xl bg-white shadow-xl">
+        <div class="flex items-center gap-2 border-b border-slate-200 px-4 py-3">
+          <i class="ri-search-line icon-sm icon-muted" aria-hidden="true"></i>
+          <input data-command-input placeholder="Cari menu, dokumen, atau obat..." class="w-full text-sm focus:outline-none" />
+          <button data-command-close class="icon-btn" aria-label="Tutup"><i class="ri-close-line icon-sm" aria-hidden="true"></i></button>
+        </div>
+        <div class="max-h-72 overflow-y-auto p-2 text-sm">
+          <a href="form.html" data-command-item class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-slate-50"><i class="ri-edit-box-line icon-sm icon-muted" aria-hidden="true"></i> Formulir Penerimaan</a>
+          <a href="data.html" data-command-item class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-slate-50"><i class="ri-table-line icon-sm icon-muted" aria-hidden="true"></i> Daftar Stok</a>
+          <a href="layout.html" data-command-item class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-slate-50"><i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i> LPLPO Januari 2027</a>
+          <a href="advanced.html" data-command-item class="flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-slate-50"><i class="ri-user-line icon-sm icon-muted" aria-hidden="true"></i> Pengguna dan Peran</a>
+        </div>
+        <div class="border-t border-slate-200 px-4 py-2 text-[11px] text-slate-500">Esc untuk menutup</div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

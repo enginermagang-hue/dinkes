@@ -13,6 +13,20 @@ konsisten dengan `docs/PRD.md`.
 Tidak perlu backend. Semua data bersifat contoh. Mockup memuat komponen layout melalui
 `fetch`, sehingga harus dibuka lewat server lokal, bukan `file://`.
 
+## Sub-halaman Katalog
+
+Katalog komponen dipecah agar mudah direview:
+
+| Halaman                      | Isi                                                                                        |
+| ---------------------------- | ------------------------------------------------------------------------------------------ |
+| `components/index.html`      | Ringkasan dan navigasi ke sub-halaman                                                      |
+| `components/foundation.html` | Tipografi, token warna, ikon, tombol                                                       |
+| `components/form.html`       | Input, select, radio/checkbox/switch, upload, stepper, tanda tangan                        |
+| `components/data.html`       | Tabel lanjutan, pagination, empty state, deskripsi, timeline, tree, chart                  |
+| `components/feedback.html`   | Badge, alert, toast, modal, tooltip, popover, skeleton, spinner, progress, tab             |
+| `components/layout.html`     | Breadcrumb, page header, card, KPI, avatar, tab, segmented, accordion, chip, status, cetak |
+| `components/advanced.html`   | Command palette, barcode/QR, shortcut, halaman galat, permukaan gelap                      |
+
 ## Daftar Modul
 
 | Folder            | Halaman                         | Rujukan PRD |
@@ -53,19 +67,22 @@ komponen bagian 14.
 
 ## Komponen Kustom
 
-| Class                                            | Kegunaan                                      |
-| ------------------------------------------------ | --------------------------------------------- |
-| `field`                                          | Input, textarea, dan select dengan ring focus |
-| `field-error`                                    | Keadaan galat dengan ring merah               |
-| `field-success`                                  | Keadaan berhasil dengan ring hijau            |
-| `field-warning`                                  | Keadaan peringatan dengan ring amber          |
-| `check` + `check-box`                            | Checkbox dan radio kustom                     |
-| `check-sm`, `check-lg`                           | Ukuran checkbox dan radio                     |
-| `check-success`, `check-warning`, `check-danger` | Warna checked                                 |
-| `kpi`, `kpi-sm`, `kpi-lg`                        | Kartu KPI dengan varian ukuran                |
-| `dropdown-panel`                                 | Animasi masuk pada panel dropdown             |
-| `modal-backdrop`, `modal-panel`                  | Animasi modal masuk dan keluar                |
-| `app-content`                                    | Padding otomatis terhadap sidebar tetap       |
+| Class                                               | Kegunaan                                      |
+| --------------------------------------------------- | --------------------------------------------- |
+| `field`                                             | Input, textarea, dan select dengan ring focus |
+| `field-error`                                       | Keadaan galat dengan ring merah               |
+| `field-success`                                     | Keadaan berhasil dengan ring hijau            |
+| `field-warning`                                     | Keadaan peringatan dengan ring amber          |
+| `check` + `check-box`                               | Checkbox dan radio kustom                     |
+| `check-sm`, `check-lg`                              | Ukuran checkbox dan radio                     |
+| `check-success`, `check-warning`, `check-danger`    | Warna checked                                 |
+| `switch`, `switch-track`, `switch-thumb`            | Switch atau toggle kustom                     |
+| `switch-sm`, `switch-lg`                            | Ukuran switch                                 |
+| `switch-success`, `switch-warning`, `switch-danger` | Warna switch aktif                            |
+| `kpi`, `kpi-sm`, `kpi-lg`                           | Kartu KPI dengan varian ukuran                |
+| `dropdown-panel`                                    | Animasi masuk pada panel dropdown             |
+| `modal-backdrop`, `modal-panel`                     | Animasi modal masuk dan keluar                |
+| `app-content`                                       | Padding otomatis terhadap sidebar tetap       |
 
 Contoh semua komponen tersedia pada `docs/mockup/components/index.html`.
 

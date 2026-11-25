@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formulir - Katalog SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css"
+    />
+  </head>
+  <body data-page="components" class="min-h-screen bg-slate-100 text-slate-800">
+    <div class="flex min-h-screen">
+      <div data-include="../components/sidebar.html"></div>
+      <div class="app-content flex min-w-0 flex-1 flex-col">
+        <div data-include="../components/header.html"></div>
+
+        <main class="flex-1 space-y-8 p-4 lg:p-6">
+          <nav class="flex flex-wrap gap-2 text-sm">
+            <a href="index.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Ringkasan</a>
+            <a href="foundation.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Fondasi</a>
+            <a href="form.html" class="rounded-lg bg-brand-600 px-3 py-2 font-medium text-white">Formulir</a>
+            <a href="data.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Data</a>
+            <a href="feedback.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Umpan Balik</a>
+            <a href="layout.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Tata Letak</a>
+            <a href="advanced.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Lanjutan</a>
+          </nav>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h1 class="text-2xl font-bold">1. Input dan Textarea</h1>
+              <p class="text-xs text-slate-500">Ring focus 3px, dengan varian status.</p>
+            </div>
+            <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-2">
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Nama obat</label>
+                <input value="Amoksisilin 500 mg" class="field" />
+                <p class="mt-1 text-xs text-slate-500">Klik untuk melihat ring focus.</p>
+              </div>
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Jumlah</label>
+                <input type="number" value="3600" class="field" />
+              </div>
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Galat</label>
+                <input value="-10" class="field field-error" />
+                <p class="mt-1 text-xs text-rose-600">Jumlah tidak boleh negatif.</p>
+              </div>
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Peringatan</label>
+                <input value="Stok mendekati minimum" class="field field-warning" />
+                <p class="mt-1 text-xs text-amber-600">Perlu peninjauan.</p>
+              </div>
+              <div class="md:col-span-2">
+                <label class="mb-1 block text-sm font-medium text-slate-700">Catatan</label>
+                <textarea rows="3" class="field">Kemasan rusak saat penyimpanan.</textarea>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">2. Select</h2>
+              <p class="text-xs text-slate-500">Select bawaan dan Tom Select bertema mockup.</p>
+            </div>
+            <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-2">
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Select bawaan</label>
+                <select class="field">
+                  <option>Gudang Farmasi Pusat</option>
+                  <option>Ruang Obat Puskesmas A</option>
+                  <option>Instalasi Farmasi RSUD</option>
+                </select>
+              </div>
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Tom Select, satu pilihan</label>
+                <select id="demo-select-single">
+                  <option value="">Pilih obat...</option>
+                  <option>Amoksisilin 500 mg</option>
+                  <option>Parasetamol 500 mg</option>
+                  <option>Metformin 500 mg</option>
+                  <option>Insulin Glargine</option>
+                </select>
+              </div>
+              <div class="md:col-span-2">
+                <label class="mb-1 block text-sm font-medium text-slate-700">Tom Select, multi pilihan</label>
+                <select id="demo-select-multi" multiple>
+                  <option>Amoksisilin 500 mg</option>
+                  <option>Parasetamol 500 mg</option>
+                  <option>Metformin 500 mg</option>
+                  <option>Insulin Glargine</option>
+                  <option>Salbutamol Inhaler</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">3. Radio, Checkbox, dan Switch</h2>
+              <p class="text-xs text-slate-500">Kustom, dapat diklik, dan aksesibel keyboard.</p>
+            </div>
+            <div class="grid gap-6 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <p class="mb-2 text-sm font-medium">Radio</p>
+                <div class="space-y-2">
+                  <label class="check radio"><input type="radio" name="r" checked /><span class="check-box"></span><span>Prioritas 1</span></label>
+                  <label class="check radio"><input type="radio" name="r" /><span class="check-box"></span><span>Prioritas 2</span></label>
+                  <label class="check radio"><input type="radio" name="r" disabled /><span class="check-box"></span><span>Nonaktif</span></label>
+                </div>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium">Checkbox</p>
+                <div class="space-y-2">
+                  <label class="check"><input type="checkbox" checked /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Setujui LPLPO</span></label>
+                  <label class="check"><input type="checkbox" /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Kirim notifikasi</span></label>
+                  <label class="check"><input type="checkbox" disabled /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Nonaktif</span></label>
+                </div>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium">Warna & ukuran</p>
+                <div class="space-y-2">
+                  <label class="check check-success"><input type="checkbox" checked /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Sukses</span></label>
+                  <label class="check check-warning"><input type="checkbox" checked /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Waspada</span></label>
+                  <label class="check check-danger"><input type="checkbox" checked /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Kritis</span></label>
+                  <label class="check check-sm"><input type="checkbox" checked /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Kecil</span></label>
+                  <label class="check check-lg"><input type="checkbox" checked /><span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span><span>Besar</span></label>
+                </div>
+              </div>
+              <div>
+                <p class="mb-2 text-sm font-medium">Switch</p>
+                <div class="space-y-3">
+                  <label class="switch"><input type="checkbox" checked /><span class="switch-track"><span class="switch-thumb"></span></span><span class="switch-text">2FA aktif</span></label>
+                  <label class="switch switch-warning"><input type="checkbox" checked /><span class="switch-track"><span class="switch-thumb"></span></span><span class="switch-text">Waspada</span></label>
+                  <label class="switch switch-sm"><input type="checkbox" /><span class="switch-track"><span class="switch-thumb"></span></span><span class="switch-text">Kecil</span></label>
+                  <label class="switch switch-lg"><input type="checkbox" checked /><span class="switch-track"><span class="switch-thumb"></span></span><span class="switch-text">Besar</span></label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">4. Unggah Berkas</h2>
+              <p class="text-xs text-slate-500">Untuk kontrak, BAST, dan lampiran LPLPO.</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-5">
+              <label class="dropzone block">
+                <i class="ri-upload-cloud-2-line icon-xl icon-brand" aria-hidden="true"></i>
+                <p class="mt-2 text-sm font-medium text-slate-700">Tarik berkas ke sini atau klik untuk memilih</p>
+                <p class="mt-1 text-xs text-slate-500">PDF atau XLSX, maksimum 10 MB</p>
+                <input type="file" class="sr-only" />
+              </label>
+              <div class="mt-4 space-y-2">
+                <div class="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 text-sm">
+                  <div class="flex items-center gap-2">
+                    <i class="ri-file-pdf-2-line icon-md text-rose-500" aria-hidden="true"></i>
+                    <span>kontrak-2027.pdf</span>
+                    <span class="text-xs text-slate-500">1,2 MB</span>
+                  </div>
+                  <button class="icon-btn" aria-label="Hapus berkas"><i class="ri-close-line icon-sm" aria-hidden="true"></i></button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">5. Stepper</h2>
+              <p class="text-xs text-slate-500">Alur bertahap untuk penerimaan dan pengajuan.</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-5">
+              <div class="steps">
+                <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Data</div>
+                <span class="step-line"></span>
+                <div class="step step-active"><span class="step-dot">2</span> Verifikasi</div>
+                <span class="step-line"></span>
+                <div class="step"><span class="step-dot">3</span> Simpan</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">6. Input Nilai dan Jumlah</h2>
+              <p class="text-xs text-slate-500">Rupiah dan stepper kuantitas.</p>
+            </div>
+            <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-2">
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Pagu anggaran</label>
+                <div class="relative">
+                  <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-500">Rp</span>
+                  <input value="150.000.000" class="field pl-10 text-right" />
+                </div>
+              </div>
+              <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Jumlah obat</label>
+                <div class="qty" data-qty>
+                  <button type="button" data-qty-step="-1" aria-label="Kurangi">
+                    <i class="ri-subtract-line icon-sm" aria-hidden="true"></i>
+                  </button>
+                  <input type="number" value="10" min="0" max="9999" aria-label="Jumlah" />
+                  <button type="button" data-qty-step="1" aria-label="Tambah">
+                    <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">7. Ringkasan Validasi</h2>
+              <p class="text-xs text-slate-500">Kumpulan galat di atas formulir.</p>
+            </div>
+            <div class="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-800">
+              <p class="font-medium">Terdapat 2 isian yang perlu diperbaiki</p>
+              <ul class="mt-2 list-disc space-y-1 pl-5">
+                <li>Jumlah tidak boleh negatif.</li>
+                <li>Tanggal kedaluwarsa wajib diisi.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="border-b border-slate-200 pb-2">
+              <h2 class="text-lg font-semibold">8. Tanda Tangan</h2>
+              <p class="text-xs text-slate-500">Kanvas tanda tangan untuk BAST.</p>
+            </div>
+            <div class="rounded-xl border border-slate-200 bg-white p-5">
+              <canvas data-signature class="signature"></canvas>
+              <div class="mt-3 flex justify-end gap-2">
+                <button data-signature-clear class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Hapus</button>
+                <button class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Simpan</button>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <script src="../assets/layout.js"></script>
+    <script>
+      document.addEventListener('layout:ready', () => {
+        if (!window.TomSelect) return
+        new TomSelect('#demo-select-single', { create: false })
+        new TomSelect('#demo-select-multi', { plugins: ['remove_button'], maxItems: null })
+      })
+    </script>
+  </body>
+</html>

@@ -5,921 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Katalog Komponen - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css"
-    />
-    <style>
-      .ts-control {
-        border-radius: 0.5rem;
-        border-color: #cbd5e1;
-        padding: 0.5rem 0.75rem;
-        font-size: 0.875rem;
-        transition:
-          border-color 0.15s ease,
-          box-shadow 0.15s ease;
-      }
-      .ts-control.focus {
-        border-color: #1b64d1;
-        box-shadow: 0 0 0 3px #d9ecff;
-      }
-    </style>
   </head>
   <body data-page="components" class="min-h-screen bg-slate-100 text-slate-800">
     <div class="flex min-h-screen">
-      <div data-include="sidebar.html"></div>
+      <div data-include="../components/sidebar.html"></div>
 
       <div class="app-content flex min-w-0 flex-1 flex-col">
-        <div data-include="header.html"></div>
+        <div data-include="../components/header.html"></div>
 
-        <main class="flex-1 space-y-10 p-4 lg:p-6">
-          <!-- Page header + breadcrumb -->
+        <main class="flex-1 space-y-8 p-4 lg:p-6">
+          <nav class="flex flex-wrap gap-2 text-sm">
+            <a href="index.html" class="rounded-lg bg-brand-600 px-3 py-2 font-medium text-white">Ringkasan</a>
+            <a href="foundation.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Fondasi</a>
+            <a href="form.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Formulir</a>
+            <a href="data.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Data</a>
+            <a href="feedback.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Umpan Balik</a>
+            <a href="layout.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Tata Letak</a>
+            <a href="advanced.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Lanjutan</a>
+          </nav>
+
           <section>
-            <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500">
-              <a href="../02-dashboard/index.html" class="hover:text-brand-600">Beranda</a>
-              <span>/</span>
-              <span class="text-slate-700">Katalog Komponen</span>
-            </nav>
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <h1 class="text-2xl font-bold text-slate-900">Katalog Komponen</h1>
-                <p class="mt-1 max-w-2xl text-sm text-slate-500">
-                  Acuan visual untuk seluruh halaman mockup. Koreksi warna, ukuran, dan
-                  komponen di sini sebelum halaman modul dibuat.
-                </p>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <button class="rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium hover:bg-slate-50">
-                  Ekspor
-                </button>
-                <button data-toast="Aksi utama dijalankan (mockup)" class="rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white hover:bg-brand-700">
-                  Aksi Utama
-                </button>
-              </div>
+            <h1 class="text-2xl font-bold text-slate-900">Katalog Komponen</h1>
+            <p class="mt-1 max-w-2xl text-sm text-slate-500">
+              Acuan visual seluruh halaman mockup. Katalog dipecah per kelompok agar mudah
+              direview. Setiap halaman memakai sidebar, header, dan footer yang sama.
+            </p>
+            <div class="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
+              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Tailwind v4</span>
+              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Remix Icon</span>
+              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Tom Select</span>
+              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Data dummy</span>
             </div>
           </section>
 
-          <!-- 1. Tipografi -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">1. Tipografi dan Heading</h2>
-              <p class="text-xs text-slate-500">Hierarki H1 sampai H4, teks bantu, dan label.</p>
-            </div>
-            <div class="space-y-3 rounded-xl border border-slate-200 bg-white p-5">
-              <h1 class="text-3xl font-bold text-slate-900">Heading 1, 30px bold</h1>
-              <h2 class="text-2xl font-bold text-slate-900">Heading 2, 24px bold</h2>
-              <h3 class="text-xl font-semibold text-slate-900">Heading 3, 20px semibold</h3>
-              <h4 class="text-base font-semibold text-slate-900">Heading 4, 16px semibold</h4>
-              <p class="text-sm text-slate-700">
-                Teks isi 14px. Digunakan untuk paragraf, keterangan tabel, dan formulir.
-              </p>
-              <p class="text-xs text-slate-500">
-                Teks bantu 12px. Dipakai untuk petunjuk, timestamp, dan metadata.
-              </p>
-              <p class="text-xs font-medium uppercase tracking-widest text-slate-400">
-                Label kecil, uppercase, tracking lebar
-              </p>
-            </div>
+          <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <a href="foundation.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+              <div class="flex items-start justify-between">
+                <span class="icon-btn bg-brand-50 text-brand-600">
+                  <i class="ri-palette-line icon-md" aria-hidden="true"></i>
+                </span>
+                <i class="ri-arrow-right-line icon-sm text-slate-300 transition group-hover:text-brand-500" aria-hidden="true"></i>
+              </div>
+              <h2 class="mt-3 font-semibold">Fondasi</h2>
+              <p class="mt-1 text-sm text-slate-500">Tipografi, token warna, ikon, dan seluruh varian tombol.</p>
+              <p class="mt-3 text-xs text-slate-400">4 bagian</p>
+            </a>
+
+            <a href="form.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+              <div class="flex items-start justify-between">
+                <span class="icon-btn bg-brand-50 text-brand-600">
+                  <i class="ri-edit-box-line icon-md" aria-hidden="true"></i>
+                </span>
+                <i class="ri-arrow-right-line icon-sm text-slate-300 transition group-hover:text-brand-500" aria-hidden="true"></i>
+              </div>
+              <h2 class="mt-3 font-semibold">Formulir</h2>
+              <p class="mt-1 text-sm text-slate-500">Input, select, radio, checkbox, switch, upload, stepper, dan tanda tangan.</p>
+              <p class="mt-3 text-xs text-slate-400">9 bagian</p>
+            </a>
+
+            <a href="data.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+              <div class="flex items-start justify-between">
+                <span class="icon-btn bg-brand-50 text-brand-600">
+                  <i class="ri-table-line icon-md" aria-hidden="true"></i>
+                </span>
+                <i class="ri-arrow-right-line icon-sm text-slate-300 transition group-hover:text-brand-500" aria-hidden="true"></i>
+              </div>
+              <h2 class="mt-3 font-semibold">Data</h2>
+              <p class="mt-1 text-sm text-slate-500">Tabel dasar dan lanjutan, pagination, empty state, deskripsi, timeline, tree, chart.</p>
+              <p class="mt-3 text-xs text-slate-400">7 bagian</p>
+            </a>
+
+            <a href="feedback.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+              <div class="flex items-start justify-between">
+                <span class="icon-btn bg-brand-50 text-brand-600">
+                  <i class="ri-notification-3-line icon-md" aria-hidden="true"></i>
+                </span>
+                <i class="ri-arrow-right-line icon-sm text-slate-300 transition group-hover:text-brand-500" aria-hidden="true"></i>
+              </div>
+              <h2 class="mt-3 font-semibold">Umpan Balik</h2>
+              <p class="mt-1 text-sm text-slate-500">Badge, alert, toast, modal, tooltip, popover, skeleton, spinner, progress.</p>
+              <p class="mt-3 text-xs text-slate-400">9 bagian</p>
+            </a>
+
+            <a href="layout.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+              <div class="flex items-start justify-between">
+                <span class="icon-btn bg-brand-50 text-brand-600">
+                  <i class="ri-layout-4-line icon-md" aria-hidden="true"></i>
+                </span>
+                <i class="ri-arrow-right-line icon-sm text-slate-300 transition group-hover:text-brand-500" aria-hidden="true"></i>
+              </div>
+              <h2 class="mt-3 font-semibold">Tata Letak</h2>
+              <p class="mt-1 text-sm text-slate-500">Breadcrumb, page header, card, KPI, avatar, tab, segmented, accordion, chip, status, cetak.</p>
+              <p class="mt-3 text-xs text-slate-400">11 bagian</p>
+            </a>
+
+            <a href="advanced.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+              <div class="flex items-start justify-between">
+                <span class="icon-btn bg-brand-50 text-brand-600">
+                  <i class="ri-command-line icon-md" aria-hidden="true"></i>
+                </span>
+                <i class="ri-arrow-right-line icon-sm text-slate-300 transition group-hover:text-brand-500" aria-hidden="true"></i>
+              </div>
+              <h2 class="mt-3 font-semibold">Lanjutan</h2>
+              <p class="mt-1 text-sm text-slate-500">Command palette, barcode, shortcut keyboard, halaman galat, pratinjau gelap.</p>
+              <p class="mt-3 text-xs text-slate-400">5 bagian</p>
+            </a>
           </section>
 
-          <!-- 2. Tombol -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">2. Tombol</h2>
-              <p class="text-xs text-slate-500">Varian, ukuran, dan keadaan tombol.</p>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
-              <p class="mb-3 text-xs font-medium uppercase tracking-wide text-slate-400">Varian</p>
-              <div class="flex flex-wrap gap-2">
-                <button class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700">Primer</button>
-                <button class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800">Sekunder</button>
-                <button class="rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Outline</button>
-                <button class="rounded-lg border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-100">Lunak</button>
-                <button class="rounded-lg bg-rose-600 px-4 py-2 text-sm font-medium text-white hover:bg-rose-700">Bahaya</button>
-                <button class="rounded-lg bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-amber-600">Waspada</button>
-                <button class="rounded-lg bg-amber-100 px-4 py-2 text-sm font-medium text-amber-700 hover:bg-amber-200">Waspada lunak</button>
-                <button class="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100">Ghost</button>
-                <button class="px-2 py-2 text-sm font-medium text-brand-600 hover:underline">Tautan</button>
-              </div>
-
-              <p class="mb-3 mt-6 text-xs font-medium uppercase tracking-wide text-slate-400">Ukuran</p>
-              <div class="flex flex-wrap items-center gap-2">
-                <button class="rounded-md bg-brand-600 px-2.5 py-1 text-xs font-medium text-white">Kecil</button>
-                <button class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white">Sedang</button>
-                <button class="rounded-xl bg-brand-600 px-5 py-2.5 text-base font-medium text-white">Besar</button>
-                <button class="rounded-lg bg-brand-600 p-2 text-white" aria-label="Tambah">
-                  <i class="ri-add-line icon-sm" aria-hidden="true"></i>
-                </button>
-              </div>
-
-              <p class="mb-3 mt-6 text-xs font-medium uppercase tracking-wide text-slate-400">
-                Keadaan
-              </p>
-              <div class="flex flex-wrap items-center gap-2">
-                <button class="cursor-not-allowed rounded-lg bg-brand-300 px-4 py-2 text-sm font-medium text-white" disabled>Nonaktif</button>
-                <button class="flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white">
-                  <span class="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white"></span>
-                  Memuat
-                </button>
-                <button class="flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700">
-                  <i class="ri-add-line icon-sm" aria-hidden="true"></i> Tambah
-                </button>
-                <button class="flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white">
-                  Simpan <i class="ri-arrow-right-line icon-sm" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <!-- 3. Input -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">3. Input Formulir</h2>
-              <p class="text-xs text-slate-500">Teks, angka, tanggal, area teks, dan keadaan validasi.</p>
-            </div>
-            <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-2">
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Nama obat</label>
-                <input value="Amoksisilin 500 mg" class="field" />
-                <p class="mt-1 text-xs text-slate-500">
-                  Klik field untuk melihat ring focus 3px.
-                </p>
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Jumlah</label>
-                <input type="number" value="3600" class="field" />
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Tanggal kedaluwarsa</label>
-                <input type="date" value="2028-12-31" class="field" />
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Satuan</label>
-                <select class="field">
-                  <option>Tablet</option>
-                  <option>Vial</option>
-                  <option>Botol</option>
-                </select>
-              </div>
-              <div class="md:col-span-2">
-                <label class="mb-1 block text-sm font-medium text-slate-700">Catatan</label>
-                <textarea rows="3" class="field">Kemasan rusak saat penyimpanan.</textarea>
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Galat</label>
-                <input value="-10" class="field field-error" />
-                <p class="mt-1 text-xs text-rose-600">Jumlah tidak boleh negatif.</p>
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Berhasil</label>
-                <input value="Tersimpan" class="field field-success" />
-                <p class="mt-1 text-xs text-emerald-600">Data berhasil disimpan.</p>
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Peringatan</label>
-                <input value="Stok mendekati minimum" class="field field-warning" />
-                <p class="mt-1 text-xs text-amber-600">Perlu peninjauan sebelum disimpan.</p>
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-400">Nonaktif</label>
-                <input value="Tidak dapat diubah" disabled class="field" />
-              </div>
-              <div class="md:col-span-2">
-                <label class="mb-1 block text-sm font-medium text-slate-700">Dengan ikon</label>
-                <div class="relative">
-                  <i
-                    class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2"
-                    aria-hidden="true"
-                  ></i>
-                  <input placeholder="Cari obat..." class="field pl-9" />
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 4. Select -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">4. Select</h2>
-              <p class="text-xs text-slate-500">
-                Select bawaan dan Tom Select untuk pencarian, multi pilih, serta penghapusan
-                tag.
-              </p>
-            </div>
-            <div class="grid gap-4 rounded-xl border border-slate-200 bg-white p-5 md:grid-cols-2">
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">Select bawaan</label>
-                <select class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm">
-                  <option>Gudang Farmasi Pusat</option>
-                  <option>Ruang Obat Puskesmas A</option>
-                  <option>Instalasi Farmasi RSUD</option>
-                </select>
-              </div>
-              <div>
-                <label class="mb-1 block text-sm font-medium text-slate-700">
-                  Tom Select, satu pilihan
-                </label>
-                <select id="demo-select-single">
-                  <option value="">Pilih obat...</option>
-                  <option>Amoksisilin 500 mg</option>
-                  <option>Parasetamol 500 mg</option>
-                  <option>Metformin 500 mg</option>
-                  <option>Insulin Glargine</option>
-                  <option>Salbutamol Inhaler</option>
-                </select>
-              </div>
-              <div class="md:col-span-2">
-                <label class="mb-1 block text-sm font-medium text-slate-700">
-                  Tom Select, multi pilihan dengan tombol hapus
-                </label>
-                <select id="demo-select-multi" multiple>
-                  <option>Amoksisilin 500 mg</option>
-                  <option>Parasetamol 500 mg</option>
-                  <option>Metformin 500 mg</option>
-                  <option>Insulin Glargine</option>
-                  <option>Salbutamol Inhaler</option>
-                  <option>Oralit Serbuk</option>
-                </select>
-                <p class="mt-1 text-xs text-slate-500">
-                  Dipakai untuk filter multi fasilitas dan pemilihan item massal.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <!-- 5. Radio, checkbox, switch -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">5. Radio, Checkbox, dan Switch</h2>
-              <p class="text-xs text-slate-500">Pilihan tunggal, ganda, dan sakelar.</p>
-            </div>
-            <div class="space-y-6 rounded-xl border border-slate-200 bg-white p-5">
-              <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                <div>
-                  <p class="mb-2 text-sm font-medium text-slate-700">Radio</p>
-                  <div class="space-y-2">
-                    <label class="check radio">
-                      <input type="radio" name="demo-radio" checked />
-                      <span class="check-box"></span>
-                      <span>Prioritas 1</span>
-                    </label>
-                    <label class="check radio">
-                      <input type="radio" name="demo-radio" />
-                      <span class="check-box"></span>
-                      <span>Prioritas 2</span>
-                    </label>
-                    <label class="check radio">
-                      <input type="radio" name="demo-radio" disabled />
-                      <span class="check-box"></span>
-                      <span>Nonaktif</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <p class="mb-2 text-sm font-medium text-slate-700">Checkbox</p>
-                  <div class="space-y-2">
-                    <label class="check">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Setujui LPLPO</span>
-                    </label>
-                    <label class="check">
-                      <input type="checkbox" />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Kirim notifikasi</span>
-                    </label>
-                    <label class="check">
-                      <input type="checkbox" disabled />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Nonaktif</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <p class="mb-2 text-sm font-medium text-slate-700">Varian warna</p>
-                  <div class="space-y-2">
-                    <label class="check check-success">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Sukses</span>
-                    </label>
-                    <label class="check check-warning">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Waspada</span>
-                    </label>
-                    <label class="check check-danger">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Kritis</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div>
-                  <p class="mb-2 text-sm font-medium text-slate-700">Ukuran</p>
-                  <div class="space-y-2">
-                    <label class="check check-sm">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Kecil</span>
-                    </label>
-                    <label class="check">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Sedang</span>
-                    </label>
-                    <label class="check check-lg">
-                      <input type="checkbox" checked />
-                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-                      <span>Besar</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="border-t border-slate-200 pt-4">
-                <p class="mb-2 text-sm font-medium text-slate-700">Switch</p>
-                <div class="grid gap-3 sm:grid-cols-3">
-                  <label class="flex items-center justify-between gap-3 text-sm">
-                    2FA aktif
-                    <span class="relative inline-flex h-6 w-11 items-center rounded-full bg-brand-600">
-                      <span class="ml-auto mr-1 h-4 w-4 rounded-full bg-white"></span>
-                    </span>
-                  </label>
-                  <label class="flex items-center justify-between gap-3 text-sm">
-                    Mode luring
-                    <span class="relative inline-flex h-6 w-11 items-center rounded-full bg-slate-300">
-                      <span class="mr-auto ml-1 h-4 w-4 rounded-full bg-white"></span>
-                    </span>
-                  </label>
-                  <label class="flex items-center justify-between gap-3 text-sm text-slate-400">
-                    Nonaktif
-                    <span class="relative inline-flex h-6 w-11 items-center rounded-full bg-slate-200">
-                      <span class="mr-auto ml-1 h-4 w-4 rounded-full bg-white"></span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 6. Card -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">6. Card</h2>
-              <p class="text-xs text-slate-500">Kartu dasar, kartu KPI, dan kartu peringatan.</p>
-            </div>
-            <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <h3 class="font-semibold">Kartu dasar</h3>
-                <p class="mt-1 text-sm text-slate-600">
-                  Isi kartu dengan judul, paragraf, dan aksi di bagian bawah.
-                </p>
-                <div class="mt-4 flex justify-end gap-2">
-                  <button class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Batal</button>
-                  <button class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Simpan</button>
-                </div>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <p class="text-xs uppercase tracking-wide text-slate-500">Availability Rate</p>
-                <p class="mt-2 text-3xl font-bold text-emerald-600">92%</p>
-                <p class="mt-1 text-xs text-slate-500">Target minimal 90%</p>
-                <div class="mt-3 h-2 rounded-full bg-slate-100">
-                  <div class="h-2 rounded-full bg-emerald-500" style="width: 92%"></div>
-                </div>
-              </div>
-
-              <div class="rounded-xl border border-rose-200 bg-rose-50 p-5">
-                <h3 class="font-semibold text-rose-800">Kartu peringatan</h3>
-                <p class="mt-1 text-sm text-rose-700">
-                  Stok Insulin Glargine tersisa 28 vial, estimasi habis 9 hari.
-                </p>
-                <button class="mt-3 rounded-lg bg-rose-600 px-3 py-1.5 text-sm font-medium text-white">
-                  Tindak lanjuti
-                </button>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white md:col-span-2 xl:col-span-3">
-                <div class="border-b border-slate-200 px-5 py-3">
-                  <h3 class="font-semibold">Kartu dengan header dan footer</h3>
-                </div>
-                <div class="px-5 py-4 text-sm text-slate-600">Isi kartu berada di tengah.</div>
-                <div class="border-t border-slate-200 bg-slate-50 px-5 py-3 text-xs text-slate-500">
-                  Footer kartu untuk metadata atau tautan.
-                </div>
-              </div>
-            </div>
-
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
-              <p class="mb-3 text-sm font-medium">Varian KPI</p>
-              <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                <div class="kpi kpi-sm">
-                  <p class="kpi-label">KPI kecil</p>
-                  <p class="kpi-value">92%</p>
-                  <p class="text-xs text-slate-500">Availability</p>
-                </div>
-
-                <div class="kpi">
-                  <p class="kpi-label">KPI sedang</p>
-                  <p class="kpi-value">Rp 2,5 M</p>
-                  <p class="mt-1 text-xs text-slate-500">Nilai inventori</p>
-                  <div class="mt-3 h-2 rounded-full bg-slate-100">
-                    <div class="h-2 rounded-full bg-brand-500" style="width: 64%"></div>
-                  </div>
-                </div>
-
-                <div class="kpi kpi-lg">
-                  <p class="kpi-label">KPI besar</p>
-                  <div class="flex items-end justify-between gap-3">
-                    <p class="kpi-value text-emerald-600">92%</p>
-                    <i class="ri-arrow-up-line icon-lg icon-success" aria-hidden="true"></i>
-                  </div>
-                  <p class="mt-1 text-xs text-slate-500">Naik 4% dari bulan lalu</p>
-                </div>
-
-                <div class="kpi">
-                  <div class="flex items-start justify-between">
-                    <div>
-                      <p class="kpi-label">Dengan ikon</p>
-                      <p class="kpi-value">23</p>
-                      <p class="text-xs text-slate-500">Peringatan aktif</p>
-                    </div>
-                    <span class="icon-btn bg-rose-50 text-rose-600">
-                      <i class="ri-alert-line icon-sm" aria-hidden="true"></i>
-                    </span>
-                  </div>
-                </div>
-
-                <div class="kpi">
-                  <p class="kpi-label">Dengan tren</p>
-                  <p class="kpi-value">4%</p>
-                  <p class="mt-1 flex items-center gap-1 text-xs text-emerald-600">
-                    <i class="ri-arrow-down-line icon-xs" aria-hidden="true"></i>
-                    Turun 2% dari bulan lalu
-                  </p>
-                </div>
-
-                <div class="kpi">
-                  <p class="kpi-label">Sparkline</p>
-                  <p class="kpi-value">1.250</p>
-                  <p class="text-xs text-slate-500">Pemakaian Oralit</p>
-                  <div class="mt-3 flex h-8 items-end gap-1">
-                    <span class="w-2 rounded-t bg-brand-200" style="height: 40%"></span>
-                    <span class="w-2 rounded-t bg-brand-300" style="height: 65%"></span>
-                    <span class="w-2 rounded-t bg-brand-400" style="height: 50%"></span>
-                    <span class="w-2 rounded-t bg-brand-500" style="height: 80%"></span>
-                    <span class="w-2 rounded-t bg-brand-600" style="height: 100%"></span>
-                    <span class="w-2 rounded-t bg-brand-500" style="height: 70%"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 7. Tabel -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">7. Tabel</h2>
-              <p class="text-xs text-slate-500">Header, baris, badge status, aksi baris, dan keadaan kosong.</p>
-            </div>
-            <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
-              <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-5 py-3">
-                <h3 class="font-semibold">Daftar Stok</h3>
-                <div class="flex gap-2">
-                  <button class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Filter</button>
-                  <button class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Tambah</button>
-                </div>
-              </div>
-              <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm">
-                  <thead class="sticky top-0 bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-                    <tr>
-                      <th class="px-4 py-3">Kode</th>
-                      <th class="px-4 py-3">Nama Obat</th>
-                      <th class="px-4 py-3 text-right">Saldo</th>
-                      <th class="px-4 py-3 text-right">ROP</th>
-                      <th class="px-4 py-3">Status</th>
-                      <th class="px-4 py-3 text-right">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-100">
-                    <tr class="hover:bg-slate-50">
-                      <td class="px-4 py-3 font-mono text-xs">OBT-001</td>
-                      <td class="px-4 py-3">Amoksisilin 500 mg</td>
-                      <td class="px-4 py-3 text-right">4.360</td>
-                      <td class="px-4 py-3 text-right">900</td>
-                      <td class="px-4 py-3"><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">Aman</span></td>
-                      <td class="px-4 py-3 text-right">
-                        <details class="relative inline-block text-left">
-                          <summary class="cursor-pointer list-none rounded-lg border border-slate-200 px-2 py-1 text-xs hover:bg-slate-100">Aksi</summary>
-                          <div class="absolute right-0 z-20 mt-1 w-40 rounded-lg border border-slate-200 bg-white p-1 shadow-lg">
-                            <a href="#" class="block rounded px-3 py-1.5 text-xs hover:bg-slate-50">Lihat kartu stok</a>
-                            <a href="#" class="block rounded px-3 py-1.5 text-xs hover:bg-slate-50">Ubah</a>
-                            <a href="#" class="block rounded px-3 py-1.5 text-xs text-rose-600 hover:bg-rose-50">Nonaktifkan</a>
-                          </div>
-                        </details>
-                      </td>
-                    </tr>
-                    <tr class="bg-slate-50/60 hover:bg-slate-50">
-                      <td class="px-4 py-3 font-mono text-xs">OBT-007</td>
-                      <td class="px-4 py-3">Salbutamol Inhaler</td>
-                      <td class="px-4 py-3 text-right">18</td>
-                      <td class="px-4 py-3 text-right">40</td>
-                      <td class="px-4 py-3"><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">Waspada</span></td>
-                      <td class="px-4 py-3 text-right text-xs text-slate-400">-</td>
-                    </tr>
-                    <tr class="hover:bg-slate-50">
-                      <td class="px-4 py-3 font-mono text-xs">OBT-008</td>
-                      <td class="px-4 py-3">Insulin Glargine</td>
-                      <td class="px-4 py-3 text-right">28</td>
-                      <td class="px-4 py-3 text-right">35</td>
-                      <td class="px-4 py-3"><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs font-medium text-rose-700">Kritis</span></td>
-                      <td class="px-4 py-3 text-right text-xs text-slate-400">-</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="border-t border-slate-200 px-5 py-3 text-xs text-slate-500">
-                Menampilkan 1 sampai 3 dari 150 item
-              </div>
-            </div>
-
-            <div class="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-              <p class="text-sm font-medium text-slate-700">Belum ada data</p>
-              <p class="mt-1 text-xs text-slate-500">Tambahkan data atau ubah filter pencarian.</p>
-              <button class="mt-3 rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Tambah data</button>
-            </div>
-          </section>
-
-          <!-- 8. Pagination -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">8. Pagination</h2>
-              <p class="text-xs text-slate-500">Navigasi halaman dan informasi rentang data.</p>
-            </div>
-            <div class="flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 sm:flex-row sm:items-center sm:justify-between">
-              <p class="text-xs text-slate-500">Menampilkan 1 sampai 20 dari 150</p>
-              <div class="flex flex-wrap items-center gap-1 text-sm">
-                <button class="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-slate-300 px-3 text-slate-400" disabled>Sebelumnya</button>
-                <button class="inline-flex h-9 min-w-9 items-center justify-center rounded-lg bg-brand-600 px-3 font-semibold text-white">1</button>
-                <button class="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-slate-300 px-3 hover:bg-slate-50">2</button>
-                <button class="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-slate-300 px-3 hover:bg-slate-50">3</button>
-                <span class="inline-flex h-9 min-w-9 items-center justify-center px-2 text-slate-400">...</span>
-                <button class="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-slate-300 px-3 hover:bg-slate-50">8</button>
-                <button class="inline-flex h-9 min-w-9 items-center justify-center rounded-lg border border-slate-300 px-3 hover:bg-slate-50">Berikutnya</button>
-              </div>
-            </div>
-          </section>
-
-          <!-- 9. Dropdown -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">9. Dropdown dan Menu</h2>
-              <p class="text-xs text-slate-500">Menu aksi, menu filter, dan menu pengguna.</p>
-            </div>
-            <div class="flex flex-wrap items-start gap-6 rounded-xl border border-slate-200 bg-white p-5">
-              <details class="relative">
-                <summary class="cursor-pointer list-none rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white">Menu Aksi</summary>
-                <div class="dropdown-panel absolute left-0 z-20 mt-2 w-48 rounded-lg border border-slate-200 bg-white p-1 shadow-lg">
-                  <a href="#" class="block rounded px-3 py-2 text-sm hover:bg-slate-50">Detail</a>
-                  <a href="#" class="block rounded px-3 py-2 text-sm hover:bg-slate-50">Cetak PDF</a>
-                  <a href="#" class="block rounded px-3 py-2 text-sm hover:bg-slate-50">Ekspor Excel</a>
-                  <div class="my-1 border-t border-slate-100"></div>
-                  <a href="#" class="block rounded px-3 py-2 text-sm text-rose-600 hover:bg-rose-50">Batalkan</a>
-                </div>
-              </details>
-
-              <details class="relative">
-                <summary class="cursor-pointer list-none rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700">Filter Status</summary>
-                <div class="dropdown-panel absolute left-0 z-20 mt-2 w-56 rounded-lg border border-slate-200 bg-white p-2 shadow-lg">
-                  <label class="flex items-center gap-2 rounded px-2 py-1.5 text-sm hover:bg-slate-50"><input type="checkbox" checked class="rounded text-brand-600" /> Aman</label>
-                  <label class="flex items-center gap-2 rounded px-2 py-1.5 text-sm hover:bg-slate-50"><input type="checkbox" class="rounded text-brand-600" /> Waspada</label>
-                  <label class="flex items-center gap-2 rounded px-2 py-1.5 text-sm hover:bg-slate-50"><input type="checkbox" class="rounded text-brand-600" /> Kritis</label>
-                </div>
-              </details>
-
-              <div class="ml-auto text-xs text-slate-400">Menu pengguna tampil di header.</div>
-            </div>
-          </section>
-
-          <!-- 10. Modal -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">10. Modal</h2>
-              <p class="text-xs text-slate-500">Tiga ukuran: konfirmasi, formulir, dan detail.</p>
-            </div>
-            <div class="flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white p-5">
-              <button data-modal-open="#modal-sm" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium">Modal kecil</button>
-              <button data-modal-open="#modal-md" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium">Modal sedang</button>
-              <button data-modal-open="#modal-lg" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium">Modal besar</button>
-            </div>
-          </section>
-
-          <!-- 11. Badge, alert, toast -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">11. Badge, Alert, dan Toast</h2>
-              <p class="text-xs text-slate-500">Varian warna status dan pesan.</p>
-            </div>
-            <div class="space-y-4 rounded-xl border border-slate-200 bg-white p-5">
-              <div>
-                <p class="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">Badge</p>
-                <div class="flex flex-wrap gap-2">
-                  <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">Netral</span>
-                  <span class="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700">Info</span>
-                  <span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700">Aman</span>
-                  <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">Waspada</span>
-                  <span class="rounded-full bg-rose-100 px-2.5 py-0.5 text-xs font-medium text-rose-700">Kritis</span>
-                </div>
-              </div>
-
-              <div>
-                <p class="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">Alert</p>
-                <div class="space-y-2">
-                  <div class="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-800">Informasi: LPLPO periode Januari sudah tersedia.</div>
-                  <div class="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">Berhasil: penerimaan PO/2027/0001 tersimpan.</div>
-                  <div class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">Perhatian: 3 batch mendekati kedaluwarsa.</div>
-                  <div class="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">Galat: stok tidak mencukupi untuk permintaan ini.</div>
-                </div>
-              </div>
-
-              <div>
-                <p class="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">Toast</p>
-                <div class="flex flex-wrap gap-2">
-                  <button data-toast="Data berhasil disimpan" data-toast-type="success" class="rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white">Toast sukses</button>
-                  <button data-toast="Terjadi kesalahan, coba lagi" data-toast-type="error" class="rounded-lg bg-rose-600 px-3 py-2 text-sm text-white">Toast galat</button>
-                  <button data-toast="Batch mendekati kedaluwarsa" data-toast-type="warning" class="rounded-lg bg-amber-500 px-3 py-2 text-sm text-white">Toast waspada</button>
-                  <button data-toast="Perubahan disimpan sebagai draf" data-toast-type="info" class="rounded-lg bg-slate-900 px-3 py-2 text-sm text-white">Toast netral</button>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 12. Tab -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">12. Tab</h2>
-              <p class="text-xs text-slate-500">Navigasi konten dalam satu halaman.</p>
-            </div>
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
-              <div class="mb-4 flex gap-2 rounded-lg bg-slate-100 p-1 text-sm">
-                <button data-tab="ringkasan" data-tab-group="demo" class="rounded-md bg-brand-600 px-3 py-2 font-medium text-white">Ringkasan</button>
-                <button data-tab="detail" data-tab-group="demo" class="rounded-md px-3 py-2 font-medium text-slate-600">Detail</button>
-                <button data-tab="riwayat" data-tab-group="demo" class="rounded-md px-3 py-2 font-medium text-slate-600">Riwayat</button>
-              </div>
-              <div data-panel="ringkasan" data-panel-group="demo" class="text-sm text-slate-700">
-                Panel ringkasan: informasi utama dokumen.
-              </div>
-              <div data-panel="detail" data-panel-group="demo" class="hidden text-sm text-slate-700">
-                Panel detail: rincian item dan atribut.
-              </div>
-              <div data-panel="riwayat" data-panel-group="demo" class="hidden text-sm text-slate-700">
-                Panel riwayat: jejak perubahan dan audit.
-              </div>
-            </div>
-          </section>
-
-          <!-- 13. Token warna -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">13. Token Warna dan Ukuran</h2>
-              <p class="text-xs text-slate-500">Rujukan cepat palet dan skala ukuran.</p>
-            </div>
-            <div class="grid gap-4 md:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <p class="mb-3 text-sm font-medium">Primer brand</p>
-                <div class="grid grid-cols-5 gap-2 text-center text-[10px] text-white">
-                  <div class="rounded bg-brand-300 p-2 text-brand-900">300</div>
-                  <div class="rounded bg-brand-500 p-2">500</div>
-                  <div class="rounded bg-brand-600 p-2">600</div>
-                  <div class="rounded bg-brand-700 p-2">700</div>
-                  <div class="rounded bg-brand-900 p-2">900</div>
-                </div>
-                <p class="mt-3 text-xs text-slate-500">Tombol primer memakai brand-600, hover brand-700.</p>
-              </div>
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <p class="mb-3 text-sm font-medium">Warna status</p>
-                <div class="grid grid-cols-4 gap-2 text-center text-[10px] text-white">
-                  <div class="rounded bg-slate-500 p-2">Netral</div>
-                  <div class="rounded bg-emerald-600 p-2">Aman</div>
-                  <div class="rounded bg-amber-500 p-2">Waspada</div>
-                  <div class="rounded bg-rose-600 p-2">Kritis</div>
-                </div>
-                <p class="mt-3 text-xs text-slate-500">Status tidak memakai warna brand agar tidak ambigu.</p>
-              </div>
-              <div class="rounded-xl border border-slate-200 bg-white p-5 md:col-span-2">
-                <p class="mb-3 text-sm font-medium">Skala sudut dan jarak</p>
-                <div class="flex flex-wrap items-center gap-4 text-xs text-slate-600">
-                  <span class="rounded-md border border-slate-300 px-3 py-1">rounded-md</span>
-                  <span class="rounded-lg border border-slate-300 px-3 py-1">rounded-lg</span>
-                  <span class="rounded-xl border border-slate-300 px-3 py-1">rounded-xl</span>
-                  <span class="rounded-full border border-slate-300 px-3 py-1">rounded-full</span>
-                  <span class="ml-4">Jarak panel: p-4 di ponsel, p-6 di desktop</span>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- 14. Ikon -->
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">14. Ikon</h2>
-              <p class="text-xs text-slate-500">
-                Remix Icon dengan class ukuran dan warna kustom agar konsisten.
-              </p>
-            </div>
-
-            <div class="grid gap-4 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <p class="mb-3 text-sm font-medium">Ukuran</p>
-                <div class="space-y-3 text-sm">
-                  <div class="flex items-center gap-3">
-                    <i class="ri-box-3-line icon-xs icon-brand" aria-hidden="true"></i>
-                    <code class="rounded bg-slate-100 px-2 py-0.5 text-xs">icon-xs</code>
-                    <span class="text-xs text-slate-500">14px, badge dan teks bantu</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <i class="ri-box-3-line icon-sm icon-brand" aria-hidden="true"></i>
-                    <code class="rounded bg-slate-100 px-2 py-0.5 text-xs">icon-sm</code>
-                    <span class="text-xs text-slate-500">16px, sidebar dan aksi tabel</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <i class="ri-box-3-line icon-md icon-brand" aria-hidden="true"></i>
-                    <code class="rounded bg-slate-100 px-2 py-0.5 text-xs">icon-md</code>
-                    <span class="text-xs text-slate-500">20px, ukuran bawaan</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <i class="ri-box-3-line icon-lg icon-brand" aria-hidden="true"></i>
-                    <code class="rounded bg-slate-100 px-2 py-0.5 text-xs">icon-lg</code>
-                    <span class="text-xs text-slate-500">24px, page header dan KPI</span>
-                  </div>
-                  <div class="flex items-center gap-3">
-                    <i class="ri-box-3-line icon-xl icon-brand" aria-hidden="true"></i>
-                    <code class="rounded bg-slate-100 px-2 py-0.5 text-xs">icon-xl</code>
-                    <span class="text-xs text-slate-500">32px, empty state dan hero</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <p class="mb-3 text-sm font-medium">Warna</p>
-                <div class="grid grid-cols-2 gap-3 text-sm">
-                  <div class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2">
-                    <i class="ri-circle-fill icon-sm icon-muted" aria-hidden="true"></i>
-                    <code class="text-xs">icon-muted</code>
-                  </div>
-                  <div class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2">
-                    <i class="ri-circle-fill icon-sm icon-brand" aria-hidden="true"></i>
-                    <code class="text-xs">icon-brand</code>
-                  </div>
-                  <div class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2">
-                    <i class="ri-circle-fill icon-sm icon-success" aria-hidden="true"></i>
-                    <code class="text-xs">icon-success</code>
-                  </div>
-                  <div class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2">
-                    <i class="ri-circle-fill icon-sm icon-warning" aria-hidden="true"></i>
-                    <code class="text-xs">icon-warning</code>
-                  </div>
-                  <div class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2">
-                    <i class="ri-circle-fill icon-sm icon-danger" aria-hidden="true"></i>
-                    <code class="text-xs">icon-danger</code>
-                  </div>
-                  <div class="flex items-center gap-2 rounded-lg border border-slate-200 px-3 py-2">
-                    <i class="ri-loader-4-line icon-sm icon-spin icon-brand" aria-hidden="true"></i>
-                    <code class="text-xs">icon-spin</code>
-                  </div>
-                </div>
-
-                <p class="mb-2 mt-5 text-sm font-medium">Dalam tombol dan aksi</p>
-                <div class="flex flex-wrap gap-2">
-                  <button class="flex items-center gap-2 rounded-lg bg-brand-600 px-3 py-2 text-sm font-medium text-white">
-                    <i class="ri-add-line icon-sm" aria-hidden="true"></i> Tambah
-                  </button>
-                  <button class="flex items-center gap-2 rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium">
-                    <i class="ri-search-line icon-sm" aria-hidden="true"></i> Cari
-                  </button>
-                  <button class="flex items-center gap-2 rounded-lg bg-rose-600 px-3 py-2 text-sm font-medium text-white">
-                    <i class="ri-delete-bin-line icon-sm" aria-hidden="true"></i> Hapus
-                  </button>
-                  <button class="icon-btn" aria-label="Pengaturan">
-                    <i class="ri-settings-3-line icon-sm" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-
-              <div class="rounded-xl border border-slate-200 bg-white p-5 lg:col-span-2">
-                <p class="mb-2 text-sm font-medium">Aturan pemakaian</p>
-                <ul class="grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
-                  <li>Ukuran bawaan 20px bila class ukuran tidak ditulis.</li>
-                  <li>Gunakan `icon-sm` untuk sidebar dan aksi di dalam tabel.</li>
-                  <li>Gunakan `icon-lg` untuk ikon utama di page header.</li>
-                  <li>Ikon dekoratif wajib memakai `aria-hidden="true"`.</li>
-                  <li>Hindari mencampur ukuran berbeda dalam satu baris aksi.</li>
-                  <li>Warna ikon mengikuti makna status, bukan sekadar hiasan.</li>
-                </ul>
-                <pre class="mt-4 overflow-x-auto rounded-lg bg-slate-900 p-4 text-xs text-slate-100"><code>&lt;i class="ri-box-3-line icon-sm icon-muted" aria-hidden="true"&gt;&lt;/i&gt;</code></pre>
-              </div>
-            </div>
+          <section class="rounded-xl border border-slate-200 bg-white p-5">
+            <h2 class="text-lg font-semibold">Aturan Pemakaian</h2>
+            <ul class="mt-3 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
+              <li>Warna primer hanya untuk aksi utama dan tautan.</li>
+              <li>Status memakai warna semantik, bukan warna brand.</li>
+              <li>Ukuran ikon selalu memakai class <code class="rounded bg-slate-100 px-1">icon-*</code>.</li>
+              <li>Semua komponen harus berfungsi tanpa JavaScript untuk konten inti.</li>
+              <li>Gunakan satu pola penutupan (backdrop, Escape, tombol X).</li>
+              <li>Data pada katalog bersifat dummy dan tidak tersimpan.</li>
+            </ul>
           </section>
         </main>
 
-        <div data-include="footer.html"></div>
-      </div>
-    </div>
-
-    <!-- Modal kecil -->
-    <div id="modal-sm" data-modal class="fixed inset-0 z-50 hidden">
-      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
-      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
-        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
-          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
-        </button>
-        <h3 class="text-base font-semibold">Konfirmasi</h3>
-        <p class="mt-2 text-sm text-slate-600">Batalkan dokumen ini? Tindakan tidak dapat dibatalkan.</p>
-        <div class="mt-4 flex justify-end gap-2">
-          <button data-modal-close class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Batal</button>
-          <button class="rounded-lg bg-rose-600 px-3 py-1.5 text-sm text-white">Batalkan dokumen</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal sedang -->
-    <div id="modal-md" data-modal class="fixed inset-0 z-50 hidden">
-      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
-      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-lg rounded-xl bg-white p-5 shadow-xl">
-        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
-          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
-        </button>
-        <h3 class="text-base font-semibold">Formulir Penerimaan</h3>
-        <div class="mt-3 space-y-3">
-          <div>
-            <label class="mb-1 block text-sm font-medium text-slate-700">Nomor surat jalan</label>
-            <input value="SJ/2027/0012" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="mb-1 block text-sm font-medium text-slate-700">Jumlah</label>
-              <input type="number" value="5000" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
-            </div>
-            <div>
-              <label class="mb-1 block text-sm font-medium text-slate-700">Expired</label>
-              <input type="date" value="2028-12-31" class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" />
-            </div>
-          </div>
-        </div>
-        <div class="mt-4 flex justify-end gap-2">
-          <button data-modal-close class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Batal</button>
-          <button data-modal-close data-toast="Penerimaan tersimpan (mockup)" class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Simpan</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal besar -->
-    <div id="modal-lg" data-modal class="fixed inset-0 z-50 hidden">
-      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
-      <div class="modal-panel relative mx-auto mt-12 w-[94%] max-w-3xl rounded-xl bg-white p-5 shadow-xl">
-        <div class="flex items-start justify-between">
-          <div>
-            <h3 class="text-base font-semibold">Detail LPLPO</h3>
-            <p class="text-xs text-slate-500">Puskesmas A, periode Januari 2027</p>
-          </div>
-          <button data-modal-close class="icon-btn" aria-label="Tutup">
-            <i class="ri-close-line icon-sm" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="mt-4 overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-slate-50 uppercase tracking-wide text-slate-500">
-              <tr><th class="px-3 py-2">Obat</th><th class="px-3 py-2 text-right">Stok Awal</th><th class="px-3 py-2 text-right">Stok Akhir</th><th class="px-3 py-2 text-right">Dipakai</th><th class="px-3 py-2 text-right">Diminta</th><th class="px-3 py-2 text-right">Disetujui</th></tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100">
-              <tr><td class="px-3 py-2">Amoksisilin 500 mg</td><td class="px-3 py-2 text-right">500</td><td class="px-3 py-2 text-right">200</td><td class="px-3 py-2 text-right">300</td><td class="px-3 py-2 text-right">400</td><td class="px-3 py-2 text-right">400</td></tr>
-              <tr><td class="px-3 py-2">Parasetamol 500 mg</td><td class="px-3 py-2 text-right">1.000</td><td class="px-3 py-2 text-right">600</td><td class="px-3 py-2 text-right">400</td><td class="px-3 py-2 text-right">500</td><td class="px-3 py-2 text-right">500</td></tr>
-              <tr><td class="px-3 py-2">Salbutamol Inhaler</td><td class="px-3 py-2 text-right">12</td><td class="px-3 py-2 text-right">3</td><td class="px-3 py-2 text-right">9</td><td class="px-3 py-2 text-right">30</td><td class="px-3 py-2 text-right">15</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="mt-4 flex justify-end">
-          <button data-modal-close class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Selesai</button>
-        </div>
+        <div data-include="../components/footer.html"></div>
       </div>
     </div>
 
     <script src="../assets/mockup.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <script src="../assets/layout.js"></script>
-    <script>
-      document.addEventListener('layout:ready', () => {
-        if (!window.TomSelect) return
-        new TomSelect('#demo-select-single', { create: false })
-        new TomSelect('#demo-select-multi', { plugins: ['remove_button'], maxItems: null })
-      })
-    </script>
   </body>
 </html>
-
