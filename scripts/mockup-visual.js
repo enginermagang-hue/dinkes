@@ -3,11 +3,11 @@
 //   node scripts/mockup-visual.js snapshot   # simpan baseline ke .cache/mockup-golden
 //   node scripts/mockup-visual.js compare    # bandingkan dengan baseline
 //
-// Baseline disimpan di .cache/ sehingga tidak masuk git.
+// Perbandingan memakai ambang toleransi kecil agar fluktuasi antialiasing teks
+// tidak dianggap sebagai perubahan. Baseline disimpan di .cache/ (tidak masuk git).
 
 const fs = require('node:fs')
 const path = require('node:path')
-const crypto = require('node:crypto')
 const puppeteer = require('puppeteer')
 const { startStaticServer } = require('./lib/static-server')
 
@@ -16,6 +16,9 @@ const DOCS = path.join(ROOT, 'docs')
 const CACHE = path.join(ROOT, '.cache')
 const GOLDEN = path.join(CACHE, 'mockup-golden')
 const CURRENT = path.join(CACHE, 'mockup-current')
+
+// Rasio piksel berbeda yang masih dianggap sama (0,02% dari total piksel).
+const TOLERANCE = 0.0002
 
 const PARTIALS = new Set(['sidebar.html', 'header.html', 'footer.html'])
 const VIEWPORTS = [
@@ -48,8 +51,8 @@ function slug(page, viewport) {
   return `${page.replace(/[\\/]/g, '__').replace(/\.html$/, '')}@${viewport.name}.png`
 }
 
-function sha(file) {
-  return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')
+function dataUrl(file) {
+  return 'data:image/png;base64,' + fs.readFileSync(file).toString('base64')
 }
 
 async function capture(browser, origin, pagePath, viewport, outFile) {
@@ -68,13 +71,53 @@ async function capture(browser, origin, pagePath, viewport, outFile) {
   await page.close()
 }
 
+// Hitung rasio piksel berbeda memakai canvas di browser yang sama.
+const DIFF_SCRIPT = async (aUrl, bUrl) => {
+  const load = (src) =>
+    new Promise((resolve, reject) => {
+      const img = new Image()
+      img.onload = () => resolve(img)
+      img.onerror = reject
+      img.src = src
+    })
+
+  const [a, b] = await Promise.all([load(aUrl), load(bUrl)])
+  const w = Math.max(a.width, b.width)
+  const h = Math.max(a.height, b.height)
+
+  const read = (img) => {
+    const canvas = document.createElement('canvas')
+    canvas.width = w
+    canvas.height = h
+    const ctx = canvas.getContext('2d')
+    ctx.drawImage(img, 0, 0)
+    return ctx.getImageData(0, 0, w, h).data
+  }
+
+  const dataA = read(a)
+  const dataB = read(b)
+  let diff = 0
+  for (let i = 0; i < dataA.length; i += 4) {
+    const delta =
+      Math.abs(dataA[i] - dataB[i]) +
+      Math.abs(dataA[i + 1] - dataB[i + 1]) +
+      Math.abs(dataA[i + 2] - dataB[i + 2])
+    if (delta > 12) diff += 1
+  }
+
+  return { diff, total: w * h, ratio: diff / (w * h), sizeA: [a.width, a.height], sizeB: [b.width, b.height] }
+}
+
 async function run(mode) {
   const pages = collectPages()
   const target = mode === 'compare' ? CURRENT : GOLDEN
   fs.mkdirSync(target, { recursive: true })
 
   const { server, origin } = await startStaticServer(DOCS)
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--disable-gpu', '--font-render-hinting=none', '--force-color-profile=srgb'],
+  })
   const results = []
 
   try {
@@ -85,33 +128,41 @@ async function run(mode) {
         results.push({ pagePath, viewport, file })
       }
     }
+
+    if (mode !== 'compare') {
+      console.log(`Baseline tersimpan: ${results.length} screenshot di ${path.relative(ROOT, GOLDEN)}`)
+      return 0
+    }
+
+    const diffPage = await browser.newPage()
+    await diffPage.goto('about:blank')
+
+    let changed = 0
+    let missing = 0
+    for (const item of results) {
+      const name = slug(item.pagePath, item.viewport)
+      const golden = path.join(GOLDEN, name)
+      if (!fs.existsSync(golden)) {
+        missing++
+        console.log(`BARU  ${name}`)
+        continue
+      }
+
+      const stats = await diffPage.evaluate(DIFF_SCRIPT, dataUrl(golden), dataUrl(item.file))
+      if (stats.ratio > TOLERANCE) {
+        changed++
+        console.log(`BEDA  ${name}  (${(stats.ratio * 100).toFixed(3)}%)`)
+      }
+    }
+
+    console.log(
+      `\n${results.length} screenshot dibandingkan: ${changed} berubah, ${missing} tanpa baseline`,
+    )
+    return changed + missing === 0 ? 0 : 1
   } finally {
     await browser.close()
     server.close()
   }
-
-  if (mode !== 'compare') {
-    console.log(`Baseline tersimpan: ${results.length} screenshot di ${path.relative(ROOT, GOLDEN)}`)
-    return 0
-  }
-
-  let changed = 0
-  let missing = 0
-  for (const item of results) {
-    const golden = path.join(GOLDEN, slug(item.pagePath, item.viewport))
-    if (!fs.existsSync(golden)) {
-      missing++
-      console.log(`BARU  ${slug(item.pagePath, item.viewport)}`)
-      continue
-    }
-    if (sha(golden) !== sha(item.file)) {
-      changed++
-      console.log(`BEDA  ${slug(item.pagePath, item.viewport)}`)
-    }
-  }
-
-  console.log(`\n${results.length} screenshot dibandingkan: ${changed} berubah, ${missing} tanpa baseline`)
-  return changed + missing === 0 ? 0 : 1
 }
 
 const mode = process.argv[2] === 'compare' ? 'compare' : 'snapshot'

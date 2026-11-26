@@ -54,7 +54,7 @@ async function inspect(page, url) {
       navPosition: nav ? getComputedStyle(nav).position : null,
       baseDir: new URL('.', document.baseURI).pathname,
       links: [
-        ...document.querySelectorAll('aside[data-nav] a[href], header a[href], main nav a[href]'),
+        ...document.querySelectorAll('aside[data-nav] a[href], header a[href], main a[href]'),
       ].map((a) => a.href),
     }
   })
@@ -92,15 +92,17 @@ async function inspect(page, url) {
   const start = await inspect(page, `${origin}/${START}`)
   problems.push(...start.problems)
 
-  // 2. Setiap halaman harus sehat saat dibuka langsung.
+  // 2. Setiap halaman harus sehat saat dibuka langsung, sambil mengumpulkan tautannya.
+  const collected = new Set(start.links)
   for (const pagePath of pages) {
     const state = await inspect(page, `${origin}/${pagePath}`)
     problems.push(...state.problems)
+    state.links.forEach((link) => collected.add(link))
   }
 
-  // 3. Semua tautan sidebar/header harus mengarah ke halaman sehat.
+  // 3. Semua tautan internal harus mengarah ke halaman sehat.
   const checked = new Set()
-  for (const link of start.links) {
+  for (const link of collected) {
     if (checked.has(link) || link.includes('#')) continue
     checked.add(link)
 
@@ -113,7 +115,7 @@ async function inspect(page, url) {
 
   if (problems.length === 0) {
     console.log(
-      `mockup:links OK — ${pages.length} halaman, ${checked.size} tautan sidebar/header diperiksa.`,
+      `mockup:links OK — ${pages.length} halaman, ${checked.size} tautan internal diperiksa.`,
     )
     process.exit(0)
   }
