@@ -6,72 +6,72 @@
     <title>Stok dan Mutasi - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="stok" class="min-h-screen bg-slate-100 text-slate-800">
-    <div class="flex min-h-screen">
+  <body data-page="stok" class="app-page">
+    <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
 
-      <div class="app-content flex min-w-0 flex-1 flex-col">
+      <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
 
         <main class="space-y-6 p-4 lg:p-6">
           <div>
             <h1 class="text-xl font-semibold">Stok dan Mutasi</h1>
-            <p class="text-xs text-slate-500">Gudang Farmasi Pusat, Januari 2027</p>
+            <p class="text-hint">Gudang Farmasi Pusat, Januari 2027</p>
           </div>
 
-          <section class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div><label class="text-xs text-slate-500">Lokasi</label><select class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"><option>Gudang Farmasi Pusat</option><option>Ruang Obat Puskesmas A</option></select></div>
-            <div><label class="text-xs text-slate-500">Obat</label><input value="Amoksisilin" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm" /></div>
-            <div><label class="text-xs text-slate-500">Status</label><select class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm"><option>Semua</option><option>Di bawah ROP</option><option>Kritis</option></select></div>
-            <div class="flex items-end"><button class="w-full rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white">Terapkan</button></div>
+          <section class="card card-body-sm grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div><label class="text-hint">Lokasi</label><select class="field mt-1 w-full"><option>Gudang Farmasi Pusat</option><option>Ruang Obat Puskesmas A</option></select></div>
+            <div><label class="text-hint">Obat</label><input value="Amoksisilin" class="field mt-1 w-full" /></div>
+            <div><label class="text-hint">Status</label><select class="field mt-1 w-full"><option>Semua</option><option>Di bawah ROP</option><option>Kritis</option></select></div>
+            <div class="flex items-end"><button class="btn btn-neutral btn-sm btn-block">Terapkan</button></div>
           </section>
 
-          <section class="rounded-xl border border-slate-200 bg-white">
+          <section class="card">
             <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
               <h2 class="font-semibold">Saldo Stok</h2>
-              <span class="text-xs text-slate-500">10.000 item</span>
+              <span class="text-hint">10.000 item</span>
             </div>
             <div class="overflow-x-auto">
-              <table class="w-full text-left text-sm">
-                <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-                  <tr><th class="px-4 py-3">Kode</th><th class="px-4 py-3">Nama Obat</th><th class="px-4 py-3 text-right">Saldo</th><th class="px-4 py-3 text-right">Min</th><th class="px-4 py-3 text-right">ROP</th><th class="px-4 py-3">Status</th><th class="px-4 py-3">Batch Terdekat</th></tr>
+              <table class="table table-head">
+                <thead>
+                  <tr><th >Kode</th><th >Nama Obat</th><th class="num">Saldo</th><th class="num">Min</th><th class="num">ROP</th><th >Status</th><th >Batch Terdekat</th></tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
-                  <tr><td class="px-4 py-3">OBT-001</td><td class="px-4 py-3">Amoksisilin 500 mg</td><td class="px-4 py-3 text-right">4.360</td><td class="px-4 py-3 text-right">300</td><td class="px-4 py-3 text-right">900</td><td class="px-4 py-3"><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">Aman</span></td><td class="px-4 py-3 text-xs">AMX2401, 2028-12-31</td></tr>
-                  <tr><td class="px-4 py-3">OBT-002</td><td class="px-4 py-3">Parasetamol 500 mg</td><td class="px-4 py-3 text-right">6.200</td><td class="px-4 py-3 text-right">450</td><td class="px-4 py-3 text-right">1.200</td><td class="px-4 py-3"><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">Aman</span></td><td class="px-4 py-3 text-xs">PCT2403, 2029-01-31</td></tr>
-                  <tr><td class="px-4 py-3">OBT-007</td><td class="px-4 py-3">Salbutamol Inhaler</td><td class="px-4 py-3 text-right">18</td><td class="px-4 py-3 text-right">10</td><td class="px-4 py-3 text-right">40</td><td class="px-4 py-3"><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">Waspada</span></td><td class="px-4 py-3 text-xs">SLB2402, 2028-06-30</td></tr>
-                  <tr><td class="px-4 py-3">OBT-008</td><td class="px-4 py-3">Insulin Glargine</td><td class="px-4 py-3 text-right">28</td><td class="px-4 py-3 text-right">8</td><td class="px-4 py-3 text-right">35</td><td class="px-4 py-3"><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs text-rose-700">Kritis</span></td><td class="px-4 py-3 text-xs">IG2401, 2027-04-30</td></tr>
-                  <tr><td class="px-4 py-3">OBT-010</td><td class="px-4 py-3">Vaksin Campak</td><td class="px-4 py-3 text-right">120</td><td class="px-4 py-3 text-right">50</td><td class="px-4 py-3 text-right">150</td><td class="px-4 py-3"><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">Waspada</span></td><td class="px-4 py-3 text-xs">VC2401, 2027-02-15</td></tr>
+                  <tr><td >OBT-001</td><td >Amoksisilin 500 mg</td><td class="num">4.360</td><td class="num">300</td><td class="num">900</td><td ><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">Aman</span></td><td class="text-xs">AMX2401, 2028-12-31</td></tr>
+                  <tr><td >OBT-002</td><td >Parasetamol 500 mg</td><td class="num">6.200</td><td class="num">450</td><td class="num">1.200</td><td ><span class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs text-emerald-700">Aman</span></td><td class="text-xs">PCT2403, 2029-01-31</td></tr>
+                  <tr><td >OBT-007</td><td >Salbutamol Inhaler</td><td class="num">18</td><td class="num">10</td><td class="num">40</td><td ><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">Waspada</span></td><td class="text-xs">SLB2402, 2028-06-30</td></tr>
+                  <tr><td >OBT-008</td><td >Insulin Glargine</td><td class="num">28</td><td class="num">8</td><td class="num">35</td><td ><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs text-rose-700">Kritis</span></td><td class="text-xs">IG2401, 2027-04-30</td></tr>
+                  <tr><td >OBT-010</td><td >Vaksin Campak</td><td class="num">120</td><td class="num">50</td><td class="num">150</td><td ><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">Waspada</span></td><td class="text-xs">VC2401, 2027-02-15</td></tr>
                 </tbody>
               </table>
             </div>
           </section>
 
           <section class="grid gap-6 xl:grid-cols-2">
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body">
               <h2 class="font-semibold">Kartu Stok: Amoksisilin 500 mg</h2>
               <div class="mt-3 overflow-x-auto">
-                <table class="w-full text-left text-xs">
-                  <thead class="bg-slate-50 uppercase tracking-wide text-slate-500"><tr><th class="px-3 py-2">Tanggal</th><th class="px-3 py-2">Dokumen</th><th class="px-3 py-2">Jenis</th><th class="px-3 py-2 text-right">Masuk</th><th class="px-3 py-2 text-right">Keluar</th><th class="px-3 py-2 text-right">Saldo</th></tr></thead>
+                <table class="table table-compact table-head">
+                  <thead><tr><th >Tanggal</th><th >Dokumen</th><th >Jenis</th><th class="num">Masuk</th><th class="num">Keluar</th><th class="num">Saldo</th></tr></thead>
                   <tbody class="divide-y divide-slate-100">
-                    <tr><td class="px-3 py-2">2027-01-05</td><td class="px-3 py-2">PO/2027/0001</td><td class="px-3 py-2">Masuk</td><td class="px-3 py-2 text-right text-emerald-600">5.000</td><td class="px-3 py-2 text-right">0</td><td class="px-3 py-2 text-right">5.000</td></tr>
-                    <tr><td class="px-3 py-2">2027-01-10</td><td class="px-3 py-2">DO/2027/0012</td><td class="px-3 py-2">Keluar</td><td class="px-3 py-2 text-right">0</td><td class="px-3 py-2 text-right text-rose-600">1.200</td><td class="px-3 py-2 text-right">3.800</td></tr>
-                    <tr><td class="px-3 py-2">2027-01-20</td><td class="px-3 py-2">PO/2027/0004</td><td class="px-3 py-2">Masuk</td><td class="px-3 py-2 text-right text-emerald-600">3.000</td><td class="px-3 py-2 text-right">0</td><td class="px-3 py-2 text-right">5.900</td></tr>
-                    <tr><td class="px-3 py-2">2027-01-28</td><td class="px-3 py-2">ADJ/2027/003</td><td class="px-3 py-2">Penyesuaian</td><td class="px-3 py-2 text-right">0</td><td class="px-3 py-2 text-right text-rose-600">40</td><td class="px-3 py-2 text-right">4.360</td></tr>
+                    <tr><td >2027-01-05</td><td >PO/2027/0001</td><td >Masuk</td><td class="text-emerald-600 num">5.000</td><td class="num">0</td><td class="num">5.000</td></tr>
+                    <tr><td >2027-01-10</td><td >DO/2027/0012</td><td >Keluar</td><td class="num">0</td><td class="text-rose-600 num">1.200</td><td class="num">3.800</td></tr>
+                    <tr><td >2027-01-20</td><td >PO/2027/0004</td><td >Masuk</td><td class="text-emerald-600 num">3.000</td><td class="num">0</td><td class="num">5.900</td></tr>
+                    <tr><td >2027-01-28</td><td >ADJ/2027/003</td><td >Penyesuaian</td><td class="num">0</td><td class="text-rose-600 num">40</td><td class="num">4.360</td></tr>
                   </tbody>
                 </table>
               </div>
               <p class="mt-3 text-xs text-slate-500">Bersumber dari tabel mutasi_stok, bukan rekap manual.</p>
             </div>
 
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body">
               <h2 class="font-semibold">Batch Mendekati Kedaluwarsa</h2>
               <ul class="mt-3 space-y-3 text-sm">
-                <li class="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><p class="font-medium">Vaksin Campak, VC2401</p><p class="text-xs text-slate-500">120 dosis, 15 Feb 2027</p></div><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs text-rose-700">30 hari</span></li>
-                <li class="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><p class="font-medium">Insulin Reguler, IR2402</p><p class="text-xs text-slate-500">40 vial, 30 Apr 2027</p></div><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">104 hari</span></li>
-                <li class="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><p class="font-medium">Serum Anti Rabies, SAR2401</p><p class="text-xs text-slate-500">8 vial, 20 Jan 2027</p></div><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs text-rose-700">4 hari</span></li>
+                <li class="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><p class="font-medium">Vaksin Campak, VC2401</p><p class="text-hint">120 dosis, 15 Feb 2027</p></div><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs text-rose-700">30 hari</span></li>
+                <li class="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><p class="font-medium">Insulin Reguler, IR2402</p><p class="text-hint">40 vial, 30 Apr 2027</p></div><span class="rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700">104 hari</span></li>
+                <li class="flex items-center justify-between rounded-lg border border-slate-200 p-3"><div><p class="font-medium">Serum Anti Rabies, SAR2401</p><p class="text-hint">8 vial, 20 Jan 2027</p></div><span class="rounded-full bg-rose-100 px-2 py-0.5 text-xs text-rose-700">4 hari</span></li>
               </ul>
-              <button data-toast="Usulan redistribusi dibuat (mockup)" class="mt-4 w-full rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-700">Buat Usulan Redistribusi</button>
+              <button data-toast="Usulan redistribusi dibuat (mockup)" class="btn btn-soft btn-sm btn-block mt-4 text-brand-700">Buat Usulan Redistribusi</button>
             </div>
           </section>
         </main>
