@@ -54,41 +54,11 @@
             </div>
           </section>
 
-          <section class="card card-body-sm grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            <div>
-              <label class="field-label" for="recv-po">PO rujukan</label>
-              <select id="recv-po" class="field w-full">
-                <option>Semua PO</option>
-                <option>PO/2027/0001</option>
-                <option>PO/2027/0002</option>
-                <option>PO/2027/0003</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="recv-status">Status</label>
-              <select id="recv-status" class="field w-full">
-                <option>Semua status</option>
-                <option>Draf</option>
-                <option>Diverifikasi</option>
-                <option>Selesai</option>
-                <option>Selisih</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="recv-lokasi">Lokasi</label>
-              <select id="recv-lokasi" class="field w-full">
-                <option>Gudang Farmasi Pusat</option>
-                <option>Ruang Obat Puskesmas A</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="recv-tanggal">Tanggal</label>
-              <input id="recv-tanggal" type="date" value="2027-01-01" class="field w-full" />
-            </div>
-            <div class="flex items-end">
-              <button class="btn btn-neutral btn-sm btn-block">Terapkan</button>
-            </div>
-          </section>
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">Selisih belum selesai</h2>
+            <p class="mt-2">PNR/2027/0009 kurang 4 vial dari surat jalan. Berita acara selisih diperlukan sebelum batch dikunci.</p>
+            <a href="edit.html" class="btn btn-soft-warning btn-xs mt-4">Tindak lanjuti</a>
+          </div>
 
           <section class="card">
             <div class="card-header">
@@ -100,10 +70,67 @@
             </div>
 
             <div class="table-toolbar">
-              <div class="relative w-full sm:w-80">
-                <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
-                <input type="search" data-table-search placeholder="Cari nomor, PO, atau surat jalan…" class="search-field" aria-label="Cari penerimaan" />
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari nomor, PO, atau surat jalan…" class="search-field" aria-label="Cari penerimaan" />
+                </div>
+
+                <details class="relative">
+                  <summary class="btn btn-outline btn-sm flex cursor-pointer list-none items-center gap-2">
+                    <i class="ri-filter-3-line icon-sm" aria-hidden="true"></i>
+                    Filter
+                    <span class="badge badge-brand">2</span>
+                    <i class="ri-arrow-down-s-line icon-xs chevron text-slate-400" aria-hidden="true"></i>
+                  </summary>
+                  <div class="card dropdown-panel absolute left-0 z-30 mt-2 w-72 p-3 text-left shadow-lg">
+                    <div class="space-y-2">
+                      <div>
+                        <label class="field-label" for="recv-po">PO rujukan</label>
+                        <select id="recv-po" class="field w-full">
+                          <option>Semua PO</option>
+                          <option>PO/2027/0001</option>
+                          <option>PO/2027/0002</option>
+                          <option>PO/2027/0003</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="recv-status">Status</label>
+                        <select id="recv-status" class="field w-full">
+                          <option>Semua status</option>
+                          <option>Draf</option>
+                          <option>Diverifikasi</option>
+                          <option>Selesai</option>
+                          <option>Selisih</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="recv-lokasi">Lokasi</label>
+                        <select id="recv-lokasi" class="field w-full">
+                          <option>Gudang Farmasi Pusat</option>
+                          <option>Ruang Obat Puskesmas A</option>
+                        </select>
+                      </div>
+                      <div data-date-field>
+                        <div class="mb-1 flex flex-wrap items-center justify-between gap-1">
+                          <label class="field-label" for="recv-tanggal">Tanggal</label>
+                          <div class="flex flex-wrap gap-1" data-date-presets>
+                            <button type="button" class="chip" data-date-preset="today">Hari ini</button>
+                            <button type="button" class="chip" data-date-preset="7d">7 hari</button>
+                            <button type="button" class="chip chip-active" data-date-preset="month">Bulan ini</button>
+                          </div>
+                        </div>
+                        <input id="recv-tanggal" type="text" data-date data-date-range data-date-base="2027-01-30" value="2027-01-01 - 2027-01-31" class="field w-full" />
+                      </div>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <a href="index.html" class="btn btn-ghost btn-sm">Reset</a>
+                      <button type="button" data-dropdown-close data-toast="Filter diterapkan (mockup)" class="btn btn-primary btn-sm">Terapkan</button>
+                    </div>
+                  </div>
+                </details>
               </div>
+
               <div class="flex items-center gap-2">
                 <label class="text-hint" for="rows-per-page">Baris per halaman</label>
                 <select id="rows-per-page" data-table-size class="field w-20">
@@ -459,41 +486,17 @@
             </div>
           </section>
 
-          <section class="grid gap-6 xl:grid-cols-3">
-            <div class="card card-body xl:col-span-2">
-              <h2 class="card-title">Alur Penerimaan</h2>
-              <p class="text-hint">Draf dicatat di gudang, diverifikasi apoteker, lalu menjadi batch pada kartu stok.</p>
-              <div class="steps mt-4">
-                <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Draf</div>
-                <span class="step-line"></span>
-                <div class="step step-active"><span class="step-dot">2</span> Diverifikasi</div>
-                <span class="step-line"></span>
-                <div class="step"><span class="step-dot">3</span> Selesai</div>
-                <span class="step-line"></span>
-                <div class="step"><span class="step-dot">4</span> BAST</div>
-              </div>
-              <div class="mt-4 flex flex-wrap gap-2">
-                <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
-                  <i class="ri-add-line icon-sm" aria-hidden="true"></i>
-                  Buat penerimaan baru
-                </a>
-                <a href="edit.html" class="btn btn-outline btn-sm">Contoh edit penerimaan</a>
-              </div>
-            </div>
-
-            <div class="alert alert-warning">
-              <h2 class="font-semibold">Selisih belum selesai</h2>
-              <p class="mt-2">PNR/2027/0009 kurang 4 vial dari surat jalan. Berita acara selisih diperlukan sebelum batch dikunci.</p>
-              <a href="edit.html" class="btn btn-soft-warning btn-xs mt-4">Tindak lanjuti</a>
-            </div>
-          </section>
-
         </main>
 
         <div data-include="../components/footer.html"></div>
       </div>
     </div>
 
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>

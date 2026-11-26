@@ -25,7 +25,7 @@
           </div>
 
           <div class="grid gap-6 xl:grid-cols-3">
-            <div class="space-y-6 xl:col-span-2">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
               <section class="card">
                 <div class="card-header">
                   <h2 class="card-title">Dokumen Penerimaan</h2>
@@ -47,7 +47,7 @@
                   </div>
                   <div>
                     <label class="field-label" for="tanggal">Tanggal terima</label>
-                    <input id="tanggal" type="date" value="2027-01-30" class="field w-full" />
+                    <input id="tanggal" type="date" data-date value="2027-01-30" class="field w-full" />
                   </div>
                   <div>
                     <label class="field-label" for="surat-jalan">Nomor surat jalan</label>
@@ -73,7 +73,7 @@
                     <h2 class="card-title">Item Diterima</h2>
                     <p class="text-hint">Jumlah tidak boleh melebihi sisa PO tanpa adendum.</p>
                   </div>
-                  <button data-toast="Pilih item lain dari PO (mockup)" class="btn btn-outline btn-xs flex gap-2">
+                  <button data-modal-open="#modal-tambah-item" class="btn btn-outline btn-xs flex gap-2">
                     <i class="ri-add-line icon-xs" aria-hidden="true"></i>
                     Tambah item
                   </button>
@@ -86,9 +86,10 @@
                         <th class="num">Dipesan</th>
                         <th class="num">Sudah Diterima</th>
                         <th class="num">Sisa</th>
-                        <th class="num">Diterima Sekarang</th>
+                        <th class="num">Diterima</th>
                         <th>Batch</th>
                         <th>Kedaluwarsa</th>
+                        <th class="num">Subtotal</th>
                         <th class="w-10"></th>
                       </tr>
                     </thead>
@@ -98,43 +99,74 @@
                         <td class="num">150</td>
                         <td class="num">60</td>
                         <td class="num">90</td>
-                        <td class="num"><input type="number" value="90" max="90" class="field w-20 text-right" aria-label="Diterima Salbutamol" /></td>
-                        <td><input value="SLB2403" class="field w-28" aria-label="Batch Salbutamol" /></td>
-                        <td><input type="date" value="2028-08-31" class="field w-36" aria-label="Kedaluwarsa Salbutamol" /></td>
-                        <td><button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Salbutamol"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button></td>
+                        <td class="num">90</td>
+                        <td>SLB2403</td>
+                        <td>31-08-2028</td>
+                        <td class="num">16.380.000</td>
+                        <td class="num">
+                          <div class="flex items-center justify-end gap-1">
+                            <button data-toast="Ubah item Salbutamol (mockup)" class="icon-btn" aria-label="Ubah Salbutamol"><i class="ri-edit-line icon-sm text-slate-400" aria-hidden="true"></i></button>
+                            <button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Salbutamol"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button>
+                          </div>
+                        </td>
                       </tr>
                       <tr>
                         <td>Insulin Glargine</td>
                         <td class="num">40</td>
                         <td class="num">0</td>
                         <td class="num">40</td>
-                        <td class="num"><input type="number" value="40" max="40" class="field w-20 text-right" aria-label="Diterima Insulin" /></td>
-                        <td><input value="IG2404" class="field w-28" aria-label="Batch Insulin" /></td>
+                        <td class="num">40</td>
+                        <td>IG2404</td>
                         <td>
-                          <input type="date" value="2027-06-30" class="field field-warning w-36" aria-label="Kedaluwarsa Insulin" aria-describedby="warn-insulin" />
-                          <p class="field-warning-text" id="warn-insulin">Kurang dari 6 bulan</p>
+                          30-06-2027
+                          <p class="field-warning-text">Kurang dari 6 bulan</p>
                         </td>
-                        <td><button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Insulin"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button></td>
+                        <td class="num">15.400.000</td>
+                        <td class="num">
+                          <div class="flex items-center justify-end gap-1">
+                            <button data-toast="Ubah item Insulin (mockup)" class="icon-btn" aria-label="Ubah Insulin"><i class="ri-edit-line icon-sm text-slate-400" aria-hidden="true"></i></button>
+                            <button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Insulin"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button>
+                          </div>
+                        </td>
                       </tr>
                       <tr>
                         <td>Serum Anti Rabies</td>
                         <td class="num">20</td>
                         <td class="num">0</td>
                         <td class="num">20</td>
-                        <td class="num"><input type="number" value="20" max="20" class="field w-20 text-right" aria-label="Diterima Serum Anti Rabies" /></td>
+                        <td class="num">20</td>
                         <td>
-                          <input value="" placeholder="Wajib diisi" class="field field-error w-28" aria-label="Batch Serum Anti Rabies" aria-invalid="true" aria-describedby="err-batch" />
-                          <p class="field-error-text" id="err-batch">Batch wajib diisi</p>
+                          <span class="badge badge-danger">Kosong</span>
+                          <p class="field-error-text">Batch wajib diisi</p>
                         </td>
-                        <td><input type="date" value="2027-12-31" class="field w-36" aria-label="Kedaluwarsa Serum Anti Rabies" /></td>
-                        <td><button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Serum Anti Rabies"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button></td>
+                        <td>31-12-2027</td>
+                        <td class="num">5.600.000</td>
+                        <td class="num">
+                          <div class="flex items-center justify-end gap-1">
+                            <button data-toast="Ubah item Serum Anti Rabies (mockup)" class="icon-btn" aria-label="Ubah Serum Anti Rabies"><i class="ri-edit-line icon-sm text-slate-400" aria-hidden="true"></i></button>
+                            <button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Serum Anti Rabies"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button>
+                          </div>
+                        </td>
                       </tr>
                     </tbody>
+                    <tfoot class="border-t border-slate-200 bg-slate-50 font-semibold">
+                      <tr>
+                        <td>Total</td>
+                        <td class="num">210</td>
+                        <td class="num">60</td>
+                        <td class="num">150</td>
+                        <td class="num">150</td>
+                        <td></td>
+                        <td></td>
+                        <td class="num">37.380.000</td>
+                        <td></td>
+                      </tr>
+                    </tfoot>
                   </table>
                 </div>
                 <div class="card-footer flex flex-wrap items-center justify-between gap-2">
                   <p class="text-hint">1 galat, 1 peringatan belum diselesaikan.</p>
-                  <p class="text-sm">Nilai diterima: <span class="font-semibold">Rp 37.380.000</span></p>
+                  <p class="text-hint">Total dihitung otomatis dari jumlah diterima.</p>
                 </div>
               </section>
 
@@ -155,7 +187,7 @@
               </section>
             </div>
 
-            <div class="space-y-6">
+            <div class="space-y-6 self-start xl:sticky xl:top-20">
               <section class="card card-body">
                 <h2 class="card-title">Ringkasan</h2>
                 <dl class="mt-3 space-y-2 text-sm">
@@ -217,6 +249,52 @@
       </div>
     </div>
 
+    <div id="modal-tambah-item" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-12 w-[92%] max-w-lg rounded-xl bg-white p-5 shadow-xl">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <h3 class="text-base font-semibold">Tambah item dari PO</h3>
+            <p class="text-hint">PO/2027/0002 · PT Medika Jaya · sisa 2 item</p>
+          </div>
+          <button data-modal-close class="icon-btn" aria-label="Tutup"><i class="ri-close-line icon-sm" aria-hidden="true"></i></button>
+        </div>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="sm:col-span-2">
+            <label class="field-label" for="item-obat">Obat</label>
+            <select id="item-obat" class="field w-full">
+              <option>Amoksisilin 500 mg · sisa 30</option>
+              <option>Parasetamol 500 mg · sisa 40</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="item-jumlah">Diterima sekarang</label>
+            <input id="item-jumlah" type="number" value="30" max="30" class="field w-full text-right" />
+            <p class="field-help">Maksimal sisa PO: 30.</p>
+          </div>
+          <div>
+            <label class="field-label" for="item-batch">Batch</label>
+            <input id="item-batch" placeholder="Wajib diisi" class="field field-error w-full" aria-invalid="true" aria-describedby="modal-batch-error" />
+            <p class="field-error-text" id="modal-batch-error">Batch wajib diisi</p>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="field-label" for="item-expired">Kedaluwarsa</label>
+            <input id="item-expired" type="date" data-date value="2027-06-30" class="field field-warning w-full" aria-describedby="modal-expired-warning" />
+            <p class="field-warning-text" id="modal-expired-warning">Kurang dari 6 bulan sejak diterima.</p>
+          </div>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-sm">Batal</button>
+          <button data-modal-close data-toast="Item ditambahkan ke draf (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Tambah ke daftar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>

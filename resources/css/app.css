@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 @import './vendor/remixicon.css';
+@import './vendor/flatpickr.css';
+@import './vendor/tom-select.css';
 
 /* Sumber konten fase mockup. Path Laravel ditambahkan saat development dimulai. */
 @source '../../docs/mockup/**/*.html';
@@ -311,10 +313,27 @@
     animation: dropdown-in 0.15s ease-out;
   }
 
+  /* Panel yang dibuka ke atas memakai arah animasi dari bawah. */
+  .dropdown-panel-up {
+    transform-origin: bottom;
+    animation-name: dropdown-in-up;
+  }
+
   @keyframes dropdown-in {
     from {
       opacity: 0;
       transform: translateY(-4px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes dropdown-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(4px) scale(0.98);
     }
     to {
       opacity: 1;
@@ -759,6 +778,7 @@ body.sidebar-mini [data-collapse-sidebar] i {
 
 /* Tema Tom Select agar selaras dengan .field. */
 .ts-wrapper .ts-control {
+  min-height: 2.375rem;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   padding: 0.5rem 0.75rem;
@@ -770,33 +790,123 @@ body.sidebar-mini [data-collapse-sidebar] i {
     box-shadow 0.15s ease;
 }
 
+.ts-wrapper .ts-control:focus,
+.ts-wrapper .ts-control:focus-visible {
+  outline: none;
+}
+
+.ts-wrapper.single .ts-control {
+  padding-right: 2rem;
+}
+
+.ts-wrapper.single .ts-control::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0.9rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-top: -0.3rem;
+  border-right: 2px solid #64748b;
+  border-bottom: 2px solid #64748b;
+  transform: rotate(45deg);
+  pointer-events: none;
+  transition: transform 0.15s ease;
+}
+
+.ts-wrapper.single.dropdown-active .ts-control::after {
+  margin-top: -0.1rem;
+  transform: rotate(-135deg);
+}
+
 .ts-wrapper.focus .ts-control,
 .ts-wrapper .ts-control.focus {
   border-color: #1b64d1;
   box-shadow: 0 0 0 3px #d9ecff;
 }
 
-.ts-wrapper .ts-dropdown {
+.ts-wrapper.disabled .ts-control,
+.ts-wrapper.disabled .ts-control * {
+  border-color: #e2e8f0;
+  background-color: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.ts-wrapper.field-error .ts-control {
+  border-color: #fb7185;
+}
+
+.ts-wrapper.field-error.focus .ts-control {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px #ffe4e6;
+}
+
+.ts-wrapper.field-warning .ts-control {
+  border-color: #fbbf24;
+}
+
+.ts-wrapper.field-warning.focus .ts-control {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px #fef3c7;
+}
+
+.ts-wrapper.field-success .ts-control {
+  border-color: #34d399;
+}
+
+.ts-wrapper.field-success.focus .ts-control {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px #d1fae5;
+}
+
+.ts-wrapper.field-error.single .ts-control::after {
+  border-color: #e11d48;
+}
+
+.ts-wrapper.field-warning.single .ts-control::after {
+  border-color: #f59e0b;
+}
+
+.ts-wrapper.field-success.single .ts-control::after {
+  border-color: #059669;
+}
+
+/* Disabled menang atas warna state. */
+.ts-wrapper.disabled.single .ts-control::after {
+  border-color: #94a3b8;
+}
+
+/* Dropdown dapat berada di body (dropdownParent: 'body'). */
+.ts-dropdown {
+  z-index: 60;
   margin-top: 0.25rem;
   border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
   box-shadow: 0 10px 15px -3px rgb(15 23 42 / 0.12);
   overflow: hidden;
   animation: dropdown-in 0.15s ease-out;
 }
 
-.ts-wrapper .ts-dropdown .option {
+.ts-dropdown .option {
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
+  color: #0f172a;
 }
 
-.ts-wrapper .ts-dropdown .option.active {
+.ts-dropdown .option.active {
   background-color: #eef6ff;
   color: #1750a8;
 }
 
-.ts-wrapper .ts-dropdown .option:hover {
+.ts-dropdown .option:hover {
   background-color: #f8fafc;
+}
+
+.ts-dropdown .option.selected {
+  color: #1750a8;
+  font-weight: 600;
 }
 
 .ts-wrapper.multi .ts-control > div {
@@ -811,11 +921,151 @@ body.sidebar-mini [data-collapse-sidebar] i {
   border-left: 1px solid #bcdcff;
 }
 
+/* Tema Flatpickr agar selaras dengan .field. */
+.flatpickr-calendar {
+  padding: 0.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  box-shadow: 0 10px 15px -3px rgb(15 23 42 / 0.12);
+  font-family: inherit;
+}
+
+.flatpickr-calendar.arrowTop::before {
+  border-bottom-color: #e2e8f0;
+}
+
+.flatpickr-calendar.arrowTop::after {
+  border-bottom-color: #ffffff;
+}
+
+.flatpickr-calendar.arrowBottom::before {
+  border-top-color: #e2e8f0;
+}
+
+.flatpickr-calendar.arrowBottom::after {
+  border-top-color: #ffffff;
+}
+
+.flatpickr-months .flatpickr-month,
+.flatpickr-months .flatpickr-prev-month,
+.flatpickr-months .flatpickr-next-month {
+  color: #334155;
+  fill: #64748b;
+}
+
+.flatpickr-current-month {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+  font-weight: 600;
+}
+
+.flatpickr-weekdays {
+  background-color: transparent;
+}
+
+span.flatpickr-weekday {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.flatpickr-day {
+  border-color: transparent;
+  border-radius: 0.375rem;
+  color: #0f172a;
+  font-size: 0.8125rem;
+}
+
+.flatpickr-day:hover,
+.flatpickr-day:focus {
+  border-color: #eef6ff;
+  background-color: #eef6ff;
+}
+
+.flatpickr-day.today {
+  border-color: #bcdcff;
+}
+
+.flatpickr-day.today:hover,
+.flatpickr-day.today:focus {
+  border-color: #8ec5ff;
+  background-color: #eef6ff;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange,
+.flatpickr-day.selected:hover,
+.flatpickr-day.startRange:hover,
+.flatpickr-day.endRange:hover {
+  border-color: #1b64d1;
+  background-color: #1b64d1;
+  color: #ffffff;
+}
+
+.flatpickr-day.inRange {
+  border-color: #d9ecff;
+  background-color: #d9ecff;
+  box-shadow:
+    -5px 0 0 #d9ecff,
+    5px 0 0 #d9ecff;
+  color: #1750a8;
+}
+
+.flatpickr-day.inRange:hover {
+  border-color: #bcdcff;
+  background-color: #bcdcff;
+}
+
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+  color: #cbd5e1;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover {
+  border-color: transparent;
+  background-color: transparent;
+  color: #94a3b8;
+}
+
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+  fill: #64748b;
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+  fill: #1b64d1;
+}
+
+.flatpickr-alt.active {
+  border-color: #1b64d1;
+  box-shadow: 0 0 0 3px #d9ecff;
+}
+
+.flatpickr-alt.field-warning.active {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px #fef3c7;
+}
+
+.flatpickr-alt.field-error.active {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px #ffe4e6;
+}
+
 /* Hormati preferensi pengguna yang mengurangi gerakan. */
 @media (prefers-reduced-motion: reduce) {
   .dropdown-panel,
   .dropdown-leave,
   .dropdown-stagger > *,
+  .flatpickr-calendar,
+  .ts-dropdown,
   .modal-panel,
   .modal-backdrop,
   .toast-enter,

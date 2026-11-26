@@ -35,7 +35,7 @@
           </div>
 
           <div class="grid gap-6 xl:grid-cols-3">
-            <div class="space-y-6 xl:col-span-2">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
               <section class="card">
                 <div class="card-header">
                   <h2 class="card-title">Dokumen Penerimaan</h2>
@@ -52,7 +52,7 @@
                   </div>
                   <div>
                     <label class="field-label" for="tanggal">Tanggal terima</label>
-                    <input id="tanggal" type="date" value="2027-01-22" disabled class="field w-full" />
+                    <input id="tanggal" type="date" data-date value="2027-01-22" disabled class="field w-full" />
                   </div>
                   <div>
                     <label class="field-label" for="surat-jalan">Nomor surat jalan</label>
@@ -99,7 +99,7 @@
                         <td class="num">6.000</td>
                         <td class="num"><input type="number" value="6000" max="6000" class="field w-24 text-right" aria-label="Diterima Amoksisilin" /></td>
                         <td><input value="AMX2401" class="field w-28" aria-label="Batch Amoksisilin" /></td>
-                        <td><input type="date" value="2028-12-31" class="field w-36" aria-label="Kedaluwarsa Amoksisilin" /></td>
+                        <td><input type="date" data-date value="2028-12-31" class="field w-36" aria-label="Kedaluwarsa Amoksisilin" /></td>
                       </tr>
                       <tr>
                         <td>Parasetamol 500 mg</td>
@@ -107,7 +107,7 @@
                         <td class="num">4.000</td>
                         <td class="num"><input type="number" value="4000" max="4000" class="field w-24 text-right" aria-label="Diterima Parasetamol" /></td>
                         <td><input value="PCT2403" class="field w-28" aria-label="Batch Parasetamol" /></td>
-                        <td><input type="date" value="2029-01-31" class="field w-36" aria-label="Kedaluwarsa Parasetamol" /></td>
+                        <td><input type="date" data-date value="2029-01-31" class="field w-36" aria-label="Kedaluwarsa Parasetamol" /></td>
                       </tr>
                       <tr>
                         <td>Vaksin Campak</td>
@@ -116,7 +116,7 @@
                         <td class="num"><input type="number" value="200" max="200" class="field w-24 text-right" aria-label="Diterima Vaksin Campak" /></td>
                         <td><input value="VC2401" class="field w-28" aria-label="Batch Vaksin Campak" /></td>
                         <td>
-                          <input type="date" value="2027-02-15" class="field field-warning w-36" aria-label="Kedaluwarsa Vaksin Campak" aria-describedby="warn-vaksin" />
+                          <input type="date" data-date value="2027-02-15" class="field field-warning w-36" aria-label="Kedaluwarsa Vaksin Campak" aria-describedby="warn-vaksin" />
                           <p class="field-warning-text" id="warn-vaksin">Kurang dari 6 bulan</p>
                         </td>
                       </tr>
@@ -129,7 +129,7 @@
                         <td class="num">30</td>
                         <td class="num"><input type="number" value="60" max="90" class="field w-24 text-right" aria-label="Diterima Salbutamol" /></td>
                         <td><input value="SLB2402" class="field w-28" aria-label="Batch Salbutamol" /></td>
-                        <td><input type="date" value="2028-06-30" class="field w-36" aria-label="Kedaluwarsa Salbutamol" /></td>
+                        <td><input type="date" data-date value="2028-06-30" class="field w-36" aria-label="Kedaluwarsa Salbutamol" /></td>
                       </tr>
                     </tbody>
                   </table>
@@ -181,7 +181,7 @@
               </section>
             </div>
 
-            <div class="space-y-6">
+            <div class="space-y-6 self-start xl:sticky xl:top-20">
               <section class="card card-body">
                 <h2 class="card-title">Status Dokumen</h2>
                 <div class="steps mt-3 flex-col items-start gap-3">
@@ -190,6 +190,7 @@
                   <div class="step"><span class="step-dot">3</span> Selesai</div>
                 </div>
                 <p class="field-help">Menyimpan perubahan mengembalikan status ke "menunggu verifikasi".</p>
+                <p class="field-help">Selisih jumlah membuat status menjadi "Selisih" hingga berita acara selisih dibuat.</p>
               </section>
 
               <section class="card card-body">
@@ -239,6 +240,11 @@
       </div>
     </div>
 
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>

@@ -161,6 +161,44 @@ utilitas Tailwind yang ditulis ulang di HTML.
 <p class="field-help">Gunakan nama generik.</p>
 ```
 
+### Input tanggal
+
+`input[type="date"]` atau `input[data-date]` otomatis memakai Flatpickr lewat
+`assets/date-picker.js`. Nilai tersimpan tetap ISO (`Y-m-d`), tampilan `dd-mm-yyyy`.
+Sertakan tiga skrip berikut sebelum `assets/mockup.js`:
+
+```html
+<script src="../assets/flatpickr.min.js"></script>
+<script src="../assets/flatpickr-id.js"></script>
+<script src="../assets/date-picker.js"></script>
+```
+
+Untuk rentang tanggal tambahkan `data-date-range`. Nilai tersimpan berbentuk
+`2027-01-01 - 2027-01-31` (pemisah locale `id`, tetap ISO). Preset cepat memakai
+`data-date-preset="today|7d|month"` di dalam wadah `data-date-field` dengan
+`data-date-presets`; `data-date-base="2027-01-30"` menentukan tanggal acuan preset.
+Contohnya ada pada filter di `13-penerimaan/index.html`.
+
+### Select
+
+Semua `<select>` otomatis menjadi TomSelect lewat `assets/select-picker.js`. Muat
+`tom-select.min.js` dan `select-picker.js` sebelum `mockup.js`.
+
+```html
+<select class="field w-full">
+  <option>Gudang Farmasi Pusat</option>
+  <option>Ruang Obat Puskesmas A</option>
+</select>
+```
+
+| Atribut              | Fungsi                                                |
+| -------------------- | ----------------------------------------------------- |
+| `data-select-skip`   | Pertahankan select bawaan (opt-out)                   |
+| `data-select-search` | `true`/`false` memaksa atau mematikan kotak pencarian |
+
+Kotak pencarian otomatis nonaktif bila jumlah opsi 10 atau kurang. Select `multiple`
+memakai plugin hapus item. Kalender Flatpickr tidak terpengaruh.
+
 ## Tabel
 
 | Class            | Kegunaan                                 |
@@ -238,6 +276,10 @@ utilitas Tailwind yang ditulis ulang di HTML.
 | `.skeleton`                                                                     | Placeholder muat            |
 | `.spinner` + `.spinner-sm` / `.spinner-lg`                                      | Indikator proses            |
 | `.progress` + `.progress-bar`                                                   | Bilah progres               |
+
+Panel `.dropdown-panel` diposisikan otomatis oleh `mockup.js`: membuka ke atas bila ruang
+bawah tidak cukup, dibatasi agar tetap di dalam viewport, dan memakai `.dropdown-panel-up`
+untuk arah animasi saat terbuka ke atas.
 
 ## Ikon
 

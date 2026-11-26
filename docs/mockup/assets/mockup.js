@@ -53,7 +53,127 @@ function showToast(button) {
   document.body.appendChild(toast)
 }
 
+const DROPDOWN_GAP = 8
+const DROPDOWN_MARGIN = 8
+const DROPDOWN_FIT_EPSILON = 2
+
 let dropdownOutsideBound = false
+let dropdownRepositionBound = false
+
+function positionDropdown(dropdown, lockPlacement = false) {
+  const summary = dropdown.querySelector(':scope > summary')
+  const panel = dropdown.querySelector(':scope > .dropdown-panel')
+  if (!summary || !panel) return
+
+  const trigger = summary.getBoundingClientRect()
+  if (
+    trigger.bottom < 0 ||
+    trigger.top > window.innerHeight ||
+    trigger.right < 0 ||
+    trigger.left > window.innerWidth
+  ) {
+    closeDropdown(dropdown)
+    return
+  }
+
+  panel.style.position = 'fixed'
+  panel.style.margin = '0'
+  panel.style.right = 'auto'
+  panel.style.bottom = 'auto'
+  panel.style.width = ''
+
+  const maxWidth = window.innerWidth - DROPDOWN_MARGIN * 2
+  if (panel.offsetWidth > maxWidth) panel.style.width = `${maxWidth}px`
+  const width = panel.offsetWidth
+
+  panel.style.maxHeight = 'none'
+  panel.style.overflowY = ''
+
+  const spaceBelow = window.innerHeight - trigger.bottom - DROPDOWN_GAP
+  const spaceAbove = trigger.top - DROPDOWN_GAP
+  const naturalHeight = panel.getBoundingClientRect().height
+  const placement = panel.dataset.placement
+  const order = lockPlacement && placement === 'up' ? ['up', 'down'] : ['down', 'up']
+  let chosen = null
+
+  // Coba jarak normal, lalu tanpa jarak, sebelum memakai scrollbar.
+  for (const gap of [DROPDOWN_GAP, 0]) {
+    for (const side of order) {
+      const space = side === 'up' ? trigger.top - gap : window.innerHeight - trigger.bottom - gap
+      if (naturalHeight <= space + DROPDOWN_FIT_EPSILON) {
+        chosen = { above: side === 'up', gap }
+        break
+      }
+    }
+    if (chosen) break
+  }
+
+  if (!chosen) {
+    const above = lockPlacement && placement ? placement === 'up' : spaceAbove > spaceBelow
+    chosen = { above, gap: DROPDOWN_GAP }
+  }
+
+  if (!lockPlacement) delete panel.dataset.placement
+
+  const { above, gap } = chosen
+  const sideSpace = Math.max(
+    above ? trigger.top - gap : window.innerHeight - trigger.bottom - gap,
+    96,
+  )
+  const height = Math.min(naturalHeight, sideSpace)
+
+  // Scrollbar hanya dipakai bila panel memang tidak muat di kedua arah.
+  if (naturalHeight - sideSpace > DROPDOWN_FIT_EPSILON) {
+    panel.style.maxHeight = `${sideSpace}px`
+    panel.style.overflowY = 'auto'
+  }
+
+  const alignRight = panel.classList.contains('right-0')
+  const left = Math.min(
+    Math.max(alignRight ? trigger.right - width : trigger.left, DROPDOWN_MARGIN),
+    window.innerWidth - width - DROPDOWN_MARGIN,
+  )
+  const top = Math.min(
+    Math.max(above ? trigger.top - height - gap : trigger.bottom + gap, 0),
+    Math.max(window.innerHeight - height, 0),
+  )
+
+  panel.dataset.placement = above ? 'up' : 'down'
+  panel.classList.toggle('dropdown-panel-up', above)
+  panel.style.left = `${Math.round(left)}px`
+  panel.style.top = `${Math.round(top)}px`
+}
+
+function repositionOpenDropdowns() {
+  document.querySelectorAll('details[open] > .dropdown-panel').forEach((panel) => {
+    const dropdown = panel.parentElement
+    if (dropdown && dropdown.tagName === 'DETAILS') positionDropdown(dropdown, true)
+  })
+}
+
+function bindDropdownReposition() {
+  if (dropdownRepositionBound) return
+  dropdownRepositionBound = true
+
+  let frame = 0
+  const schedule = () => {
+    if (frame) return
+    frame = requestAnimationFrame(() => {
+      frame = 0
+      repositionOpenDropdowns()
+    })
+  }
+
+  window.addEventListener(
+    'scroll',
+    (event) => {
+      if (event.target instanceof Element && event.target.closest('.dropdown-panel')) return
+      schedule()
+    },
+    true,
+  )
+  window.addEventListener('resize', schedule)
+}
 
 function closeDropdown(dropdown) {
   if (!dropdown.open) return
@@ -66,8 +186,9 @@ function closeDropdown(dropdown) {
   panel.dataset.closing = '1'
   panel.classList.add('dropdown-leave')
   setTimeout(() => {
-    panel.classList.remove('dropdown-leave')
+    panel.classList.remove('dropdown-leave', 'dropdown-panel-up')
     delete panel.dataset.closing
+    delete panel.dataset.placement
     dropdown.open = false
   }, 120)
 }
@@ -100,12 +221,24 @@ function initDropdowns() {
     }
 
     item.addEventListener('toggle', () => {
-      if (!item.open) return
+      if (!item.open) {
+        const panel = item.querySelector(':scope > .dropdown-panel')
+        if (panel) panel.classList.remove('dropdown-panel-up')
+        const dateInput = item.querySelector('[data-date]')
+        if (dateInput && dateInput._flatpickr) dateInput._flatpickr.close()
+        item.querySelectorAll('select').forEach((select) => {
+          if (select.tomselect && select.tomselect.isOpen) select.tomselect.close()
+        })
+        return
+      }
+      positionDropdown(item)
       dropdowns.forEach((other) => {
         if (other !== item && other.open) closeDropdown(other)
       })
     })
   })
+
+  bindDropdownReposition()
 
   if (dropdownOutsideBound) return
   dropdownOutsideBound = true
@@ -123,12 +256,17 @@ function initDropdowns() {
   // Klik di luar dropdown menutup semua dropdown dengan animasi.
   document.addEventListener('click', (event) => {
     if (event.target instanceof Element && event.target.closest('details')) return
+    // Kalender Flatpickr dan dropdown TomSelect berada di luar elemen details;
+    // jangan menutup dropdown induk saat keduanya dipakai.
+    if (event.target instanceof Element && event.target.closest('.flatpickr-calendar')) return
+    if (event.target instanceof Element && event.target.closest('.ts-dropdown')) return
     closeAllDropdowns()
   })
 
-  // Tombol Escape menutup semua dropdown.
+  // Tombol Escape menutup semua dropdown, kecuali sedang dipakai Flatpickr.
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape') return
+    if (event.defaultPrevented || event.mockupOverlayHandled) return
     closeAllDropdowns()
   })
 }

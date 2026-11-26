@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Formulir - Katalog SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.min.css"
-    />
   </head>
   <body data-page="components" class="app-page">
     <div class="app-shell">
@@ -59,6 +55,16 @@
                 <input value="Stok mendekati minimum" class="field field-warning" />
                 <p class="mt-1 text-xs text-amber-600">Perlu peninjauan.</p>
               </div>
+              <div>
+                <label class="field-label mb-1" for="demo-tanggal">Tanggal penerimaan</label>
+                <input id="demo-tanggal" type="date" data-date value="2027-01-30" class="field" />
+                <p class="field-help">Flatpickr: tampil dd-mm-yyyy, nilai tetap ISO.</p>
+              </div>
+              <div>
+                <label class="field-label mb-1" for="demo-tanggal-nonaktif">Kedaluwarsa (nonaktif)</label>
+                <input id="demo-tanggal-nonaktif" type="date" data-date value="2028-12-31" disabled class="field" />
+                <p class="field-help">Input nonaktif tetap mengikuti tema.</p>
+              </div>
               <div class="md:col-span-2">
                 <label class="field-label mb-1">Catatan</label>
                 <textarea rows="3" class="field">Kemasan rusak saat penyimpanan.</textarea>
@@ -69,19 +75,21 @@
           <section class="space-y-4">
             <div class="section-head">
               <h2 class="section-title">2. Select</h2>
-              <p class="section-desc">Select bawaan dan Tom Select bertema mockup.</p>
+              <p class="section-desc">
+                Semua select otomatis memakai TomSelect. Tambahkan data-select-skip untuk opt-out.
+              </p>
             </div>
             <div class="card card-body grid gap-4 md:grid-cols-2">
               <div>
-                <label class="field-label mb-1">Select bawaan</label>
-                <select class="field">
+                <label class="field-label mb-1">Select bawaan (dikecualikan)</label>
+                <select class="field" data-select-skip>
                   <option>Gudang Farmasi Pusat</option>
                   <option>Ruang Obat Puskesmas A</option>
                   <option>Instalasi Farmasi RSUD</option>
                 </select>
               </div>
               <div>
-                <label class="field-label mb-1">Tom Select, satu pilihan</label>
+                <label class="field-label mb-1">Tom Select, satu pilihan (otomatis)</label>
                 <select id="demo-select-single">
                   <option value="">Pilih obat...</option>
                   <option>Amoksisilin 500 mg</option>
@@ -89,9 +97,10 @@
                   <option>Metformin 500 mg</option>
                   <option>Insulin Glargine</option>
                 </select>
+                <p class="field-help">Sepuluh opsi atau kurang: kotak pencarian otomatis nonaktif.</p>
               </div>
               <div class="md:col-span-2">
-                <label class="field-label mb-1">Tom Select, multi pilihan</label>
+                <label class="field-label mb-1">Tom Select, multi pilihan (otomatis)</label>
                 <select id="demo-select-multi" multiple>
                   <option>Amoksisilin 500 mg</option>
                   <option>Parasetamol 500 mg</option>
@@ -249,15 +258,12 @@
       </div>
     </div>
 
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
     <script src="../assets/mockup.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <script src="../assets/layout.js"></script>
-    <script>
-      document.addEventListener('layout:ready', () => {
-        if (!window.TomSelect) return
-        new TomSelect('#demo-select-single', { create: false })
-        new TomSelect('#demo-select-multi', { plugins: ['remove_button'], maxItems: null })
-      })
-    </script>
   </body>
 </html>

@@ -66,15 +66,15 @@ Modul `04-pengadaan` terdiri dari dua halaman:
 
 ### Sub-halaman Penerimaan
 
-Modul `13-penerimaan` terdiri dari tiga halaman:
+Modul `13-penerimaan` terdiri dari lima halaman:
 
-| Halaman                     | Isi                                                    |
-| --------------------------- | ------------------------------------------------------ |
-| `13-penerimaan/index.html`  | Daftar penerimaan dengan pencarian, pagination, aksi   |
-| `13-penerimaan/detail.html` | Detail penerimaan PNR/2027/0031 (baca saja)            |
-| `13-penerimaan/bast.html`   | Dokumen BAST/2027/0012 siap cetak                      |
-| `13-penerimaan/tambah.html` | Formulir penerimaan baru dengan checklist validasi     |
-| `13-penerimaan/edit.html`   | Edit penerimaan terverifikasi, alasan perubahan, audit |
+| Halaman                     | Isi                                                     |
+| --------------------------- | ------------------------------------------------------- |
+| `13-penerimaan/index.html`  | Daftar penerimaan: KPI, filter, pencarian, pagination   |
+| `13-penerimaan/detail.html` | Detail PNR/2027/0031: item, status dokumen, jejak audit |
+| `13-penerimaan/tambah.html` | Formulir penerimaan baru dengan checklist validasi      |
+| `13-penerimaan/edit.html`   | Edit penerimaan terverifikasi, alasan perubahan, audit  |
+| `13-penerimaan/bast.html`   | Dokumen BAST/2027/0012 siap cetak                       |
 
 ## Build dan Watch CSS
 
@@ -113,6 +113,8 @@ Seluruh komponen memakai class semantik. Acuan lengkap beserta contoh markup ada
 | Tabel       | `table`, `table-head`, `table-compact`, `num`, `table-sticky`  |
 | Navigasi    | `pill-nav`, `nav-item`, `tabs`, `tab`, `tab-active`            |
 | Formulir    | `field`, `field-label`, `field-help`, `check`, `switch`        |
+| Tanggal     | `flatpickr-alt`, `flatpickr-calendar`, `chip`                  |
+| Select      | `ts-wrapper`, `ts-control`, `ts-dropdown`                      |
 | Umpan balik | `toast`, `modal-panel`, `tooltip`, `skeleton`, `spinner`       |
 
 Aturan pemakaian:
@@ -122,6 +124,14 @@ Aturan pemakaian:
   `hidden`, dan varian breakpoint).
 - Jalankan `npm run mockup:check` sebelum commit untuk memastikan tidak ada komponen
   yang ditulis manual.
+
+Input tanggal memakai Flatpickr yang dibundel lokal di `docs/mockup/assets/`. Muat
+`flatpickr.min.js`, `flatpickr-id.js`, dan `date-picker.js` sebelum `mockup.js`; kontrak
+lengkap ada di [`COMPONENTS.md`](./COMPONENTS.md) bagian Input tanggal.
+
+Select memakai TomSelect lokal (`tom-select.min.js` + `select-picker.js`). Semua
+`<select>` diubah otomatis; tambahkan `data-select-skip` untuk mempertahankan select
+bawaan. Kotak pencarian hanya aktif bila opsi lebih dari 10.
 
 ## Verifikasi Tampilan
 
@@ -133,6 +143,9 @@ Aturan pemakaian:
 | `npm run mockup:check`    | Gagal bila ada komponen ditulis dengan utilitas manual |
 | `npm run mockup:snapshot` | Simpan baseline screenshot ke `.cache/mockup-golden/`  |
 | `npm run mockup:visual`   | Bandingkan tampilan sekarang dengan baseline           |
+
+Baseline disimpan lokal di `.cache/` dan tidak di-commit, sehingga setiap mesin perlu
+menjalankan `mockup:snapshot` sekali sebelum `mockup:visual`.
 
 Ringkasan dan tautan ke semua sub-halaman ada pada
 `docs/mockup/components/index.html`.
@@ -161,7 +174,8 @@ Path mockup tetap dipertahankan agar mockup masih bisa dibangun ulang kapan saja
 - Data dummy mengikuti contoh pada PRD: Puskesmas A, OBT-001 Amoksisilin, LP-001, dan
   seterusnya.
 - Setelah aplikasi Laravel berjalan, folder ini menjadi acuan tampilan dan dapat diarsip.
-- Folder ini dikecualikan dari `prettier` dan `markdownlint` melalui `.prettierignore`.
+- README ini ikut diperiksa `prettier` dan `markdownlint`; jalankan `npm run md:check`
+  setelah mengubahnya.
 
 ## Dokumen Terkait
 
