@@ -6,37 +6,37 @@
     <title>Tata Letak - Katalog SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="components" class="min-h-screen bg-slate-100 text-slate-800">
-    <div class="flex min-h-screen">
+  <body data-page="components" class="app-page">
+    <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
-      <div class="app-content flex min-w-0 flex-1 flex-col">
+      <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
 
         <main class="flex-1 space-y-8 p-4 lg:p-6">
-          <nav class="flex flex-wrap gap-2 text-sm">
-            <a href="index.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Ringkasan</a>
-            <a href="foundation.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Fondasi</a>
-            <a href="form.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Formulir</a>
-            <a href="data.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Data</a>
-            <a href="feedback.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Umpan Balik</a>
-            <a href="layout.html" class="rounded-lg bg-brand-600 px-3 py-2 font-medium text-white">Tata Letak</a>
-            <a href="advanced.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Lanjutan</a>
+          <nav class="pill-nav">
+            <a href="index.html" class="pill-nav-item">Ringkasan</a>
+            <a href="foundation.html" class="pill-nav-item">Fondasi</a>
+            <a href="form.html" class="pill-nav-item">Formulir</a>
+            <a href="data.html" class="pill-nav-item">Data</a>
+            <a href="feedback.html" class="pill-nav-item">Umpan Balik</a>
+            <a href="layout.html" class="pill-nav-item pill-nav-item-active">Tata Letak</a>
+            <a href="advanced.html" class="pill-nav-item">Lanjutan</a>
           </nav>
 
           <section>
-            <h1 class="text-2xl font-bold text-slate-900">Katalog Komponen — Tata Letak</h1>
-            <p class="mt-1 max-w-2xl text-sm text-slate-500">
+            <h1 class="page-title">Katalog Komponen — Tata Letak</h1>
+            <p class="page-subtitle">
               Breadcrumb, page header, card, KPI, avatar, tab, segmented control, accordion,
               chip, status dokumen, dan cetak.
             </p>
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">1. Breadcrumb dan Page Header</h2>
-              <p class="text-xs text-slate-500">Navigasi hierarki dan judul halaman dengan aksi.</p>
+            <div class="section-head">
+              <h2 class="section-title">1. Breadcrumb dan Page Header</h2>
+              <p class="section-desc">Navigasi hierarki dan judul halaman dengan aksi.</p>
             </div>
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body">
               <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500">
                 <a href="#" class="hover:text-brand-600">Beranda</a>
                 <span>/</span>
@@ -51,36 +51,36 @@
                 </div>
                 <div class="flex flex-wrap gap-2">
                   <span class="rounded-full bg-emerald-100 px-3 py-1 text-xs font-medium text-emerald-700">Diterima</span>
-                  <button class="rounded-lg border border-slate-300 px-3 py-2 text-sm">Cetak</button>
-                  <button class="rounded-lg bg-brand-600 px-3 py-2 text-sm text-white">Tindak lanjut</button>
+                  <button class="btn btn-outline btn-normal btn-sm">Cetak</button>
+                  <button class="btn btn-primary btn-normal btn-sm">Tindak lanjut</button>
                 </div>
               </div>
             </div>
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">2. Card dan KPI</h2>
-              <p class="text-xs text-slate-500">Kartu dasar serta varian ukuran dan gaya KPI.</p>
+            <div class="section-head">
+              <h2 class="section-title">2. Card dan KPI</h2>
+              <p class="section-desc">Kartu dasar serta varian ukuran dan gaya KPI.</p>
             </div>
             <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
+              <div class="card card-body">
                 <h3 class="font-semibold">Kartu dasar</h3>
                 <p class="mt-1 text-sm text-slate-600">Isi kartu dengan judul, paragraf, dan aksi.</p>
                 <div class="mt-4 flex justify-end gap-2">
-                  <button class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Batal</button>
-                  <button class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Simpan</button>
+                  <button class="btn btn-outline btn-normal btn-xs">Batal</button>
+                  <button class="btn btn-primary btn-normal btn-xs">Simpan</button>
                 </div>
               </div>
               <div class="kpi kpi-sm">
                 <p class="kpi-label">KPI kecil</p>
                 <p class="kpi-value">92%</p>
-                <p class="text-xs text-slate-500">Availability</p>
+                <p class="text-hint">Availability</p>
               </div>
               <div class="kpi">
                 <p class="kpi-label">KPI sedang</p>
                 <p class="kpi-value">Rp 2,5 M</p>
-                <p class="mt-1 text-xs text-slate-500">Nilai inventori</p>
+                <p class="field-help">Nilai inventori</p>
                 <div class="progress mt-3"><div class="progress-bar" style="width: 64%"></div></div>
               </div>
               <div class="kpi kpi-lg">
@@ -89,14 +89,14 @@
                   <p class="kpi-value text-emerald-600">92%</p>
                   <i class="ri-arrow-up-line icon-lg icon-success" aria-hidden="true"></i>
                 </div>
-                <p class="mt-1 text-xs text-slate-500">Naik 4% dari bulan lalu</p>
+                <p class="field-help">Naik 4% dari bulan lalu</p>
               </div>
               <div class="kpi">
                 <div class="flex items-start justify-between">
                   <div>
                     <p class="kpi-label">Dengan ikon</p>
                     <p class="kpi-value">23</p>
-                    <p class="text-xs text-slate-500">Peringatan aktif</p>
+                    <p class="text-hint">Peringatan aktif</p>
                   </div>
                   <span class="icon-btn bg-rose-50 text-rose-600"><i class="ri-alert-line icon-sm" aria-hidden="true"></i></span>
                 </div>
@@ -112,11 +112,11 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">3. Avatar</h2>
-              <p class="text-xs text-slate-500">Ukuran dan grup pengguna.</p>
+            <div class="section-head">
+              <h2 class="section-title">3. Avatar</h2>
+              <p class="section-desc">Ukuran dan grup pengguna.</p>
             </div>
-            <div class="flex flex-wrap items-center gap-6 rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body flex flex-wrap items-center gap-6">
               <span class="avatar avatar-sm">RA</span>
               <span class="avatar">RA</span>
               <span class="avatar avatar-lg">RA</span>
@@ -130,20 +130,20 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">4. Tab dan Segmented Control</h2>
-              <p class="text-xs text-slate-500">Dua pola navigasi pilihan.</p>
+            <div class="section-head">
+              <h2 class="section-title">4. Tab dan Segmented Control</h2>
+              <p class="section-desc">Dua pola navigasi pilihan.</p>
             </div>
             <div class="grid gap-4 lg:grid-cols-2">
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <div class="mb-4 flex gap-2 rounded-lg bg-slate-100 p-1 text-sm">
-                  <button data-tab="a" data-tab-group="lay" class="rounded-md bg-brand-600 px-3 py-2 font-medium text-white">Ringkasan</button>
-                  <button data-tab="b" data-tab-group="lay" class="rounded-md px-3 py-2 font-medium text-slate-600">Detail</button>
+              <div class="card card-body">
+                <div class="tabs mb-4">
+                  <button data-tab="a" data-tab-group="lay" class="tab tab-active">Ringkasan</button>
+                  <button data-tab="b" data-tab-group="lay" class="tab">Detail</button>
                 </div>
                 <div data-panel="a" data-panel-group="lay" class="text-sm text-slate-700">Panel ringkasan.</div>
                 <div data-panel="b" data-panel-group="lay" class="hidden text-sm text-slate-700">Panel detail.</div>
               </div>
-              <div class="rounded-xl border border-slate-200 bg-white p-5">
+              <div class="card card-body">
                 <div class="segment" data-segment>
                   <button aria-pressed="true">Bulanan</button>
                   <button aria-pressed="false">Triwulanan</button>
@@ -155,11 +155,11 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">5. Accordion</h2>
-              <p class="text-xs text-slate-500">Kelompok konten yang dapat dibuka.</p>
+            <div class="section-head">
+              <h2 class="section-title">5. Accordion</h2>
+              <p class="section-desc">Kelompok konten yang dapat dibuka.</p>
             </div>
-            <div class="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
+            <div class="card divide-y divide-slate-200">
               <details open class="group">
                 <summary class="flex cursor-pointer list-none items-center justify-between px-5 py-3 text-sm font-medium">
                   Apa itu ROP dinamis?
@@ -178,11 +178,11 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">6. Chip Filter</h2>
-              <p class="text-xs text-slate-500">Filter aktif yang dapat dihapus.</p>
+            <div class="section-head">
+              <h2 class="section-title">6. Chip Filter</h2>
+              <p class="section-desc">Filter aktif yang dapat dihapus.</p>
             </div>
-            <div class="flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body flex flex-wrap gap-2">
               <span class="chip chip-active">Fasilitas: Puskesmas A <i class="ri-close-line icon-xs" aria-hidden="true"></i></span>
               <span class="chip chip-active">Status: Kritis <i class="ri-close-line icon-xs" aria-hidden="true"></i></span>
               <span class="chip">Kategori: Antibiotik</span>
@@ -191,11 +191,11 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">7. Status Dokumen</h2>
-              <p class="text-xs text-slate-500">Alur dokumen dari draf hingga selesai.</p>
+            <div class="section-head">
+              <h2 class="section-title">7. Status Dokumen</h2>
+              <p class="section-desc">Alur dokumen dari draf hingga selesai.</p>
             </div>
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body">
               <div class="steps">
                 <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Draf</div>
                 <span class="step-line"></span>
@@ -209,13 +209,13 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">8. Cetak BAST</h2>
-              <p class="text-xs text-slate-500">Tata letak dokumen siap cetak.</p>
+            <div class="section-head">
+              <h2 class="section-title">8. Cetak BAST</h2>
+              <p class="section-desc">Tata letak dokumen siap cetak.</p>
             </div>
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body">
               <div class="mb-3 flex justify-end no-print">
-                <button data-print class="flex items-center gap-2 rounded-lg bg-brand-600 px-3 py-2 text-sm text-white">
+                <button data-print class="btn btn-primary btn-normal btn-sm flex gap-2">
                   <i class="ri-printer-line icon-sm" aria-hidden="true"></i> Cetak
                 </button>
               </div>
@@ -223,17 +223,17 @@
                 <div class="text-center">
                   <p class="text-sm font-semibold">DINAS KESEHATAN KABUPATEN</p>
                   <p class="text-lg font-bold">BERITA ACARA SERAH TERIMA</p>
-                  <p class="text-xs text-slate-500">Nomor: BAST/2027/0012</p>
+                  <p class="text-hint">Nomor: BAST/2027/0012</p>
                 </div>
                 <div class="mt-6 space-y-2 text-sm">
                   <p>Pada hari ini, telah diserahkan obat dan BMHP dengan rincian:</p>
-                  <table class="mt-2 w-full text-left text-xs">
-                    <thead class="border-b border-slate-300">
-                      <tr><th class="py-1">No</th><th class="py-1">Nama Obat</th><th class="py-1 text-right">Jumlah</th><th class="py-1">Batch</th></tr>
+                  <table class="table table-compact table-plain mt-2">
+                    <thead>
+                      <tr><th class="py-1">No</th><th class="py-1">Nama Obat</th><th class="py-1 num">Jumlah</th><th class="py-1">Batch</th></tr>
                     </thead>
                     <tbody>
-                      <tr><td class="py-1">1</td><td class="py-1">Amoksisilin 500 mg</td><td class="py-1 text-right">1.200</td><td class="py-1">AMX2401</td></tr>
-                      <tr><td class="py-1">2</td><td class="py-1">Parasetamol 500 mg</td><td class="py-1 text-right">1.800</td><td class="py-1">PCT2403</td></tr>
+                      <tr><td class="py-1">1</td><td class="py-1">Amoksisilin 500 mg</td><td class="py-1 num">1.200</td><td class="py-1">AMX2401</td></tr>
+                      <tr><td class="py-1">2</td><td class="py-1">Parasetamol 500 mg</td><td class="py-1 num">1.800</td><td class="py-1">PCT2403</td></tr>
                     </tbody>
                   </table>
                 </div>
