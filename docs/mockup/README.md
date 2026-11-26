@@ -70,7 +70,9 @@ Modul `13-penerimaan` terdiri dari tiga halaman:
 
 | Halaman                     | Isi                                                    |
 | --------------------------- | ------------------------------------------------------ |
-| `13-penerimaan/index.html`  | Daftar penerimaan, alur verifikasi, BAST siap cetak    |
+| `13-penerimaan/index.html`  | Daftar penerimaan dengan pencarian, pagination, aksi   |
+| `13-penerimaan/detail.html` | Detail penerimaan PNR/2027/0031 (baca saja)            |
+| `13-penerimaan/bast.html`   | Dokumen BAST/2027/0012 siap cetak                      |
 | `13-penerimaan/tambah.html` | Formulir penerimaan baru dengan checklist validasi     |
 | `13-penerimaan/edit.html`   | Edit penerimaan terverifikasi, alasan perubahan, audit |
 

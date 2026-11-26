@@ -1510,3 +1510,13 @@ body.sidebar-mini [data-collapse-sidebar] i {
     @apply bg-rose-500/20 text-rose-300;
   }
 }
+
+@media print {
+  /* Dokumen cetak tampil tanpa bingkai kartu. */
+  .paper {
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+}
