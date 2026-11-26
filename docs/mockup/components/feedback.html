@@ -6,111 +6,111 @@
     <title>Umpan Balik - Katalog SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="components" class="min-h-screen bg-slate-100 text-slate-800">
-    <div class="flex min-h-screen">
+  <body data-page="components" class="app-page">
+    <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
-      <div class="app-content flex min-w-0 flex-1 flex-col">
+      <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
 
         <main class="flex-1 space-y-8 p-4 lg:p-6">
-          <nav class="flex flex-wrap gap-2 text-sm">
-            <a href="index.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Ringkasan</a>
-            <a href="foundation.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Fondasi</a>
-            <a href="form.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Formulir</a>
-            <a href="data.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Data</a>
-            <a href="feedback.html" class="rounded-lg bg-brand-600 px-3 py-2 font-medium text-white">Umpan Balik</a>
-            <a href="layout.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Tata Letak</a>
-            <a href="advanced.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Lanjutan</a>
+          <nav class="pill-nav">
+            <a href="index.html" class="pill-nav-item">Ringkasan</a>
+            <a href="foundation.html" class="pill-nav-item">Fondasi</a>
+            <a href="form.html" class="pill-nav-item">Formulir</a>
+            <a href="data.html" class="pill-nav-item">Data</a>
+            <a href="feedback.html" class="pill-nav-item pill-nav-item-active">Umpan Balik</a>
+            <a href="layout.html" class="pill-nav-item">Tata Letak</a>
+            <a href="advanced.html" class="pill-nav-item">Lanjutan</a>
           </nav>
 
           <section>
-            <h1 class="text-2xl font-bold text-slate-900">Katalog Komponen — Umpan Balik</h1>
-            <p class="mt-1 max-w-2xl text-sm text-slate-500">
+            <h1 class="page-title">Katalog Komponen — Umpan Balik</h1>
+            <p class="page-subtitle">
               Badge, alert, toast, modal, tooltip, popover, skeleton, spinner, progress, dan tab.
             </p>
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">1. Badge</h2>
-              <p class="text-xs text-slate-500">Penanda status ringkas.</p>
+            <div class="section-head">
+              <h2 class="section-title">1. Badge</h2>
+              <p class="section-desc">Penanda status ringkas.</p>
             </div>
-            <div class="flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white p-5">
-              <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">Netral</span>
-              <span class="rounded-full bg-brand-100 px-2.5 py-0.5 text-xs font-medium text-brand-700">Info</span>
-              <span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-700">Aman</span>
-              <span class="rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-700">Waspada</span>
-              <span class="rounded-full bg-rose-100 px-2.5 py-0.5 text-xs font-medium text-rose-700">Kritis</span>
-            </div>
-          </section>
-
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">2. Alert</h2>
-              <p class="text-xs text-slate-500">Pesan kontekstual di dalam halaman.</p>
-            </div>
-            <div class="space-y-2 rounded-xl border border-slate-200 bg-white p-5">
-              <div class="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-800">Informasi: LPLPO Januari sudah tersedia.</div>
-              <div class="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">Berhasil: penerimaan PO/2027/0001 tersimpan.</div>
-              <div class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">Perhatian: 3 batch mendekati kedaluwarsa.</div>
-              <div class="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">Galat: stok tidak mencukupi.</div>
+            <div class="card card-body flex flex-wrap gap-2">
+              <span class="badge badge-neutral">Netral</span>
+              <span class="badge badge-brand">Info</span>
+              <span class="badge badge-success">Aman</span>
+              <span class="badge badge-warning">Waspada</span>
+              <span class="badge badge-danger">Kritis</span>
             </div>
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">3. Toast</h2>
-              <p class="text-xs text-slate-500">Bertipe, berikon, beranimasi, dan punya tombol tutup.</p>
+            <div class="section-head">
+              <h2 class="section-title">2. Alert</h2>
+              <p class="section-desc">Pesan kontekstual di dalam halaman.</p>
             </div>
-            <div class="flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white p-5">
-              <button data-toast="Data berhasil disimpan" data-toast-type="success" class="rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white">Toast sukses</button>
-              <button data-toast="Terjadi kesalahan, coba lagi" data-toast-type="error" class="rounded-lg bg-rose-600 px-3 py-2 text-sm text-white">Toast galat</button>
-              <button data-toast="Batch mendekati kedaluwarsa" data-toast-type="warning" class="rounded-lg bg-amber-500 px-3 py-2 text-sm text-white">Toast waspada</button>
-              <button data-toast="Perubahan disimpan sebagai draf" data-toast-type="info" class="rounded-lg bg-slate-900 px-3 py-2 text-sm text-white">Toast netral</button>
-            </div>
-          </section>
-
-          <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">4. Modal</h2>
-              <p class="text-xs text-slate-500">Tiga ukuran, animasi, dan tombol tutup ikon.</p>
-            </div>
-            <div class="flex flex-wrap gap-2 rounded-xl border border-slate-200 bg-white p-5">
-              <button data-modal-open="#modal-sm" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium">Modal kecil</button>
-              <button data-modal-open="#modal-md" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium">Modal sedang</button>
-              <button data-modal-open="#modal-lg" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium">Modal besar</button>
+            <div class="card card-body space-y-2">
+              <div class="alert alert-brand">Informasi: LPLPO Januari sudah tersedia.</div>
+              <div class="alert alert-success">Berhasil: penerimaan PO/2027/0001 tersimpan.</div>
+              <div class="alert alert-warning">Perhatian: 3 batch mendekati kedaluwarsa.</div>
+              <div class="alert alert-danger">Galat: stok tidak mencukupi.</div>
             </div>
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">5. Tooltip dan Popover</h2>
-              <p class="text-xs text-slate-500">Informasi singkat saat hover dan panel kecil.</p>
+            <div class="section-head">
+              <h2 class="section-title">3. Toast</h2>
+              <p class="section-desc">Bertipe, berikon, beranimasi, dan punya tombol tutup.</p>
             </div>
-            <div class="flex flex-wrap items-center gap-6 rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body flex flex-wrap gap-2">
+              <button data-toast="Data berhasil disimpan" data-toast-type="success" class="btn btn-success btn-normal btn-sm">Toast sukses</button>
+              <button data-toast="Terjadi kesalahan, coba lagi" data-toast-type="error" class="btn btn-danger btn-normal btn-sm">Toast galat</button>
+              <button data-toast="Batch mendekati kedaluwarsa" data-toast-type="warning" class="btn btn-warning btn-normal btn-sm">Toast waspada</button>
+              <button data-toast="Perubahan disimpan sebagai draf" data-toast-type="info" class="btn btn-neutral btn-normal btn-sm">Toast netral</button>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="section-head">
+              <h2 class="section-title">4. Modal</h2>
+              <p class="section-desc">Tiga ukuran, animasi, dan tombol tutup ikon.</p>
+            </div>
+            <div class="card card-body flex flex-wrap gap-2">
+              <button data-modal-open="#modal-sm" class="btn btn-outline btn-md">Modal kecil</button>
+              <button data-modal-open="#modal-md" class="btn btn-outline btn-md">Modal sedang</button>
+              <button data-modal-open="#modal-lg" class="btn btn-outline btn-md">Modal besar</button>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="section-head">
+              <h2 class="section-title">5. Tooltip dan Popover</h2>
+              <p class="section-desc">Informasi singkat saat hover dan panel kecil.</p>
+            </div>
+            <div class="card card-body flex flex-wrap items-center gap-6">
               <span class="tooltip" data-tip="First Expired First Out" tabindex="0">
-                <span class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Arahkan ke sini</span>
+                <span class="btn btn-outline btn-xs">Arahkan ke sini</span>
               </span>
 
               <details class="relative">
-                <summary class="flex cursor-pointer list-none items-center gap-2 rounded-lg border border-slate-300 px-3 py-1.5 text-sm">
+                <summary class="btn btn-outline btn-xs flex cursor-pointer list-none gap-2">
                   Popover info
                   <i class="ri-arrow-down-s-line icon-xs chevron text-slate-400" aria-hidden="true"></i>
                 </summary>
                 <div class="dropdown-panel absolute left-0 z-20 mt-2 w-64 rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-lg">
                   <p class="font-medium">Ambang stok</p>
-                  <p class="mt-1 text-xs text-slate-500">ROP dihitung dari pemakaian rata-rata dan lead time supplier.</p>
+                  <p class="field-help">ROP dihitung dari pemakaian rata-rata dan lead time supplier.</p>
                 </div>
               </details>
             </div>
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">6. Skeleton</h2>
-              <p class="text-xs text-slate-500">Placeholder saat data dimuat.</p>
+            <div class="section-head">
+              <h2 class="section-title">6. Skeleton</h2>
+              <p class="section-desc">Placeholder saat data dimuat.</p>
             </div>
-            <div class="space-y-3 rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body space-y-3">
               <div class="flex items-center gap-3">
                 <div class="skeleton h-10 w-10 rounded-full"></div>
                 <div class="flex-1 space-y-2">
@@ -128,11 +128,11 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">7. Spinner</h2>
-              <p class="text-xs text-slate-500">Tiga ukuran untuk keadaan memuat.</p>
+            <div class="section-head">
+              <h2 class="section-title">7. Spinner</h2>
+              <p class="section-desc">Tiga ukuran untuk keadaan memuat.</p>
             </div>
-            <div class="flex items-center gap-6 rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body flex items-center gap-6">
               <span class="spinner spinner-sm"></span>
               <span class="spinner"></span>
               <span class="spinner spinner-lg"></span>
@@ -141,11 +141,11 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">8. Progress</h2>
-              <p class="text-xs text-slate-500">Serapan anggaran dan proses unggah.</p>
+            <div class="section-head">
+              <h2 class="section-title">8. Progress</h2>
+              <p class="section-desc">Serapan anggaran dan proses unggah.</p>
             </div>
-            <div class="space-y-4 rounded-xl border border-slate-200 bg-white p-5">
+            <div class="card card-body space-y-4">
               <div>
                 <div class="mb-1 flex justify-between text-sm"><span>Serapan anggaran</span><span>64%</span></div>
                 <div class="progress"><div class="progress-bar" style="width: 64%"></div></div>
@@ -162,15 +162,15 @@
           </section>
 
           <section class="space-y-4">
-            <div class="border-b border-slate-200 pb-2">
-              <h2 class="text-lg font-semibold">9. Tab</h2>
-              <p class="text-xs text-slate-500">Navigasi konten dalam satu halaman.</p>
+            <div class="section-head">
+              <h2 class="section-title">9. Tab</h2>
+              <p class="section-desc">Navigasi konten dalam satu halaman.</p>
             </div>
-            <div class="rounded-xl border border-slate-200 bg-white p-5">
-              <div class="mb-4 flex gap-2 rounded-lg bg-slate-100 p-1 text-sm">
-                <button data-tab="ringkasan" data-tab-group="demo" class="rounded-md bg-brand-600 px-3 py-2 font-medium text-white">Ringkasan</button>
-                <button data-tab="detail" data-tab-group="demo" class="rounded-md px-3 py-2 font-medium text-slate-600">Detail</button>
-                <button data-tab="riwayat" data-tab-group="demo" class="rounded-md px-3 py-2 font-medium text-slate-600">Riwayat</button>
+            <div class="card card-body">
+              <div class="tabs mb-4">
+                <button data-tab="ringkasan" data-tab-group="demo" class="tab tab-active">Ringkasan</button>
+                <button data-tab="detail" data-tab-group="demo" class="tab">Detail</button>
+                <button data-tab="riwayat" data-tab-group="demo" class="tab">Riwayat</button>
               </div>
               <div data-panel="ringkasan" data-panel-group="demo" class="text-sm text-slate-700">Panel ringkasan dokumen.</div>
               <div data-panel="detail" data-panel-group="demo" class="hidden text-sm text-slate-700">Panel detail item.</div>
@@ -190,8 +190,8 @@
         <h3 class="text-base font-semibold">Konfirmasi</h3>
         <p class="mt-2 text-sm text-slate-600">Batalkan dokumen ini? Tindakan tidak dapat dibatalkan.</p>
         <div class="mt-4 flex justify-end gap-2">
-          <button data-modal-close class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Batal</button>
-          <button class="rounded-lg bg-rose-600 px-3 py-1.5 text-sm text-white">Batalkan dokumen</button>
+          <button data-modal-close class="btn btn-outline btn-normal btn-xs">Batal</button>
+          <button class="btn btn-danger btn-normal btn-xs">Batalkan dokumen</button>
         </div>
       </div>
     </div>
@@ -202,15 +202,15 @@
         <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup"><i class="ri-close-line icon-sm" aria-hidden="true"></i></button>
         <h3 class="text-base font-semibold">Formulir Penerimaan</h3>
         <div class="mt-3 space-y-3">
-          <div><label class="mb-1 block text-sm font-medium text-slate-700">Nomor surat jalan</label><input value="SJ/2027/0012" class="field" /></div>
+          <div><label class="field-label mb-1">Nomor surat jalan</label><input value="SJ/2027/0012" class="field" /></div>
           <div class="grid grid-cols-2 gap-3">
-            <div><label class="mb-1 block text-sm font-medium text-slate-700">Jumlah</label><input type="number" value="5000" class="field" /></div>
-            <div><label class="mb-1 block text-sm font-medium text-slate-700">Expired</label><input type="date" value="2028-12-31" class="field" /></div>
+            <div><label class="field-label mb-1">Jumlah</label><input type="number" value="5000" class="field" /></div>
+            <div><label class="field-label mb-1">Expired</label><input type="date" value="2028-12-31" class="field" /></div>
           </div>
         </div>
         <div class="mt-4 flex justify-end gap-2">
-          <button data-modal-close class="rounded-lg border border-slate-300 px-3 py-1.5 text-sm">Batal</button>
-          <button data-modal-close data-toast="Penerimaan tersimpan (mockup)" data-toast-type="success" class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Simpan</button>
+          <button data-modal-close class="btn btn-outline btn-normal btn-xs">Batal</button>
+          <button data-modal-close data-toast="Penerimaan tersimpan (mockup)" data-toast-type="success" class="btn btn-primary btn-normal btn-xs">Simpan</button>
         </div>
       </div>
     </div>
@@ -221,24 +221,24 @@
         <div class="flex items-start justify-between">
           <div>
             <h3 class="text-base font-semibold">Detail LPLPO</h3>
-            <p class="text-xs text-slate-500">Puskesmas A, periode Januari 2027</p>
+            <p class="text-hint">Puskesmas A, periode Januari 2027</p>
           </div>
           <button data-modal-close class="icon-btn" aria-label="Tutup"><i class="ri-close-line icon-sm" aria-hidden="true"></i></button>
         </div>
         <div class="mt-4 overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-slate-50 uppercase tracking-wide text-slate-500">
-              <tr><th class="px-3 py-2">Obat</th><th class="px-3 py-2 text-right">Stok Awal</th><th class="px-3 py-2 text-right">Stok Akhir</th><th class="px-3 py-2 text-right">Dipakai</th><th class="px-3 py-2 text-right">Diminta</th><th class="px-3 py-2 text-right">Disetujui</th></tr>
+          <table class="table table-compact table-head">
+            <thead>
+              <tr><th >Obat</th><th class="num">Stok Awal</th><th class="num">Stok Akhir</th><th class="num">Dipakai</th><th class="num">Diminta</th><th class="num">Disetujui</th></tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
-              <tr><td class="px-3 py-2">Amoksisilin 500 mg</td><td class="px-3 py-2 text-right">500</td><td class="px-3 py-2 text-right">200</td><td class="px-3 py-2 text-right">300</td><td class="px-3 py-2 text-right">400</td><td class="px-3 py-2 text-right">400</td></tr>
-              <tr><td class="px-3 py-2">Parasetamol 500 mg</td><td class="px-3 py-2 text-right">1.000</td><td class="px-3 py-2 text-right">600</td><td class="px-3 py-2 text-right">400</td><td class="px-3 py-2 text-right">500</td><td class="px-3 py-2 text-right">500</td></tr>
-              <tr><td class="px-3 py-2">Salbutamol Inhaler</td><td class="px-3 py-2 text-right">12</td><td class="px-3 py-2 text-right">3</td><td class="px-3 py-2 text-right">9</td><td class="px-3 py-2 text-right">30</td><td class="px-3 py-2 text-right">15</td></tr>
+              <tr><td >Amoksisilin 500 mg</td><td class="num">500</td><td class="num">200</td><td class="num">300</td><td class="num">400</td><td class="num">400</td></tr>
+              <tr><td >Parasetamol 500 mg</td><td class="num">1.000</td><td class="num">600</td><td class="num">400</td><td class="num">500</td><td class="num">500</td></tr>
+              <tr><td >Salbutamol Inhaler</td><td class="num">12</td><td class="num">3</td><td class="num">9</td><td class="num">30</td><td class="num">15</td></tr>
             </tbody>
           </table>
         </div>
         <div class="mt-4 flex justify-end">
-          <button data-modal-close class="rounded-lg bg-brand-600 px-3 py-1.5 text-sm text-white">Selesai</button>
+          <button data-modal-close class="btn btn-primary btn-normal btn-xs">Selesai</button>
         </div>
       </div>
     </div>
