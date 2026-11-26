@@ -17,6 +17,8 @@
     "mockup:css": "tailwindcss -i ./resources/css/app.css -o ./docs/mockup/assets/mockup.css --minify",
     "mockup:watch": "tailwindcss -i ./resources/css/app.css -o ./docs/mockup/assets/mockup.css --watch",
     "mockup:serve": "npx serve docs",
+    "mockup:snapshot": "node scripts/mockup-visual.js snapshot",
+    "mockup:visual": "node scripts/mockup-visual.js compare",
     "prepare": "husky"
   },
   "devDependencies": {

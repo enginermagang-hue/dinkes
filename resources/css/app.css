@@ -1045,3 +1045,394 @@ body.sidebar-mini [data-collapse-sidebar] i {
   .skeleton { animation: none; }
   .spinner { animation-duration: 3s; }
 }
+
+/* ===== Primitif semantik =====
+ * Class di bawah dipakai oleh HTML mockup agar tidak ada utilitas warna,
+ * radius, atau padding komponen yang ditulis langsung di markup.
+ * Semua berada di @layer components sehingga utilitas tetap bisa menimpa
+ * saat memang diperlukan (mis. lebar atau margin satu kali pakai).
+ */
+@layer components {
+  /* Kerangka halaman */
+  .app-shell {
+    @apply flex min-h-screen;
+  }
+
+  .app-body {
+    @apply flex min-w-0 flex-1 flex-col;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-slate-900;
+  }
+
+  .page-subtitle {
+    @apply mt-1 max-w-2xl text-sm text-slate-500;
+  }
+
+  /* Kepala seksi katalog */
+  .section-head {
+    @apply border-b border-slate-200 pb-2;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold;
+  }
+
+  .section-desc {
+    @apply text-xs text-slate-500;
+  }
+
+  .text-hint {
+    @apply text-xs text-slate-500;
+  }
+
+  /* Label dan pesan formulir */
+  .field-label {
+    @apply mb-1 block text-sm font-medium text-slate-700;
+  }
+
+  .field-help {
+    @apply mt-1 text-xs text-slate-500;
+  }
+
+  .field-error-text {
+    @apply mt-1 text-xs text-rose-600;
+  }
+
+  .field-warning-text {
+    @apply mt-1 text-xs text-amber-600;
+  }
+
+  .field-success-text {
+    @apply mt-1 text-xs text-emerald-600;
+  }
+
+  /* Tombol */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors;
+  }
+
+  .btn-primary {
+    @apply bg-brand-600 text-white hover:bg-brand-700;
+  }
+
+  .btn-secondary {
+    @apply border border-slate-300 bg-white hover:bg-slate-50;
+  }
+
+  .btn-ghost {
+    @apply text-slate-600 hover:bg-slate-100;
+  }
+
+  .btn-success {
+    @apply bg-emerald-600 text-white hover:bg-emerald-700;
+  }
+
+  .btn-warning {
+    @apply bg-amber-500 text-white hover:bg-amber-600;
+  }
+
+  .btn-danger {
+    @apply bg-rose-600 text-white hover:bg-rose-700;
+  }
+
+  .btn-neutral {
+    @apply bg-slate-900 text-white hover:bg-slate-800;
+  }
+
+  .btn-xs {
+    @apply px-3 py-1.5;
+  }
+
+  .btn-sm {
+    @apply px-3 py-2;
+  }
+
+  .btn-md {
+    @apply px-4 py-2;
+  }
+
+  .btn-icon {
+    @apply h-9 w-9 px-0;
+  }
+
+  .btn-block {
+    @apply w-full;
+  }
+
+  .btn:disabled,
+  .btn.is-disabled {
+    @apply cursor-not-allowed bg-brand-300 text-white;
+  }
+
+  /* Kartu */
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white;
+  }
+
+  .card-body {
+    @apply p-5;
+  }
+
+  .card-body-sm {
+    @apply p-4;
+  }
+
+  .card-header {
+    @apply flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-5 py-3;
+  }
+
+  .card-footer {
+    @apply border-t border-slate-200 px-5 py-3;
+  }
+
+  .card-title {
+    @apply font-semibold;
+  }
+
+  .card-hover {
+    @apply transition hover:border-brand-300 hover:shadow-sm;
+  }
+
+  /* Badge dan penanda */
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-neutral {
+    @apply bg-slate-100 text-slate-600;
+  }
+
+  .badge-brand {
+    @apply bg-brand-100 text-brand-700;
+  }
+
+  .badge-success {
+    @apply bg-emerald-100 text-emerald-700;
+  }
+
+  .badge-warning {
+    @apply bg-amber-100 text-amber-700;
+  }
+
+  .badge-danger {
+    @apply bg-rose-100 text-rose-700;
+  }
+
+  .badge-lg {
+    @apply px-3 py-1;
+  }
+
+  .tag {
+    @apply rounded-full bg-white px-3 py-1 ring-1 ring-slate-200;
+  }
+
+  .status-dot {
+    @apply h-2 w-2 rounded-full;
+  }
+
+  .status-dot-neutral {
+    @apply bg-slate-300;
+  }
+
+  .status-dot-brand {
+    @apply bg-brand-600;
+  }
+
+  .status-dot-success {
+    @apply bg-emerald-500;
+  }
+
+  .status-dot-warning {
+    @apply bg-amber-500;
+  }
+
+  .status-dot-danger {
+    @apply bg-rose-500;
+  }
+
+  /* Alert */
+  .alert {
+    @apply rounded-lg border px-4 py-3 text-sm;
+  }
+
+  .alert-brand {
+    @apply border-brand-200 bg-brand-50 text-brand-800;
+  }
+
+  .alert-success {
+    @apply border-emerald-200 bg-emerald-50 text-emerald-800;
+  }
+
+  .alert-warning {
+    @apply border-amber-200 bg-amber-50 text-amber-800;
+  }
+
+  .alert-danger {
+    @apply border-rose-200 bg-rose-50 text-rose-800;
+  }
+
+  /* Tabel */
+  .table-wrap {
+    @apply overflow-x-auto;
+  }
+
+  .table {
+    @apply w-full text-left text-sm;
+  }
+
+  .table thead {
+    @apply bg-slate-50 text-xs uppercase tracking-wide text-slate-500;
+  }
+
+  .table th,
+  .table td {
+    @apply px-4 py-3;
+  }
+
+  .table-compact {
+    @apply text-xs;
+  }
+
+  .table-compact th,
+  .table-compact td {
+    @apply px-3 py-2;
+  }
+
+  .table-comfy th,
+  .table-comfy td {
+    @apply px-5 py-3;
+  }
+
+  .table .num {
+    @apply text-right;
+  }
+
+  .table-sort {
+    @apply flex items-center gap-1 font-medium uppercase;
+  }
+
+  .table-sticky {
+    @apply sticky left-0 z-10 bg-slate-50;
+  }
+
+  .table-toolbar {
+    @apply flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 px-5 py-3;
+  }
+
+  /* Navigasi katalog */
+  .pill-nav {
+    @apply flex flex-wrap gap-2 text-sm;
+  }
+
+  .pill-nav-item {
+    @apply rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50;
+  }
+
+  .pill-nav-item-active {
+    @apply rounded-lg bg-brand-600 px-3 py-2 font-medium text-white;
+  }
+
+  /* Sidebar */
+  .nav-item {
+    @apply flex items-center gap-2 rounded-lg px-3 py-2 text-slate-300 hover:bg-slate-800;
+  }
+
+  .nav-item-active {
+    @apply bg-brand-600 text-white;
+  }
+
+  .nav-section-label {
+    @apply mb-2 mt-4 px-3 text-[11px] uppercase tracking-widest text-slate-500;
+  }
+
+  /* Tab */
+  .tabs {
+    @apply flex gap-2 rounded-lg bg-slate-100 p-1 text-sm;
+  }
+
+  .tab {
+    @apply rounded-md px-3 py-2 font-medium text-slate-600;
+  }
+
+  .tab-active {
+    @apply bg-brand-600 text-white;
+  }
+
+  /* Toast */
+  .toast {
+    @apply fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-white shadow-lg;
+  }
+
+  .toast-success {
+    @apply bg-emerald-600;
+  }
+
+  .toast-error {
+    @apply bg-rose-600;
+  }
+
+  .toast-warning {
+    @apply bg-amber-500;
+  }
+
+  .toast-info {
+    @apply bg-slate-900;
+  }
+
+  .toast-close {
+    @apply ml-1 inline-flex h-6 w-6 items-center justify-center rounded-md text-white/80 hover:bg-white/15 hover:text-white;
+  }
+}
+
+@layer components {
+  /* Pelengkap primitif */
+  .app-page {
+    @apply min-h-screen bg-slate-100 text-slate-800;
+  }
+
+  .btn-outline {
+    @apply border border-slate-300 hover:bg-slate-50;
+  }
+
+  .btn-muted {
+    @apply text-slate-400;
+  }
+
+  .search-field {
+    @apply w-full rounded-lg border border-slate-300 bg-slate-50 py-2 pl-9 pr-3 text-sm focus:border-brand-500 focus:bg-white focus:outline-none;
+  }
+
+  .nav-item-muted {
+    @apply text-slate-400;
+  }
+
+  .nav-item-danger {
+    @apply text-rose-600 hover:bg-rose-50;
+  }
+
+  .side-panel {
+    @apply border-slate-200 bg-white;
+  }
+
+  .page-btn {
+    @apply inline-flex h-9 min-w-9 items-center justify-center rounded-lg px-3 text-sm;
+  }
+
+  .page-btn-outline {
+    @apply border border-slate-300 hover:bg-slate-50;
+  }
+
+  .page-btn-active {
+    @apply bg-brand-600 font-semibold text-white;
+  }
+
+  .page-btn-muted {
+    @apply text-slate-400;
+  }
+
+  .page-btn-gap {
+    @apply inline-flex h-9 min-w-9 items-center justify-center px-2 text-slate-400;
+  }
+}

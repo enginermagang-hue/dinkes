@@ -17,15 +17,15 @@ Tidak perlu backend. Semua data bersifat contoh. Mockup memuat komponen layout m
 
 Katalog komponen dipecah agar mudah direview:
 
-| Halaman                      | Isi                                                                                        |
-| ---------------------------- | ------------------------------------------------------------------------------------------ |
-| `components/index.html`      | Ringkasan dan navigasi ke sub-halaman                                                      |
-| `components/foundation.html` | Tipografi, token warna, ikon, tombol                                                       |
-| `components/form.html`       | Input, select, radio/checkbox/switch, upload, stepper, tanda tangan                        |
-| `components/data.html`       | Tabel lanjutan, pagination, empty state, deskripsi, timeline, tree, chart                  |
-| `components/feedback.html`   | Badge, alert, toast, modal, tooltip, popover, skeleton, spinner, progress, tab             |
-| `components/layout.html`     | Breadcrumb, page header, card, KPI, avatar, tab, segmented, accordion, chip, status, cetak |
-| `components/advanced.html`   | Command palette, barcode/QR, shortcut, halaman galat, permukaan gelap                      |
+| Halaman                      | Isi                                                                                             |
+| ---------------------------- | ----------------------------------------------------------------------------------------------- |
+| `components/index.html`      | Ringkasan dan navigasi ke sub-halaman                                                           |
+| `components/foundation.html` | Tipografi, token warna, tombol, ikon (4 bagian)                                                 |
+| `components/form.html`       | Input, select, radio/checkbox/switch, upload, stepper, nilai, validasi, tanda tangan (8 bagian) |
+| `components/data.html`       | Tabel lanjutan, empty state, deskripsi, timeline, tree, chart, pagination (7 bagian)            |
+| `components/feedback.html`   | Badge, alert, toast, modal, tooltip/popover, skeleton, spinner, progress, tab (9 bagian)        |
+| `components/layout.html`     | Breadcrumb, page header, card/KPI, avatar, tab, accordion, chip, status, cetak (8 bagian)       |
+| `components/advanced.html`   | Command palette, barcode/QR, shortcut, halaman galat, permukaan gelap (5 bagian)                |
 
 ## Daftar Modul
 
@@ -62,8 +62,8 @@ Mockup memakai Remix Icon yang dibundel lokal. Font disalin ke
 
 Class ukuran yang tersedia: `icon-xs`, `icon-sm`, `icon-md`, `icon-lg`, `icon-xl`.
 Class warna: `icon-muted`, `icon-brand`, `icon-success`, `icon-warning`, `icon-danger`.
-Perilaku tambahan: `icon-spin` dan `icon-btn`. Contoh lengkap ada pada halaman katalog
-komponen bagian 14.
+Perilaku tambahan: `icon-spin` dan `icon-btn`. Contoh lengkap ada pada sub-halaman katalog
+komponen, dimulai dari `docs/mockup/components/foundation.html`.
 
 ## Komponen Kustom
 
@@ -84,7 +84,8 @@ komponen bagian 14.
 | `modal-backdrop`, `modal-panel`                     | Animasi modal masuk dan keluar                |
 | `app-content`                                       | Padding otomatis terhadap sidebar tetap       |
 
-Contoh semua komponen tersedia pada `docs/mockup/components/index.html`.
+Ringkasan dan tautan ke semua sub-halaman ada pada
+`docs/mockup/components/index.html`.
 
 ## Strategi Dua Fase
 
