@@ -18,8 +18,10 @@ function collectPages() {
 
   for (const entry of fs.readdirSync(path.join(DOCS, 'mockup'), { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name === 'assets' || entry.name === 'components') continue
-    if (fs.existsSync(path.join(DOCS, 'mockup', entry.name, 'index.html'))) {
-      pages.push(`mockup/${entry.name}/index.html`)
+    const dir = path.join(DOCS, 'mockup', entry.name)
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith('.html')) continue
+      pages.push(`mockup/${entry.name}/${file}`)
     }
   }
 
@@ -51,9 +53,9 @@ async function inspect(page, url) {
       header: !!header,
       navPosition: nav ? getComputedStyle(nav).position : null,
       baseDir: new URL('.', document.baseURI).pathname,
-      links: [...document.querySelectorAll('aside[data-nav] a[href], header a[href]')].map(
-        (a) => a.href,
-      ),
+      links: [
+        ...document.querySelectorAll('aside[data-nav] a[href], header a[href], main nav a[href]'),
+      ].map((a) => a.href),
     }
   })
 

@@ -28,8 +28,11 @@ function collectPages() {
 
   for (const entry of fs.readdirSync(path.join(DOCS, 'mockup'), { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name === 'assets' || entry.name === 'components') continue
-    const index = path.join(DOCS, 'mockup', entry.name, 'index.html')
-    if (fs.existsSync(index)) pages.push(`mockup/${entry.name}/index.html`)
+    const dir = path.join(DOCS, 'mockup', entry.name)
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith('.html')) continue
+      pages.push(`mockup/${entry.name}/${file}`)
+    }
   }
 
   const componentsDir = path.join(DOCS, 'mockup', 'components')
