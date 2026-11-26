@@ -202,14 +202,17 @@ utilitas Tailwind yang ditulis ulang di HTML.
 
 ## Navigasi
 
-| Class                                  | Kegunaan                       |
-| -------------------------------------- | ------------------------------ |
-| `.pill-nav` + `.pill-nav-item`         | Navigasi tab katalog           |
-| `.pill-nav-item-active`                | Item katalog aktif             |
-| `.nav-item` + `.nav-item-active`       | Item sidebar                   |
-| `.nav-item-muted` / `.nav-item-danger` | Item sidebar redup atau keluar |
-| `.nav-section-label`                   | Label kelompok di sidebar      |
-| `.tabs` + `.tab` + `.tab-active`       | Tab konten dengan latar abu    |
+| Class                                    | Kegunaan                        |
+| ---------------------------------------- | ------------------------------- |
+| `.pill-nav` + `.pill-nav-item`           | Navigasi tab katalog            |
+| `.pill-nav-item-active`                  | Item katalog aktif              |
+| `.nav-item` + `.nav-item-active`         | Item sidebar                    |
+| `.nav-item-muted` / `.nav-item-danger`   | Item sidebar redup atau keluar  |
+| `.nav-section-label`                     | Label kelompok di sidebar       |
+| `.tabs` + `.tab` + `.tab-active`         | Tab konten dengan latar abu     |
+| `.page-btn`                              | Tombol pagination 36×36         |
+| `.page-btn-outline` / `.page-btn-active` | Keadaan biasa dan halaman aktif |
+| `.page-btn-muted` / `.page-btn-gap`      | Tombol nonaktif dan pemisah "…" |
 
 ```html
 <nav class="pill-nav">

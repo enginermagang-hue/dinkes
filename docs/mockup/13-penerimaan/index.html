@@ -17,7 +17,7 @@
           <div class="flex flex-wrap items-start justify-between gap-3">
             <div>
               <h1 class="text-xl font-semibold">Penerimaan dan Penyimpanan</h1>
-              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · 5 dokumen penerimaan</p>
+              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · 8 dokumen penerimaan</p>
             </div>
             <div class="flex flex-wrap gap-2">
               <button data-toast="Rekap penerimaan diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
@@ -34,13 +34,13 @@
           <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <div class="kpi">
               <p class="kpi-label">Penerimaan Januari</p>
-              <p class="kpi-value">5</p>
-              <p class="field-help">4 PO, 96 item diterima</p>
+              <p class="kpi-value">8</p>
+              <p class="field-help">3 PO, 30 item diterima</p>
             </div>
             <div class="kpi">
               <p class="kpi-label">Menunggu Verifikasi</p>
               <p class="kpi-value text-amber-600">2</p>
-              <p class="field-help">PNR/2027/0044 dan PNR/2027/0052</p>
+              <p class="field-help">PNR/2027/0052 dan PNR/2027/0055</p>
             </div>
             <div class="kpi">
               <p class="kpi-label">Selisih</p>
@@ -49,8 +49,8 @@
             </div>
             <div class="kpi">
               <p class="kpi-label">BAST Terbit</p>
-              <p class="kpi-value text-emerald-600">2</p>
-              <p class="field-help">BAST/2027/0011 dan BAST/2027/0012</p>
+              <p class="kpi-value text-emerald-600">4</p>
+              <p class="field-help">Empat penerimaan berstatus selesai</p>
             </div>
           </section>
 
@@ -96,10 +96,26 @@
                 <h2 class="card-title">Daftar Penerimaan</h2>
                 <p class="text-hint">Setiap penerimaan menghasilkan batch baru pada kartu stok.</p>
               </div>
-              <span class="text-hint">5 dokumen</span>
+              <span class="text-hint"><span data-table-total>8</span> dokumen</span>
             </div>
-            <div class="table-wrap">
-              <table class="table table-head">
+
+            <div class="table-toolbar">
+              <div class="relative w-full sm:w-80">
+                <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                <input type="search" data-table-search placeholder="Cari nomor, PO, atau surat jalan…" class="search-field" aria-label="Cari penerimaan" />
+              </div>
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="rows-per-page">Baris per halaman</label>
+                <select id="rows-per-page" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Daftar penerimaan">
                 <thead>
                   <tr>
                     <th>Nomor</th>
@@ -114,18 +130,108 @@
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                   <tr class="hover:bg-slate-50">
-                    <td class="font-mono text-xs">PNR/2027/0035</td>
-                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
-                    <td>SJ/SF/0098</td>
-                    <td>2027-01-10</td>
+                    <td class="font-mono text-xs">PNR/2027/0055</td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0003</a></td>
+                    <td>SJ/GM/0042</td>
+                    <td>2027-01-30</td>
                     <td>Gudang Farmasi Pusat</td>
-                    <td class="num">18</td>
-                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">3</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
                     <td class="num">
-                      <div class="flex justify-end gap-1">
-                        <button data-toast="BAST/2027/0011 dicetak (mockup)" class="btn btn-outline btn-2xs">BAST</button>
-                        <a href="edit.html" class="btn btn-outline btn-2xs">Ubah</a>
-                      </div>
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST PNR/2027/0055 belum tersedia (mockup)" data-toast-type="warning" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0055" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0055 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PNR/2027/0052</td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
+                    <td>SJ/MJ/0130</td>
+                    <td>2027-01-29</td>
+                    <td>Gudang Farmasi Pusat</td>
+                    <td class="num">2</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST PNR/2027/0052 belum tersedia (mockup)" data-toast-type="warning" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0052" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0052 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PNR/2027/0044</td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
+                    <td>SJ/MJ/0121</td>
+                    <td>2027-01-22</td>
+                    <td>Gudang Farmasi Pusat</td>
+                    <td class="num">4</td>
+                    <td><span class="badge badge-brand">Diverifikasi</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST PNR/2027/0044 dicetak (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0044" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0044 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
                     </td>
                   </tr>
                   <tr class="hover:bg-slate-50">
@@ -137,44 +243,187 @@
                     <td class="num">6</td>
                     <td><span class="badge badge-success">Selesai</span></td>
                     <td class="num">
-                      <div class="flex justify-end gap-1">
-                        <button data-toast="BAST/2027/0012 dicetak (mockup)" class="btn btn-outline btn-2xs">BAST</button>
-                        <a href="edit.html" class="btn btn-outline btn-2xs">Ubah</a>
-                      </div>
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST/2027/0012 dicetak (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0031" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0031 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
                     </td>
                   </tr>
                   <tr class="hover:bg-slate-50">
-                    <td class="font-mono text-xs">PNR/2027/0044</td>
-                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
-                    <td>SJ/MJ/0121</td>
-                    <td>2027-01-22</td>
+                    <td class="font-mono text-xs">PNR/2027/0018</td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
+                    <td>SJ/SF/0097</td>
+                    <td>2027-01-10</td>
                     <td>Gudang Farmasi Pusat</td>
-                    <td class="num">4</td>
-                    <td><span class="badge badge-brand">Diverifikasi</span></td>
-                    <td class="num"><a href="edit.html" class="btn btn-outline btn-2xs">Ubah</a></td>
+                    <td class="num">5</td>
+                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST/2027/0011 dicetak (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0018" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0018 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
+                    </td>
                   </tr>
                   <tr class="hover:bg-slate-50">
-                    <td class="font-mono text-xs">PNR/2027/0052</td>
-                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
-                    <td>SJ/MJ/0130</td>
-                    <td>2027-01-29</td>
+                    <td class="font-mono text-xs">PNR/2027/0012</td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
+                    <td>SJ/SF/0091</td>
+                    <td>2027-01-08</td>
                     <td>Gudang Farmasi Pusat</td>
-                    <td class="num">2</td>
-                    <td><span class="badge badge-neutral">Draf</span></td>
-                    <td class="num"><a href="edit.html" class="btn btn-outline btn-2xs">Lanjutkan</a></td>
+                    <td class="num">4</td>
+                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST/2027/0010 dicetak (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0012" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0012 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
+                    </td>
                   </tr>
                   <tr class="hover:bg-slate-50">
                     <td class="font-mono text-xs">PNR/2027/0009</td>
                     <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
-                    <td>SJ/SF/0090</td>
-                    <td>2027-01-07</td>
+                    <td>SJ/SF/0088</td>
+                    <td>2027-01-06</td>
                     <td>Gudang Farmasi Pusat</td>
-                    <td class="num">12</td>
+                    <td class="num">5</td>
                     <td><span class="badge badge-danger">Selisih</span></td>
-                    <td class="num"><a href="edit.html" class="btn btn-outline btn-2xs">Tindak lanjut</a></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Tindak lanjuti selisih
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="Berita acara selisih dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-warning-line icon-sm icon-muted" aria-hidden="true"></i>
+                            BA selisih
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0009" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0009 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PNR/2027/0008</td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
+                    <td>SJ/SF/0086</td>
+                    <td>2027-01-05</td>
+                    <td>Gudang Farmasi Pusat</td>
+                    <td class="num">4</td>
+                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="edit.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="BAST/2027/0009 dicetak (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-printer-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Cetak BAST
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PNR/2027/0008" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                          <button type="button" data-dropdown-close data-toast="Riwayat PNR/2027/0008 dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-history-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Riwayat dokumen
+                          </button>
+                        </div>
+                      </details>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+
+            <div data-table-empty class="hidden px-5 py-12 text-center">
+              <i class="ri-inbox-line icon-lg icon-muted" aria-hidden="true"></i>
+              <p class="mt-2 text-sm font-medium">Tidak ada dokumen</p>
+              <p class="text-hint">Ubah kata kunci pencarian atau filter.</p>
+            </div>
+
+            <div class="card-footer flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-hint" aria-live="polite">
+                Menampilkan <span data-table-range>1–5</span> dari <span data-table-total>8</span> dokumen
+              </p>
+              <div class="flex flex-wrap items-center gap-1" data-table-nav aria-label="Navigasi halaman"></div>
             </div>
           </section>
 
@@ -231,14 +480,14 @@
                     <tr>
                       <th class="py-1 w-8">No</th>
                       <th class="py-1">Nama Obat</th>
-                      <th class="py-1 num w-24">Jumlah</th>
+                      <th class="py-1 num w-24 pr-3">Jumlah</th>
                       <th class="py-1 w-24">Batch</th>
                       <th class="py-1 w-32">Kedaluwarsa</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><td class="py-1">1</td><td class="py-1">Salbutamol Inhaler</td><td class="py-1 num">60</td><td class="py-1">SLB2403</td><td class="py-1">2028-08-31</td></tr>
-                    <tr><td class="py-1">2</td><td class="py-1">Insulin Glargine</td><td class="py-1 num">40</td><td class="py-1">IG2404</td><td class="py-1">2027-06-30</td></tr>
+                    <tr><td class="py-1">1</td><td class="py-1">Salbutamol Inhaler</td><td class="py-1 num pr-3">60</td><td class="py-1">SLB2403</td><td class="py-1">2028-08-31</td></tr>
+                    <tr><td class="py-1">2</td><td class="py-1">Insulin Glargine</td><td class="py-1 num pr-3">40</td><td class="py-1">IG2404</td><td class="py-1">2027-06-30</td></tr>
                   </tbody>
                 </table>
                 <p class="mt-2">Nilai penerimaan: Rp 17.920.000 dari PO/2027/0002.</p>

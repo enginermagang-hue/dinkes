@@ -110,6 +110,16 @@ function initDropdowns() {
   if (dropdownOutsideBound) return
   dropdownOutsideBound = true
 
+  // Item di dalam panel dapat menutup dropdown lewat data-dropdown-close.
+  document.addEventListener('click', (event) => {
+    const target = event.target
+    if (!(target instanceof Element)) return
+    const closer = target.closest('[data-dropdown-close]')
+    if (!closer) return
+    const dropdown = closer.closest('details')
+    if (dropdown) closeDropdown(dropdown)
+  })
+
   // Klik di luar dropdown menutup semua dropdown dengan animasi.
   document.addEventListener('click', (event) => {
     if (event.target instanceof Element && event.target.closest('details')) return
@@ -307,6 +317,111 @@ function initPrint() {
   })
 }
 
+function initDataTables() {
+  document.querySelectorAll('[data-table]').forEach((table) => {
+    if (table.dataset.tableBound) return
+    table.dataset.tableBound = '1'
+
+    const card = table.closest('.card')
+    const tbody = table.tBodies[0]
+    if (!card || !tbody) return
+
+    const search = card.querySelector('[data-table-search]')
+    const sizeSelect = card.querySelector('[data-table-size]')
+    const nav = card.querySelector('[data-table-nav]')
+    const empty = card.querySelector('[data-table-empty]')
+    const totals = card.querySelectorAll('[data-table-total]')
+    const range = card.querySelector('[data-table-range]')
+
+    const rows = Array.from(tbody.rows)
+    let page = 1
+    let size = Number(sizeSelect ? sizeSelect.value : 0) || rows.length || 10
+    let query = ''
+
+    const filtered = () => {
+      const q = query.trim().toLowerCase()
+      if (!q) return rows
+      return rows.filter((row) => row.textContent.toLowerCase().includes(q))
+    }
+
+    const addNavButton = (label, target, options = {}) => {
+      const button = document.createElement('button')
+      button.type = 'button'
+      button.className = `page-btn ${options.active ? 'page-btn-active' : 'page-btn-outline'}`
+      if (options.disabled) button.disabled = true
+      if (options.active) button.setAttribute('aria-current', 'page')
+      if (options.icon) {
+        button.innerHTML = `<i class="${options.icon} icon-sm" aria-hidden="true"></i>`
+        button.setAttribute('aria-label', options.label)
+      } else {
+        button.textContent = label
+      }
+      button.addEventListener('click', () => {
+        page = target
+        render()
+      })
+      nav.appendChild(button)
+    }
+
+    const renderNav = (pages) => {
+      if (!nav) return
+      nav.innerHTML = ''
+      addNavButton('Sebelumnya', page - 1, {
+        icon: 'ri-arrow-left-s-line',
+        label: 'Halaman sebelumnya',
+        disabled: page <= 1,
+      })
+      for (let number = 1; number <= pages; number += 1) {
+        addNavButton(String(number), number, { active: number === page })
+      }
+      addNavButton('Berikutnya', page + 1, {
+        icon: 'ri-arrow-right-s-line',
+        label: 'Halaman berikutnya',
+        disabled: page >= pages,
+      })
+    }
+
+    const render = () => {
+      const list = filtered()
+      const pages = Math.max(1, Math.ceil(list.length / size))
+      page = Math.min(Math.max(1, page), pages)
+
+      const start = (page - 1) * size
+      const visible = new Set(list.slice(start, start + size))
+      rows.forEach((row) => row.classList.toggle('hidden', !visible.has(row)))
+
+      totals.forEach((el) => {
+        el.textContent = String(list.length)
+      })
+      if (range) {
+        range.textContent =
+          list.length === 0 ? '0' : `${start + 1}–${Math.min(start + size, list.length)}`
+      }
+      if (empty) empty.classList.toggle('hidden', list.length > 0)
+
+      renderNav(pages)
+    }
+
+    if (search) {
+      search.addEventListener('input', () => {
+        query = search.value
+        page = 1
+        render()
+      })
+    }
+
+    if (sizeSelect) {
+      sizeSelect.addEventListener('change', () => {
+        size = Number(sizeSelect.value) || size
+        page = 1
+        render()
+      })
+    }
+
+    render()
+  })
+}
+
 function initMockup() {
   // Tab sederhana: tombol dengan data-tab dan panel dengan data-panel.
   document.querySelectorAll('[data-tab]').forEach((button) => {
@@ -362,6 +477,7 @@ function initMockup() {
   initCopy()
   initExpandRows()
   initCheckAll()
+  initDataTables()
   initSegments()
   initCommandPalette()
   initSignature()
