@@ -57,12 +57,13 @@ async function capture(browser, origin, pagePath, viewport, outFile) {
   await page.setViewport({ width: viewport.width, height: viewport.height, deviceScaleFactor: 1 })
   await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }])
   await page.goto(`${origin}/${pagePath}`, { waitUntil: 'networkidle0', timeout: 30000 })
+  await page.evaluate(() => document.fonts.ready)
   await page.addStyleTag({
     content:
       '*,*::before,*::after{animation:none!important;transition:none!important;caret-color:transparent!important}' +
       'html{scroll-behavior:auto!important}',
   })
-  await new Promise((resolve) => setTimeout(resolve, 120))
+  await new Promise((resolve) => setTimeout(resolve, 250))
   await page.screenshot({ path: outFile, fullPage: true })
   await page.close()
 }
