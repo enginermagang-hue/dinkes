@@ -54,6 +54,16 @@ Katalog komponen dipecah agar mudah direview:
 | `11-prediksi`     | Prediksi kebutuhan, peringatan  | 8.10        |
 | `12-pengguna`     | Pengguna, peran, whitelist      | 8.9         |
 
+### Sub-halaman Pengadaan
+
+Modul `04-pengadaan` dipecah menjadi tiga halaman:
+
+| Halaman                        | Isi                                                        |
+| ------------------------------ | ---------------------------------------------------------- |
+| `04-pengadaan/index.html`      | Daftar PO, keranjang dari RKO, perbandingan penyedia       |
+| `04-pengadaan/detail.html`     | Detail PO/2027/0002: item, penerimaan, riwayat persetujuan |
+| `04-pengadaan/penerimaan.html` | Penerimaan bertahap, selisih, dan BAST siap cetak          |
+
 ## Build dan Watch CSS
 
 ```bash

@@ -173,11 +173,26 @@ function initCheckAll() {
     master.dataset.bound = '1'
     const table = master.closest('table')
     if (!table) return
+
+    const counter = table.closest('.card')?.querySelector('[data-check-count]')
+    const updateCounter = () => {
+      if (!counter) return
+      const total = table.querySelectorAll('[data-check-row]:checked').length
+      counter.textContent = `${total} dokumen dipilih`
+    }
+
     master.addEventListener('change', () => {
       table.querySelectorAll('[data-check-row]').forEach((box) => {
         box.checked = master.checked
       })
+      updateCounter()
     })
+
+    table.querySelectorAll('[data-check-row]').forEach((box) => {
+      box.addEventListener('change', updateCounter)
+    })
+
+    updateCounter()
   })
 }
 

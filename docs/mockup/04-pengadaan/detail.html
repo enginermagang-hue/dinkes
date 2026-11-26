@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail PO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengadaan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <nav class="pill-nav" aria-label="Sub-halaman pengadaan">
+            <a href="index.html" class="pill-nav-item">Daftar PO</a>
+            <a href="detail.html" class="pill-nav-item pill-nav-item-active" aria-current="page">Detail PO</a>
+            <a href="penerimaan.html" class="pill-nav-item">Penerimaan</a>
+          </nav>
+
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Pengadaan</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>PO/2027/0002</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h1 class="text-xl font-semibold">PO/2027/0002</h1>
+                <p class="text-hint">PT Medika Jaya · 8 Januari 2027 · Rp 132.500.000 · 12 item</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-print class="btn btn-outline btn-sm flex gap-2 no-print">
+                  <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                  Cetak PO
+                </button>
+                <button data-modal-open="#modal-terima" class="btn btn-outline btn-sm no-print">Catat penerimaan</button>
+                <button data-modal-open="#modal-batal" class="btn btn-danger btn-sm no-print">Batalkan</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Penerimaan tidak boleh melebihi jumlah PO tanpa adendum.</p>
+            <p class="mt-1">PO ini masih memiliki 6 item yang belum diterima penuh. Sisa penerimaan dihitung otomatis dari akumulasi <code>po_item.jumlah_diterima</code>.</p>
+          </div>
+
+          <section class="card card-body">
+            <div class="steps">
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Draf</div>
+              <span class="step-line"></span>
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Disetujui</div>
+              <span class="step-line"></span>
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Dikirim</div>
+              <span class="step-line"></span>
+              <div class="step step-active"><span class="step-dot">4</span> Diterima sebagian</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">5</span> Diterima</div>
+            </div>
+            <p class="field-help">Status berubah otomatis saat penerimaan diverifikasi.</p>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div class="tabs">
+                <button data-tab="item" data-tab-group="po" class="tab tab-active">Item PO</button>
+                <button data-tab="terima" data-tab-group="po" class="tab">Penerimaan</button>
+                <button data-tab="riwayat" data-tab-group="po" class="tab">Riwayat</button>
+              </div>
+              <span class="text-hint">12 item, 6 belum lengkap</span>
+            </div>
+
+            <div data-panel="item" data-panel-group="po" class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th class="num">Jumlah</th>
+                    <th class="num">Harga Satuan</th>
+                    <th class="num">Diterima</th>
+                    <th class="num">Sisa</th>
+                    <th>Progres</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num">6.000</td>
+                    <td class="num">1.250</td>
+                    <td class="num">6.000</td>
+                    <td class="num">0</td>
+                    <td>
+                      <div class="progress"><div class="progress-bar bg-emerald-500" style="width: 100%"></div></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="num">4.000</td>
+                    <td class="num">850</td>
+                    <td class="num">4.000</td>
+                    <td class="num">0</td>
+                    <td>
+                      <div class="progress"><div class="progress-bar bg-emerald-500" style="width: 100%"></div></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="num">150</td>
+                    <td class="num">42.000</td>
+                    <td class="num">60</td>
+                    <td class="num">90</td>
+                    <td>
+                      <div class="progress"><div class="progress-bar bg-amber-500" style="width: 40%"></div></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Insulin Glargine</td>
+                    <td class="num">40</td>
+                    <td class="num">385.000</td>
+                    <td class="num">0</td>
+                    <td class="num">40</td>
+                    <td>
+                      <div class="progress"><div class="progress-bar bg-slate-300" style="width: 0%"></div></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Vaksin Campak</td>
+                    <td class="num">200</td>
+                    <td class="num">68.000</td>
+                    <td class="num">200</td>
+                    <td class="num">0</td>
+                    <td>
+                      <div class="progress"><div class="progress-bar bg-emerald-500" style="width: 100%"></div></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Serum Anti Rabies</td>
+                    <td class="num">20</td>
+                    <td class="num">910.000</td>
+                    <td class="num">0</td>
+                    <td class="num">20</td>
+                    <td>
+                      <div class="progress"><div class="progress-bar bg-slate-300" style="width: 0%"></div></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="px-5 py-3 text-hint">6 item lainnya disembunyikan pada contoh ini.</p>
+            </div>
+
+            <div data-panel="terima" data-panel-group="po" class="hidden">
+              <div class="table-wrap">
+                <table class="table table-head">
+                  <thead>
+                    <tr>
+                      <th>Nomor</th>
+                      <th>Surat Jalan</th>
+                      <th>Tanggal</th>
+                      <th class="num">Item</th>
+                      <th>Status</th>
+                      <th class="num">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr>
+                      <td class="font-mono text-xs">PNR/2027/0031</td>
+                      <td>SJ/MJ/0112</td>
+                      <td>2027-01-14</td>
+                      <td class="num">6</td>
+                      <td><span class="badge badge-success">Selesai</span></td>
+                      <td class="num"><a href="penerimaan.html" class="btn btn-outline btn-2xs">Lihat</a></td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-xs">PNR/2027/0044</td>
+                      <td>SJ/MJ/0121</td>
+                      <td>2027-01-22</td>
+                      <td class="num">4</td>
+                      <td><span class="badge badge-brand">Diverifikasi</span></td>
+                      <td class="num"><a href="penerimaan.html" class="btn btn-outline btn-2xs">Lihat</a></td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-xs">PNR/2027/0052</td>
+                      <td>SJ/MJ/0130</td>
+                      <td>2027-01-29</td>
+                      <td class="num">2</td>
+                      <td><span class="badge badge-neutral">Draf</span></td>
+                      <td class="num"><a href="penerimaan.html" class="btn btn-outline btn-2xs">Lihat</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                <p class="text-hint">Penerimaan bertahap diperbolehkan selama tidak melebihi jumlah PO.</p>
+                <button data-modal-open="#modal-terima" class="btn btn-primary btn-xs">Catat penerimaan</button>
+              </div>
+            </div>
+
+            <div data-panel="riwayat" data-panel-group="po" class="hidden card-body">
+              <ol class="space-y-4 text-sm">
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-neutral mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">PO dibuat</p>
+                    <p class="text-hint">2027-01-08 09:12 · Apoteker Gudang Dinas · status Draf</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Disetujui Kepala Bidang Farmasi</p>
+                    <p class="text-hint">2027-01-08 14:30 · nilai di bawah ambang Kepala Dinas</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Dikirim penyedia</p>
+                    <p class="text-hint">2027-01-09 08:05 · estimasi tiba 5 hari kerja</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-success mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Penerimaan PNR/2027/0031 diverifikasi</p>
+                    <p class="text-hint">2027-01-14 10:20 · 6 item, tanpa selisih</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Penerimaan PNR/2027/0044 diverifikasi sebagian</p>
+                    <p class="text-hint">2027-01-22 09:45 · Salbutamol 60 dari 150 unit</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Draf penerimaan PNR/2027/0052 menunggu verifikasi</p>
+                    <p class="text-hint">2027-01-29 08:10 · Insulin Glargine 40 vial</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Harga Historis per Item</h2>
+                <span class="text-hint">Rp per satuan</span>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-compact">
+                  <thead>
+                    <tr>
+                      <th>Obat</th>
+                      <th class="num">PO/2026/0210</th>
+                      <th class="num">PO/2026/0233</th>
+                      <th class="num">PO/2027/0002</th>
+                      <th>Tren</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr><td>Amoksisilin 500 mg</td><td class="num">1.180</td><td class="num">1.220</td><td class="num">1.250</td><td><span class="badge badge-warning">Naik 5,9%</span></td></tr>
+                    <tr><td>Parasetamol 500 mg</td><td class="num">800</td><td class="num">820</td><td class="num">850</td><td><span class="badge badge-warning">Naik 6,3%</span></td></tr>
+                    <tr><td>Salbutamol Inhaler</td><td class="num">43.000</td><td class="num">42.500</td><td class="num">42.000</td><td><span class="badge badge-success">Turun 2,3%</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Dokumen Terkait</h2>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li class="flex items-center justify-between gap-2">
+                  <span>Kontrak</span>
+                  <a href="#" class="hover:text-brand-600">KTR/2027/004</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Surat pesanan</span>
+                  <a href="#" class="hover:text-brand-600">SP/2027/002</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>BAST terakhir</span>
+                  <a href="penerimaan.html" class="hover:text-brand-600">BAST/2027/0012</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Rencana asal</span>
+                  <a href="../07-rko/index.html" class="hover:text-brand-600">RKO/2027/Q1/003</a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-terima" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-16 w-[92%] max-w-lg rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Catat Penerimaan</h3>
+        <p class="text-hint">PO/2027/0002 · PT Medika Jaya</p>
+        <div class="mt-3 space-y-3">
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div>
+              <label class="field-label" for="terima-tanggal">Tanggal terima</label>
+              <input id="terima-tanggal" type="date" value="2027-01-30" class="field w-full" />
+            </div>
+            <div>
+              <label class="field-label" for="terima-sj">Surat jalan</label>
+              <input id="terima-sj" value="SJ/MJ/0134" class="field w-full" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="terima-obat">Obat</label>
+            <select id="terima-obat" class="field w-full">
+              <option>Insulin Glargine · sisa 40 vial</option>
+              <option>Serum Anti Rabies · sisa 20 vial</option>
+            </select>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div>
+              <label class="field-label" for="terima-jumlah">Jumlah diterima</label>
+              <input id="terima-jumlah" type="number" value="40" max="40" class="field w-full" />
+              <p class="field-help">Tidak boleh melebihi sisa PO tanpa adendum.</p>
+            </div>
+            <div>
+              <label class="field-label" for="terima-batch">Batch</label>
+              <input id="terima-batch" value="IG2404" class="field w-full" />
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="terima-exp">Kedaluwarsa</label>
+            <input id="terima-exp" type="date" value="2027-06-30" class="field w-full" />
+          </div>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Penerimaan tersimpan dan menunggu verifikasi (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Simpan penerimaan</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-batal" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Batalkan PO ini?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          PO/2027/0002 sudah memiliki penerimaan terverifikasi. Pembatalan memerlukan catatan
+          alasan dan persetujuan Kepala Bidang Farmasi.
+        </p>
+        <div class="mt-3">
+          <label class="field-label" for="batal-alasan">Alasan</label>
+          <textarea id="batal-alasan" rows="2" class="field w-full">Penyedia menghentikan pasokan.</textarea>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Kembali</button>
+          <button data-modal-close data-toast="Permintaan pembatalan dikirim (mockup)" data-toast-type="warning" class="btn btn-danger btn-xs">Batalkan PO</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>
