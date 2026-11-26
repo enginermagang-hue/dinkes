@@ -17,7 +17,6 @@
           <nav class="pill-nav" aria-label="Sub-halaman pengadaan">
             <a href="index.html" class="pill-nav-item">Daftar PO</a>
             <a href="detail.html" class="pill-nav-item pill-nav-item-active" aria-current="page">Detail PO</a>
-            <a href="penerimaan.html" class="pill-nav-item">Penerimaan</a>
           </nav>
 
           <div class="card card-body">
@@ -36,7 +35,7 @@
                   <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
                   Cetak PO
                 </button>
-                <button data-modal-open="#modal-terima" class="btn btn-outline btn-sm no-print">Catat penerimaan</button>
+                <a href="../13-penerimaan/tambah.html" class="btn btn-outline btn-sm no-print">Catat penerimaan</a>
                 <button data-modal-open="#modal-batal" class="btn btn-danger btn-sm no-print">Batalkan</button>
               </div>
             </div>
@@ -170,7 +169,7 @@
                       <td>2027-01-14</td>
                       <td class="num">6</td>
                       <td><span class="badge badge-success">Selesai</span></td>
-                      <td class="num"><a href="penerimaan.html" class="btn btn-outline btn-2xs">Lihat</a></td>
+                      <td class="num"><a href="../13-penerimaan/edit.html" class="btn btn-outline btn-2xs">Lihat</a></td>
                     </tr>
                     <tr>
                       <td class="font-mono text-xs">PNR/2027/0044</td>
@@ -178,7 +177,7 @@
                       <td>2027-01-22</td>
                       <td class="num">4</td>
                       <td><span class="badge badge-brand">Diverifikasi</span></td>
-                      <td class="num"><a href="penerimaan.html" class="btn btn-outline btn-2xs">Lihat</a></td>
+                      <td class="num"><a href="../13-penerimaan/edit.html" class="btn btn-outline btn-2xs">Lihat</a></td>
                     </tr>
                     <tr>
                       <td class="font-mono text-xs">PNR/2027/0052</td>
@@ -186,14 +185,14 @@
                       <td>2027-01-29</td>
                       <td class="num">2</td>
                       <td><span class="badge badge-neutral">Draf</span></td>
-                      <td class="num"><a href="penerimaan.html" class="btn btn-outline btn-2xs">Lihat</a></td>
+                      <td class="num"><a href="../13-penerimaan/edit.html" class="btn btn-outline btn-2xs">Lihat</a></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <div class="card-footer flex flex-wrap items-center justify-between gap-2">
                 <p class="text-hint">Penerimaan bertahap diperbolehkan selama tidak melebihi jumlah PO.</p>
-                <button data-modal-open="#modal-terima" class="btn btn-primary btn-xs">Catat penerimaan</button>
+                <a href="../13-penerimaan/tambah.html" class="btn btn-primary btn-xs">Catat penerimaan</a>
               </div>
             </div>
 
@@ -284,7 +283,7 @@
                 </li>
                 <li class="flex items-center justify-between gap-2">
                   <span>BAST terakhir</span>
-                  <a href="penerimaan.html" class="hover:text-brand-600">BAST/2027/0012</a>
+                  <a href="../13-penerimaan/index.html" class="hover:text-brand-600">BAST/2027/0012</a>
                 </li>
                 <li class="flex items-center justify-between gap-2">
                   <span>Rencana asal</span>
@@ -296,55 +295,6 @@
         </main>
 
         <div data-include="../components/footer.html"></div>
-      </div>
-    </div>
-
-    <div id="modal-terima" data-modal class="fixed inset-0 z-50 hidden">
-      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
-      <div class="modal-panel relative mx-auto mt-16 w-[92%] max-w-lg rounded-xl bg-white p-5 shadow-xl">
-        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
-          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
-        </button>
-        <h3 class="text-base font-semibold">Catat Penerimaan</h3>
-        <p class="text-hint">PO/2027/0002 · PT Medika Jaya</p>
-        <div class="mt-3 space-y-3">
-          <div class="grid gap-3 sm:grid-cols-2">
-            <div>
-              <label class="field-label" for="terima-tanggal">Tanggal terima</label>
-              <input id="terima-tanggal" type="date" value="2027-01-30" class="field w-full" />
-            </div>
-            <div>
-              <label class="field-label" for="terima-sj">Surat jalan</label>
-              <input id="terima-sj" value="SJ/MJ/0134" class="field w-full" />
-            </div>
-          </div>
-          <div>
-            <label class="field-label" for="terima-obat">Obat</label>
-            <select id="terima-obat" class="field w-full">
-              <option>Insulin Glargine · sisa 40 vial</option>
-              <option>Serum Anti Rabies · sisa 20 vial</option>
-            </select>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <div>
-              <label class="field-label" for="terima-jumlah">Jumlah diterima</label>
-              <input id="terima-jumlah" type="number" value="40" max="40" class="field w-full" />
-              <p class="field-help">Tidak boleh melebihi sisa PO tanpa adendum.</p>
-            </div>
-            <div>
-              <label class="field-label" for="terima-batch">Batch</label>
-              <input id="terima-batch" value="IG2404" class="field w-full" />
-            </div>
-          </div>
-          <div>
-            <label class="field-label" for="terima-exp">Kedaluwarsa</label>
-            <input id="terima-exp" type="date" value="2027-06-30" class="field w-full" />
-          </div>
-        </div>
-        <div class="mt-4 flex justify-end gap-2">
-          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
-          <button data-modal-close data-toast="Penerimaan tersimpan dan menunggu verifikasi (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Simpan penerimaan</button>
-        </div>
       </div>
     </div>
 

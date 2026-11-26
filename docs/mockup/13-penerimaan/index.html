@@ -6,7 +6,7 @@
     <title>Penerimaan - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="pengadaan" class="app-page">
+  <body data-page="penerimaan" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
 
@@ -14,26 +14,20 @@
         <div data-include="../components/header.html"></div>
 
         <main class="space-y-6 p-4 lg:p-6">
-          <nav class="pill-nav" aria-label="Sub-halaman pengadaan">
-            <a href="index.html" class="pill-nav-item">Daftar PO</a>
-            <a href="detail.html" class="pill-nav-item">Detail PO</a>
-            <a href="penerimaan.html" class="pill-nav-item pill-nav-item-active" aria-current="page">Penerimaan</a>
-          </nav>
-
           <div class="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <h1 class="text-xl font-semibold">Penerimaan dan BAST</h1>
-              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027</p>
+              <h1 class="text-xl font-semibold">Penerimaan dan Penyimpanan</h1>
+              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · 5 dokumen penerimaan</p>
             </div>
             <div class="flex flex-wrap gap-2">
               <button data-toast="Rekap penerimaan diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
                 <i class="ri-download-line icon-sm" aria-hidden="true"></i>
                 Unduh rekap
               </button>
-              <button data-toast="Formulir penerimaan baru dibuka (mockup)" data-toast-type="info" class="btn btn-primary btn-sm flex gap-2">
+              <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
                 <i class="ri-add-line icon-sm" aria-hidden="true"></i>
                 Penerimaan baru
-              </button>
+              </a>
             </div>
           </div>
 
@@ -121,150 +115,95 @@
                 <tbody class="divide-y divide-slate-100">
                   <tr class="hover:bg-slate-50">
                     <td class="font-mono text-xs">PNR/2027/0035</td>
-                    <td class="font-mono text-xs"><a href="detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
                     <td>SJ/SF/0098</td>
                     <td>2027-01-10</td>
                     <td>Gudang Farmasi Pusat</td>
                     <td class="num">18</td>
                     <td><span class="badge badge-success">Selesai</span></td>
-                    <td class="num"><button data-toast="BAST/2027/0011 dicetak (mockup)" class="btn btn-outline btn-2xs">Cetak BAST</button></td>
+                    <td class="num">
+                      <div class="flex justify-end gap-1">
+                        <button data-toast="BAST/2027/0011 dicetak (mockup)" class="btn btn-outline btn-2xs">BAST</button>
+                        <a href="edit.html" class="btn btn-outline btn-2xs">Ubah</a>
+                      </div>
+                    </td>
                   </tr>
                   <tr class="hover:bg-slate-50">
                     <td class="font-mono text-xs">PNR/2027/0031</td>
-                    <td class="font-mono text-xs"><a href="detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
                     <td>SJ/MJ/0112</td>
                     <td>2027-01-14</td>
                     <td>Gudang Farmasi Pusat</td>
                     <td class="num">6</td>
                     <td><span class="badge badge-success">Selesai</span></td>
-                    <td class="num"><button data-toast="BAST/2027/0012 dicetak (mockup)" class="btn btn-outline btn-2xs">Cetak BAST</button></td>
+                    <td class="num">
+                      <div class="flex justify-end gap-1">
+                        <button data-toast="BAST/2027/0012 dicetak (mockup)" class="btn btn-outline btn-2xs">BAST</button>
+                        <a href="edit.html" class="btn btn-outline btn-2xs">Ubah</a>
+                      </div>
+                    </td>
                   </tr>
                   <tr class="hover:bg-slate-50">
                     <td class="font-mono text-xs">PNR/2027/0044</td>
-                    <td class="font-mono text-xs"><a href="detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
                     <td>SJ/MJ/0121</td>
                     <td>2027-01-22</td>
                     <td>Gudang Farmasi Pusat</td>
                     <td class="num">4</td>
                     <td><span class="badge badge-brand">Diverifikasi</span></td>
-                    <td class="num"><button data-toast="Penerimaan PNR/2027/0044 dibuka (mockup)" class="btn btn-outline btn-2xs">Periksa</button></td>
+                    <td class="num"><a href="edit.html" class="btn btn-outline btn-2xs">Ubah</a></td>
                   </tr>
                   <tr class="hover:bg-slate-50">
                     <td class="font-mono text-xs">PNR/2027/0052</td>
-                    <td class="font-mono text-xs"><a href="detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0002</a></td>
                     <td>SJ/MJ/0130</td>
                     <td>2027-01-29</td>
                     <td>Gudang Farmasi Pusat</td>
                     <td class="num">2</td>
                     <td><span class="badge badge-neutral">Draf</span></td>
-                    <td class="num"><button data-toast="Draf penerimaan dilanjutkan (mockup)" class="btn btn-outline btn-2xs">Lanjutkan</button></td>
+                    <td class="num"><a href="edit.html" class="btn btn-outline btn-2xs">Lanjutkan</a></td>
                   </tr>
                   <tr class="hover:bg-slate-50">
                     <td class="font-mono text-xs">PNR/2027/0009</td>
-                    <td class="font-mono text-xs"><a href="detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
+                    <td class="font-mono text-xs"><a href="../04-pengadaan/detail.html" class="hover:text-brand-600">PO/2027/0001</a></td>
                     <td>SJ/SF/0090</td>
                     <td>2027-01-07</td>
                     <td>Gudang Farmasi Pusat</td>
                     <td class="num">12</td>
                     <td><span class="badge badge-danger">Selisih</span></td>
-                    <td class="num"><button data-toast="Berita acara selisih dibuka (mockup)" class="btn btn-outline btn-2xs">BA selisih</button></td>
+                    <td class="num"><a href="edit.html" class="btn btn-outline btn-2xs">Tindak lanjut</a></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </section>
 
-          <section class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Catat Penerimaan</h2>
-                <p class="text-hint">PO/2027/0002 · PT Medika Jaya · sisa 130 unit pada 2 item</p>
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card card-body xl:col-span-2">
+              <h2 class="card-title">Alur Penerimaan</h2>
+              <p class="text-hint">Draf dicatat di gudang, diverifikasi apoteker, lalu menjadi batch pada kartu stok.</p>
+              <div class="steps mt-4">
+                <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Draf</div>
+                <span class="step-line"></span>
+                <div class="step step-active"><span class="step-dot">2</span> Diverifikasi</div>
+                <span class="step-line"></span>
+                <div class="step"><span class="step-dot">3</span> Selesai</div>
+                <span class="step-line"></span>
+                <div class="step"><span class="step-dot">4</span> BAST</div>
               </div>
-              <span class="badge badge-brand">Penerimaan bertahap</span>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
+                  <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                  Buat penerimaan baru
+                </a>
+                <a href="edit.html" class="btn btn-outline btn-sm">Contoh edit penerimaan</a>
+              </div>
             </div>
-            <div class="card-body space-y-4">
-              <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                <div>
-                  <label class="field-label" for="form-tanggal">Tanggal terima</label>
-                  <input id="form-tanggal" type="date" value="2027-01-30" class="field w-full" />
-                </div>
-                <div>
-                  <label class="field-label" for="form-sj">Surat jalan</label>
-                  <input id="form-sj" value="SJ/MJ/0134" class="field w-full" />
-                </div>
-                <div>
-                  <label class="field-label" for="form-lokasi">Lokasi penyimpanan</label>
-                  <select id="form-lokasi" class="field w-full">
-                    <option>Gudang Farmasi Pusat</option>
-                    <option>Ruang Obat Puskesmas A</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="field-label" for="form-penerima">Diterima oleh</label>
-                  <input id="form-penerima" value="Ratna, S.Farm., Apt." class="field w-full" />
-                </div>
-              </div>
 
-              <div class="table-wrap">
-                <table class="table table-compact">
-                  <thead>
-                    <tr>
-                      <th>Obat</th>
-                      <th class="num">Dipesan</th>
-                      <th class="num">Sudah Diterima</th>
-                      <th class="num">Diterima Sekarang</th>
-                      <th>Batch</th>
-                      <th>Kedaluwarsa</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-100">
-                    <tr>
-                      <td>Salbutamol Inhaler</td>
-                      <td class="num">150</td>
-                      <td class="num">60</td>
-                      <td class="num"><input type="number" value="60" max="90" class="field w-24 text-right" aria-label="Diterima Salbutamol" /></td>
-                      <td><input value="SLB2403" class="field w-32" aria-label="Batch Salbutamol" /></td>
-                      <td><input type="date" value="2028-08-31" class="field w-40" aria-label="Kedaluwarsa Salbutamol" /></td>
-                    </tr>
-                    <tr>
-                      <td>Insulin Glargine</td>
-                      <td class="num">40</td>
-                      <td class="num">0</td>
-                      <td class="num">
-                        <input type="number" value="45" max="40" class="field field-error w-24 text-right" aria-label="Diterima Insulin" aria-invalid="true" aria-describedby="err-insulin" />
-                        <p class="field-error-text" id="err-insulin">Melebihi sisa PO (40)</p>
-                      </td>
-                      <td><input value="IG2404" class="field w-32" aria-label="Batch Insulin" /></td>
-                      <td><input type="date" value="2027-06-30" class="field w-40" aria-label="Kedaluwarsa Insulin" /></td>
-                    </tr>
-                    <tr>
-                      <td>Serum Anti Rabies</td>
-                      <td class="num">20</td>
-                      <td class="num">0</td>
-                      <td class="num"><input type="number" value="20" max="20" class="field w-24 text-right" aria-label="Diterima SAR" /></td>
-                      <td><input value="SAR2402" class="field w-32" aria-label="Batch SAR" /></td>
-                      <td><input type="date" value="2027-12-31" class="field w-40" aria-label="Kedaluwarsa SAR" /></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="alert alert-warning">
-                <p class="font-medium">Selisih penerimaan terdeteksi</p>
-                <p class="mt-1">Jumlah Insulin Glargine melebihi sisa PO. Ajukan adendum atau koreksi jumlah sebelum menyimpan.</p>
-                <div class="mt-3 max-w-md">
-                  <label class="field-label" for="form-selisih">Catatan selisih</label>
-                  <input id="form-selisih" value="Kelebihan kirim 5 vial, dikembalikan ke penyedia." class="field" />
-                </div>
-              </div>
-
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <p class="text-hint">Batch baru otomatis tercatat pada kartu stok setelah diverifikasi.</p>
-                <div class="flex gap-2">
-                  <button data-toast="Draf penerimaan disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
-                  <button data-toast="Penerimaan diverifikasi, batch dibuat (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Simpan dan verifikasi</button>
-                </div>
-              </div>
+            <div class="alert alert-warning">
+              <h2 class="font-semibold">Selisih belum selesai</h2>
+              <p class="mt-2">PNR/2027/0009 kurang 4 vial dari surat jalan. Berita acara selisih diperlukan sebelum batch dikunci.</p>
+              <a href="edit.html" class="btn btn-soft-warning btn-xs mt-4">Tindak lanjuti</a>
             </div>
           </section>
 
@@ -294,7 +233,7 @@
                       <th class="py-1">Nama Obat</th>
                       <th class="py-1 num w-24">Jumlah</th>
                       <th class="py-1 w-24">Batch</th>
-                      <th class="py-1">Kedaluwarsa</th>
+                      <th class="py-1 w-32">Kedaluwarsa</th>
                     </tr>
                   </thead>
                   <tbody>

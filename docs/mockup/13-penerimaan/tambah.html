@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tambah Penerimaan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="penerimaan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div>
+            <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Penerimaan</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>Penerimaan baru</span>
+            </nav>
+            <h1 class="text-xl font-semibold">Tambah Penerimaan</h1>
+            <p class="text-hint">Catat penerimaan barang dari PO. Batch baru dibuat setelah verifikasi.</p>
+          </div>
+
+          <div class="grid gap-6 xl:grid-cols-3">
+            <div class="space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Dokumen Penerimaan</h2>
+                  <span class="badge badge-neutral">Draf</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="po-rujukan">PO rujukan</label>
+                    <select id="po-rujukan" class="field w-full">
+                      <option>PO/2027/0002 · PT Medika Jaya · sisa 2 item</option>
+                      <option>PO/2027/0003 · PT Global Medika · sisa 9 item</option>
+                      <option>PO/2027/0004 · PT Sehat Farma · belum dikirim</option>
+                    </select>
+                    <p class="field-help">Hanya PO berstatus Dikirim atau Sebagian yang dapat diterima.</p>
+                  </div>
+                  <div>
+                    <label class="field-label" for="nomor">Nomor penerimaan</label>
+                    <input id="nomor" value="PNR/2027/0053" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="tanggal">Tanggal terima</label>
+                    <input id="tanggal" type="date" value="2027-01-30" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="surat-jalan">Nomor surat jalan</label>
+                    <input id="surat-jalan" value="SJ/MJ/0134" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="lokasi">Lokasi penyimpanan</label>
+                    <select id="lokasi" class="field w-full">
+                      <option>Gudang Farmasi Pusat</option>
+                      <option>Ruang Obat Puskesmas A</option>
+                    </select>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="penerima">Diterima oleh</label>
+                    <input id="penerima" value="Ratna, S.Farm., Apt." class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item Diterima</h2>
+                    <p class="text-hint">Jumlah tidak boleh melebihi sisa PO tanpa adendum.</p>
+                  </div>
+                  <button data-toast="Pilih item lain dari PO (mockup)" class="btn btn-outline btn-xs flex gap-2">
+                    <i class="ri-add-line icon-xs" aria-hidden="true"></i>
+                    Tambah item
+                  </button>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Dipesan</th>
+                        <th class="num">Sudah Diterima</th>
+                        <th class="num">Sisa</th>
+                        <th class="num">Diterima Sekarang</th>
+                        <th>Batch</th>
+                        <th>Kedaluwarsa</th>
+                        <th class="w-10"></th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>Salbutamol Inhaler</td>
+                        <td class="num">150</td>
+                        <td class="num">60</td>
+                        <td class="num">90</td>
+                        <td class="num"><input type="number" value="90" max="90" class="field w-20 text-right" aria-label="Diterima Salbutamol" /></td>
+                        <td><input value="SLB2403" class="field w-28" aria-label="Batch Salbutamol" /></td>
+                        <td><input type="date" value="2028-08-31" class="field w-36" aria-label="Kedaluwarsa Salbutamol" /></td>
+                        <td><button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Salbutamol"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td>Insulin Glargine</td>
+                        <td class="num">40</td>
+                        <td class="num">0</td>
+                        <td class="num">40</td>
+                        <td class="num"><input type="number" value="40" max="40" class="field w-20 text-right" aria-label="Diterima Insulin" /></td>
+                        <td><input value="IG2404" class="field w-28" aria-label="Batch Insulin" /></td>
+                        <td>
+                          <input type="date" value="2027-06-30" class="field field-warning w-36" aria-label="Kedaluwarsa Insulin" aria-describedby="warn-insulin" />
+                          <p class="field-warning-text" id="warn-insulin">Kurang dari 6 bulan</p>
+                        </td>
+                        <td><button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Insulin"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button></td>
+                      </tr>
+                      <tr>
+                        <td>Serum Anti Rabies</td>
+                        <td class="num">20</td>
+                        <td class="num">0</td>
+                        <td class="num">20</td>
+                        <td class="num"><input type="number" value="20" max="20" class="field w-20 text-right" aria-label="Diterima Serum Anti Rabies" /></td>
+                        <td>
+                          <input value="" placeholder="Wajib diisi" class="field field-error w-28" aria-label="Batch Serum Anti Rabies" aria-invalid="true" aria-describedby="err-batch" />
+                          <p class="field-error-text" id="err-batch">Batch wajib diisi</p>
+                        </td>
+                        <td><input type="date" value="2027-12-31" class="field w-36" aria-label="Kedaluwarsa Serum Anti Rabies" /></td>
+                        <td><button data-toast="Baris dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Serum Anti Rabies"><i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i></button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">1 galat, 1 peringatan belum diselesaikan.</p>
+                  <p class="text-sm">Nilai diterima: <span class="font-semibold">Rp 37.380.000</span></p>
+                </div>
+              </section>
+
+              <section class="card card-body space-y-4">
+                <div>
+                  <h2 class="card-title">Lampiran</h2>
+                  <p class="text-hint">Unggah surat jalan atau foto dokumen penerimaan (opsional).</p>
+                  <div class="dropzone mt-3">
+                    <i class="ri-upload-cloud-line icon-lg icon-muted" aria-hidden="true"></i>
+                    <p class="mt-2 text-sm font-medium">Tarik berkas ke sini atau klik untuk memilih</p>
+                    <p class="field-help">PDF, JPG, atau PNG maksimal 5 MB.</p>
+                  </div>
+                </div>
+                <div>
+                  <label class="field-label" for="catatan">Catatan penerimaan</label>
+                  <textarea id="catatan" rows="3" class="field w-full">Barang diterima dalam kondisi baik. Satu batch Insulin mendekati kedaluwarsa.</textarea>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">PO</dt><dd class="font-medium">PO/2027/0002</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Penyedia</dt><dd>PT Medika Jaya</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Jumlah item</dt><dd>3</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Total unit</dt><dd>150</dd></div>
+                  <div class="flex justify-between gap-2 border-t border-slate-200 pt-2"><dt class="text-slate-500">Nilai</dt><dd class="font-semibold">Rp 37.380.000</dd></div>
+                </dl>
+                <div class="mt-4">
+                  <p class="kpi-label">Status setelah disimpan</p>
+                  <p class="mt-1"><span class="badge badge-neutral">Draf</span> atau <span class="badge badge-brand">Diverifikasi</span></p>
+                </div>
+              </section>
+
+              <section class="card card-body">
+                <h2 class="card-title">Checklist Validasi</h2>
+                <div class="mt-3 space-y-2">
+                  <label class="check">
+                    <input type="checkbox" checked disabled />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Izin edar obat masih berlaku</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Semua batch terisi</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" disabled />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Kedaluwarsa lebih dari 6 bulan</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked disabled />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Jumlah tidak melebihi sisa PO</span>
+                  </label>
+                </div>
+              </section>
+
+              <div class="alert alert-brand">
+                <p class="font-medium">Penerimaan tidak menambah stok sebelum diverifikasi.</p>
+                <p class="mt-1">Draf hanya menyimpan data dokumen. Batch dan mutasi stok dibuat saat apoteker memverifikasi.</p>
+              </div>
+            </div>
+          </div>
+
+          <section class="card card-footer flex flex-wrap items-center justify-between gap-2">
+            <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Draf penerimaan PNR/2027/0053 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+              <button data-toast="Penerimaan diverifikasi dan batch dibuat (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Simpan dan verifikasi</button>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

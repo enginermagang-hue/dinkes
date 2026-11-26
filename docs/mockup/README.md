@@ -44,7 +44,7 @@ Katalog komponen dipecah agar mudah direview:
 | `01-login`        | Login, 2FA, tautan Google       | 8.9         |
 | `02-dashboard`    | Dashboard pimpinan dan KPI      | 8.7         |
 | `03-stok`         | Stok, batch, kartu stok, mutasi | 8.3, 8.6    |
-| `04-pengadaan`    | PO, penerimaan, BAST            | 8.2, 8.3    |
+| `04-pengadaan`    | PO dan persetujuan              | 8.2         |
 | `05-distribusi`   | Permintaan, pengiriman, selisih | 8.4         |
 | `06-lplpo`        | LPLPO bulanan dan verifikasi    | 8.11        |
 | `07-rko`          | RKO triwulanan dan konsolidasi  | 8.1         |
@@ -53,16 +53,26 @@ Katalog komponen dipecah agar mudah direview:
 | `10-anggaran`     | Pagu, komitmen, realisasi       | 8.8         |
 | `11-prediksi`     | Prediksi kebutuhan, peringatan  | 8.10        |
 | `12-pengguna`     | Pengguna, peran, whitelist      | 8.9         |
+| `13-penerimaan`   | Penerimaan, selisih, BAST       | 8.3         |
 
 ### Sub-halaman Pengadaan
 
-Modul `04-pengadaan` dipecah menjadi tiga halaman:
+Modul `04-pengadaan` terdiri dari dua halaman:
 
-| Halaman                        | Isi                                                        |
-| ------------------------------ | ---------------------------------------------------------- |
-| `04-pengadaan/index.html`      | Daftar PO, keranjang dari RKO, perbandingan penyedia       |
-| `04-pengadaan/detail.html`     | Detail PO/2027/0002: item, penerimaan, riwayat persetujuan |
-| `04-pengadaan/penerimaan.html` | Penerimaan bertahap, selisih, dan BAST siap cetak          |
+| Halaman                    | Isi                                                        |
+| -------------------------- | ---------------------------------------------------------- |
+| `04-pengadaan/index.html`  | Daftar PO, keranjang dari RKO, perbandingan penyedia       |
+| `04-pengadaan/detail.html` | Detail PO/2027/0002: item, penerimaan, riwayat persetujuan |
+
+### Sub-halaman Penerimaan
+
+Modul `13-penerimaan` terdiri dari tiga halaman:
+
+| Halaman                     | Isi                                                    |
+| --------------------------- | ------------------------------------------------------ |
+| `13-penerimaan/index.html`  | Daftar penerimaan, alur verifikasi, BAST siap cetak    |
+| `13-penerimaan/tambah.html` | Formulir penerimaan baru dengan checklist validasi     |
+| `13-penerimaan/edit.html`   | Edit penerimaan terverifikasi, alasan perubahan, audit |
 
 ## Build dan Watch CSS
 

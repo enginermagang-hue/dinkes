@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Penerimaan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="penerimaan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div>
+            <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Penerimaan</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <a href="edit.html" class="hover:text-brand-600">PNR/2027/0044</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>Ubah</span>
+            </nav>
+            <div class="flex flex-wrap items-center gap-3">
+              <h1 class="text-xl font-semibold">Ubah Penerimaan PNR/2027/0044</h1>
+              <span class="badge badge-brand">Diverifikasi</span>
+            </div>
+            <p class="text-hint">PO/2027/0002 · PT Medika Jaya · 4 item · diverifikasi 22 Januari 2027</p>
+          </div>
+
+          <div class="alert alert-warning">
+            <p class="font-medium">Penerimaan ini sudah diverifikasi.</p>
+            <p class="mt-1">Perubahan akan tercatat pada jejak audit dan memerlukan verifikasi ulang. Batch yang sudah masuk kartu stok tidak dihapus, hanya dikoreksi melalui mutasi penyesuaian.</p>
+          </div>
+
+          <div class="grid gap-6 xl:grid-cols-3">
+            <div class="space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Dokumen Penerimaan</h2>
+                  <span class="text-hint">PO dan tanggal tidak dapat diubah</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="po-rujukan">PO rujukan</label>
+                    <input id="po-rujukan" value="PO/2027/0002" disabled class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="nomor">Nomor penerimaan</label>
+                    <input id="nomor" value="PNR/2027/0044" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="tanggal">Tanggal terima</label>
+                    <input id="tanggal" type="date" value="2027-01-22" disabled class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="surat-jalan">Nomor surat jalan</label>
+                    <input id="surat-jalan" value="SJ/MJ/0121" disabled class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="lokasi">Lokasi penyimpanan</label>
+                    <select id="lokasi" class="field w-full">
+                      <option>Gudang Farmasi Pusat</option>
+                      <option>Ruang Obat Puskesmas A</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="penerima">Diterima oleh</label>
+                    <input id="penerima" value="Ratna, S.Farm., Apt." class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item Diterima</h2>
+                    <p class="text-hint">Koreksi jumlah batch yang sudah tercatat akan membuat mutasi penyesuaian.</p>
+                  </div>
+                  <span class="badge badge-warning">1 baris dikoreksi</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Dipesan</th>
+                        <th class="num">Tercatat</th>
+                        <th class="num">Diterima</th>
+                        <th>Batch</th>
+                        <th>Kedaluwarsa</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>Amoksisilin 500 mg</td>
+                        <td class="num">6.000</td>
+                        <td class="num">6.000</td>
+                        <td class="num"><input type="number" value="6000" max="6000" class="field w-24 text-right" aria-label="Diterima Amoksisilin" /></td>
+                        <td><input value="AMX2401" class="field w-28" aria-label="Batch Amoksisilin" /></td>
+                        <td><input type="date" value="2028-12-31" class="field w-36" aria-label="Kedaluwarsa Amoksisilin" /></td>
+                      </tr>
+                      <tr>
+                        <td>Parasetamol 500 mg</td>
+                        <td class="num">4.000</td>
+                        <td class="num">4.000</td>
+                        <td class="num"><input type="number" value="4000" max="4000" class="field w-24 text-right" aria-label="Diterima Parasetamol" /></td>
+                        <td><input value="PCT2403" class="field w-28" aria-label="Batch Parasetamol" /></td>
+                        <td><input type="date" value="2029-01-31" class="field w-36" aria-label="Kedaluwarsa Parasetamol" /></td>
+                      </tr>
+                      <tr>
+                        <td>Vaksin Campak</td>
+                        <td class="num">200</td>
+                        <td class="num">200</td>
+                        <td class="num"><input type="number" value="200" max="200" class="field w-24 text-right" aria-label="Diterima Vaksin Campak" /></td>
+                        <td><input value="VC2401" class="field w-28" aria-label="Batch Vaksin Campak" /></td>
+                        <td>
+                          <input type="date" value="2027-02-15" class="field field-warning w-36" aria-label="Kedaluwarsa Vaksin Campak" aria-describedby="warn-vaksin" />
+                          <p class="field-warning-text" id="warn-vaksin">Kurang dari 6 bulan</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p>Salbutamol Inhaler</p>
+                          <p class="field-help">Tercatat 30, dikoreksi menjadi 60 sesuai surat jalan.</p>
+                        </td>
+                        <td class="num">150</td>
+                        <td class="num">30</td>
+                        <td class="num"><input type="number" value="60" max="90" class="field w-24 text-right" aria-label="Diterima Salbutamol" /></td>
+                        <td><input value="SLB2402" class="field w-28" aria-label="Batch Salbutamol" /></td>
+                        <td><input type="date" value="2028-06-30" class="field w-36" aria-label="Kedaluwarsa Salbutamol" /></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Selisih koreksi: +30 unit Salbutamol.</p>
+                  <p class="text-sm">Nilai setelah koreksi: <span class="font-semibold">Rp 27.020.000</span></p>
+                </div>
+              </section>
+
+              <section class="card card-body">
+                <label class="field-label" for="alasan">Alasan perubahan</label>
+                <textarea id="alasan" rows="3" class="field w-full">Jumlah Salbutamol pada penerimaan awal salah input; surat jalan SJ/MJ/0121 menunjukkan 60 unit.</textarea>
+                <p class="field-help">Alasan wajib diisi untuk penerimaan yang sudah diverifikasi.</p>
+                <div class="mt-3">
+                  <label class="field-label" for="lampiran">Lampiran pendukung</label>
+                  <div class="dropzone">
+                    <i class="ri-attachment-2 icon-lg icon-muted" aria-hidden="true"></i>
+                    <p class="mt-2 text-sm font-medium">Unggah surat jalan atau berita acara koreksi</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card card-body">
+                <h2 class="card-title">Riwayat Perubahan</h2>
+                <ol class="mt-3 space-y-4 text-sm">
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Penerimaan dibuat</p>
+                      <p class="text-hint">2027-01-22 08:40 · Apoteker Gudang Dinas</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-success mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Diverifikasi</p>
+                      <p class="text-hint">2027-01-22 09:45 · Ratna, S.Farm., Apt. · tanpa selisih</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Koreksi jumlah Salbutamol menunggu verifikasi ulang</p>
+                      <p class="text-hint">2027-01-30 10:05 · 30 menjadi 60 unit</p>
+                    </div>
+                  </li>
+                </ol>
+              </section>
+            </div>
+
+            <div class="space-y-6">
+              <section class="card card-body">
+                <h2 class="card-title">Status Dokumen</h2>
+                <div class="steps mt-3 flex-col items-start gap-3">
+                  <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Draf</div>
+                  <div class="step step-active"><span class="step-dot">2</span> Diverifikasi</div>
+                  <div class="step"><span class="step-dot">3</span> Selesai</div>
+                </div>
+                <p class="field-help">Menyimpan perubahan mengembalikan status ke "menunggu verifikasi".</p>
+              </section>
+
+              <section class="card card-body">
+                <h2 class="card-title">Jejak Audit</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Dibuat</dt><dd>2027-01-22 08:40</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Diverifikasi</dt><dd>2027-01-22 09:45</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Versi</dt><dd>2</dd></div>
+                  <div class="flex justify-between gap-2"><dt class="text-slate-500">Batch terkait</dt><dd>4</dd></div>
+                </dl>
+              </section>
+
+              <section class="card card-body space-y-2">
+                <button data-modal-open="#modal-verifikasi" class="btn btn-primary btn-sm btn-block">Ajukan verifikasi ulang</button>
+                <button data-toast="Perubahan PNR/2027/0044 disimpan (mockup)" data-toast-type="success" class="btn btn-outline btn-sm btn-block">Simpan perubahan</button>
+                <a href="index.html" class="btn btn-ghost btn-sm btn-block">Batalkan perubahan</a>
+              </section>
+
+              <div class="alert alert-brand">
+                <p class="font-medium">Koreksi tidak menghapus batch lama.</p>
+                <p class="mt-1">Sistem membuat mutasi penyesuaian agar kartu stok tetap dapat diaudit.</p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-verifikasi" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Ajukan verifikasi ulang?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          PNR/2027/0044 akan berstatus menunggu verifikasi sampai apoteker menyetujui koreksi
+          +30 unit Salbutamol.
+        </p>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Pengajuan verifikasi ulang dikirim (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Ajukan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>
