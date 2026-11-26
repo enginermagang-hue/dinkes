@@ -6,40 +6,40 @@
     <title>Katalog Komponen - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="components" class="min-h-screen bg-slate-100 text-slate-800">
-    <div class="flex min-h-screen">
+  <body data-page="components" class="app-page">
+    <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
 
-      <div class="app-content flex min-w-0 flex-1 flex-col">
+      <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
 
         <main class="flex-1 space-y-8 p-4 lg:p-6">
-          <nav class="flex flex-wrap gap-2 text-sm">
-            <a href="index.html" class="rounded-lg bg-brand-600 px-3 py-2 font-medium text-white">Ringkasan</a>
-            <a href="foundation.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Fondasi</a>
-            <a href="form.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Formulir</a>
-            <a href="data.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Data</a>
-            <a href="feedback.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Umpan Balik</a>
-            <a href="layout.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Tata Letak</a>
-            <a href="advanced.html" class="rounded-lg border border-slate-300 bg-white px-3 py-2 hover:bg-slate-50">Lanjutan</a>
+          <nav class="pill-nav">
+            <a href="index.html" class="pill-nav-item pill-nav-item-active">Ringkasan</a>
+            <a href="foundation.html" class="pill-nav-item">Fondasi</a>
+            <a href="form.html" class="pill-nav-item">Formulir</a>
+            <a href="data.html" class="pill-nav-item">Data</a>
+            <a href="feedback.html" class="pill-nav-item">Umpan Balik</a>
+            <a href="layout.html" class="pill-nav-item">Tata Letak</a>
+            <a href="advanced.html" class="pill-nav-item">Lanjutan</a>
           </nav>
 
           <section>
-            <h1 class="text-2xl font-bold text-slate-900">Katalog Komponen</h1>
-            <p class="mt-1 max-w-2xl text-sm text-slate-500">
+            <h1 class="page-title">Katalog Komponen</h1>
+            <p class="page-subtitle">
               Acuan visual seluruh halaman mockup. Katalog dipecah per kelompok agar mudah
               direview. Setiap halaman memakai sidebar, header, dan footer yang sama.
             </p>
             <div class="mt-4 flex flex-wrap gap-3 text-xs text-slate-500">
-              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Tailwind v4</span>
-              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Remix Icon</span>
-              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Tom Select</span>
-              <span class="rounded-full bg-white px-3 py-1 ring-1 ring-slate-200">Data dummy</span>
+              <span class="tag">Tailwind v4</span>
+              <span class="tag">Remix Icon</span>
+              <span class="tag">Tom Select</span>
+              <span class="tag">Data dummy</span>
             </div>
           </section>
 
           <section class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            <a href="foundation.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+            <a href="foundation.html" class="card card-body card-hover group transition">
               <div class="flex items-start justify-between">
                 <span class="icon-btn bg-brand-50 text-brand-600">
                   <i class="ri-palette-line icon-md" aria-hidden="true"></i>
@@ -51,7 +51,7 @@
               <p class="mt-3 text-xs text-slate-400">4 bagian</p>
             </a>
 
-            <a href="form.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+            <a href="form.html" class="card card-body card-hover group transition">
               <div class="flex items-start justify-between">
                 <span class="icon-btn bg-brand-50 text-brand-600">
                   <i class="ri-edit-box-line icon-md" aria-hidden="true"></i>
@@ -66,7 +66,7 @@
               <p class="mt-3 text-xs text-slate-400">8 bagian</p>
             </a>
 
-            <a href="data.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+            <a href="data.html" class="card card-body card-hover group transition">
               <div class="flex items-start justify-between">
                 <span class="icon-btn bg-brand-50 text-brand-600">
                   <i class="ri-table-line icon-md" aria-hidden="true"></i>
@@ -80,7 +80,7 @@
               <p class="mt-3 text-xs text-slate-400">7 bagian</p>
             </a>
 
-            <a href="feedback.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+            <a href="feedback.html" class="card card-body card-hover group transition">
               <div class="flex items-start justify-between">
                 <span class="icon-btn bg-brand-50 text-brand-600">
                   <i class="ri-notification-3-line icon-md" aria-hidden="true"></i>
@@ -94,7 +94,7 @@
               <p class="mt-3 text-xs text-slate-400">9 bagian</p>
             </a>
 
-            <a href="layout.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+            <a href="layout.html" class="card card-body card-hover group transition">
               <div class="flex items-start justify-between">
                 <span class="icon-btn bg-brand-50 text-brand-600">
                   <i class="ri-layout-4-line icon-md" aria-hidden="true"></i>
@@ -109,7 +109,7 @@
               <p class="mt-3 text-xs text-slate-400">8 bagian</p>
             </a>
 
-            <a href="advanced.html" class="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-brand-300 hover:shadow-sm">
+            <a href="advanced.html" class="card card-body card-hover group transition">
               <div class="flex items-start justify-between">
                 <span class="icon-btn bg-brand-50 text-brand-600">
                   <i class="ri-command-line icon-md" aria-hidden="true"></i>
@@ -122,8 +122,8 @@
             </a>
           </section>
 
-          <section class="rounded-xl border border-slate-200 bg-white p-5">
-            <h2 class="text-lg font-semibold">Aturan Pemakaian</h2>
+          <section class="card card-body">
+            <h2 class="section-title">Aturan Pemakaian</h2>
             <ul class="mt-3 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
               <li>Warna primer hanya untuk aksi utama dan tautan.</li>
               <li>Status memakai warna semantik, bukan warna brand.</li>
