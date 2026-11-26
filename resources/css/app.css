@@ -1089,7 +1089,7 @@ body.sidebar-mini [data-collapse-sidebar] i {
 
   /* Label dan pesan formulir */
   .field-label {
-    @apply mb-1 block text-sm font-medium text-slate-700;
+    @apply block text-sm font-medium text-slate-700;
   }
 
   .field-help {
@@ -1110,7 +1110,19 @@ body.sidebar-mini [data-collapse-sidebar] i {
 
   /* Tombol */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg text-sm font-medium transition-colors;
+    @apply inline-flex items-center justify-center rounded-lg font-medium transition-colors;
+  }
+
+  .btn-quiet {
+    @apply text-slate-600;
+  }
+
+  .btn-muted {
+    @apply text-slate-400;
+  }
+
+  .btn-strong {
+    @apply font-semibold;
   }
 
   .btn-primary {
@@ -1141,27 +1153,34 @@ body.sidebar-mini [data-collapse-sidebar] i {
     @apply bg-slate-900 text-white hover:bg-slate-800;
   }
 
+  .btn-2xs {
+    @apply rounded-md px-2.5 py-1 text-xs;
+  }
+
   .btn-xs {
-    @apply px-3 py-1.5;
+    @apply px-3 py-1.5 text-sm;
   }
 
   .btn-sm {
-    @apply px-3 py-2;
+    @apply px-3 py-2 text-sm;
   }
 
   .btn-md {
-    @apply px-4 py-2;
+    @apply px-4 py-2 text-sm;
   }
 
   .btn-icon {
-    @apply h-9 w-9 px-0;
+    @apply h-9 w-9 px-0 text-sm;
   }
 
   .btn-block {
     @apply w-full;
   }
 
-  .btn:disabled,
+  .btn:disabled {
+    @apply cursor-not-allowed;
+  }
+
   .btn.is-disabled {
     @apply cursor-not-allowed bg-brand-300 text-white;
   }
@@ -1282,7 +1301,7 @@ body.sidebar-mini [data-collapse-sidebar] i {
     @apply w-full text-left text-sm;
   }
 
-  .table thead {
+  .table-head thead {
     @apply bg-slate-50 text-xs uppercase tracking-wide text-slate-500;
   }
 
@@ -1331,7 +1350,7 @@ body.sidebar-mini [data-collapse-sidebar] i {
   }
 
   .pill-nav-item-active {
-    @apply rounded-lg bg-brand-600 px-3 py-2 font-medium text-white;
+    @apply border-0 rounded-lg bg-brand-600 px-3 py-2 font-medium text-white;
   }
 
   /* Sidebar */
@@ -1434,5 +1453,60 @@ body.sidebar-mini [data-collapse-sidebar] i {
 
   .page-btn-gap {
     @apply inline-flex h-9 min-w-9 items-center justify-center px-2 text-slate-400;
+  }
+}
+
+@layer components {
+  /* Ukuran tombol besar dan varian lunak */
+  .btn-lg {
+    @apply rounded-xl px-5 py-2.5 text-base;
+  }
+
+  .btn-ink {
+    @apply text-slate-700;
+  }
+
+  .btn-soft {
+    @apply border border-brand-200 bg-brand-50 text-brand-700 hover:bg-brand-100;
+  }
+
+  .btn-soft-warning {
+    @apply bg-amber-100 text-amber-700 hover:bg-amber-200;
+  }
+
+  .btn-link {
+    @apply px-2 py-2 text-sm text-brand-600 hover:underline;
+  }
+
+  .btn-square {
+    @apply p-2;
+  }
+}
+
+@layer components {
+  /* Tabel tanpa padding bawaan, mis. pada kertas cetak. */
+  .table-plain th,
+  .table-plain td {
+    @apply p-0;
+  }
+}
+
+@layer components {
+  .btn-normal {
+    @apply font-normal;
+  }
+}
+
+@layer components {
+  .badge-dark-success {
+    @apply bg-emerald-500/20 text-emerald-300;
+  }
+
+  .badge-dark-warning {
+    @apply bg-amber-500/20 text-amber-300;
+  }
+
+  .badge-dark-danger {
+    @apply bg-rose-500/20 text-rose-300;
   }
 }

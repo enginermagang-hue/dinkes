@@ -67,22 +67,38 @@ komponen, dimulai dari `docs/mockup/components/foundation.html`.
 
 ## Komponen Kustom
 
-| Class                                               | Kegunaan                                      |
-| --------------------------------------------------- | --------------------------------------------- |
-| `field`                                             | Input, textarea, dan select dengan ring focus |
-| `field-error`                                       | Keadaan galat dengan ring merah               |
-| `field-success`                                     | Keadaan berhasil dengan ring hijau            |
-| `field-warning`                                     | Keadaan peringatan dengan ring amber          |
-| `check` + `check-box`                               | Checkbox dan radio kustom                     |
-| `check-sm`, `check-lg`                              | Ukuran checkbox dan radio                     |
-| `check-success`, `check-warning`, `check-danger`    | Warna checked                                 |
-| `switch`, `switch-track`, `switch-thumb`            | Switch atau toggle kustom                     |
-| `switch-sm`, `switch-lg`                            | Ukuran switch                                 |
-| `switch-success`, `switch-warning`, `switch-danger` | Warna switch aktif                            |
-| `kpi`, `kpi-sm`, `kpi-lg`                           | Kartu KPI dengan varian ukuran                |
-| `dropdown-panel`                                    | Animasi masuk pada panel dropdown             |
-| `modal-backdrop`, `modal-panel`                     | Animasi modal masuk dan keluar                |
-| `app-content`                                       | Padding otomatis terhadap sidebar tetap       |
+Seluruh komponen memakai class semantik. Acuan lengkap beserta contoh markup ada di
+[`COMPONENTS.md`](./COMPONENTS.md).
+
+| Kelompok    | Class utama                                                    |
+| ----------- | -------------------------------------------------------------- |
+| Kerangka    | `app-page`, `app-shell`, `app-body`, `app-content`             |
+| Tipografi   | `page-title`, `page-subtitle`, `section-head`, `section-title` |
+| Tombol      | `btn`, `btn-primary`, `btn-secondary`, `btn-outline`, `btn-sm` |
+| Kartu       | `card`, `card-body`, `card-header`, `card-footer`, `kpi`       |
+| Badge       | `badge`, `badge-success`, `badge-warning`, `badge-danger`      |
+| Alert       | `alert`, `alert-success`, `alert-warning`, `alert-danger`      |
+| Tabel       | `table`, `table-head`, `table-compact`, `num`, `table-sticky`  |
+| Navigasi    | `pill-nav`, `nav-item`, `tabs`, `tab`, `tab-active`            |
+| Formulir    | `field`, `field-label`, `field-help`, `check`, `switch`        |
+| Umpan balik | `toast`, `modal-panel`, `tooltip`, `skeleton`, `spinner`       |
+
+Aturan pemakaian:
+
+- Class semantik untuk warna, border, radius, padding, dan tipografi komponen.
+- Utilitas Tailwind hanya untuk tata letak (`flex`, `grid`, `gap-*`, `mt-*`, `w-*`,
+  `hidden`, dan varian breakpoint).
+- Jalankan `npm run mockup:check` sebelum commit untuk memastikan tidak ada komponen
+  yang ditulis manual.
+
+## Verifikasi Tampilan
+
+| Perintah                  | Fungsi                                                 |
+| ------------------------- | ------------------------------------------------------ |
+| `npm run mockup:css`      | Build ulang `docs/mockup/assets/mockup.css`            |
+| `npm run mockup:check`    | Gagal bila ada komponen ditulis dengan utilitas manual |
+| `npm run mockup:snapshot` | Simpan baseline screenshot ke `.cache/mockup-golden/`  |
+| `npm run mockup:visual`   | Bandingkan tampilan sekarang dengan baseline           |
 
 Ringkasan dan tautan ke semua sub-halaman ada pada
 `docs/mockup/components/index.html`.

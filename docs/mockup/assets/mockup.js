@@ -1,10 +1,10 @@
 // Interaksi ringan untuk mockup statis.
 
 const TOAST_STYLES = {
-  success: { bg: 'bg-emerald-600', icon: 'ri-checkbox-circle-line' },
-  error: { bg: 'bg-rose-600', icon: 'ri-error-warning-line' },
-  warning: { bg: 'bg-amber-500', icon: 'ri-alert-line' },
-  info: { bg: 'bg-slate-900', icon: 'ri-information-line' },
+  success: { type: 'success', icon: 'ri-checkbox-circle-line' },
+  error: { type: 'error', icon: 'ri-error-warning-line' },
+  warning: { type: 'warning', icon: 'ri-alert-line' },
+  info: { type: 'info', icon: 'ri-information-line' },
 }
 
 function closeModal(modal) {
@@ -21,9 +21,7 @@ function showToast(button) {
   const style = TOAST_STYLES[type] || TOAST_STYLES.info
 
   const toast = document.createElement('div')
-  toast.className =
-    'toast-enter fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-lg ' +
-    `px-4 py-3 text-sm text-white shadow-lg ${style.bg}`
+  toast.className = `toast toast-enter toast-${style.type}`
   toast.setAttribute('role', 'status')
 
   const icon = document.createElement('i')
@@ -35,9 +33,7 @@ function showToast(button) {
 
   const close = document.createElement('button')
   close.type = 'button'
-  close.className =
-    'ml-1 inline-flex h-6 w-6 items-center justify-center rounded-md ' +
-    'text-white/80 hover:bg-white/15 hover:text-white'
+  close.className = 'toast-close'
   close.setAttribute('aria-label', 'Tutup notifikasi')
   close.innerHTML = '<i class="ri-close-line icon-xs" aria-hidden="true"></i>'
 
@@ -308,11 +304,9 @@ function initMockup() {
       document
         .querySelectorAll(`[data-tab][data-tab-group="${group}"]`)
         .forEach((item) => {
-          item.classList.remove('bg-brand-600', 'text-white')
-          item.classList.add('text-slate-600')
+          item.classList.remove('tab-active')
         })
-      button.classList.add('bg-brand-600', 'text-white')
-      button.classList.remove('text-slate-600')
+      button.classList.add('tab-active')
 
       document
         .querySelectorAll(`[data-panel][data-panel-group="${group}"]`)
