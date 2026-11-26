@@ -19,6 +19,8 @@ utilitas Tailwind yang ditulis ulang di HTML.
 | Perintah                  | Fungsi                                                |
 | ------------------------- | ----------------------------------------------------- |
 | `npm run mockup:css`      | Build ulang `docs/mockup/assets/mockup.css`           |
+| `npm run mockup:serve`    | Server lokal untuk membuka mockup                     |
+| `npm run mockup:links`    | Uji tautan sidebar/header dan pemuatan layout         |
 | `npm run mockup:check`    | Gagal bila ada komponen yang ditulis manual           |
 | `npm run mockup:snapshot` | Simpan baseline screenshot ke `.cache/mockup-golden/` |
 | `npm run mockup:visual`   | Bandingkan tampilan sekarang dengan baseline          |

@@ -38,6 +38,17 @@ function resolveFile(root, urlPath) {
 function startStaticServer(root, port = 0) {
   return new Promise((resolve, reject) => {
     const server = http.createServer((req, res) => {
+      const urlPath = (req.url || '/').split('?')[0]
+
+      // Arahkan permintaan direktori tanpa garis miring akhir agar path relatif
+      // (CSS, include, link sidebar) tetap dihitung dari folder halaman.
+      const target = path.join(root, decodeURIComponent(urlPath))
+      if (urlPath !== '/' && !urlPath.endsWith('/') && fs.existsSync(target) && fs.statSync(target).isDirectory()) {
+        res.writeHead(301, { location: urlPath + '/' })
+        res.end()
+        return
+      }
+
       const file = resolveFile(root, req.url === '/' ? '/index.html' : req.url)
       if (!file) {
         res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' })

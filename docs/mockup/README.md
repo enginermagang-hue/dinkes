@@ -7,11 +7,21 @@ konsisten dengan `docs/PRD.md`.
 ## Cara Membuka
 
 1. Jalankan build CSS sekali: `npm run mockup:css`.
-2. Buka `docs/mockup/01-login/index.html` melalui server lokal, atau
-3. Jalankan server statis sederhana dari akar proyek: `npx serve docs`.
+2. Jalankan server mockup: `npm run mockup:serve`.
+3. Buka `http://127.0.0.1:3000/mockup/01-login/` (atau
+   `http://127.0.0.1:3000/mockup/components/` untuk katalog).
+
+Anda juga bisa memakai `npx serve docs`; `docs/serve.json` memastikan URL direktori selalu
+berakhir dengan `/`.
 
 Tidak perlu backend. Semua data bersifat contoh. Mockup memuat komponen layout melalui
 `fetch`, sehingga harus dibuka lewat server lokal, bukan `file://`.
+
+> **Penting:** path di dalam mockup bersifat relatif (`../assets/...`,
+> `../components/sidebar.html`, `../02-dashboard/index.html`). URL halaman harus berakhir
+> dengan `/` — misalnya `/mockup/02-dashboard/`, bukan `/mockup/02-dashboard`. Bila garis
+> miring terakhir hilang, CSS, include sidebar, dan link antarmodul akan gagal dimuat.
+> `npm run mockup:links` memeriksa hal ini secara otomatis.
 
 ## Sub-halaman Katalog
 
@@ -96,6 +106,8 @@ Aturan pemakaian:
 | Perintah                  | Fungsi                                                 |
 | ------------------------- | ------------------------------------------------------ |
 | `npm run mockup:css`      | Build ulang `docs/mockup/assets/mockup.css`            |
+| `npm run mockup:serve`    | Server lokal untuk membuka mockup                      |
+| `npm run mockup:links`    | Uji tautan sidebar/header dan pemuatan layout          |
 | `npm run mockup:check`    | Gagal bila ada komponen ditulis dengan utilitas manual |
 | `npm run mockup:snapshot` | Simpan baseline screenshot ke `.cache/mockup-golden/`  |
 | `npm run mockup:visual`   | Bandingkan tampilan sekarang dengan baseline           |

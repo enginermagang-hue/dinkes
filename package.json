@@ -16,10 +16,11 @@
     "mermaid:export:all": "npm run mermaid:export && npm run md:fix && npm run md:check",
     "mockup:css": "tailwindcss -i ./resources/css/app.css -o ./docs/mockup/assets/mockup.css --minify",
     "mockup:watch": "tailwindcss -i ./resources/css/app.css -o ./docs/mockup/assets/mockup.css --watch",
-    "mockup:serve": "npx serve docs",
+    "mockup:serve": "node scripts/serve-mockup.js",
     "mockup:snapshot": "node scripts/mockup-visual.js snapshot",
     "mockup:visual": "node scripts/mockup-visual.js compare",
     "mockup:check": "node scripts/check-mockup-classes.js",
+    "mockup:links": "node scripts/check-mockup-links.js",
     "prepare": "husky"
   },
   "devDependencies": {
