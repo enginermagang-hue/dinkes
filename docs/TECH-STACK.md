@@ -2,11 +2,11 @@
 
 | Atribut        | Nilai                                        |
 | -------------- | -------------------------------------------- |
-| Versi Dokumen  | 1.2 (Draft)                                  |
+| Versi Dokumen  | 1.3 (Draft)                                  |
 | Status         | Untuk direview                               |
 | Pemilik Teknis | Tim Pengembangan                             |
-| Tanggal        | 24 November 2026                             |
-| PRD Rujukan    | `docs/PRD.md` versi 1.6                      |
+| Tanggal        | 27 November 2026                             |
+| PRD Rujukan    | `docs/PRD.md` versi 1.7                      |
 | Target Pembaca | Developer, Tech Lead, DevOps, Auditor Teknis |
 
 Dokumen ini melengkapi `docs/PRD.md` dengan keputusan teknis, struktur kode, dan panduan
@@ -62,6 +62,15 @@ flowchart TD
 4. Setiap mutasi stok dan anggaran wajib menghasilkan audit log.
 5. Endpoint bersifat idempoten untuk penerimaan, distribusi, dan penyesuaian stok.
 6. Aplikasi harus tetap dapat digunakan pada koneksi lambat dengan pemuatan bertahap.
+
+### 2.3 Mode Luring dan Sinkronisasi
+
+- Frontend menyimpan antrean transaksi di IndexedDB saat koneksi terputus.
+- Setiap transaksi memiliki `client_uuid` dan `Idempotency-Key` untuk mencegah duplikasi.
+- Sinkronisasi memakai endpoint `/sync/push`, `/sync/pull`, dan `/sync/status`.
+- Konflik diselesaikan secara server-authoritative; transaksi yang ditolak masuk daftar
+  gagal dan dapat diperbaiki pengguna.
+- Antrean dibatasi 500 transaksi per perangkat dan disimpan terenkripsi.
 
 ---
 

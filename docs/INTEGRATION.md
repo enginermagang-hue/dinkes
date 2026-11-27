@@ -2,17 +2,17 @@
 
 | Atribut        | Nilai                          |
 | -------------- | ------------------------------ |
-| Versi Dokumen  | 1.0 (Draft)                    |
+| Versi Dokumen  | 1.1 (Draft)                    |
 | Status         | Untuk direview                 |
 | Pemilik Teknis | Tim Pengembangan               |
-| Tanggal        | 24 November 2026               |
-| PRD Rujukan    | `docs/PRD.md` versi 1.6        |
-| Tech Stack     | `docs/TECH-STACK.md` versi 1.2 |
+| Tanggal        | 27 November 2026               |
+| PRD Rujukan    | `docs/PRD.md` versi 1.7        |
+| Tech Stack     | `docs/TECH-STACK.md` versi 1.3 |
 | Target Pembaca | Developer, Tech Lead, DevOps   |
 
 Dokumen ini menjabarkan cara integrasi SMSOD dengan sistem eksternal pada fase MVP, yaitu
-LKPP, SIPNAP, dan SIPD. Integrasi SATU SEHAT dan e-Puskesmas direncanakan pada fase
-berikutnya dan belum dirinci di sini.
+LKPP, e-Monev RKO, SIPNAP, dan SIPD. Integrasi SATU SEHAT dan e-Puskesmas direncanakan pada
+fase berikutnya dan belum dirinci di sini.
 
 ---
 
@@ -21,6 +21,7 @@ berikutnya dan belum dirinci di sini.
 | Sistem         | Arah                | Format         | Frekuensi              | Status MVP |
 | -------------- | ------------------- | -------------- | ---------------------- | ---------- |
 | LKPP e-Katalog | Dua arah            | REST JSON      | Mingguan dan on-demand | Wajib      |
+| e-Monev RKO    | SMSOD ke e-Monev    | Excel/CSV      | Triwulanan             | Wajib      |
 | SIPNAP         | SMSOD ke SIPNAP     | CSV standar    | Bulanan                | Wajib      |
 | SIPD           | SMSOD ke SIPD       | Excel template | Bulanan                | Wajib      |
 | SATU SEHAT     | SMSOD ke SATU SEHAT | FHIR R4        | Harian                 | Fase 2     |
@@ -156,7 +157,7 @@ class LkppService
 
 ---
 
-## 3. Integrasi SIPNAP
+## 3. Integrasi SIPNAP dan e-Monev RKO
 
 ### 3.1 Tujuan dan Cakupan
 
@@ -238,6 +239,20 @@ class SipnapExporter
 3. Pemetaan kode obat SMSOD dengan kode nasional selesai.
 4. Jadwal ekspor bulanan disepakati dengan penanggung jawab.
 5. Prosedur unggah manual dan penyimpanan bukti telah ditetapkan.
+
+### 3.7 Integrasi e-Monev RKO
+
+e-Monev Katalog dipakai untuk pelaporan Rencana Kebutuhan Obat (RKO) triwulanan ke
+Kementerian Kesehatan. SMSOD mengekspor berkas RKO sesuai template e-Monev dan mencatat
+status unggah manual.
+
+| Aspek     | Ketentuan                                          |
+| --------- | -------------------------------------------------- |
+| Format    | Excel/CSV sesuai template e-Monev                  |
+| Frekuensi | Triwulanan                                         |
+| Data      | kode obat, satuan, kebutuhan, sisa stok, buffer    |
+| Validasi  | kode obat nasional dan konsistensi total kebutuhan |
+| Fallback  | unggah manual oleh Apoteker Gudang Dinas           |
 
 ---
 
@@ -409,11 +424,12 @@ SIPD_KODE_AKUN_BMHP=5.2.02.01.02
 
 ### 6.1 Lingkungan Sandbox
 
-| Sistem | Ketersediaan Sandbox | Catatan                      |
-| ------ | -------------------- | ---------------------------- |
-| LKPP   | Tersedia             | Gunakan kredensial uji       |
-| SIPNAP | Tidak ada            | Uji dengan berkas contoh     |
-| SIPD   | Tergantung BPKAD     | Koordinasikan lingkungan uji |
+| Sistem      | Ketersediaan Sandbox | Catatan                      |
+| ----------- | -------------------- | ---------------------------- |
+| LKPP        | Tersedia             | Gunakan kredensial uji       |
+| e-Monev RKO | Tidak ada            | Uji dengan berkas contoh     |
+| SIPNAP      | Tidak ada            | Uji dengan berkas contoh     |
+| SIPD        | Tergantung BPKAD     | Koordinasikan lingkungan uji |
 
 ### 6.2 Skenario Uji
 

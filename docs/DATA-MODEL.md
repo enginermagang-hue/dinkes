@@ -2,12 +2,12 @@
 
 | Atribut        | Nilai                          |
 | -------------- | ------------------------------ |
-| Versi Dokumen  | 1.1 (Draft)                    |
+| Versi Dokumen  | 1.2 (Draft)                    |
 | Status         | Untuk direview                 |
 | Pemilik Teknis | Tim Pengembangan               |
-| Tanggal        | 24 November 2026               |
-| PRD Rujukan    | `docs/PRD.md` versi 1.5        |
-| Tech Stack     | `docs/TECH-STACK.md` versi 1.1 |
+| Tanggal        | 27 November 2026               |
+| PRD Rujukan    | `docs/PRD.md` versi 1.7        |
+| Tech Stack     | `docs/TECH-STACK.md` versi 1.3 |
 | Target Pembaca | Developer, DBA, Tech Lead      |
 
 Dokumen ini menjabarkan struktur basis data secara rinci sebagai dasar pembuatan migration
@@ -52,6 +52,7 @@ erDiagram
     OBAT ||--o{ FORMULARIUM_ITEM : "terdaftar"
     FORMULARIUM ||--o{ FORMULARIUM_ITEM : "berisi"
     FASILITAS ||--o{ LOKASI_PENYIMPANAN : "memiliki"
+    FASILITAS ||--o{ FASILITAS : "induk"
     FASILITAS ||--o{ FORMULARIUM : "memakai"
 ```
 
@@ -81,6 +82,7 @@ erDiagram
     FASILITAS ||--o{ LPLPO : "mengajukan"
     LPLPO ||--o{ LPLPO_ITEM : "berisi"
     OBAT ||--o{ LPLPO_ITEM : "diminta"
+    LPLPO ||--o| PERMINTAAN : "menghasilkan"
     FASILITAS ||--o{ PERMINTAAN : "mengajukan"
     PERMINTAAN ||--o{ PERMINTAAN_ITEM : "berisi"
     PERMINTAAN ||--o| PENGIRIMAN : "dipenuhi"
@@ -116,25 +118,46 @@ erDiagram
 
 ![ERD Pengguna, Anggaran, dan Prediksi](./diagrams/2-3-erd-pengguna-anggaran-dan-prediksi.png)
 
+### 2.4 ERD Entitas Pendukung
+
+```mermaid
+erDiagram
+    LOKASI_PENYIMPANAN ||--o{ PEMUSNAHAN : "memusnahkan"
+    PEMUSNAHAN ||--o{ PEMUSNAHAN_ITEM : "berisi"
+    LOKASI_PENYIMPANAN ||--o{ RETUR : "mengembalikan"
+    RETUR ||--o{ RETUR_ITEM : "berisi"
+    FASILITAS ||--o{ RESEP : "menerima"
+    RESEP ||--o{ RESEP_ITEM : "berisi"
+    RESEP ||--o| PENGGUNAAN : "menghasilkan"
+    OBAT ||--o{ RESEP_ITEM : "diresepkan"
+    FASILITAS ||--o{ PERINGATAN_STOK : "menerima"
+    OBAT ||--o{ PERINGATAN_STOK : "terkait"
+    PENGGUNA ||--o{ LAPORAN_JADWAL : "membuat"
+    PENGGUNA ||--o{ SYNC_QUEUE : "mengirim"
+```
+
+![ERD Entitas Pendukung](./diagrams/2-4-erd-entitas-pendukung.png)
+
 ---
 
 ## 3. Daftar Tabel
 
-| Domain       | Tabel                                                                                                              | Jumlah |
-| ------------ | ------------------------------------------------------------------------------------------------------------------ | -----: |
-| Master       | `satuan`, `kategori_obat`, `diagnosa`, `supplier`, `formularium`, `formularium_item`                               |      6 |
-| Organisasi   | `fasilitas`, `lokasi_penyimpanan`                                                                                  |      2 |
-| Produk       | `obat`, `obat_harga`                                                                                               |      2 |
-| Pengguna     | `peran`, `pengguna`, `pengguna_peran`, `pengguna_fasilitas`, `pengguna_terhubung`, `google_whitelist`, `audit_log` |      7 |
-| Stok         | `stok`, `batch`, `mutasi_stok`                                                                                     |      3 |
-| Pengadaan    | `kontrak`, `kontrak_item`, `purchase_order`, `po_item`, `penerimaan`, `penerimaan_item`                            |      6 |
-| Distribusi   | `permintaan`, `permintaan_item`, `pengiriman`, `pengiriman_item`, `lplpo`, `lplpo_item`                            |      6 |
-| Perencanaan  | `rko`, `rko_item`                                                                                                  |      2 |
-| Pelayanan    | `penggunaan`, `penggunaan_item`                                                                                    |      2 |
-| Pengendalian | `opname`, `opname_item`                                                                                            |      2 |
-| Anggaran     | `pagu_anggaran`, `mutasi_anggaran`                                                                                 |      2 |
-| Prediksi     | `riwayat_konsumsi`, `prediksi_kebutuhan`, `peringatan_dini`                                                        |      3 |
-| **Total**    |                                                                                                                    | **43** |
+| Domain       | Tabel                                                                                                                            | Jumlah |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------- | -----: |
+| Master       | `satuan`, `kategori_obat`, `diagnosa`, `supplier`, `formularium`, `formularium_item`                                             |      6 |
+| Organisasi   | `fasilitas`, `lokasi_penyimpanan`                                                                                                |      2 |
+| Produk       | `obat`, `obat_harga`                                                                                                             |      2 |
+| Pengguna     | `peran`, `pengguna`, `pengguna_peran`, `pengguna_fasilitas`, `pengguna_terhubung`, `google_whitelist`, `audit_log`               |      7 |
+| Stok         | `stok`, `batch`, `mutasi_stok`                                                                                                   |      3 |
+| Pengadaan    | `kontrak`, `kontrak_item`, `purchase_order`, `po_item`, `penerimaan`, `penerimaan_item`                                          |      6 |
+| Distribusi   | `permintaan`, `permintaan_item`, `pengiriman`, `pengiriman_item`, `lplpo`, `lplpo_item`                                          |      6 |
+| Perencanaan  | `rko`, `rko_item`                                                                                                                |      2 |
+| Pelayanan    | `penggunaan`, `penggunaan_item`                                                                                                  |      2 |
+| Pengendalian | `opname`, `opname_item`                                                                                                          |      2 |
+| Anggaran     | `pagu_anggaran`, `mutasi_anggaran`                                                                                               |      2 |
+| Prediksi     | `riwayat_konsumsi`, `prediksi_kebutuhan`, `peringatan_dini`                                                                      |      3 |
+| Pendukung    | `pemusnahan`, `pemusnahan_item`, `retur`, `retur_item`, `resep`, `resep_item`, `peringatan_stok`, `laporan_jadwal`, `sync_queue` |      9 |
+| **Total**    |                                                                                                                                  | **52** |
 
 Keterangan kolom pada seluruh kamus di bawah ini: `Null` menandakan boleh kosong, `Default`
 menandakan nilai bawaan, dan `Keterangan` memuat penanda PK, FK, UNIQUE, atau INDEX.
@@ -216,17 +239,20 @@ UNIQUE (`formularium_id`, `obat_id`).
 
 ### 5.1 Tabel fasilitas
 
-| Kolom       | Tipe         | Null  | Default | Keterangan                    |
-| ----------- | ------------ | ----- | ------- | ----------------------------- |
-| id          | bigint       | Tidak | -       | PK                            |
-| kode        | varchar(30)  | Tidak | -       | UNIQUE, kode registrasi       |
-| nama        | varchar(150) | Tidak | -       | Nama fasilitas                |
-| jenis       | varchar(20)  | Tidak | -       | dinas, rsud, puskesmas, pustu |
-| alamat      | text         | Ya    | -       | Alamat lengkap                |
-| telepon     | varchar(30)  | Ya    | -       | Nomor kontak                  |
-| email       | varchar(100) | Ya    | -       | Surat elektronik              |
-| kepala_nama | varchar(100) | Ya    | -       | Nama pimpinan                 |
-| status      | varchar(20)  | Tidak | aktif   | aktif atau nonaktif           |
+| Kolom       | Tipe         | Null  | Default | Keterangan                                       |
+| ----------- | ------------ | ----- | ------- | ------------------------------------------------ |
+| id          | bigint       | Tidak | -       | PK                                               |
+| parent_id   | bigint       | Ya    | -       | FK ke fasilitas.id (Puskesmas induk untuk Pustu) |
+| kode        | varchar(30)  | Tidak | -       | UNIQUE, kode registrasi                          |
+| nama        | varchar(150) | Tidak | -       | Nama fasilitas                                   |
+| jenis       | varchar(20)  | Tidak | -       | dinas, rsud, puskesmas, pustu                    |
+| alamat      | text         | Ya    | -       | Alamat lengkap                                   |
+| telepon     | varchar(30)  | Ya    | -       | Nomor kontak                                     |
+| email       | varchar(100) | Ya    | -       | Surat elektronik                                 |
+| kepala_nama | varchar(100) | Ya    | -       | Nama pimpinan                                    |
+| status      | varchar(20)  | Tidak | aktif   | aktif atau nonaktif                              |
+
+INDEX (`parent_id`), INDEX (`jenis`).
 
 ### 5.2 Tabel lokasi_penyimpanan
 
@@ -589,7 +615,8 @@ INDEX (`fasilitas_tujuan_id`, `status`).
 
 Dokumen Laporan Pemakaian dan Lembar Permintaan Obat yang diajukan fasilitas setiap bulan.
 LPLPO berjalan paralel dengan RKO: LPLPO bersifat operasional bulanan, RKO bersifat
-perencanaan triwulanan.
+perencanaan triwulanan. `periode` menunjuk bulan laporan; pengajuan dilakukan paling lambat
+tanggal 5 bulan berikutnya dan menjadi dasar distribusi bulan berikutnya.
 
 | Kolom           | Tipe        | Null  | Default | Keterangan                                            |
 | --------------- | ----------- | ----- | ------- | ----------------------------------------------------- |
@@ -600,6 +627,7 @@ perencanaan triwulanan.
 | status          | varchar(20) | Tidak | draf    | draf, diajukan, disetujui, sebagian, ditolak, selesai |
 | total_item      | smallint    | Tidak | 0       | Jumlah item dalam dokumen                             |
 | total_diminta   | integer     | Tidak | 0       | Total kuantitas diminta                               |
+| total_usul      | integer     | Ya    | -       | Total kuantitas usulan setelah verifikasi             |
 | total_disetujui | integer     | Ya    | -       | Total kuantitas disetujui                             |
 | diajukan_oleh   | bigint      | Tidak | -       | FK ke pengguna.id                                     |
 | tanggal_ajukan  | datetime    | Ya    | -       | Waktu pengajuan                                       |
@@ -617,8 +645,10 @@ UNIQUE (`fasilitas_id`, `periode`), INDEX (`status`).
 | lplpo_id           | bigint        | Tidak | -       | FK ke lplpo.id                    |
 | obat_id            | bigint        | Tidak | -       | FK ke obat.id                     |
 | stok_awal          | integer       | Tidak | 0       | Saldo awal periode                |
-| stok_akhir         | integer       | Tidak | 0       | Saldo akhir periode               |
+| penerimaan         | integer       | Tidak | 0       | Barang masuk selama periode       |
+| persediaan         | integer       | Tidak | 0       | Stok awal ditambah penerimaan     |
 | jumlah_pakai       | integer       | Tidak | 0       | Pemakaian selama periode          |
+| stok_akhir         | integer       | Tidak | 0       | Saldo akhir periode               |
 | jumlah_minta       | integer       | Tidak | 0       | Kuantitas yang diminta            |
 | jumlah_usul        | integer       | Ya    | -       | Usulan setelah verifikasi         |
 | jumlah_disetujui   | integer       | Ya    | -       | Kuantitas final disetujui         |
@@ -674,6 +704,7 @@ UNIQUE (`rko_id`, `obat_id`).
 | id            | bigint      | Tidak | -       | PK                                              |
 | nomor         | varchar(50) | Tidak | -       | UNIQUE                                          |
 | fasilitas_id  | bigint      | Tidak | -       | FK ke fasilitas.id                              |
+| resep_id      | bigint      | Ya    | -       | FK ke resep.id                                  |
 | tanggal       | date        | Tidak | -       | Tanggal pelayanan                               |
 | jenis_layanan | varchar(30) | Tidak | -       | rawat_jalan, rawat_inap, ugd, posyandu, lainnya |
 | diagnosa_id   | bigint      | Ya    | -       | FK ke diagnosa.id                               |
@@ -810,7 +841,126 @@ INDEX (`fasilitas_id`, `tingkat`).
 
 ---
 
-## 16. Nilai Enum Baku
+## 16. Entitas Pendukung
+
+### 16.1 Tabel pemusnahan
+
+| Kolom                 | Tipe         | Null  | Default | Keterangan                       |
+| --------------------- | ------------ | ----- | ------- | -------------------------------- |
+| id                    | bigint       | Tidak | -       | PK                               |
+| lokasi_penyimpanan_id | bigint       | Tidak | -       | FK ke lokasi_penyimpanan.id      |
+| nomor                 | varchar(50)  | Tidak | -       | UNIQUE                           |
+| tanggal               | date         | Tidak | -       | Tanggal pemusnahan               |
+| alasan                | varchar(255) | Tidak | -       | Rusak, kedaluwarsa, atau lainnya |
+| status                | varchar(20)  | Tidak | draf    | draf, diverifikasi, selesai      |
+| berita_acara_path     | varchar(255) | Ya    | -       | Berkas berita acara              |
+| disetujui_oleh        | bigint       | Ya    | -       | FK ke pengguna.id                |
+
+### 16.2 Tabel pemusnahan_item
+
+| Kolom         | Tipe         | Null  | Default | Keterangan            |
+| ------------- | ------------ | ----- | ------- | --------------------- |
+| id            | bigint       | Tidak | -       | PK                    |
+| pemusnahan_id | bigint       | Tidak | -       | FK ke pemusnahan.id   |
+| obat_id       | bigint       | Tidak | -       | FK ke obat.id         |
+| batch_id      | bigint       | Ya    | -       | FK ke batch.id        |
+| jumlah        | integer      | Tidak | 0       | Kuantitas dimusnahkan |
+| keterangan    | varchar(255) | Ya    | -       | Kondisi atau catatan  |
+
+### 16.3 Tabel retur
+
+| Kolom                 | Tipe         | Null  | Default | Keterangan                         |
+| --------------------- | ------------ | ----- | ------- | ---------------------------------- |
+| id                    | bigint       | Tidak | -       | PK                                 |
+| lokasi_penyimpanan_id | bigint       | Tidak | -       | FK ke lokasi_penyimpanan.id        |
+| nomor                 | varchar(50)  | Tidak | -       | UNIQUE                             |
+| tanggal               | date         | Tidak | -       | Tanggal retur                      |
+| jenis                 | varchar(20)  | Tidak | -       | unit_ke_gudang, gudang_ke_supplier |
+| status                | varchar(20)  | Tidak | draf    | draf, diajukan, diterima, ditolak  |
+| alasan                | varchar(255) | Ya    | -       | Alasan pengembalian                |
+
+### 16.4 Tabel retur_item
+
+| Kolom    | Tipe        | Null  | Default | Keterangan                |
+| -------- | ----------- | ----- | ------- | ------------------------- |
+| id       | bigint      | Tidak | -       | PK                        |
+| retur_id | bigint      | Tidak | -       | FK ke retur.id            |
+| obat_id  | bigint      | Tidak | -       | FK ke obat.id             |
+| batch_id | bigint      | Ya    | -       | FK ke batch.id            |
+| jumlah   | integer     | Tidak | 0       | Kuantitas diretur         |
+| kondisi  | varchar(50) | Ya    | -       | Baik, rusak, atau lainnya |
+
+### 16.5 Tabel resep
+
+| Kolom         | Tipe        | Null  | Default | Keterangan                                    |
+| ------------- | ----------- | ----- | ------- | --------------------------------------------- |
+| id            | bigint      | Tidak | -       | PK                                            |
+| fasilitas_id  | bigint      | Tidak | -       | FK ke fasilitas.id                            |
+| nomor         | varchar(50) | Tidak | -       | UNIQUE                                        |
+| tanggal       | date        | Tidak | -       | Tanggal resep                                 |
+| dokter_id     | bigint      | Tidak | -       | FK ke pengguna.id                             |
+| pasien_ref    | varchar(50) | Ya    | -       | Referensi pasien terenkripsi                  |
+| jenis_layanan | varchar(30) | Tidak | -       | rawat_jalan, rawat_inap, ugd, dll.            |
+| status        | varchar(20) | Tidak | draf    | draf, diajukan, ditelaah, diserahkan, ditolak |
+| catatan       | text        | Ya    | -       | Catatan telaah                                |
+
+### 16.6 Tabel resep_item
+
+| Kolom             | Tipe         | Null  | Default | Keterangan                  |
+| ----------------- | ------------ | ----- | ------- | --------------------------- |
+| id                | bigint       | Tidak | -       | PK                          |
+| resep_id          | bigint       | Tidak | -       | FK ke resep.id              |
+| obat_id           | bigint       | Tidak | -       | FK ke obat.id               |
+| jumlah            | integer      | Tidak | 0       | Kuantitas                   |
+| dosis             | varchar(100) | Ya    | -       | Aturan pakai                |
+| jenis             | varchar(20)  | Tidak | reguler | reguler, racikan            |
+| racikan_nama      | varchar(100) | Ya    | -       | Nama racikan                |
+| racikan_komposisi | json         | Ya    | -       | Komposisi bahan per bungkus |
+
+### 16.7 Tabel peringatan_stok
+
+| Kolom        | Tipe        | Null  | Default | Keterangan                                                |
+| ------------ | ----------- | ----- | ------- | --------------------------------------------------------- |
+| id           | bigint      | Tidak | -       | PK                                                        |
+| obat_id      | bigint      | Tidak | -       | FK ke obat.id                                             |
+| fasilitas_id | bigint      | Tidak | -       | FK ke fasilitas.id                                        |
+| jenis        | varchar(20) | Tidak | -       | stok, kedaluwarsa                                         |
+| tingkat      | varchar(20) | Tidak | -       | normal, waspada, kritis, kosong, kelebihan, sangat_kritis |
+| referensi_id | bigint      | Ya    | -       | batch.id untuk alert kedaluwarsa                          |
+| status       | varchar(20) | Tidak | aktif   | aktif, ditindaklanjuti, kedaluwarsa                       |
+| dibuat_at    | datetime    | Tidak | -       | Waktu deteksi                                             |
+
+### 16.8 Tabel laporan_jadwal
+
+| Kolom       | Tipe        | Null  | Default | Keterangan                                         |
+| ----------- | ----------- | ----- | ------- | -------------------------------------------------- |
+| id          | bigint      | Tidak | -       | PK                                                 |
+| pengguna_id | bigint      | Tidak | -       | FK ke pengguna.id                                  |
+| jenis       | varchar(30) | Tidak | -       | harian, bulanan, triwulanan, tahunan, sipnap, sipd |
+| frekuensi   | varchar(20) | Tidak | -       | harian, bulanan, triwulanan                        |
+| penerima    | json        | Ya    | -       | Daftar email penerima                              |
+| format      | varchar(10) | Tidak | pdf     | pdf, csv, xlsx                                     |
+| aktif       | boolean     | Tidak | true    | Status jadwal                                      |
+| next_run_at | datetime    | Ya    | -       | Jadwal pengiriman berikutnya                       |
+
+### 16.9 Tabel sync_queue
+
+| Kolom        | Tipe         | Null  | Default  | Keterangan                     |
+| ------------ | ------------ | ----- | -------- | ------------------------------ |
+| id           | bigint       | Tidak | -        | PK                             |
+| pengguna_id  | bigint       | Tidak | -        | FK ke pengguna.id              |
+| perangkat_id | varchar(100) | Ya    | -        | Identitas perangkat luring     |
+| entitas      | varchar(50)  | Tidak | -        | Nama entitas yang disinkronkan |
+| entitas_id   | varchar(50)  | Ya    | -        | ID lokal entitas               |
+| aksi         | varchar(20)  | Tidak | -        | create, update, delete         |
+| payload      | json         | Tidak | -        | Data yang dikirim              |
+| status       | varchar(20)  | Tidak | tertunda | tertunda, terkirim, gagal      |
+| percobaan    | smallint     | Tidak | 0        | Jumlah percobaan sinkronisasi  |
+| created_at   | datetime     | Tidak | -        | Waktu antrean dibuat           |
+
+---
+
+## 17. Nilai Enum Baku
 
 | Kolom                       | Nilai yang Diizinkan                                                                                                           |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -820,7 +970,7 @@ INDEX (`fasilitas_id`, `tingkat`).
 | `obat.golongan`             | bebas, bebas_terbatas, keras, psikotropika, narkotika, alkes, bmhp                                                             |
 | `pengguna.status`           | aktif, nonaktif, terkunci                                                                                                      |
 | `kontrak.status`            | draf, aktif, selesai, batal                                                                                                    |
-| `purchase_order.status`     | draf, disetujui, dikirim, sebagian, diterima, batal                                                                            |
+| `purchase_order.status`     | draf, menunggu_persetujuan, disetujui, dikirim, sebagian, diterima, batal                                                      |
 | `penerimaan.status`         | draf, diverifikasi, selesai, selisih                                                                                           |
 | `permintaan.status`         | draf, diajukan, disetujui, sebagian, ditolak, selesai                                                                          |
 | `pengiriman.status`         | disiapkan, dikirim, diterima, selisih                                                                                          |
@@ -833,10 +983,23 @@ INDEX (`fasilitas_id`, `tingkat`).
 | `pagu_anggaran.status`      | draf, aktif, ditutup                                                                                                           |
 | `mutasi_anggaran.jenis`     | komitmen, realisasi, realokasi, pembayaran                                                                                     |
 | `peringatan_dini.tingkat`   | info, waspada, kritis                                                                                                          |
+| `pemusnahan.status`         | draf, diverifikasi, selesai                                                                                                    |
+| `retur.jenis`               | unit_ke_gudang, gudang_ke_supplier                                                                                             |
+| `retur.status`              | draf, diajukan, diterima, ditolak                                                                                              |
+| `resep.status`              | draf, diajukan, ditelaah, diserahkan, ditolak                                                                                  |
+| `resep_item.jenis`          | reguler, racikan                                                                                                               |
+| `peringatan_stok.jenis`     | stok, kedaluwarsa                                                                                                              |
+| `peringatan_stok.tingkat`   | normal, waspada, kritis, kosong, kelebihan, sangat_kritis                                                                      |
+| `peringatan_stok.status`    | aktif, ditindaklanjuti, kedaluwarsa                                                                                            |
+| `laporan_jadwal.jenis`      | harian, bulanan, triwulanan, tahunan, sipnap, sipd                                                                             |
+| `laporan_jadwal.frekuensi`  | harian, bulanan, triwulanan                                                                                                    |
+| `laporan_jadwal.format`     | pdf, csv, xlsx                                                                                                                 |
+| `sync_queue.aksi`           | create, update, delete                                                                                                         |
+| `sync_queue.status`         | tertunda, terkirim, gagal                                                                                                      |
 
 ---
 
-## 17. Indeks yang Direkomendasikan
+## 18. Indeks yang Direkomendasikan
 
 | Tabel              | Indeks                                           | Alasan                         |
 | ------------------ | ------------------------------------------------ | ------------------------------ |
@@ -858,7 +1021,7 @@ INDEX (`fasilitas_id`, `tingkat`).
 
 ---
 
-## 18. Strategi Foreign Key
+## 19. Strategi Foreign Key
 
 | Relasi                               | Aturan      | Alasan                          |
 | ------------------------------------ | ----------- | ------------------------------- |
@@ -874,21 +1037,21 @@ penyesuaian agar jejak audit tetap utuh.
 
 ---
 
-## 19. Seed Data Wajib
+## 20. Seed Data Wajib
 
-| Data               | Isi Minimal                                                                                                            |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| Peran              | ADMIN_DINKES, KEPALA_DINAS, KEPALA_BIDANG, APOTEKER_GUDANG, APOTEKER_PUSKESMAS, DIREKTUR_RSUD, PETUGAS_GUDANG, AUDITOR |
-| Satuan             | Tablet, Kapsul, Vial, Ampul, Botol, Sachet, Strip, Box                                                                 |
-| Kategori obat      | Antibiotik, Analgesik, Antihipertensi, Antidiabetik, Vitamin, BMHP                                                     |
-| Fasilitas          | Dinas Kesehatan dan satu contoh RSUD                                                                                   |
-| Lokasi penyimpanan | Gudang Farmasi Pusat dan satu ruang obat contoh                                                                        |
-| Formularium        | Formularium dasar Puskesmas dan RSUD                                                                                   |
-| Pengguna awal      | Satu administrator dengan 2FA aktif                                                                                    |
+| Data               | Isi Minimal                                                                                                                                                                                                                  |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Peran              | ADMIN_DINKES, KEPALA_DINAS, KEPALA_BIDANG, APOTEKER_GUDANG, APOTEKER_PUSKESMAS, APOTEKER_RSUD, DIREKTUR_RSUD, KEPALA_PUSKESMAS, PETUGAS_GUDANG, PETUGAS_FARMASI, DOKTER, PEJABAT_PENGADAAN, PEJABAT_KEUANGAN, KURIR, AUDITOR |
+| Satuan             | Tablet, Kapsul, Vial, Ampul, Botol, Sachet, Strip, Box                                                                                                                                                                       |
+| Kategori obat      | Antibiotik, Analgesik, Antihipertensi, Antidiabetik, Vitamin, BMHP                                                                                                                                                           |
+| Fasilitas          | Dinas Kesehatan dan satu contoh RSUD                                                                                                                                                                                         |
+| Lokasi penyimpanan | Gudang Farmasi Pusat dan satu ruang obat contoh                                                                                                                                                                              |
+| Formularium        | Formularium dasar Puskesmas dan RSUD                                                                                                                                                                                         |
+| Pengguna awal      | Satu administrator dengan 2FA aktif                                                                                                                                                                                          |
 
 ---
 
-## 20. Dokumen Terkait
+## 21. Dokumen Terkait
 
 | Dokumen                | Isi                                     | Status   |
 | ---------------------- | --------------------------------------- | -------- |

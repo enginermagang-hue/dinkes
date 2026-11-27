@@ -2,13 +2,13 @@
 
 | Atribut        | Nilai                          |
 | -------------- | ------------------------------ |
-| Versi Dokumen  | 1.0 (Draft)                    |
+| Versi Dokumen  | 1.1 (Draft)                    |
 | Status         | Untuk direview                 |
 | Pemilik Teknis | Tim Pengembangan               |
-| Tanggal        | 24 November 2026               |
-| PRD Rujukan    | `docs/PRD.md` versi 1.6        |
-| Data Model     | `docs/DATA-MODEL.md` versi 1.1 |
-| Tech Stack     | `docs/TECH-STACK.md` versi 1.2 |
+| Tanggal        | 27 November 2026               |
+| PRD Rujukan    | `docs/PRD.md` versi 1.7        |
+| Data Model     | `docs/DATA-MODEL.md` versi 1.2 |
+| Tech Stack     | `docs/TECH-STACK.md` versi 1.3 |
 | Target Pembaca | Developer, Frontend, QA        |
 
 Dokumen ini mendefinisikan kontrak API internal yang dipakai frontend SMSOD (Blade,
@@ -34,6 +34,21 @@ Alpine.js, Axios) untuk berkomunikasi dengan backend Laravel. Integrasi ke siste
 | Uang            | Bilangan bulat rupiah tanpa desimal                            |
 | Rate limit      | 60 permintaan per menit, login 5 per menit                     |
 | Versi           | Perubahan merusak kompatibilitas naik ke `/api/v2`             |
+
+### 1.1 Peta Label Akses ke Kode Peran
+
+| Label            | Kode Peran                                               |
+| ---------------- | -------------------------------------------------------- |
+| Admin Dinas      | `ADMIN_DINKES`                                           |
+| Kepala Dinas     | `KEPALA_DINAS`                                           |
+| Kepala Bidang    | `KEPALA_BIDANG`                                          |
+| Gudang Dinas     | `APOTEKER_GUDANG`                                        |
+| Puskesmas        | `APOTEKER_PUSKESMAS`, `KEPALA_PUSKESMAS`                 |
+| Apoteker         | `APOTEKER_GUDANG`, `APOTEKER_PUSKESMAS`, `APOTEKER_RSUD` |
+| Pejabat          | `PEJABAT_PENGADAAN`                                      |
+| Pejabat Keuangan | `PEJABAT_KEUANGAN`                                       |
+| Operator         | `KEPALA_BIDANG`, `APOTEKER_GUDANG`                       |
+| Auditor          | `AUDITOR`                                                |
 
 ---
 
@@ -113,6 +128,8 @@ Alpine.js, Axios) untuk berkomunikasi dengan backend Laravel. Integrasi ke siste
 | POST   | `/auth/password/reset`     | Publik         | Reset kata sandi           |
 | POST   | `/auth/2fa/enable`         | Terautentikasi | Aktifkan 2FA               |
 | POST   | `/auth/2fa/disable`        | Terautentikasi | Nonaktifkan 2FA            |
+| GET    | `/auth/google/login`       | Publik         | Mulai login Google         |
+| GET    | `/auth/google/callback`    | Publik         | Callback login Google      |
 | GET    | `/auth/google/redirect`    | Terautentikasi | Mulai tautkan Google       |
 | POST   | `/auth/google/link`        | Terautentikasi | Simpan tautan akun Google  |
 | DELETE | `/auth/google/link`        | Terautentikasi | Lepas tautan Google        |
@@ -280,22 +297,22 @@ Penyesuaian manual:
 
 ## 7. Pengadaan
 
-| Metode | Endpoint                       | Akses           | Keterangan        |
-| ------ | ------------------------------ | --------------- | ----------------- |
-| GET    | `/kontrak`                     | Gudang Dinas    | Daftar kontrak    |
-| POST   | `/kontrak`                     | Gudang Dinas    | Buat kontrak      |
-| GET    | `/kontrak/{id}`                | Gudang Dinas    | Detail kontrak    |
-| PUT    | `/kontrak/{id}`                | Gudang Dinas    | Ubah kontrak      |
-| GET    | `/purchase-order`              | Gudang Dinas    | Daftar PO         |
-| POST   | `/purchase-order`              | Pejabat         | Buat PO           |
-| GET    | `/purchase-order/{id}`         | Gudang Dinas    | Detail PO         |
-| POST   | `/purchase-order/{id}/setujui` | Kepala Bidang   | Setujui PO        |
-| POST   | `/purchase-order/{id}/batal`   | Kepala Bidang   | Batalkan PO       |
-| GET    | `/penerimaan`                  | Gudang Dinas    | Daftar penerimaan |
-| POST   | `/penerimaan`                  | Petugas Gudang  | Catat penerimaan  |
-| GET    | `/penerimaan/{id}`             | Gudang Dinas    | Detail penerimaan |
-| POST   | `/penerimaan/{id}/verifikasi`  | Apoteker Gudang | Verifikasi mutu   |
-| POST   | `/penerimaan/{id}/selesai`     | Apoteker Gudang | Tutup penerimaan  |
+| Metode | Endpoint                       | Akses               | Keterangan                            |
+| ------ | ------------------------------ | ------------------- | ------------------------------------- |
+| GET    | `/kontrak`                     | Gudang Dinas        | Daftar kontrak                        |
+| POST   | `/kontrak`                     | Gudang Dinas        | Buat kontrak                          |
+| GET    | `/kontrak/{id}`                | Gudang Dinas        | Detail kontrak                        |
+| PUT    | `/kontrak/{id}`                | Gudang Dinas        | Ubah kontrak                          |
+| GET    | `/purchase-order`              | Gudang Dinas        | Daftar PO                             |
+| POST   | `/purchase-order`              | Pejabat             | Buat PO                               |
+| GET    | `/purchase-order/{id}`         | Gudang Dinas        | Detail PO                             |
+| POST   | `/purchase-order/{id}/setujui` | Kepala Bidang/Dinas | Setujui PO (Dinas bila > Rp 200 juta) |
+| POST   | `/purchase-order/{id}/batal`   | Kepala Bidang       | Batalkan PO                           |
+| GET    | `/penerimaan`                  | Gudang Dinas        | Daftar penerimaan                     |
+| POST   | `/penerimaan`                  | Petugas Gudang      | Catat penerimaan                      |
+| GET    | `/penerimaan/{id}`             | Gudang Dinas        | Detail penerimaan                     |
+| POST   | `/penerimaan/{id}/verifikasi`  | Apoteker Gudang     | Verifikasi mutu                       |
+| POST   | `/penerimaan/{id}/selesai`     | Apoteker Gudang     | Tutup penerimaan                      |
 
 ```json
 {
@@ -323,19 +340,24 @@ dalam satu transaksi basis data.
 
 ## 8. Distribusi
 
-| Metode | Endpoint                   | Akses          | Keterangan                  |
-| ------ | -------------------------- | -------------- | --------------------------- |
-| GET    | `/permintaan`              | Semua          | Daftar permintaan           |
-| POST   | `/permintaan`              | Puskesmas      | Buat permintaan             |
-| GET    | `/permintaan/{id}`         | Semua          | Detail permintaan           |
-| POST   | `/permintaan/{id}/ajukan`  | Puskesmas      | Ajukan ke Dinas             |
-| POST   | `/permintaan/{id}/setujui` | Gudang Dinas   | Setujui sebagian atau penuh |
-| POST   | `/permintaan/{id}/tolak`   | Gudang Dinas   | Tolak dengan alasan         |
-| GET    | `/pengiriman`              | Semua          | Daftar pengiriman           |
-| POST   | `/pengiriman`              | Gudang Dinas   | Buat pengiriman             |
-| GET    | `/pengiriman/{id}`         | Semua          | Detail pengiriman           |
-| POST   | `/pengiriman/{id}/kirim`   | Petugas Gudang | Tandai dikirim              |
-| POST   | `/pengiriman/{id}/terima`  | Puskesmas      | Konfirmasi penerimaan       |
+| Metode | Endpoint                     | Akses          | Keterangan                  |
+| ------ | ---------------------------- | -------------- | --------------------------- |
+| GET    | `/permintaan`                | Semua          | Daftar permintaan           |
+| POST   | `/permintaan`                | Puskesmas      | Buat permintaan             |
+| GET    | `/permintaan/{id}`           | Semua          | Detail permintaan           |
+| POST   | `/permintaan/{id}/ajukan`    | Puskesmas      | Ajukan ke Dinas             |
+| POST   | `/permintaan/{id}/setujui`   | Gudang Dinas   | Setujui sebagian atau penuh |
+| POST   | `/permintaan/{id}/tolak`     | Gudang Dinas   | Tolak dengan alasan         |
+| GET    | `/pengiriman`                | Semua          | Daftar pengiriman           |
+| POST   | `/pengiriman`                | Gudang Dinas   | Buat pengiriman             |
+| GET    | `/pengiriman/{id}`           | Semua          | Detail pengiriman           |
+| POST   | `/pengiriman/{id}/kirim`     | Petugas Gudang | Tandai dikirim              |
+| POST   | `/pengiriman/{id}/terima`    | Puskesmas      | Konfirmasi penerimaan       |
+| GET    | `/redistribusi`              | Semua          | Daftar usulan redistribusi  |
+| POST   | `/redistribusi`              | Gudang Dinas   | Ajukan redistribusi         |
+| POST   | `/redistribusi/{id}/setujui` | Kepala Bidang  | Setujui redistribusi        |
+| POST   | `/redistribusi/{id}/kirim`   | Petugas Gudang | Tandai dikirim              |
+| POST   | `/redistribusi/{id}/terima`  | Puskesmas      | Konfirmasi penerimaan       |
 
 ```json
 {
@@ -430,6 +452,11 @@ Saat dibuat, sistem mengisi `stok_awal`, `stok_akhir`, dan `jumlah_pakai` dari a
 | POST   | `/penggunaan`               | Apoteker | Buat catatan pelayanan         |
 | GET    | `/penggunaan/{id}`          | Semua    | Detail dan item                |
 | POST   | `/penggunaan/{id}/serahkan` | Apoteker | Serahkan obat dan kurangi stok |
+| GET    | `/resep`                    | Semua    | Daftar resep elektronik        |
+| POST   | `/resep`                    | Dokter   | Buat resep elektronik          |
+| GET    | `/resep/{id}`               | Semua    | Detail resep dan racikan       |
+| POST   | `/resep/{id}/telaah`        | Apoteker | Telaah resep                   |
+| POST   | `/resep/{id}/serahkan`      | Apoteker | Serahkan obat dan kurangi stok |
 
 ```json
 {
@@ -450,21 +477,30 @@ Saat dibuat, sistem mengisi `stok_awal`, `stok_akhir`, dan `jumlah_pakai` dari a
 ```
 
 Penyerahan obat gagal dengan `STOK_001` bila saldo tidak mencukupi. Permintaan tidak boleh
-membuat stok bernilai negatif.
+membuat stok bernilai negatif. Resep racikan dikirim melalui `POST /resep` dengan
+`resep_item.jenis = racikan` dan `racikan_komposisi` berisi bahan per bungkus.
 
 ---
 
 ## 12. Pengendalian
 
-| Metode | Endpoint                              | Akses          | Keterangan                   |
-| ------ | ------------------------------------- | -------------- | ---------------------------- |
-| GET    | `/opname`                             | Semua          | Daftar sesi opname           |
-| POST   | `/opname`                             | Petugas Gudang | Mulai sesi opname            |
-| GET    | `/opname/{id}`                        | Semua          | Detail dan item opname       |
-| POST   | `/opname/{id}/item`                   | Petugas Gudang | Input hasil hitung fisik     |
-| POST   | `/opname/{id}/selesai`                | Apoteker       | Tutup dan sesuaikan stok     |
-| GET    | `/peringatan-dini`                    | Semua          | Daftar peringatan aktif      |
-| POST   | `/peringatan-dini/{id}/tindak-lanjut` | Apoteker       | Tandai sudah ditindaklanjuti |
+| Metode | Endpoint                              | Akses           | Keterangan                     |
+| ------ | ------------------------------------- | --------------- | ------------------------------ |
+| GET    | `/opname`                             | Semua           | Daftar sesi opname             |
+| POST   | `/opname`                             | Petugas Gudang  | Mulai sesi opname              |
+| GET    | `/opname/{id}`                        | Semua           | Detail dan item opname         |
+| POST   | `/opname/{id}/item`                   | Petugas Gudang  | Input hasil hitung fisik       |
+| POST   | `/opname/{id}/selesai`                | Apoteker        | Tutup dan sesuaikan stok       |
+| GET    | `/peringatan-stok`                    | Semua           | Alert stok dan kedaluwarsa     |
+| POST   | `/peringatan-stok/{id}/tindak-lanjut` | Apoteker        | Tandai ditindaklanjuti         |
+| GET    | `/pemusnahan`                         | Semua           | Daftar berita acara pemusnahan |
+| POST   | `/pemusnahan`                         | Apoteker        | Buat pemusnahan                |
+| POST   | `/pemusnahan/{id}/verifikasi`         | Kepala Bidang   | Verifikasi pemusnahan          |
+| GET    | `/retur`                              | Semua           | Daftar retur                   |
+| POST   | `/retur`                              | Apoteker        | Buat retur                     |
+| POST   | `/retur/{id}/verifikasi`              | Apoteker Gudang | Verifikasi retur               |
+| GET    | `/peringatan-dini`                    | Semua           | Daftar peringatan aktif        |
+| POST   | `/peringatan-dini/{id}/tindak-lanjut` | Apoteker        | Tandai sudah ditindaklanjuti   |
 
 ```json
 {
@@ -550,15 +586,23 @@ setelah event `PrediksiSelesai` dikirim.
 
 ## 15. Laporan dan Ekspor
 
-| Metode | Endpoint                  | Akses    | Keterangan                         |
-| ------ | ------------------------- | -------- | ---------------------------------- |
-| GET    | `/laporan/stok`           | Semua    | Rekap stok per lokasi              |
-| GET    | `/laporan/mutasi`         | Semua    | Rekap mutasi per periode           |
-| GET    | `/laporan/ketersediaan`   | Semua    | Availability rate per fasilitas    |
-| GET    | `/laporan/kedaluwarsa`    | Semua    | Daftar batch mendekati kedaluwarsa |
-| GET    | `/laporan/sipnap`         | Operator | Unduh CSV format SIPNAP            |
-| GET    | `/laporan/sipd`           | Operator | Unduh Excel format SIPD            |
-| GET    | `/laporan/lplpo/{id}/pdf` | Semua    | Unduh LPLPO resmi                  |
+| Metode | Endpoint                     | Akses         | Keterangan                         |
+| ------ | ---------------------------- | ------------- | ---------------------------------- |
+| GET    | `/laporan/stok`              | Semua         | Rekap stok per lokasi              |
+| GET    | `/laporan/mutasi`            | Semua         | Rekap mutasi per periode           |
+| GET    | `/laporan/ketersediaan`      | Semua         | Availability rate per fasilitas    |
+| GET    | `/laporan/kedaluwarsa`       | Semua         | Daftar batch mendekati kedaluwarsa |
+| GET    | `/laporan/sipnap`            | Operator      | Unduh CSV format SIPNAP            |
+| GET    | `/laporan/sipd`              | Operator      | Unduh Excel format SIPD            |
+| GET    | `/laporan/lplpo/{id}/pdf`    | Semua         | Unduh LPLPO resmi                  |
+| GET    | `/laporan/abc-ven`           | Semua         | Analisis ABC-VEN per periode       |
+| GET    | `/laporan/realisasi-rko`     | Semua         | Realisasi RKO triwulanan           |
+| GET    | `/laporan/pemusnahan`        | Semua         | Rekap pemusnahan dan berita acara  |
+| GET    | `/laporan/kinerja-fasilitas` | Semua         | Peringkat kinerja fasilitas        |
+| GET    | `/laporan/jadwal`            | Semua         | Daftar jadwal ekspor otomatis      |
+| POST   | `/laporan/jadwal`            | Kepala Bidang | Buat jadwal ekspor                 |
+| PUT    | `/laporan/jadwal/{id}`       | Kepala Bidang | Ubah jadwal ekspor                 |
+| DELETE | `/laporan/jadwal/{id}`       | Kepala Bidang | Hapus jadwal ekspor                |
 
 Endpoint unduhan mengembalikan `Content-Disposition: attachment` dengan tipe berkas yang
 sesuai. Contoh respons galat bila periode belum tersedia:
@@ -596,6 +640,17 @@ Kanal Reverb bersifat privat dan diautorisasi per pengguna atau per fasilitas.
   }
 }
 ```
+
+### 16.1 Sinkronisasi Luring
+
+| Metode | Endpoint       | Akses          | Keterangan                      |
+| ------ | -------------- | -------------- | ------------------------------- |
+| POST   | `/sync/push`   | Terautentikasi | Kirim antrean transaksi luring  |
+| GET    | `/sync/pull`   | Terautentikasi | Ambil perubahan master dan stok |
+| GET    | `/sync/status` | Terautentikasi | Status antrean per perangkat    |
+
+`POST /sync/push` menerima array transaksi dengan `Idempotency-Key` per item. Transaksi yang
+sudah pernah diterima dilewati tanpa menggandakan mutasi stok.
 
 ---
 
