@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Konfirmasi Penerimaan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="distribusi" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Distribusi</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <a href="detail.html" class="hover:text-brand-600">DO/2027/0035</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Konfirmasi penerimaan</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Konfirmasi Penerimaan</h1>
+              <p class="text-hint">DO/2027/0035 · Puskesmas A · 7 item · dikirim 8 Febuari 2027</p>
+            </div>
+            <span class="badge badge-brand">Dikirim</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Jumlah diterima boleh berbeda dari surat jalan.</p>
+            <p class="mt-1">
+              Selisih wajib disertai alasan. Stok fasilitas bertambah dan mutasi keluar gudang
+              tercatat setelah konfirmasi disimpan.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item Diterima</h2>
+                    <p class="text-hint">Isi jumlah fisik yang benar-benar diterima.</p>
+                  </div>
+                  <span class="text-hint">7 item · 2 disembunyikan</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Dikirim</th>
+                        <th class="num">Diterima</th>
+                        <th class="num">Selisih</th>
+                        <th>Kondisi</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">Batch AMX2401 · exp 31-12-2028</p>
+                        </td>
+                        <td class="num">400</td>
+                        <td class="num"><input type="number" value="400" min="0" max="400" class="field w-24 text-right" aria-label="Diterima Amoksisilin" /></td>
+                        <td class="num">0</td>
+                        <td>
+                          <select class="field w-full" aria-label="Kondisi Amoksisilin">
+                            <option>Baik</option>
+                            <option>Rusak</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Parasetamol 500 mg</p>
+                          <p class="text-hint">Batch PCS2402 · exp 31-03-2029</p>
+                        </td>
+                        <td class="num">500</td>
+                        <td class="num"><input type="number" value="500" min="0" max="500" class="field w-24 text-right" aria-label="Diterima Parasetamol" /></td>
+                        <td class="num">0</td>
+                        <td>
+                          <select class="field w-full" aria-label="Kondisi Parasetamol">
+                            <option>Baik</option>
+                            <option>Rusak</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Salbutamol Inhaler</p>
+                          <p class="text-hint">Batch SLB2403 · exp 31-08-2028</p>
+                        </td>
+                        <td class="num">15</td>
+                        <td class="num"><input type="number" value="13" min="0" max="15" class="field field-warning w-24 text-right" aria-label="Diterima Salbutamol" /></td>
+                        <td class="num text-rose-600">-2</td>
+                        <td>
+                          <select class="field w-full" aria-label="Kondisi Salbutamol">
+                            <option>Baik</option>
+                            <option>Rusak</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Vitamin A Kapsul</p>
+                          <p class="text-hint">Batch VTA2401 · exp 30-11-2028</p>
+                        </td>
+                        <td class="num">100</td>
+                        <td class="num"><input type="number" value="100" min="0" max="100" class="field w-24 text-right" aria-label="Diterima Vitamin A" /></td>
+                        <td class="num">0</td>
+                        <td>
+                          <select class="field w-full" aria-label="Kondisi Vitamin A">
+                            <option>Baik</option>
+                            <option>Rusak</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Insulin Glargine</p>
+                          <p class="text-hint">Batch IG2404 · exp 31-05-2029</p>
+                        </td>
+                        <td class="num">10</td>
+                        <td class="num"><input type="number" value="10" min="0" max="10" class="field w-24 text-right" aria-label="Diterima Insulin" /></td>
+                        <td class="num">0</td>
+                        <td>
+                          <select class="field w-full" aria-label="Kondisi Insulin">
+                            <option>Baik</option>
+                            <option>Rusak</option>
+                          </select>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Dua item lain (Metformin, Oralit) diterima lengkap.</p>
+                  <span class="badge badge-warning">1 item selisih</span>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Catatan Selisih</h2>
+                  <span class="badge badge-warning">Wajib</span>
+                </div>
+                <div class="card-body space-y-3">
+                  <div>
+                    <label class="field-label" for="selisih-alasan">Alasan Salbutamol kurang 2 botol</label>
+                    <textarea id="selisih-alasan" rows="2" class="field field-warning w-full">Dua botol pecah saat pengangkutan dan dikembalikan ke gudang.</textarea>
+                    <p class="field-warning-text">Selisih dicatat, stok yang diterima tetap 13 botol.</p>
+                  </div>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span class="text-sm">Buat berita acara selisih untuk ditandatangani kedua pihak.</span>
+                  </label>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Penerima</h2>
+                  <span class="text-hint">Puskesmas A</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="penerima-nama">Nama penerima</label>
+                    <input id="penerima-nama" value="Ratna, S.Farm., Apt." class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="penerima-tanggal">Tanggal terima</label>
+                    <input id="penerima-tanggal" type="date" data-date value="2027-02-08" class="field w-full" />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="penerima-catatan">Catatan tambahan</label>
+                    <textarea id="penerima-catatan" rows="2" class="field w-full"></textarea>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label">Tanda tangan penerima</label>
+                    <canvas data-signature class="signature w-full"></canvas>
+                    <div class="mt-2 flex justify-end">
+                      <button data-signature-clear class="btn btn-outline btn-xs">Hapus tanda tangan</button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan Penerimaan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total dikirim</dt>
+                    <dd class="font-medium">2.900</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total diterima</dt>
+                    <dd class="font-medium">2.898</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Selisih</dt>
+                    <dd class="font-medium text-rose-600">-2</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Status setelah simpan</dt>
+                    <dd><span class="badge badge-warning">Diterima sebagian</span></dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <a href="detail.html" class="btn btn-outline btn-sm">Batal</a>
+                  <button data-toast="Penerimaan DO/2027/0035 dikonfirmasi dengan selisih (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Konfirmasi penerimaan</button>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Dampak stok</h2>
+                <p class="mt-2">
+                  Mutasi masuk dibuat untuk 2.898 unit. Selisih 2 unit dicatat sebagai pengurangan
+                  tanggung jawab kurir setelah berita acara disetujui.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

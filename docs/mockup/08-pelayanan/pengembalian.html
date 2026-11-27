@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pengembalian Obat - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pelayanan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pelayanan</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Pengembalian obat</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Pengembalian Obat dari Unit</h1>
+              <p class="text-hint">Puskesmas A · 29 Januari 2027 · retur rawat inap dan UGD</p>
+            </div>
+            <span class="badge badge-neutral">Draf</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Pengembalian menambah stok kembali, kecuali obat rusak.</p>
+            <p class="mt-1">
+              Obat rusak atau kedaluwarsa tidak kembali ke stok layak; dicatat ke karantina atau
+              jalur pemusnahan beserta berita acara.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Data Pengembalian</h2>
+                  <span class="text-hint">RET/2027/0004</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="ret-tanggal">Tanggal pengembalian</label>
+                    <input id="ret-tanggal" type="date" data-date value="2027-01-29" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="ret-unit">Unit asal</label>
+                    <select id="ret-unit" class="field w-full">
+                      <option>Rawat inap</option>
+                      <option>UGD</option>
+                      <option>Poli umum</option>
+                      <option>Posyandu</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="ret-pasien">Pasien (pseudonim)</label>
+                    <input id="ret-pasien" value="P-00090" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="ret-alasan">Alasan pengembalian</label>
+                    <select id="ret-alasan" class="field w-full">
+                      <option>Pasien pulang sebelum obat habis</option>
+                      <option>Salah resep / obat tidak jadi dipakai</option>
+                      <option>Obat rusak</option>
+                      <option>Obat kedaluwarsa</option>
+                    </select>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="ret-catatan">Catatan</label>
+                    <textarea id="ret-catatan" rows="2" class="field w-full">Retur dari rawat inap setelah pasien pulang, dua vial Insulin rusak karena cold chain terputus.</textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item Dikembalikan</h2>
+                    <p class="text-hint">Tentukan tujuan tiap item: stok layak, karantina, atau musnah.</p>
+                  </div>
+                  <button data-toast="Formulir tambah item retur dibuka (mockup)" class="btn btn-outline btn-xs flex gap-2">
+                    <i class="ri-add-line icon-xs" aria-hidden="true"></i>
+                    Tambah item
+                  </button>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th>Batch</th>
+                        <th>Kedaluwarsa</th>
+                        <th class="num">Jumlah</th>
+                        <th>Kondisi</th>
+                        <th>Tujuan</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Tablet</p>
+                        </td>
+                        <td class="font-mono text-xs">AMX2401</td>
+                        <td>31-12-2028</td>
+                        <td class="num">6</td>
+                        <td><span class="badge badge-success">Baik</span></td>
+                        <td><span class="badge badge-brand">Stok layak</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Insulin Glargine</p>
+                          <p class="text-hint">OBT-008 · Vial</p>
+                        </td>
+                        <td class="font-mono text-xs">IG2404</td>
+                        <td>31-05-2029</td>
+                        <td class="num">2</td>
+                        <td><span class="badge badge-danger">Rusak</span></td>
+                        <td><span class="badge badge-warning">Musnah</span></td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="3">Total 2 item</td>
+                        <td class="num font-semibold">8</td>
+                        <td colspan="2"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Item tujuan musnah memerlukan berita acara pemusnahan.</p>
+                  <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Verifikasi Penerimaan Retur</h2>
+                  <span class="badge badge-neutral">Oleh apoteker</span>
+                </div>
+                <div class="card-body space-y-2">
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Jumlah fisik sesuai dengan yang dicatat</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Batch dan kedaluwarsa cocok dengan kartu stok</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Kondisi obat diperiksa dan dipisahkan sesuai tujuan</span>
+                  </label>
+                  <div class="mt-2">
+                    <label class="field-label" for="ret-verifikator">Diverifikasi oleh</label>
+                    <input id="ret-verifikator" value="Dewi, S.Farm., Apt." readonly class="field w-full" />
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan Retur</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah item</dt>
+                    <dd class="font-medium">2</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total unit</dt>
+                    <dd class="font-medium">8</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Kembali ke stok layak</dt>
+                    <dd class="font-medium">6</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Ke pemusnahan</dt>
+                    <dd class="font-medium text-rose-600">2</dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf pengembalian RET/2027/0004 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <button data-toast="Pengembalian dikonfirmasi dan stok diperbarui (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Konfirmasi</button>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Jangan campur batch</h2>
+                <p class="mt-2">
+                  Obat kembali harus masuk ke batch asalnya. Pencampuran batch membuat penelusuran
+                  kedaluwarsa tidak akurat.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Riwayat Pengembalian</h2>
+                <p class="text-hint">Tiga retur terakhir di fasilitas ini.</p>
+              </div>
+              <a href="rekap.html" class="btn btn-outline btn-xs">Lihat rekap</a>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <th>Tanggal</th>
+                    <th>Unit Asal</th>
+                    <th>Obat</th>
+                    <th class="num">Jumlah</th>
+                    <th>Tujuan</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">RET/2027/0003</td>
+                    <td>2027-01-26</td>
+                    <td>Rawat inap</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num">12</td>
+                    <td>Stok layak</td>
+                    <td><span class="badge badge-success">Diterima</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">RET/2027/0002</td>
+                    <td>2027-01-22</td>
+                    <td>UGD</td>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="num">3</td>
+                    <td>Stok layak</td>
+                    <td><span class="badge badge-success">Diterima</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">RET/2027/0001</td>
+                    <td>2027-01-18</td>
+                    <td>Poli umum</td>
+                    <td>Insulin Glargine</td>
+                    <td class="num">2</td>
+                    <td>Musnah</td>
+                    <td><span class="badge badge-warning">Menunggu verifikasi</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

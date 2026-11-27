@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resep Racikan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pelayanan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pelayanan</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Resep racikan</span>
+              </nav>
+              <div class="flex flex-wrap items-center gap-2">
+                <h1 class="text-xl font-semibold">Resep Racikan</h1>
+                <span class="badge badge-neutral">Draf</span>
+              </div>
+              <p class="text-hint">
+                PLY/2027/01/0009 · pasien P-00140 · 8 tahun · diagnosa J06.9 ISPA
+              </p>
+            </div>
+            <span class="badge badge-brand">Racikan puyer</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Setiap racikan wajib mencantumkan komposisi bahan.</p>
+            <p class="mt-1">
+              Dosis dihitung per bungkus. Riwayat bahan dan batch tetap tercatat untuk kebutuhan
+              penelusuran dan pengembalian.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Data Racikan</h2>
+                  <span class="text-hint">PLY/2027/01/0009</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="rc-pasien">Pasien (pseudonim)</label>
+                    <input id="rc-pasien" value="P-00140" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="rc-usia">Usia</label>
+                    <input id="rc-usia" value="8 tahun" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="rc-diagnosa">Diagnosa</label>
+                    <select id="rc-diagnosa" class="field w-full">
+                      <option>J06.9 ISPA</option>
+                      <option>A09 Diare</option>
+                      <option>E11 DM tipe 2</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rc-dokter">Dokter penulis resep</label>
+                    <select id="rc-dokter" class="field w-full">
+                      <option>dr. Siti Rahma</option>
+                      <option>dr. Ahmad Fauzi</option>
+                      <option>dr. Bayu Prakoso</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rc-bentuk">Bentuk sediaan</label>
+                    <select id="rc-bentuk" class="field w-full">
+                      <option>Puyer</option>
+                      <option>Kapsul</option>
+                      <option>Salep</option>
+                      <option>Sirup</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rc-jumlah">Jumlah bungkus</label>
+                    <div class="qty" data-qty>
+                      <button type="button" data-qty-step="-1" aria-label="Kurangi bungkus">
+                        <i class="ri-subtract-line icon-sm" aria-hidden="true"></i>
+                      </button>
+                      <input id="rc-jumlah" type="number" value="30" min="0" aria-label="Jumlah bungkus" />
+                      <button type="button" data-qty-step="1" aria-label="Tambah bungkus">
+                        <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="rc-signa">Signa / aturan pakai</label>
+                    <input id="rc-signa" value="3 × 1 bungkus sesudah makan" class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Komposisi Bahan</h2>
+                    <p class="text-hint">Dosis per bungkus dan total bahan yang dipakai.</p>
+                  </div>
+                  <button data-toast="Formulir tambah bahan dibuka (mockup)" class="btn btn-outline btn-xs flex gap-2">
+                    <i class="ri-add-line icon-xs" aria-hidden="true"></i>
+                    Tambah bahan
+                  </button>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Bahan</th>
+                        <th>Dosis per Bungkus</th>
+                        <th class="num">Total Dipakai</th>
+                        <th>Batch</th>
+                        <th class="num">Stok Batch</th>
+                        <th>Validasi</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Parasetamol 500 mg</p>
+                          <p class="text-hint">OBT-002 · Tablet</p>
+                        </td>
+                        <td>125 mg (1/4 tablet)</td>
+                        <td class="num">8 tablet</td>
+                        <td class="font-mono text-xs">PCS2402</td>
+                        <td class="num">6.000</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Tablet</p>
+                        </td>
+                        <td>125 mg (1/4 tablet)</td>
+                        <td class="num">8 tablet</td>
+                        <td class="font-mono text-xs">AMX2401</td>
+                        <td class="num">4.360</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="2">Total 2 bahan · 30 bungkus</td>
+                        <td class="num font-semibold">16 tablet</td>
+                        <td colspan="3"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Pembulatan ke atas mengikuti satuan terkecil tablet.</p>
+                  <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Telaah Racikan</h2>
+                  <span class="badge badge-neutral">Wajib</span>
+                </div>
+                <div class="card-body space-y-2">
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Dosis per bungkus sesuai berat badan anak</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Tidak ada interaksi antar bahan racikan</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Bahan dapat dicampur dan stabil selama masa pakai</span>
+                  </label>
+                  <div class="mt-2">
+                    <label class="field-label" for="rc-catatan">Catatan racikan</label>
+                    <textarea id="rc-catatan" rows="2" class="field w-full">Puyer dibagi 30 bungkus, beri label nama pasien dan aturan pakai.</textarea>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan Racikan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Bentuk</dt>
+                    <dd class="font-medium">Puyer</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah bungkus</dt>
+                    <dd class="font-medium">30</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah bahan</dt>
+                    <dd class="font-medium">2</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total tablet dipakai</dt>
+                    <dd class="font-medium">16</dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf racikan PLY/2027/01/0009 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <button data-toast="Racikan diserahkan dan stok diperbarui (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Serahkan racikan</button>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Penandaan</h2>
+                <p class="mt-2">
+                  Racikan wajib diberi etiket nama pasien, tanggal, jumlah bungkus, dan aturan
+                  pakai. Kesalahan penandaan termasuk Kejadian Tidak Diharapkan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

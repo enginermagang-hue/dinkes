@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail Pelayanan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pelayanan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Pelayanan</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>PLY/2027/01/0004</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">PLY/2027/01/0004</h1>
+                  <span class="badge badge-brand">Menunggu telaah</span>
+                </div>
+                <p class="text-hint">
+                  Rawat jalan · pasien P-00123 · diagnosa J06.9 ISPA · dr. Ahmad Fauzi ·
+                  28 Januari 2027 · 3 item
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-toast="Resep PLY/2027/01/0004 dicetak (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                  <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                  Cetak resep
+                </button>
+                <a href="pengembalian.html" class="btn btn-outline btn-sm">Pengembalian</a>
+                <button data-modal-open="#modal-serahkan" class="btn btn-primary btn-sm">Serahkan obat</button>
+              </div>
+            </div>
+          </div>
+
+          <section class="card card-body">
+            <div class="steps">
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Resep masuk</div>
+              <span class="step-line"></span>
+              <div class="step step-active"><span class="step-dot">2</span> Telaah</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">3</span> Diserahkan</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">4</span> Mutasi stok</div>
+            </div>
+            <p class="field-help">Stok berkurang hanya saat penyerahan dikonfirmasi.</p>
+          </section>
+
+          <section class="grid gap-4 xl:grid-cols-3">
+            <div class="card card-body">
+              <p class="kpi-label">Pasien</p>
+              <p class="mt-1 font-mono text-sm">P-00123</p>
+              <p class="field-help">Pseudonim · rawat jalan · 28 Jan 2027.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Diagnosa</p>
+              <p class="mt-1 font-medium">J06.9 ISPA</p>
+              <p class="field-help">Dokter penulis: dr. Ahmad Fauzi.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Status Stok</p>
+              <p class="mt-1 font-medium text-emerald-600">Cukup</p>
+              <p class="field-help">3 item tersedia pada batch FEFO.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Item Obat</h2>
+                <p class="text-hint">Batch mengikuti FEFO dan tidak boleh melebihi stok.</p>
+              </div>
+              <span class="text-hint">3 item · 31 unit</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th>Batch</th>
+                    <th>Kedaluwarsa</th>
+                    <th class="num">Jumlah</th>
+                    <th>Dosis</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>
+                      <p class="font-medium">Amoksisilin 500 mg</p>
+                      <p class="text-hint">OBT-001 · Tablet</p>
+                    </td>
+                    <td class="font-mono text-xs">AMX2401</td>
+                    <td>31-12-2028</td>
+                    <td class="num">15</td>
+                    <td>3 × 1 sesudah makan</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Parasetamol 500 mg</p>
+                      <p class="text-hint">OBT-002 · Tablet</p>
+                    </td>
+                    <td class="font-mono text-xs">PCS2402</td>
+                    <td>31-03-2029</td>
+                    <td class="num">15</td>
+                    <td>3 × 1 bila demam</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Salbutamol Inhaler</p>
+                      <p class="text-hint">OBT-007 · Inhaler</p>
+                    </td>
+                    <td class="font-mono text-xs">SLB2403</td>
+                    <td>31-08-2028</td>
+                    <td class="num">1</td>
+                    <td>2 × 1 semprot bila sesak</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                  </tr>
+                  <tr class="bg-slate-50">
+                    <td class="font-medium" colspan="3">Total 3 item</td>
+                    <td class="num font-semibold">31</td>
+                    <td colspan="2"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Obat tidak terlayani dicatat terpisah dengan alasan.</p>
+              <div class="flex flex-wrap gap-2">
+                <button data-toast="Obat tidak terlayani dicatat (mockup)" data-toast-type="warning" class="btn btn-outline btn-sm">Catat tidak terlayani</button>
+                <button data-modal-open="#modal-serahkan" class="btn btn-primary btn-sm">Serahkan obat</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Telaah Resep</h2>
+                <span class="badge badge-warning">2 dari 3 telaah selesai</span>
+              </div>
+              <div class="card-body space-y-2">
+                <label class="check">
+                  <input type="checkbox" checked />
+                  <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                  <span>Dosis sesuai berat badan dan usia — anak 12 tahun, 3 × 1 tablet</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" checked />
+                  <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                  <span>Tidak ada duplikasi terapi pada resep ini</span>
+                </label>
+                <label class="check">
+                  <input type="checkbox" />
+                  <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                  <span>Interaksi obat sudah diperiksa — menunggu konfirmasi apoteker</span>
+                </label>
+                <div class="mt-2">
+                  <label class="field-label" for="telaah-catatan">Catatan telaah</label>
+                  <textarea id="telaah-catatan" rows="2" class="field w-full">Edukasi penggunaan inhaler dan lama terapi antibiotik 5 hari.</textarea>
+                </div>
+                <p class="field-warning-text">Telaah belum lengkap; penyerahan sebaiknya menunggu konfirmasi.</p>
+              </div>
+              <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                <p class="text-hint">Riwayat telaah tercatat pada audit log.</p>
+                <button data-toast="Telaah resep disimpan (mockup)" class="btn btn-outline btn-sm">Simpan telaah</button>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Dokumen Terkait</h2>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li class="flex items-center justify-between gap-2">
+                  <span>Rekap pemakaian</span>
+                  <a href="rekap.html" class="hover:text-brand-600">Januari 2027</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Resep racikan</span>
+                  <a href="racikan.html" class="hover:text-brand-600">Contoh racikan</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Pengembalian</span>
+                  <a href="pengembalian.html" class="hover:text-brand-600">Catat retur</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Kartu stok</span>
+                  <a href="../03-stok/index.html" class="hover:text-brand-600">Batch AMX2401</a>
+                </li>
+              </ul>
+              <p class="field-help">Mutasi stok keluar dibuat otomatis saat obat diserahkan.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <h2 class="card-title">Riwayat Pelayanan</h2>
+              <span class="text-hint">Jejak audit</span>
+            </div>
+            <div class="card-body">
+              <ol class="space-y-4 text-sm">
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Resep elektronik diterima</p>
+                    <p class="text-hint">2027-01-28 09:12 · dr. Ahmad Fauzi · 3 item</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Telaah dimulai</p>
+                    <p class="text-hint">2027-01-28 09:20 · Dewi, S.Farm., Apt. · 2 dari 3 telaah</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-serahkan" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Serahkan obat?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          31 unit akan diserahkan ke pasien P-00123. Stok batch AMX2401, PCS2402, dan SLB2403
+          berkurang otomatis.
+        </p>
+        <div class="mt-3">
+          <label class="field-label" for="serah-catatan">Catatan penyerahan</label>
+          <textarea id="serah-catatan" rows="2" class="field w-full">Obat diserahkan kepada pasien beserta edukasi.</textarea>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Obat diserahkan dan stok diperbarui (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Serahkan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

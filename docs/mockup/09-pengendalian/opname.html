@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stock Opname - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengendalian" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pengendalian</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Stock opname</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Stock Opname</h1>
+              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · blanko per lokasi penyimpanan</p>
+            </div>
+            <button data-modal-open="#modal-mulai" class="btn btn-primary btn-sm flex gap-2">
+              <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+              Mulai opname
+            </button>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Sesi Berjalan</p>
+              <p class="kpi-value text-brand-600">1</p>
+              <p class="field-help">OPN/2027/001, progres 60%</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Selesai Bulan Ini</p>
+              <p class="kpi-value text-emerald-600">3</p>
+              <p class="field-help">Tiga lokasi sudah ditutup</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Item Dihitung</p>
+              <p class="kpi-value">5</p>
+              <p class="field-help">Sesi Gudang Farmasi Pusat</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Nilai Selisih</p>
+              <p class="kpi-value text-rose-600">-Rp 33.500</p>
+              <p class="field-help">Menunggu penutupan sesi</p>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Stok disesuaikan saat sesi opname ditutup.</p>
+            <p class="mt-1">
+              Selama sesi berjalan, transaksi masuk/keluar pada lokasi terkait ditahan agar
+              hitungan fisik tidak berubah. Penyesuaian memerlukan persetujuan Apoteker Gudang.
+            </p>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Sesi Opname</h2>
+                <p class="text-hint">Satu sesi per lokasi penyimpanan.</p>
+              </div>
+              <span class="text-hint">4 sesi</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <th>Lokasi</th>
+                    <th>Tanggal</th>
+                    <th>Petugas</th>
+                    <th class="num">Item</th>
+                    <th class="num">Selisih</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">OPN/2027/001</td>
+                    <td>Gudang Farmasi Pusat</td>
+                    <td>2027-01-29</td>
+                    <td>Ratna, S.Farm., Apt.</td>
+                    <td class="num">5</td>
+                    <td class="num text-rose-600">-33.500</td>
+                    <td><span class="badge badge-brand">Berjalan</span></td>
+                    <td class="num">
+                      <a href="opname-detail.html" class="btn btn-primary btn-2xs">Lanjutkan</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">OPN/2026/012</td>
+                    <td>Ruang Obat Puskesmas A</td>
+                    <td>2026-12-28</td>
+                    <td>Dewi, S.Farm., Apt.</td>
+                    <td class="num">24</td>
+                    <td class="num text-rose-600">-10</td>
+                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">
+                      <a href="opname-detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">OPN/2026/011</td>
+                    <td>Ruang Obat Puskesmas B</td>
+                    <td>2026-12-27</td>
+                    <td>Budi, S.Farm., Apt.</td>
+                    <td class="num">18</td>
+                    <td class="num text-emerald-600">+30</td>
+                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">
+                      <a href="opname-detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">OPN/2026/010</td>
+                    <td>Instalasi Farmasi RSUD</td>
+                    <td>2026-12-20</td>
+                    <td>Sari, S.Farm., Apt.</td>
+                    <td class="num">40</td>
+                    <td class="num">0</td>
+                    <td><span class="badge badge-success">Selesai</span></td>
+                    <td class="num">
+                      <a href="opname-detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card card-body">
+            <h2 class="card-title">Alur Opname</h2>
+            <div class="steps mt-3">
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Mulai sesi</div>
+              <span class="step-line"></span>
+              <div class="step step-active"><span class="step-dot">2</span> Hitung fisik</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">3</span> Rekonsiliasi</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">4</span> Sesuaikan stok</div>
+            </div>
+            <p class="field-help">Penyesuaian tercatat sebagai mutasi stok dengan jenis opname.</p>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-mulai" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-md rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Mulai sesi opname</h3>
+        <p class="text-hint">Transaksi pada lokasi ini ditahan sampai sesi ditutup.</p>
+        <div class="mt-4 space-y-3">
+          <div>
+            <label class="field-label" for="opn-lokasi">Lokasi penyimpanan</label>
+            <select id="opn-lokasi" class="field w-full">
+              <option>Gudang Farmasi Pusat</option>
+              <option>Ruang Obat Puskesmas A</option>
+              <option>Ruang Obat Puskesmas B</option>
+              <option>Instalasi Farmasi RSUD</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="opn-tanggal">Tanggal opname</label>
+            <input id="opn-tanggal" type="date" data-date value="2027-01-29" class="field w-full" />
+          </div>
+          <div>
+            <label class="field-label" for="opn-petugas">Petugas</label>
+            <select id="opn-petugas" class="field w-full">
+              <option>Ratna, S.Farm., Apt.</option>
+              <option>Budi, S.Farm., Apt.</option>
+              <option>Sari, S.Farm., Apt.</option>
+            </select>
+          </div>
+          <label class="check">
+            <input type="checkbox" checked />
+            <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+            <span>Tahan transaksi stok pada lokasi ini selama sesi berjalan</span>
+          </label>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Sesi opname dimulai (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Mulai</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

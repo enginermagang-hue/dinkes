@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail Anggaran - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="anggaran" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Anggaran</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>Puskesmas A · APBD</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">Puskesmas A</h1>
+                  <span class="badge badge-neutral">APBD</span>
+                  <span class="badge badge-success">Aman</span>
+                </div>
+                <p class="text-hint">Tahun anggaran 2027 · pagu Rp 150.000.000 · serapan 58%</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-print class="btn btn-outline btn-sm flex gap-2 no-print">
+                  <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                  Cetak
+                </button>
+                <a href="realokasi.html" class="btn btn-outline btn-sm">Realokasi</a>
+                <a href="tetapkan.html" class="btn btn-primary btn-sm">Revisi pagu</a>
+              </div>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Pagu</p>
+              <p class="kpi-value">Rp 150 jt</p>
+              <p class="field-help">Ditetapkan 2 Januari 2027</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Komitmen</p>
+              <p class="kpi-value text-amber-600">Rp 12 jt</p>
+              <p class="field-help">PO/2027/0001</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Realisasi</p>
+              <p class="kpi-value text-brand-600">Rp 87,5 jt</p>
+              <p class="field-help">3 penerimaan terverifikasi</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Sisa Pagu</p>
+              <p class="kpi-value text-emerald-600">Rp 50,5 jt</p>
+              <p class="field-help">34% dari pagu</p>
+            </div>
+          </section>
+
+          <section class="card card-body">
+            <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <h2 class="card-title">Serapan Anggaran</h2>
+              <span class="badge badge-success">Aman · 40–85%</span>
+            </div>
+            <div class="progress"><div class="progress-bar" style="width: 58%"></div></div>
+            <p class="field-help">Rp 87,5 jt dari Rp 150 jt. Komitmen Rp 12 jt belum menjadi realisasi.</p>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Riwayat Mutasi Anggaran</h2>
+                <p class="text-hint">Komitmen tercatat saat PO terbit; realisasi saat barang diterima.</p>
+              </div>
+              <span class="text-hint">4 transaksi</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Jenis</th>
+                    <th>Referensi</th>
+                    <th class="num">Nilai (Rp)</th>
+                    <th>Keterangan</th>
+                    <th>Dicatat oleh</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>2027-01-05</td>
+                    <td><span class="badge badge-warning">Komitmen</span></td>
+                    <td><a href="../15-purchase-order/detail.html" class="font-mono text-xs hover:text-brand-600">PO/2027/0001</a></td>
+                    <td class="num">12.000.000</td>
+                    <td>PO diterbitkan ke PT Sehat Farma</td>
+                    <td>Pejabat Keuangan</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-14</td>
+                    <td><span class="badge badge-brand">Realisasi</span></td>
+                    <td><a href="../13-penerimaan/detail.html" class="font-mono text-xs hover:text-brand-600">PNR/2027/0031</a></td>
+                    <td class="num">30.000.000</td>
+                    <td>Penerimaan diverifikasi, BAST terbit</td>
+                    <td>Pejabat Keuangan</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-22</td>
+                    <td><span class="badge badge-brand">Realisasi</span></td>
+                    <td><a href="../13-penerimaan/detail.html" class="font-mono text-xs hover:text-brand-600">PNR/2027/0044</a></td>
+                    <td class="num">22.500.000</td>
+                    <td>Penerimaan tahap kedua</td>
+                    <td>Pejabat Keuangan</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-29</td>
+                    <td><span class="badge badge-brand">Realisasi</span></td>
+                    <td><a href="../13-penerimaan/detail.html" class="font-mono text-xs hover:text-brand-600">PNR/2027/0052</a></td>
+                    <td class="num">35.000.000</td>
+                    <td>Penerimaan tahap ketiga</td>
+                    <td>Pejabat Keuangan</td>
+                  </tr>
+                  <tr class="bg-slate-50">
+                    <td class="font-medium" colspan="3">Total mutasi</td>
+                    <td class="num font-semibold">99.500.000</td>
+                    <td colspan="2" class="text-hint">Komitmen 12 jt · realisasi 87,5 jt</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Mutasi tidak dapat dihapus; koreksi dilakukan dengan mutasi balik.</p>
+              <a href="realisasi.html" class="btn btn-outline btn-sm">Lihat rekonsiliasi</a>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Dokumen Terkait</h2>
+                <span class="text-hint">Sumber komitmen dan realisasi</span>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-compact">
+                  <thead>
+                    <tr>
+                      <th>Dokumen</th>
+                      <th>Nomor</th>
+                      <th class="num">Nilai (Rp)</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr>
+                      <td>Purchase Order</td>
+                      <td class="font-mono text-xs">PO/2027/0001</td>
+                      <td class="num">12.000.000</td>
+                      <td><span class="badge badge-success">Diterima</span></td>
+                    </tr>
+                    <tr>
+                      <td>BAST</td>
+                      <td class="font-mono text-xs">BAST/2027/0012</td>
+                      <td class="num">30.000.000</td>
+                      <td><span class="badge badge-success">Terbit</span></td>
+                    </tr>
+                    <tr>
+                      <td>BAST</td>
+                      <td class="font-mono text-xs">BAST/2027/0021</td>
+                      <td class="num">57.500.000</td>
+                      <td><span class="badge badge-warning">Menunggu rekonsiliasi</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="alert alert-brand">
+              <h2 class="font-semibold">Aturan pagu</h2>
+              <ul class="mt-2 space-y-1">
+                <li>- Pagu berubah hanya melalui revisi.</li>
+                <li>- Permintaan tidak boleh melebihi sisa pagu.</li>
+                <li>- Setiap transaksi wajib mencantumkan sumber dana.</li>
+              </ul>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

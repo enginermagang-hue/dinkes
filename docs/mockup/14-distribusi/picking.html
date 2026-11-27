@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Picking List - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="distribusi" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Distribusi</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <a href="detail.html" class="hover:text-brand-600">DO/2027/0036</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Picking list</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Picking List DO/2027/0036</h1>
+              <p class="text-hint">Puskesmas B · PMT/2027/0042 · 6 item · 2.535 unit</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a href="detail.html" class="btn btn-outline btn-sm">Detail DO</a>
+              <a href="surat-jalan.html" class="btn btn-outline btn-sm">Surat jalan</a>
+            </div>
+          </div>
+
+          <section class="card card-body">
+            <div class="steps">
+              <div class="step step-active"><span class="step-dot">1</span> Disiapkan</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">2</span> Dikirim</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">3</span> Diterima</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">4</span> Selesai</div>
+            </div>
+            <p class="field-help">Urutan pengambilan mengikuti rak dan batch FEFO.</p>
+          </section>
+
+          <section class="card card-body">
+            <div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <h2 class="card-title">Progres Penyiapan</h2>
+              <span class="text-hint">4 dari 6 item</span>
+            </div>
+            <div class="progress"><div class="progress-bar bg-emerald-500" style="width: 67%"></div></div>
+            <p class="field-help">Dua item tersisa berada di rak B2 dan C1.</p>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar Ambil</h2>
+                <p class="text-hint">Centang item setelah fisik dan batch dipastikan sesuai.</p>
+              </div>
+              <span class="badge badge-neutral">Disiapkan</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Rak</th>
+                    <th>Obat</th>
+                    <th>Batch</th>
+                    <th>Kedaluwarsa</th>
+                    <th class="num">Jumlah</th>
+                    <th>Siap</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td><span class="badge badge-brand">A1</span></td>
+                    <td>
+                      <p class="font-medium">Amoksisilin 500 mg</p>
+                      <p class="text-hint">OBT-001 · Tablet 500 mg</p>
+                    </td>
+                    <td class="font-mono text-xs">AMX2401</td>
+                    <td>31-12-2028</td>
+                    <td class="num">1.500</td>
+                    <td>
+                      <label class="check check-sm">
+                        <input type="checkbox" checked />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-brand">A2</span></td>
+                    <td>
+                      <p class="font-medium">Parasetamol 500 mg</p>
+                      <p class="text-hint">OBT-002 · Tablet 500 mg</p>
+                    </td>
+                    <td class="font-mono text-xs">PCS2402</td>
+                    <td>31-03-2029</td>
+                    <td class="num">1.000</td>
+                    <td>
+                      <label class="check check-sm">
+                        <input type="checkbox" checked />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-brand">B1</span></td>
+                    <td>
+                      <p class="font-medium">Salbutamol Inhaler</p>
+                      <p class="text-hint">OBT-007 · Inhaler 100 mcg</p>
+                    </td>
+                    <td class="font-mono text-xs">SLB2403</td>
+                    <td>31-08-2028</td>
+                    <td class="num">20</td>
+                    <td>
+                      <label class="check check-sm">
+                        <input type="checkbox" checked />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-warning">Cold</span></td>
+                    <td>
+                      <p class="font-medium">Insulin Glargine</p>
+                      <p class="text-hint">OBT-008 · Vial 100 IU/mL</p>
+                    </td>
+                    <td class="font-mono text-xs">IG2404</td>
+                    <td>31-05-2029</td>
+                    <td class="num">15</td>
+                    <td>
+                      <label class="check check-sm">
+                        <input type="checkbox" checked />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-neutral">B2</span></td>
+                    <td>
+                      <p class="font-medium">Metformin 500 mg</p>
+                      <p class="text-hint">OBT-003 · Tablet 500 mg</p>
+                    </td>
+                    <td class="font-mono text-xs">MTF2401</td>
+                    <td>31-10-2028</td>
+                    <td class="num">300</td>
+                    <td>
+                      <label class="check check-sm">
+                        <input type="checkbox" />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      </label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-neutral">C1</span></td>
+                    <td>
+                      <p class="font-medium">Oralit Serbuk</p>
+                      <p class="text-hint">OBT-006 · Sachet</p>
+                    </td>
+                    <td class="font-mono text-xs">ORT2401</td>
+                    <td>30-09-2028</td>
+                    <td class="num">200</td>
+                    <td>
+                      <label class="check check-sm">
+                        <input type="checkbox" />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      </label>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Surat jalan hanya dapat diterbitkan setelah semua item dicentang.</p>
+              <button data-toast="Picking list DO/2027/0036 selesai (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Tandai selesai</button>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

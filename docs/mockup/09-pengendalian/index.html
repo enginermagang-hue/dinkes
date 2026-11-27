@@ -9,24 +9,392 @@
   <body data-page="pengendalian" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
+
       <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
-        <main class="flex flex-1 items-start p-4 lg:p-6">
-          <div class="w-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <p class="text-xs uppercase tracking-widest text-slate-400">Modul Pengendalian</p>
-            <h1 class="mt-2 text-xl font-semibold">Halaman sedang disiapkan</h1>
-            <p class="mx-auto mt-2 max-w-md text-sm text-slate-500">
-              Halaman ini akan dibuat setelah katalog komponen disetujui. Gunakan
-              <a href="../components/index.html" class="text-brand-600 hover:underline">Katalog Komponen</a>
-              sebagai acuan tampilan.
-            </p>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">Pengendalian Persediaan</h1>
+              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · pemantauan stok dan opname</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a href="kedaluwarsa.html" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-time-line icon-sm" aria-hidden="true"></i>
+                Kedaluwarsa
+              </a>
+              <a href="opname.html" class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-clipboard-line icon-sm" aria-hidden="true"></i>
+                Stock opname
+              </a>
+            </div>
           </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Stok Kritis</p>
+              <p class="kpi-value text-rose-600">1</p>
+              <p class="field-help">Di bawah safety stock</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Kosong</p>
+              <p class="kpi-value text-rose-600">1</p>
+              <p class="field-help">Perlu eskalasi dan substitusi</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Kelebihan</p>
+              <p class="kpi-value text-brand-600">2</p>
+              <p class="field-help">Di atas stok maksimum</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Kedaluwarsa ≤ 3 Bulan</p>
+              <p class="kpi-value text-amber-600">2</p>
+              <p class="field-help">2 sangat kritis</p>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">1 item kosong dan 2 item sangat kritis</h2>
+            <p class="mt-2">
+              Vaksin Campak di Puskesmas B sudah kosong. Vaksin Campak batch VC2401 tinggal 30
+              hari dan Serum Anti Rabies batch SAR2401 tinggal 4 hari kedaluwarsa. Prioritaskan
+              redistribusi atau pemusnahan.
+            </p>
+            <a href="../14-distribusi/index.html" class="btn btn-soft-warning btn-xs mt-4">Buka redistribusi</a>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="tabs">
+              <button data-tab="peringatan" data-tab-group="pengendalian" class="tab tab-active">Peringatan Stok</button>
+              <button data-tab="parameter" data-tab-group="pengendalian" class="tab">Parameter Stok</button>
+            </div>
+            <span class="text-hint">Normal · Waspada · Kritis · Kosong · Kelebihan</span>
+          </div>
+
+          <section class="card" data-panel="peringatan" data-panel-group="pengendalian">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Peringatan Stok</h2>
+                <p class="text-hint">Bandingkan stok berjalan dengan safety stock, ROP, dan maksimum.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>8</span> item</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari kode atau nama obat…" class="search-field" aria-label="Cari peringatan stok" />
+                </div>
+                <div class="w-full sm:w-44">
+                  <select class="field w-full" aria-label="Filter status stok">
+                    <option>Semua status</option>
+                    <option>Normal</option>
+                    <option>Waspada</option>
+                    <option>Kritis</option>
+                    <option>Kosong</option>
+                    <option>Kelebihan</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="pd-rows">Baris per halaman</label>
+                <select id="pd-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Peringatan stok">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th>Fasilitas</th>
+                    <th class="num">Stok</th>
+                    <th class="num">Safety</th>
+                    <th class="num">ROP</th>
+                    <th class="num">Max</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>
+                      <p class="font-medium">Serum Anti Rabies</p>
+                      <p class="text-hint">OBT-013</p>
+                    </td>
+                    <td>Gudang Farmasi Pusat</td>
+                    <td class="num">8</td>
+                    <td class="num">10</td>
+                    <td class="num">15</td>
+                    <td class="num">40</td>
+                    <td><span class="badge badge-danger">Kritis</span></td>
+                    <td class="num">
+                      <a href="../05-permintaan/index.html" class="btn btn-outline btn-2xs">Ajukan</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Vaksin Campak</p>
+                      <p class="text-hint">OBT-010</p>
+                    </td>
+                    <td>Puskesmas B</td>
+                    <td class="num">0</td>
+                    <td class="num">20</td>
+                    <td class="num">30</td>
+                    <td class="num">80</td>
+                    <td><span class="badge badge-danger">Kosong</span></td>
+                    <td class="num">
+                      <a href="../14-distribusi/index.html" class="btn btn-outline btn-2xs">Redistribusi</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Salbutamol Inhaler</p>
+                      <p class="text-hint">OBT-007</p>
+                    </td>
+                    <td>Puskesmas A</td>
+                    <td class="num">18</td>
+                    <td class="num">12</td>
+                    <td class="num">24</td>
+                    <td class="num">60</td>
+                    <td><span class="badge badge-warning">Waspada</span></td>
+                    <td class="num">
+                      <a href="../05-permintaan/index.html" class="btn btn-outline btn-2xs">Ajukan</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Insulin Glargine</p>
+                      <p class="text-hint">OBT-008</p>
+                    </td>
+                    <td>Puskesmas B</td>
+                    <td class="num">28</td>
+                    <td class="num">20</td>
+                    <td class="num">35</td>
+                    <td class="num">60</td>
+                    <td><span class="badge badge-warning">Waspada</span></td>
+                    <td class="num">
+                      <a href="../05-permintaan/index.html" class="btn btn-outline btn-2xs">Ajukan</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Amoksisilin 500 mg</p>
+                      <p class="text-hint">OBT-001</p>
+                    </td>
+                    <td>Puskesmas C</td>
+                    <td class="num">900</td>
+                    <td class="num">500</td>
+                    <td class="num">800</td>
+                    <td class="num">1.200</td>
+                    <td><span class="badge badge-success">Normal</span></td>
+                    <td class="num">
+                      <a href="../05-permintaan/index.html" class="btn btn-outline btn-2xs">Ajukan</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Parasetamol 500 mg</p>
+                      <p class="text-hint">OBT-002</p>
+                    </td>
+                    <td>Puskesmas A</td>
+                    <td class="num">6.200</td>
+                    <td class="num">390</td>
+                    <td class="num">810</td>
+                    <td class="num">6.000</td>
+                    <td><span class="badge badge-brand">Kelebihan</span></td>
+                    <td class="num">
+                      <a href="../14-distribusi/index.html" class="btn btn-outline btn-2xs">Redistribusi</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Metformin 500 mg</p>
+                      <p class="text-hint">OBT-003</p>
+                    </td>
+                    <td>Puskesmas A</td>
+                    <td class="num">2.400</td>
+                    <td class="num">200</td>
+                    <td class="num">450</td>
+                    <td class="num">2.000</td>
+                    <td><span class="badge badge-brand">Kelebihan</span></td>
+                    <td class="num">
+                      <a href="../14-distribusi/index.html" class="btn btn-outline btn-2xs">Redistribusi</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Kotrimoksazol 480 mg</p>
+                      <p class="text-hint">OBT-005</p>
+                    </td>
+                    <td>Puskesmas B</td>
+                    <td class="num">830</td>
+                    <td class="num">80</td>
+                    <td class="num">300</td>
+                    <td class="num">900</td>
+                    <td><span class="badge badge-success">Normal</span></td>
+                    <td class="num">
+                      <a href="../05-permintaan/index.html" class="btn btn-outline btn-2xs">Ajukan</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>8</span> item
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
+
+          <section class="card hidden" data-panel="parameter" data-panel-group="pengendalian">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Parameter Stok</h2>
+                <p class="text-hint">Safety stock, ROP, dan batas min–max per item per fasilitas.</p>
+              </div>
+              <button data-toast="Parameter stok disimpan (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Simpan parameter</button>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th class="num">Pemakaian Rata</th>
+                    <th class="num">Pemakaian Maks</th>
+                    <th class="num">Lead Time (hari)</th>
+                    <th class="num">Safety</th>
+                    <th class="num">ROP</th>
+                    <th class="num">Min</th>
+                    <th class="num">Max</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num"><input type="number" value="40" class="field w-16 text-right" aria-label="Pemakaian rata Amoksisilin" /></td>
+                    <td class="num"><input type="number" value="60" class="field w-16 text-right" aria-label="Pemakaian maks Amoksisilin" /></td>
+                    <td class="num"><input type="number" value="7" class="field w-16 text-right" aria-label="Lead time Amoksisilin" /></td>
+                    <td class="num font-semibold">260</td>
+                    <td class="num font-semibold">540</td>
+                    <td class="num"><input type="number" value="500" class="field w-20 text-right" aria-label="Min Amoksisilin" /></td>
+                    <td class="num"><input type="number" value="1200" class="field w-20 text-right" aria-label="Max Amoksisilin" /></td>
+                  </tr>
+                  <tr>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="num"><input type="number" value="60" class="field w-16 text-right" aria-label="Pemakaian rata Parasetamol" /></td>
+                    <td class="num"><input type="number" value="90" class="field w-16 text-right" aria-label="Pemakaian maks Parasetamol" /></td>
+                    <td class="num"><input type="number" value="7" class="field w-16 text-right" aria-label="Lead time Parasetamol" /></td>
+                    <td class="num font-semibold">390</td>
+                    <td class="num font-semibold">810</td>
+                    <td class="num"><input type="number" value="800" class="field w-20 text-right" aria-label="Min Parasetamol" /></td>
+                    <td class="num"><input type="number" value="1500" class="field w-20 text-right" aria-label="Max Parasetamol" /></td>
+                  </tr>
+                  <tr>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="num"><input type="number" value="2" class="field w-16 text-right" aria-label="Pemakaian rata Salbutamol" /></td>
+                    <td class="num"><input type="number" value="4" class="field w-16 text-right" aria-label="Pemakaian maks Salbutamol" /></td>
+                    <td class="num"><input type="number" value="7" class="field w-16 text-right" aria-label="Lead time Salbutamol" /></td>
+                    <td class="num font-semibold">22</td>
+                    <td class="num font-semibold">36</td>
+                    <td class="num"><input type="number" value="30" class="field w-20 text-right" aria-label="Min Salbutamol" /></td>
+                    <td class="num"><input type="number" value="80" class="field w-20 text-right" aria-label="Max Salbutamol" /></td>
+                  </tr>
+                  <tr>
+                    <td>Insulin Glargine</td>
+                    <td class="num"><input type="number" value="1" class="field w-16 text-right" aria-label="Pemakaian rata Insulin" /></td>
+                    <td class="num"><input type="number" value="2" class="field w-16 text-right" aria-label="Pemakaian maks Insulin" /></td>
+                    <td class="num"><input type="number" value="7" class="field w-16 text-right" aria-label="Lead time Insulin" /></td>
+                    <td class="num font-semibold">11</td>
+                    <td class="num font-semibold">18</td>
+                    <td class="num"><input type="number" value="15" class="field w-20 text-right" aria-label="Min Insulin" /></td>
+                    <td class="num"><input type="number" value="40" class="field w-20 text-right" aria-label="Max Insulin" /></td>
+                  </tr>
+                  <tr>
+                    <td>Vaksin Campak</td>
+                    <td class="num"><input type="number" value="4" class="field w-16 text-right" aria-label="Pemakaian rata Vaksin" /></td>
+                    <td class="num"><input type="number" value="8" class="field w-16 text-right" aria-label="Pemakaian maks Vaksin" /></td>
+                    <td class="num"><input type="number" value="10" class="field w-16 text-right" aria-label="Lead time Vaksin" /></td>
+                    <td class="num font-semibold">40</td>
+                    <td class="num font-semibold">80</td>
+                    <td class="num"><input type="number" value="70" class="field w-20 text-right" aria-label="Min Vaksin" /></td>
+                    <td class="num"><input type="number" value="150" class="field w-20 text-right" aria-label="Max Vaksin" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <p class="field-help">
+                Safety = (pemakaian maks × lead time maks) − (pemakaian rata × lead time rata).
+                ROP = (pemakaian rata × lead time rata) + safety.
+              </p>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card card-body xl:col-span-2">
+              <h2 class="card-title">Usulan Redistribusi</h2>
+              <p class="field-help">Dari item kelebihan menuju fasilitas yang kekurangan.</p>
+              <div class="table-wrap mt-3">
+                <table class="table table-compact">
+                  <thead>
+                    <tr>
+                      <th>Obat</th>
+                      <th>Dari</th>
+                      <th>Ke</th>
+                      <th class="num">Usulan</th>
+                      <th>Alasan</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr>
+                      <td>Parasetamol 500 mg</td>
+                      <td>Puskesmas A</td>
+                      <td>Puskesmas C</td>
+                      <td class="num">1.200</td>
+                      <td>Kelebihan vs stok di bawah ROP</td>
+                    </tr>
+                    <tr>
+                      <td>Metformin 500 mg</td>
+                      <td>Puskesmas A</td>
+                      <td>Puskesmas B</td>
+                      <td class="num">400</td>
+                      <td>Kelebihan vs kebutuhan rutin</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <a href="../14-distribusi/index.html" class="btn btn-outline btn-sm mt-4">Buka modul redistribusi</a>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Analisis Cepat</h2>
+              <div class="mt-3 flex flex-col gap-2">
+                <a href="abc-ven.html" class="btn btn-outline btn-sm">Analisis ABC-VEN</a>
+                <a href="kedaluwarsa.html" class="btn btn-outline btn-sm">Pemantauan kedaluwarsa</a>
+                <a href="opname.html" class="btn btn-outline btn-sm">Sesi stock opname</a>
+              </div>
+              <p class="field-help">Fast/slow/non-moving dan prioritas AV dipakai untuk kendali ketat.</p>
+            </div>
+          </section>
         </main>
+
         <div data-include="../components/footer.html"></div>
       </div>
     </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>
 </html>
-

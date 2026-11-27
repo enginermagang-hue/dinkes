@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buat RKO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="rko" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">RKO</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>RKO baru</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Buat RKO</h1>
+              <p class="text-hint">
+                Kebutuhan dihitung dari pemakaian ditambah buffer dikurangi sisa stok.
+              </p>
+            </div>
+            <span class="badge badge-neutral">Draf</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">RKO diajukan per triwulan paling lambat H-30.</p>
+            <p class="mt-1">
+              Item kategori V (Vital) tidak boleh diusulkan nol tanpa alasan tertulis. Perubahan
+              setelah disetujui memerlukan persetujuan ulang.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Identitas RKO</h2>
+                  <span class="text-hint">Satu RKO per fasilitas per triwulan</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="rko-fasilitas">Fasilitas</label>
+                    <select id="rko-fasilitas" class="field w-full">
+                      <option>Puskesmas A</option>
+                      <option>Puskesmas B</option>
+                      <option>Puskesmas C</option>
+                      <option>RSUD (program)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rko-periode">Periode triwulan</label>
+                    <select id="rko-periode" class="field w-full">
+                      <option>Triwulan I 2027</option>
+                      <option>Triwulan II 2027</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rko-nomor">Nomor RKO</label>
+                    <input id="rko-nomor" value="RKO/2027/Q1/006" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="rko-metode">Metode perhitungan</label>
+                    <select id="rko-metode" class="field w-full">
+                      <option>Konsumsi (rata-rata 3 bulan)</option>
+                      <option>Morbiditas (angka kesakitan)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rko-buffer">Kebijakan buffer</label>
+                    <select id="rko-buffer" class="field w-full">
+                      <option>Standar Dinas · 10% pemakaian</option>
+                      <option>Khusus kategori V · 15%</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rko-penyusun">Disusun oleh</label>
+                    <input id="rko-penyusun" value="Dewi, S.Farm., Apt." readonly class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Perhitungan Kebutuhan</h2>
+                    <p class="text-hint">Ubah buffer bila perlu; kebutuhan dihitung otomatis.</p>
+                  </div>
+                  <span class="badge badge-brand">5 item</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Pemakaian 3 Bln</th>
+                        <th class="num">Sisa Stok</th>
+                        <th class="num">Buffer</th>
+                        <th class="num">Kebutuhan</th>
+                        <th>ABC/VEN</th>
+                        <th>Validasi</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Tablet 500 mg</p>
+                        </td>
+                        <td class="num">3.600</td>
+                        <td class="num">400</td>
+                        <td class="num"><input type="number" value="300" min="0" class="field w-20 text-right" aria-label="Buffer Amoksisilin" /></td>
+                        <td class="num font-semibold">3.500</td>
+                        <td><span class="badge badge-danger">A/V</span></td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Parasetamol 500 mg</p>
+                          <p class="text-hint">OBT-002 · Tablet 500 mg</p>
+                        </td>
+                        <td class="num">5.400</td>
+                        <td class="num">800</td>
+                        <td class="num"><input type="number" value="450" min="0" class="field w-20 text-right" aria-label="Buffer Parasetamol" /></td>
+                        <td class="num font-semibold">5.050</td>
+                        <td><span class="badge badge-danger">A/V</span></td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Metformin 500 mg</p>
+                          <p class="text-hint">OBT-003 · Tablet 500 mg</p>
+                        </td>
+                        <td class="num">1.800</td>
+                        <td class="num">250</td>
+                        <td class="num"><input type="number" value="150" min="0" class="field w-20 text-right" aria-label="Buffer Metformin" /></td>
+                        <td class="num font-semibold">1.700</td>
+                        <td><span class="badge badge-neutral">B/E</span></td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amlodipin 10 mg</p>
+                          <p class="text-hint">OBT-004 · Tablet 10 mg</p>
+                        </td>
+                        <td class="num">2.700</td>
+                        <td class="num">300</td>
+                        <td class="num"><input type="number" value="220" min="0" class="field w-20 text-right" aria-label="Buffer Amlodipin" /></td>
+                        <td class="num font-semibold">2.620</td>
+                        <td><span class="badge badge-warning">A/E</span></td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Kotrimoksazol 480 mg</p>
+                          <p class="text-hint">OBT-005 · Tablet 480 mg</p>
+                        </td>
+                        <td class="num">900</td>
+                        <td class="num">150</td>
+                        <td class="num"><input type="number" value="80" min="0" class="field w-20 text-right" aria-label="Buffer Kotrimoksazol" /></td>
+                        <td class="num font-semibold">830</td>
+                        <td><span class="badge badge-neutral">B/V</span></td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="4">Total 5 item</td>
+                        <td class="num font-semibold">13.700</td>
+                        <td colspan="2"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Rumus: kebutuhan = pemakaian + buffer − sisa stok.</p>
+                  <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Catatan Fasilitas</h2>
+                  <span class="text-hint">Opsional</span>
+                </div>
+                <div class="card-body">
+                  <label class="field-label" for="rko-catatan">Alasan penyesuaian</label>
+                  <textarea id="rko-catatan" rows="2" class="field w-full">Buffer Amoksisilin dinaikkan karena tren kunjungan ISPA meningkat.</textarea>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah item</dt>
+                    <dd class="font-medium">5</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total kebutuhan</dt>
+                    <dd class="font-medium">13.700</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Estimasi nilai</dt>
+                    <dd class="font-medium">Rp 11.481.000</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Item vital</dt>
+                    <dd class="font-medium">4 item</dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf RKO/2027/Q1/006 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <button data-modal-open="#modal-ajukan" class="btn btn-primary btn-sm">Ajukan RKO</button>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Deteksi anomali</h2>
+                <p class="mt-2">
+                  Sistem menandai jumlah yang tidak wajar. Kebutuhan Parasetamol 5.050 berada
+                  14% di atas rata-rata triwulan sebelumnya.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-ajukan" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Ajukan RKO?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          RKO/2027/Q1/006 dengan 5 item dan total kebutuhan 13.700 unit akan dikirim ke
+          Apoteker Gudang Dinas untuk diverifikasi dan dikonsolidasikan.
+        </p>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="RKO diajukan ke Dinas (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Ajukan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

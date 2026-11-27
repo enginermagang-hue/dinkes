@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buat LPLPO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="lplpo" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">LPLPO</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>LPLPO baru</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Buat LPLPO Bulanan</h1>
+              <p class="text-hint">
+                Stok awal, stok akhir, dan jumlah pakai diambil otomatis dari mutasi stok.
+                Hanya jumlah permintaan yang diisi manual.
+              </p>
+            </div>
+            <span class="badge badge-neutral">Draf</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Batas pengajuan tanggal 5 bulan berikutnya.</p>
+            <p class="mt-1">
+              LPLPO yang disetujui tidak dapat diubah. Perubahan dibuat sebagai dokumen baru
+              dengan riwayat versi.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Identitas LPLPO</h2>
+                  <span class="text-hint">Satu LPLPO per fasilitas per periode</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="lplpo-fasilitas">Fasilitas</label>
+                    <select id="lplpo-fasilitas" class="field w-full">
+                      <option>Puskesmas A</option>
+                      <option>Puskesmas B</option>
+                      <option>Puskesmas C</option>
+                      <option>RSUD (program)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="lplpo-periode">Periode</label>
+                    <input id="lplpo-periode" type="date" data-date value="2027-01-01" class="field w-full" />
+                    <p class="field-help">Gunakan tanggal awal bulan laporan.</p>
+                  </div>
+                  <div>
+                    <label class="field-label" for="lplpo-nomor">Nomor LPLPO</label>
+                    <input id="lplpo-nomor" value="LPLPO/2027/01/006" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="lplpo-penyusun">Disusun oleh</label>
+                    <input id="lplpo-penyusun" value="Dewi, S.Farm., Apt." readonly class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item dan Jumlah Permintaan</h2>
+                    <p class="text-hint">Kolom stok dan pemakaian tidak dapat diubah manual.</p>
+                  </div>
+                  <span class="badge badge-brand">5 item</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Stok Awal</th>
+                        <th class="num">Stok Akhir</th>
+                        <th class="num">Pakai</th>
+                        <th class="num">Diminta</th>
+                        <th class="num">Nilai (Rp)</th>
+                        <th>Validasi</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Rp 1.250</p>
+                        </td>
+                        <td class="num">400</td>
+                        <td class="num">150</td>
+                        <td class="num">250</td>
+                        <td class="num"><input type="number" value="350" min="0" class="field w-20 text-right" aria-label="Diminta Amoksisilin" /></td>
+                        <td class="num">437.500</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Parasetamol 500 mg</p>
+                          <p class="text-hint">OBT-002 · Rp 850</p>
+                        </td>
+                        <td class="num">800</td>
+                        <td class="num">300</td>
+                        <td class="num">500</td>
+                        <td class="num"><input type="number" value="500" min="0" class="field w-20 text-right" aria-label="Diminta Parasetamol" /></td>
+                        <td class="num">425.000</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Salbutamol Inhaler</p>
+                          <p class="text-hint">OBT-007 · Rp 42.000</p>
+                        </td>
+                        <td class="num">10</td>
+                        <td class="num">2</td>
+                        <td class="num">8</td>
+                        <td class="num"><input type="number" value="25" min="0" class="field field-warning w-20 text-right" aria-label="Diminta Salbutamol" /></td>
+                        <td class="num">1.050.000</td>
+                        <td><span class="badge badge-warning">Lewat stok Dinas</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Vitamin A Kapsul</p>
+                          <p class="text-hint">OBT-009 · Rp 1.500</p>
+                        </td>
+                        <td class="num">500</td>
+                        <td class="num">440</td>
+                        <td class="num">60</td>
+                        <td class="num"><input type="number" value="150" min="0" class="field w-20 text-right" aria-label="Diminta Vitamin A" /></td>
+                        <td class="num">225.000</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Insulin Glargine</p>
+                          <p class="text-hint">OBT-011 · Rp 385.000</p>
+                        </td>
+                        <td class="num">6</td>
+                        <td class="num">1</td>
+                        <td class="num">5</td>
+                        <td class="num"><input type="number" value="15" min="0" class="field w-20 text-right" aria-label="Diminta Insulin" /></td>
+                        <td class="num">5.775.000</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="4">Total 5 item</td>
+                        <td class="num font-semibold">1.040</td>
+                        <td class="num font-semibold">7.912.500</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Tambah atau hapus item mengikuti daftar obat aktif fasilitas.</p>
+                  <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Catatan Fasilitas</h2>
+                  <span class="text-hint">Opsional</span>
+                </div>
+                <div class="card-body">
+                  <label class="field-label" for="lplpo-catatan">Catatan untuk Dinas</label>
+                  <textarea id="lplpo-catatan" rows="2" class="field w-full">Permintaan Salbutamol dinaikkan karena lonjakan pasien asma.</textarea>
+                  <p class="field-help">Alasan pengurangan akan dicatat oleh Dinas saat verifikasi.</p>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah item</dt>
+                    <dd class="font-medium">5</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total diminta</dt>
+                    <dd class="font-medium">1.040</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Nilai permintaan</dt>
+                    <dd class="font-medium">Rp 7.912.500</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Sisa pagu</dt>
+                    <dd class="font-medium">Rp 50.500.000</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Sisa pagu setelah ajuan</dt>
+                    <dd class="font-medium">Rp 42.587.500</dd>
+                  </div>
+                </dl>
+                <div class="mt-3">
+                  <div class="mb-1 flex justify-between gap-3 text-xs text-slate-500">
+                    <span>Pemakaian pagu</span>
+                    <span>14%</span>
+                  </div>
+                  <div class="progress"><div class="progress-bar bg-amber-500" style="width: 14%"></div></div>
+                </div>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf LPLPO/2027/01/006 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <button data-modal-open="#modal-ajukan" class="btn btn-primary btn-sm">Ajukan ke Dinas</button>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Perhatian</h2>
+                <p class="mt-2">
+                  Salbutamol melebihi stok Dinas. Jumlah dapat dikurangi saat verifikasi dengan
+                  alasan tercatat.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-ajukan" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Ajukan LPLPO?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          LPLPO/2027/01/006 dengan 5 item dan nilai Rp 7.912.500 akan dikirim ke Apoteker Gudang
+          Dinas untuk diverifikasi.
+        </p>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="LPLPO diajukan ke Dinas (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Ajukan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

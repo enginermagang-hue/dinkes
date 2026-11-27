@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kedaluwarsa - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengendalian" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pengendalian</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Kedaluwarsa</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Pemantauan Kedaluwarsa</h1>
+              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · peringatan 6, 3, dan 1 bulan</p>
+            </div>
+            <button data-modal-open="#modal-musnah" class="btn btn-primary btn-sm flex gap-2">
+              <i class="ri-delete-bin-6-line icon-sm" aria-hidden="true"></i>
+              Catat pemusnahan
+            </button>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">≤ 3 Bulan</p>
+              <p class="kpi-value text-rose-600">2</p>
+              <p class="field-help">2 sangat kritis</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">3–6 Bulan</p>
+              <p class="kpi-value text-amber-600">1</p>
+              <p class="field-help">Insulin Reguler, 104 hari</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">6–12 Bulan</p>
+              <p class="kpi-value">1</p>
+              <p class="field-help">Tetrasiklin, 227 hari</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Nilai Berisiko</p>
+              <p class="kpi-value">Rp 46 jt</p>
+              <p class="field-help">Harga perolehan batch terdampak</p>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">Serum Anti Rabies kedaluwarsa dalam 4 hari.</h2>
+            <p class="mt-2">
+              Prioritaskan pemakaian atau redistribusi. Jika tidak terpakai, ajukan pemusnahan
+              dengan berita acara sebelum tanggal 20 Januari 2027.
+            </p>
+          </div>
+
+          <section class="card card-body-sm grid gap-3 sm:grid-cols-4">
+            <div>
+              <label class="field-label" for="exp-horizon">Horizon peringatan</label>
+              <select id="exp-horizon" class="field w-full">
+                <option>≤ 3 bulan</option>
+                <option>≤ 6 bulan</option>
+                <option>≤ 12 bulan</option>
+                <option>Semua</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="exp-lokasi">Lokasi</label>
+              <select id="exp-lokasi" class="field w-full">
+                <option>Gudang Farmasi Pusat</option>
+                <option>Ruang Obat Puskesmas A</option>
+                <option>Instalasi Farmasi RSUD</option>
+              </select>
+            </div>
+            <div class="flex items-end sm:col-span-2">
+              <button data-toast="Filter kedaluwarsa diterapkan (mockup)" class="btn btn-neutral btn-sm">Terapkan</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Batch Mendekati Kedaluwarsa</h2>
+                <p class="text-hint">Urut dari sisa hari terkecil.</p>
+              </div>
+              <span class="text-hint">4 batch</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Obat</th>
+                    <th>Batch</th>
+                    <th>Kedaluwarsa</th>
+                    <th class="num">Sisa</th>
+                    <th class="num">Sisa Hari</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">OBT-013</td>
+                    <td>Serum Anti Rabies</td>
+                    <td class="font-mono text-xs">SAR2401</td>
+                    <td>2027-01-20</td>
+                    <td class="num">8</td>
+                    <td class="num text-rose-600">4</td>
+                    <td><span class="badge badge-danger">Sangat Kritis</span></td>
+                    <td class="num">
+                      <button data-modal-open="#modal-musnah" class="btn btn-outline btn-2xs">Pemusnahan</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-010</td>
+                    <td>Vaksin Campak</td>
+                    <td class="font-mono text-xs">VC2401</td>
+                    <td>2027-02-15</td>
+                    <td class="num">120</td>
+                    <td class="num text-rose-600">30</td>
+                    <td><span class="badge badge-danger">Sangat Kritis</span></td>
+                    <td class="num">
+                      <button data-toast="Usulan redistribusi Vaksin Campak dibuat (mockup)" class="btn btn-outline btn-2xs">Redistribusi</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-011</td>
+                    <td>Insulin Reguler</td>
+                    <td class="font-mono text-xs">IR2402</td>
+                    <td>2027-04-30</td>
+                    <td class="num">40</td>
+                    <td class="num">104</td>
+                    <td><span class="badge badge-warning">Waspada</span></td>
+                    <td class="num">
+                      <button data-toast="Usulan redistribusi Insulin dibuat (mockup)" class="btn btn-outline btn-2xs">Redistribusi</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-012</td>
+                    <td>Tetrasiklin 250 mg</td>
+                    <td class="font-mono text-xs">TC2312</td>
+                    <td>2027-08-31</td>
+                    <td class="num">300</td>
+                    <td class="num">227</td>
+                    <td><span class="badge badge-success">Aman</span></td>
+                    <td class="num">
+                      <a href="../03-stok/index.html" class="btn btn-outline btn-2xs">Kartu stok</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <p class="text-hint">Batch berstatus Aman tetap dipantau hingga masuk horizon 6 bulan.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Berita Acara Pemusnahan</h2>
+                <p class="text-hint">Stok keluar dicatat saat berita acara disetujui.</p>
+              </div>
+              <button data-modal-open="#modal-musnah" class="btn btn-outline btn-xs">Ajukan pemusnahan</button>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <th>Tanggal</th>
+                    <th>Obat / Batch</th>
+                    <th class="num">Jumlah</th>
+                    <th>Alasan</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">PMS/2027/002</td>
+                    <td>2027-01-20</td>
+                    <td>Vaksin Campak · VC2312</td>
+                    <td class="num">20</td>
+                    <td>Kedaluwarsa</td>
+                    <td><span class="badge badge-warning">Menunggu verifikasi</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">PMS/2027/001</td>
+                    <td>2027-01-10</td>
+                    <td>Amoksisilin 500 mg · AMX2310</td>
+                    <td class="num">40</td>
+                    <td>Kemasan rusak</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-musnah" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-12 w-[92%] max-w-lg rounded-xl bg-white p-5 shadow-xl">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <h3 class="text-base font-semibold">Catat pemusnahan</h3>
+            <p class="text-hint">Obat rusak atau kedaluwarsa tidak boleh kembali ke stok layak.</p>
+          </div>
+          <button data-modal-close class="icon-btn" aria-label="Tutup">
+            <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div>
+            <label class="field-label" for="pms-tanggal">Tanggal</label>
+            <input id="pms-tanggal" type="date" data-date value="2027-01-20" class="field w-full" />
+          </div>
+          <div>
+            <label class="field-label" for="pms-lokasi">Lokasi</label>
+            <select id="pms-lokasi" class="field w-full">
+              <option>Gudang Farmasi Pusat</option>
+              <option>Ruang Obat Puskesmas A</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label class="field-label" for="pms-obat">Obat dan batch</label>
+            <select id="pms-obat" class="field w-full">
+              <option>Serum Anti Rabies · SAR2401 · exp 2027-01-20</option>
+              <option>Vaksin Campak · VC2401 · exp 2027-02-15</option>
+              <option>Insulin Reguler · IR2402 · exp 2027-04-30</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="pms-jumlah">Jumlah</label>
+            <input id="pms-jumlah" type="number" value="8" min="0" class="field w-full text-right" />
+          </div>
+          <div>
+            <label class="field-label" for="pms-alasan">Alasan</label>
+            <select id="pms-alasan" class="field w-full">
+              <option>Kedaluwarsa</option>
+              <option>Kemasan rusak</option>
+              <option>Cold chain terputus</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="pms-saksi1">Saksi 1</label>
+            <input id="pms-saksi1" value="Ratna, S.Farm., Apt." class="field w-full" />
+          </div>
+          <div>
+            <label class="field-label" for="pms-saksi2">Saksi 2</label>
+            <input id="pms-saksi2" value="Budi Santoso" class="field w-full" />
+          </div>
+          <label class="check sm:col-span-2">
+            <input type="checkbox" checked />
+            <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+            <span>Buat berita acara pemusnahan dan kurangi stok setelah disetujui</span>
+          </label>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Berita acara pemusnahan diajukan (mockup)" data-toast-type="warning" class="btn btn-primary btn-xs">Ajukan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

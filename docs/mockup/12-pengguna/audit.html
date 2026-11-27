@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Audit Log - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengguna" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pengguna</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Audit log</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Audit Log</h1>
+              <p class="text-hint">Login, logout, dan aksi kritis · tidak dapat diubah</p>
+            </div>
+            <button data-toast="Audit log Januari 2027 diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+              <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+              Unduh
+            </button>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Penonaktifan akun tidak menghapus riwayat audit.</p>
+            <p class="mt-1">
+              Setiap perubahan peran, penugasan, dan aksi kritis dicatat lengkap dengan waktu,
+              pelaku, dan alamat IP.
+            </p>
+          </div>
+
+          <section class="card card-body-sm grid gap-3 sm:grid-cols-4">
+            <div>
+              <label class="field-label" for="aud-pengguna">Pengguna</label>
+              <select id="aud-pengguna" class="field w-full">
+                <option>Semua pengguna</option>
+                <option>ratna.apoteker</option>
+                <option>admin.dinkes</option>
+                <option>joko.gudang</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="aud-aksi">Aksi</label>
+              <select id="aud-aksi" class="field w-full">
+                <option>Semua aksi</option>
+                <option>Login</option>
+                <option>Login gagal</option>
+                <option>Create</option>
+                <option>Update</option>
+                <option>Delete</option>
+                <option>Export</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="aud-entitas">Entitas</label>
+              <select id="aud-entitas" class="field w-full">
+                <option>Semua entitas</option>
+                <option>auth</option>
+                <option>pengguna</option>
+                <option>pengguna_peran</option>
+                <option>google_whitelist</option>
+                <option>laporan_sipd</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <button data-toast="Filter audit diterapkan (mockup)" class="btn btn-neutral btn-sm btn-block">Terapkan</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Aktivitas Terbaru</h2>
+                <p class="text-hint">Urut dari yang paling baru.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>8</span> catatan</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari pengguna atau entitas…" class="search-field" aria-label="Cari audit" />
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="aud-rows">Baris per halaman</label>
+                <select id="aud-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Audit log">
+                <thead>
+                  <tr>
+                    <th>Waktu</th>
+                    <th>Pengguna</th>
+                    <th>Aksi</th>
+                    <th>Entitas</th>
+                    <th>Ringkasan</th>
+                    <th>IP</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>2027-01-29 08:15</td>
+                    <td class="font-mono text-xs">andi.apoteker</td>
+                    <td><span class="badge badge-brand">Login</span></td>
+                    <td>auth</td>
+                    <td>Login berhasil dengan kata sandi</td>
+                    <td class="font-mono text-xs">10.10.2.11</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-29 08:05</td>
+                    <td class="font-mono text-xs">ratna.apoteker</td>
+                    <td><span class="badge badge-brand">Login</span></td>
+                    <td>auth</td>
+                    <td>Login berhasil, 2FA TOTP</td>
+                    <td class="font-mono text-xs">10.10.1.24</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-29 06:55</td>
+                    <td class="font-mono text-xs">joko.gudang</td>
+                    <td><span class="badge badge-danger">Login gagal</span></td>
+                    <td>auth</td>
+                    <td>Percobaan 5 dari 5, akun terkunci sementara</td>
+                    <td class="font-mono text-xs">10.10.2.55</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-28 16:20</td>
+                    <td class="font-mono text-xs">hendra.kabid</td>
+                    <td><span class="badge badge-warning">Update</span></td>
+                    <td>pengguna_peran</td>
+                    <td>Peran ratna.apoteker ditambah PETUGAS_GUDANG</td>
+                    <td class="font-mono text-xs">10.10.1.10</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-28 14:22</td>
+                    <td class="font-mono text-xs">ratna.apoteker</td>
+                    <td><span class="badge badge-warning">Update</span></td>
+                    <td>pengguna_peran</td>
+                    <td>Fasilitas Puskesmas A ditambahkan</td>
+                    <td class="font-mono text-xs">10.10.1.24</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-27 09:10</td>
+                    <td class="font-mono text-xs">ratna.apoteker</td>
+                    <td><span class="badge badge-neutral">Export</span></td>
+                    <td>laporan_sipd</td>
+                    <td>Ekspor SIPD Januari 2027</td>
+                    <td class="font-mono text-xs">10.10.1.24</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-26 11:30</td>
+                    <td class="font-mono text-xs">admin.dinkes</td>
+                    <td><span class="badge badge-success">Create</span></td>
+                    <td>pengguna</td>
+                    <td>Akun dewi.puskesmas dibuat dan diundang</td>
+                    <td class="font-mono text-xs">10.10.1.5</td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-25 10:05</td>
+                    <td class="font-mono text-xs">admin.dinkes</td>
+                    <td><span class="badge badge-danger">Delete</span></td>
+                    <td>google_whitelist</td>
+                    <td>Email mantan.pengguna@gmail.com dihapus</td>
+                    <td class="font-mono text-xs">10.10.1.5</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>8</span> catatan
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

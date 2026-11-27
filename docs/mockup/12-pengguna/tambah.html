@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tambah Pengguna - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengguna" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pengguna</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Pengguna baru</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Tambah Pengguna</h1>
+              <p class="text-hint">
+                Akun baru menerima undangan email, lalu mengatur kata sandi dan 2FA bila wajib.
+              </p>
+            </div>
+            <span class="badge badge-neutral">Draf</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Satu pengguna dapat ditugaskan ke beberapa fasilitas.</p>
+            <p class="mt-1">
+              Hak akses mengikuti peran, sedangkan cakupan data mengikuti penugasan fasilitas.
+              Setiap perubahan peran dicatat pada audit log.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Identitas</h2>
+                  <span class="text-hint">Username dan email harus unik</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="usr-nama">Nama lengkap</label>
+                    <input id="usr-nama" value="Dewi Anggraini" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="usr-username">Username</label>
+                    <input id="usr-username" value="dewi.puskesmas" class="field w-full" />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="usr-email">Email</label>
+                    <input id="usr-email" type="email" value="dewi.puskesmas@dinkes.go.id" class="field w-full" />
+                    <p class="field-help">Undangan dan notifikasi dikirim ke alamat ini.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Peran dan Akses</h2>
+                  <span class="text-hint">Boleh lebih dari satu peran</span>
+                </div>
+                <div class="card-body space-y-4">
+                  <div class="grid gap-2 sm:grid-cols-2">
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Administrator Dinas</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Kepala Dinas</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Kepala Bidang Farmasi</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Apoteker Gudang Dinas</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" checked />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Apoteker Puskesmas</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Apoteker RSUD</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Direktur RSUD</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Petugas Gudang</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Auditor</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Kepala Puskesmas</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Petugas Farmasi</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Dokter</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Pejabat Pengadaan</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Pejabat Keuangan</span>
+                    </label>
+                    <label class="check">
+                      <input type="checkbox" />
+                      <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                      <span>Kurir</span>
+                    </label>
+                  </div>
+                  <div class="grid gap-3 sm:grid-cols-2">
+                    <div>
+                      <label class="field-label" for="usr-fasilitas">Fasilitas utama</label>
+                      <select id="usr-fasilitas" class="field w-full">
+                        <option>Puskesmas A</option>
+                        <option>Puskesmas B</option>
+                        <option>Puskesmas C</option>
+                        <option>RSUD</option>
+                        <option>Dinas Kesehatan</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="field-label" for="usr-2fa">2FA</label>
+                      <input id="usr-2fa" value="Tidak wajib untuk peran ini" readonly class="field w-full" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="field-label">Penugasan fasilitas tambahan</label>
+                    <div class="grid gap-2 sm:grid-cols-2">
+                      <label class="check">
+                        <input type="checkbox" checked />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                        <span>Puskesmas A</span>
+                      </label>
+                      <label class="check">
+                        <input type="checkbox" checked />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                        <span>Puskesmas B</span>
+                      </label>
+                      <label class="check">
+                        <input type="checkbox" />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                        <span>Puskesmas C</span>
+                      </label>
+                      <label class="check">
+                        <input type="checkbox" />
+                        <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                        <span>RSUD</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Keamanan dan Undangan</h2>
+                  <span class="badge badge-neutral">Kebijakan berlaku</span>
+                </div>
+                <div class="card-body space-y-3">
+                  <div class="alert alert-brand">
+                    <p class="text-sm">
+                      Kata sandi minimal 12 karakter, kombinasi huruf, angka, dan simbol;
+                      kedaluwarsa 90 hari; terkunci setelah 5 percobaan gagal.
+                    </p>
+                  </div>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Kirim undangan aktivasi ke email pengguna</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Wajibkan penggantian kata sandi saat login pertama</span>
+                  </label>
+                  <div>
+                    <label class="field-label" for="usr-catatan">Catatan admin</label>
+                    <textarea id="usr-catatan" rows="2" class="field w-full">Ditugaskan untuk Puskesmas A dan B membantu pelayanan dispensing.</textarea>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Username</dt>
+                    <dd class="font-mono text-xs">dewi.puskesmas</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Peran dipilih</dt>
+                    <dd class="font-medium">1 peran</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Fasilitas</dt>
+                    <dd class="font-medium">2 penugasan</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Status awal</dt>
+                    <dd><span class="badge badge-warning">Terundang</span></dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf pengguna dewi.puskesmas disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <button data-toast="Undangan aktivasi dikirim ke dewi.puskesmas (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Kirim undangan</button>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Peran wajib 2FA</h2>
+                <p class="mt-2">
+                  Administrator, Kepala Dinas, dan Kepala Bidang wajib mengaktifkan TOTP sebelum
+                  akun dapat dipakai.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

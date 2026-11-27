@@ -60,6 +60,24 @@
                       <option>Ruang Obat Puskesmas A</option>
                     </select>
                   </div>
+                  <div>
+                    <label class="field-label" for="zona">Zona penyimpanan</label>
+                    <select id="zona" class="field w-full">
+                      <option>Zona A · 15–25 °C</option>
+                      <option>Cold · 2–8 °C</option>
+                      <option>Karantina</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="rak">Rak</label>
+                    <input id="rak" value="A2-03" class="field w-full" />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <button data-toast="Pemindai barcode aktif (mockup)" class="btn btn-outline btn-sm">
+                      Pindai barcode
+                    </button>
+                    <p class="field-help">Gunakan pemindai untuk mengisi nomor batch dan tanggal kedaluwarsa.</p>
+                  </div>
                   <div class="sm:col-span-2">
                     <label class="field-label" for="penerima">Diterima oleh</label>
                     <input id="penerima" value="Ratna, S.Farm., Apt." class="field w-full" />
@@ -225,6 +243,11 @@
                     <input type="checkbox" checked disabled />
                     <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
                     <span>Jumlah tidak melebihi sisa PO</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked disabled />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Barang masuk zona karantina sampai verifikasi mutu</span>
                   </label>
                 </div>
               </section>

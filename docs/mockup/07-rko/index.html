@@ -9,24 +9,237 @@
   <body data-page="rko" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
+
       <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
-        <main class="flex flex-1 items-start p-4 lg:p-6">
-          <div class="w-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <p class="text-xs uppercase tracking-widest text-slate-400">Modul RKO</p>
-            <h1 class="mt-2 text-xl font-semibold">Halaman sedang disiapkan</h1>
-            <p class="mx-auto mt-2 max-w-md text-sm text-slate-500">
-              Halaman ini akan dibuat setelah katalog komponen disetujui. Gunakan
-              <a href="../components/index.html" class="text-brand-600 hover:underline">Katalog Komponen</a>
-              sebagai acuan tampilan.
-            </p>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">Perencanaan Kebutuhan (RKO)</h1>
+              <p class="text-hint">Triwulan I 2027 · 4 fasilitas · konsolidasi disetujui 4 Januari 2027</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Rekap RKO diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+                Unduh rekap
+              </button>
+              <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                Buat RKO
+              </a>
+            </div>
           </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Dokumen RKO</p>
+              <p class="kpi-value">5</p>
+              <p class="field-help">4 fasilitas + 1 konsolidasi Dinas</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Item Terkonsolidasi</p>
+              <p class="kpi-value">11</p>
+              <p class="field-help">Gabungan RKO triwulan I 2027</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Nilai Konsolidasi</p>
+              <p class="kpi-value">Rp 830,45 jt</p>
+              <p class="field-help">Harga perkiraan e-Katalog</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Menunggu Persetujuan</p>
+              <p class="kpi-value text-amber-600">1</p>
+              <p class="field-help">RKO/2027/Q1/002 Puskesmas B</p>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Konsolidasi RKO menjadi dasar keranjang pengadaan.</p>
+            <p class="mt-1">
+              RKO diajukan per triwulan paling lambat H-30. Perubahan setelah disetujui
+              memerlukan persetujuan ulang.
+            </p>
+            <a href="konsolidasi.html" class="btn btn-soft btn-xs mt-4">Buka konsolidasi</a>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar RKO</h2>
+                <p class="text-hint">Satu RKO per fasilitas per triwulan.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>6</span> dokumen</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari nomor atau fasilitas…" class="search-field" aria-label="Cari RKO" />
+                </div>
+
+                <details class="relative">
+                  <summary class="btn btn-outline btn-sm flex cursor-pointer list-none items-center gap-2">
+                    <i class="ri-filter-3-line icon-sm" aria-hidden="true"></i>
+                    Filter
+                    <span class="badge badge-brand">2</span>
+                    <i class="ri-arrow-down-s-line icon-xs chevron text-slate-400" aria-hidden="true"></i>
+                  </summary>
+                  <div class="card dropdown-panel absolute left-0 z-30 mt-2 w-72 p-3 text-left shadow-lg">
+                    <div class="space-y-2">
+                      <div>
+                        <label class="field-label" for="rko-periode">Periode</label>
+                        <select id="rko-periode" class="field w-full">
+                          <option>Triwulan I 2027</option>
+                          <option>Triwulan IV 2026</option>
+                          <option>Semua periode</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="rko-fasilitas">Fasilitas</label>
+                        <select id="rko-fasilitas" class="field w-full">
+                          <option>Semua fasilitas</option>
+                          <option>Puskesmas A</option>
+                          <option>Puskesmas B</option>
+                          <option>Puskesmas C</option>
+                          <option>RSUD (program)</option>
+                          <option>Konsolidasi Dinas</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="rko-status">Status</label>
+                        <select id="rko-status" class="field w-full">
+                          <option>Semua status</option>
+                          <option>Draf</option>
+                          <option>Diajukan</option>
+                          <option>Disetujui</option>
+                          <option>Selesai</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <a href="index.html" class="btn btn-ghost btn-sm">Reset</a>
+                      <button type="button" data-dropdown-close data-toast="Filter RKO diterapkan (mockup)" class="btn btn-primary btn-sm">Terapkan</button>
+                    </div>
+                  </div>
+                </details>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="rko-rows">Baris per halaman</label>
+                <select id="rko-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Daftar RKO">
+                <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <th>Fasilitas</th>
+                    <th>Periode</th>
+                    <th class="num">Item</th>
+                    <th class="num">Nilai (Rp)</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">RKO/2027/Q1/001</td>
+                    <td>Puskesmas A</td>
+                    <td>Q1 2027</td>
+                    <td class="num">8</td>
+                    <td class="num">245.000.000</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">RKO/2027/Q1/002</td>
+                    <td>Puskesmas B</td>
+                    <td>Q1 2027</td>
+                    <td class="num">12</td>
+                    <td class="num">310.750.000</td>
+                    <td><span class="badge badge-brand">Diajukan</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">RKO/2027/Q1/003</td>
+                    <td>Konsolidasi Dinas</td>
+                    <td>Q1 2027</td>
+                    <td class="num">11</td>
+                    <td class="num">830.450.000</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                    <td class="num">
+                      <a href="konsolidasi.html" class="btn btn-primary btn-2xs">Konsolidasi</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">RKO/2027/Q1/004</td>
+                    <td>Puskesmas C</td>
+                    <td>Q1 2027</td>
+                    <td class="num">7</td>
+                    <td class="num">142.200.000</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="tambah.html" class="btn btn-outline btn-2xs">Ubah</a>
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">RKO/2027/Q1/005</td>
+                    <td>RSUD (program)</td>
+                    <td>Q1 2027</td>
+                    <td class="num">4</td>
+                    <td class="num">132.500.000</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">RKO/2026/Q4/001</td>
+                    <td>Puskesmas A</td>
+                    <td>Q4 2026</td>
+                    <td class="num">7</td>
+                    <td class="num">198.400.000</td>
+                    <td><span class="badge badge-neutral">Selesai</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>6</span> RKO
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
         </main>
+
         <div data-include="../components/footer.html"></div>
       </div>
     </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>
 </html>
-

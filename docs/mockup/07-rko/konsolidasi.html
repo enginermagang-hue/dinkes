@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Konsolidasi RKO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="rko" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">RKO</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>RKO/2027/Q1/003</span>
+              </nav>
+              <div class="flex flex-wrap items-center gap-2">
+                <h1 class="text-xl font-semibold">Konsolidasi RKO</h1>
+                <span class="badge badge-success">Disetujui</span>
+              </div>
+              <p class="text-hint">
+                RKO/2027/Q1/003 · 11 item · Rp 830,45 jt · disetujui Kepala Bidang 4 Januari 2027
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-print class="btn btn-outline btn-sm flex gap-2 no-print">
+                <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                Cetak
+              </button>
+              <a href="../04-pengadaan/index.html" class="btn btn-primary btn-sm">Lanjut ke keranjang</a>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Fasilitas Terkonsolidasi</p>
+              <p class="kpi-value">4</p>
+              <p class="field-help">Puskesmas A–C dan RSUD program</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Item</p>
+              <p class="kpi-value">11</p>
+              <p class="field-help">2 item disetujui di bawah kebutuhan</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Nilai Rencana</p>
+              <p class="kpi-value">Rp 830,45 jt</p>
+              <p class="field-help">Harga perkiraan e-Katalog</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Sudah Masuk Keranjang</p>
+              <p class="kpi-value text-brand-600">4</p>
+              <p class="field-help">7 item belum dipesan</p>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Rencana ini menjadi dasar pengadaan.</p>
+            <p class="mt-1">
+              Konsolidasi menggabungkan RKO fasilitas yang telah disetujui. Pengadaan wajib
+              merujuk pada dokumen ini sebelum PO diterbitkan.
+            </p>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Item Konsolidasi</h2>
+                <p class="text-hint">Kebutuhan gabungan seluruh fasilitas pada triwulan I.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>11</span> item</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari kode atau nama obat…" class="search-field" aria-label="Cari item konsolidasi" />
+                </div>
+                <div class="w-full sm:w-48">
+                  <select class="field w-full" aria-label="Filter status item">
+                    <option>Semua status</option>
+                    <option>Disetujui</option>
+                    <option>Dikurangi</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="kons-rows">Baris per halaman</label>
+                <select id="kons-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Item konsolidasi RKO">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Obat</th>
+                    <th class="num">Kebutuhan</th>
+                    <th class="num">Disetujui</th>
+                    <th class="num">Sisa Stok Dinas</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">OBT-001</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num">12.000</td>
+                    <td class="num">12.000</td>
+                    <td class="num">4.360</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-002</td>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="num">9.000</td>
+                    <td class="num">9.000</td>
+                    <td class="num">6.000</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-003</td>
+                    <td>Metformin 500 mg</td>
+                    <td class="num">4.800</td>
+                    <td class="num">4.800</td>
+                    <td class="num">2.700</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-004</td>
+                    <td>Amlodipin 10 mg</td>
+                    <td class="num">7.200</td>
+                    <td class="num">7.200</td>
+                    <td class="num">2.700</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-005</td>
+                    <td>Kotrimoksazol 480 mg</td>
+                    <td class="num">2.400</td>
+                    <td class="num">2.400</td>
+                    <td class="num">900</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-006</td>
+                    <td>Oralit Serbuk</td>
+                    <td class="num">3.000</td>
+                    <td class="num">3.000</td>
+                    <td class="num">1.200</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-007</td>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="num">300</td>
+                    <td class="num">300</td>
+                    <td class="num">60</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-008</td>
+                    <td>Insulin Glargine</td>
+                    <td class="num">120</td>
+                    <td class="num">120</td>
+                    <td class="num">30</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-009</td>
+                    <td>Vitamin A Kapsul</td>
+                    <td class="num">500</td>
+                    <td class="num">400</td>
+                    <td class="num">500</td>
+                    <td><span class="badge badge-warning">Dikurangi</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-010</td>
+                    <td>Vaksin Campak</td>
+                    <td class="num">300</td>
+                    <td class="num">300</td>
+                    <td class="num">140</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-011</td>
+                    <td>Insulin Reguler</td>
+                    <td class="num">150</td>
+                    <td class="num">120</td>
+                    <td class="num">60</td>
+                    <td><span class="badge badge-warning">Dikurangi</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>11</span> item konsolidasi
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">RKO Penyusun Konsolidasi</h2>
+                <span class="text-hint">4 dokumen disetujui</span>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-compact">
+                  <thead>
+                    <tr>
+                      <th>Nomor</th>
+                      <th>Fasilitas</th>
+                      <th class="num">Item</th>
+                      <th class="num">Nilai (Rp)</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr>
+                      <td class="font-mono text-xs">RKO/2027/Q1/001</td>
+                      <td>Puskesmas A</td>
+                      <td class="num">8</td>
+                      <td class="num">245.000.000</td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-xs">RKO/2027/Q1/002</td>
+                      <td>Puskesmas B</td>
+                      <td class="num">12</td>
+                      <td class="num">310.750.000</td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-xs">RKO/2027/Q1/004</td>
+                      <td>Puskesmas C</td>
+                      <td class="num">7</td>
+                      <td class="num">142.200.000</td>
+                    </tr>
+                    <tr>
+                      <td class="font-mono text-xs">RKO/2027/Q1/005</td>
+                      <td>RSUD (program)</td>
+                      <td class="num">4</td>
+                      <td class="num">132.500.000</td>
+                    </tr>
+                    <tr class="bg-slate-50">
+                      <td class="font-medium" colspan="2">Total 4 dokumen</td>
+                      <td class="num font-semibold">31</td>
+                      <td class="num font-semibold">830.450.000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer">
+                <p class="field-help">31 baris item dari 4 dokumen digabung menjadi 11 jenis obat.</p>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Catatan Konsolidasi</h2>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li>2 item disetujui di bawah kebutuhan karena stok Dinas masih mencukupi.</li>
+                <li>Deteksi duplikasi: tidak ada item ganda antar fasilitas.</li>
+                <li>Anomali jumlah: Parasetamol 14% di atas rata-rata triwulan lalu.</li>
+              </ul>
+              <a href="../04-pengadaan/index.html" class="btn btn-outline btn-sm mt-4 btn-block">Buka keranjang pengadaan</a>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

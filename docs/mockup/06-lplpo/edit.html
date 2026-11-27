@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Revisi LPLPO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="lplpo" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">LPLPO</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <a href="detail.html" class="hover:text-brand-600">LPLPO/2027/01/002</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Revisi</span>
+              </nav>
+              <div class="flex flex-wrap items-center gap-2">
+                <h1 class="text-xl font-semibold">Revisi LPLPO</h1>
+                <span class="badge badge-danger">Ditolak</span>
+                <span class="badge badge-neutral">Versi 2</span>
+              </div>
+              <p class="text-hint">Puskesmas C · periode Januari 2027 · dikembalikan 4 Februari 2027</p>
+            </div>
+            <a href="index.html" class="btn btn-outline btn-sm">Kembali ke daftar</a>
+          </div>
+
+          <div class="alert alert-danger">
+            <h2 class="font-semibold">Alasan pengembalian Dinas</h2>
+            <p class="mt-2">
+              "Jumlah pakai Insulin tidak sesuai mutasi stok. Mohon koreksi dan ajukan ulang."
+              — Ratna, S.Farm., Apt., 4 Februari 2027.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Identitas LPLPO</h2>
+                  <span class="text-hint">Fasilitas dan periode tidak dapat diubah</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="revisi-nomor">Nomor LPLPO</label>
+                    <input id="revisi-nomor" value="LPLPO/2027/01/002" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="revisi-periode">Periode</label>
+                    <input id="revisi-periode" value="Januari 2027" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="revisi-fasilitas">Fasilitas</label>
+                    <input id="revisi-fasilitas" value="Puskesmas C" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="revisi-penyusun">Disusun oleh</label>
+                    <input id="revisi-penyusun" value="Budi, S.Farm., Apt." readonly class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item dan Jumlah Permintaan</h2>
+                    <p class="text-hint">Perbaiki jumlah sesuai catatan Dinas.</p>
+                  </div>
+                  <span class="badge badge-brand">5 item</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Stok Awal</th>
+                        <th class="num">Stok Akhir</th>
+                        <th class="num">Pakai</th>
+                        <th class="num">Diminta</th>
+                        <th class="num">Nilai (Rp)</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Rp 1.250</p>
+                        </td>
+                        <td class="num">300</td>
+                        <td class="num">120</td>
+                        <td class="num">180</td>
+                        <td class="num"><input type="number" value="200" min="0" class="field w-20 text-right" aria-label="Diminta Amoksisilin" /></td>
+                        <td class="num">250.000</td>
+                        <td class="text-hint">—</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Parasetamol 500 mg</p>
+                          <p class="text-hint">OBT-002 · Rp 850</p>
+                        </td>
+                        <td class="num">400</td>
+                        <td class="num">180</td>
+                        <td class="num">220</td>
+                        <td class="num"><input type="number" value="250" min="0" class="field w-20 text-right" aria-label="Diminta Parasetamol" /></td>
+                        <td class="num">212.500</td>
+                        <td class="text-hint">—</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amlodipin 10 mg</p>
+                          <p class="text-hint">OBT-004 · Rp 800</p>
+                        </td>
+                        <td class="num">200</td>
+                        <td class="num">60</td>
+                        <td class="num">140</td>
+                        <td class="num"><input type="number" value="150" min="0" class="field w-20 text-right" aria-label="Diminta Amlodipin" /></td>
+                        <td class="num">120.000</td>
+                        <td class="text-hint">—</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Oralit Serbuk</p>
+                          <p class="text-hint">OBT-006 · Rp 1.200</p>
+                        </td>
+                        <td class="num">300</td>
+                        <td class="num">100</td>
+                        <td class="num">200</td>
+                        <td class="num"><input type="number" value="150" min="0" class="field w-20 text-right" aria-label="Diminta Oralit" /></td>
+                        <td class="num">180.000</td>
+                        <td class="text-hint">—</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Insulin Glargine</p>
+                          <p class="text-hint">OBT-011 · Rp 385.000</p>
+                        </td>
+                        <td class="num">4</td>
+                        <td class="num">1</td>
+                        <td class="num">3</td>
+                        <td class="num"><input type="number" value="6" min="0" class="field field-warning w-20 text-right" aria-label="Diminta Insulin" /></td>
+                        <td class="num">2.310.000</td>
+                        <td><span class="badge badge-warning">Diubah</span></td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="4">Total 5 item</td>
+                        <td class="num font-semibold">756</td>
+                        <td class="num font-semibold">3.072.500</td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Catatan Revisi</h2>
+                  <span class="badge badge-warning">Wajib</span>
+                </div>
+                <div class="card-body">
+                  <label class="field-label" for="revisi-alasan">Apa yang diperbaiki?</label>
+                  <textarea id="revisi-alasan" rows="2" class="field w-full">Jumlah pakai Insulin dikoreksi dari 7 menjadi 3 setelah pengecekan mutasi batch IR2402. Permintaan disesuaikan menjadi 6 vial.</textarea>
+                  <p class="field-help">Catatan ini tampil di riwayat versi dan dibaca verifikator.</p>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Riwayat Versi</h2>
+                  <span class="text-hint">2 versi</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Versi</th>
+                        <th>Tanggal</th>
+                        <th>Status</th>
+                        <th>Catatan</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>v1</td>
+                        <td>2027-01-04</td>
+                        <td><span class="badge badge-danger">Ditolak</span></td>
+                        <td>Jumlah pakai Insulin tidak sesuai mutasi stok.</td>
+                      </tr>
+                      <tr>
+                        <td>v2</td>
+                        <td>2027-02-04</td>
+                        <td><span class="badge badge-neutral">Draf revisi</span></td>
+                        <td>Koreksi pakai Insulin, permintaan disesuaikan.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan Revisi</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah item</dt>
+                    <dd class="font-medium">5</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total diminta</dt>
+                    <dd class="font-medium">756</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Nilai permintaan</dt>
+                    <dd class="font-medium">Rp 3.072.500</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Item berubah</dt>
+                    <dd class="font-medium">1 dari 5</dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Revisi LPLPO/2027/01/002 disimpan sebagai v2 (mockup)" class="btn btn-outline btn-sm">Simpan draf revisi</button>
+                  <button data-toast="LPLPO/2027/01/002 v2 diajukan ulang (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Ajukan ulang</button>
+                </div>
+              </section>
+
+              <div class="alert alert-brand">
+                <h2 class="font-semibold">Aturan revisi</h2>
+                <p class="mt-2">
+                  Dokumen yang sudah disetujui tidak dapat diubah. Revisi hanya berlaku untuk
+                  LPLPO yang dikembalikan, dan setiap versi menyimpan catatan perubahan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pelaporan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="laporan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">Pelaporan dan Monitoring</h1>
+              <p class="text-hint">Laporan standar, ekspor SIPNAP/SIPD, dan riwayat pengiriman</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a href="ekspor.html" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-file-download-line icon-sm" aria-hidden="true"></i>
+                Ekspor laporan
+              </a>
+              <button data-toast="Semua laporan diperbarui (mockup)" class="btn btn-primary btn-sm">Perbarui laporan</button>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Laporan Terjadwal</p>
+              <p class="kpi-value">6</p>
+              <p class="field-help">Harian sampai triwulanan</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Ekspor Bulan Ini</p>
+              <p class="kpi-value">2</p>
+              <p class="field-help">SIPNAP dan SIPD Januari</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Terkirim ke Pusat</p>
+              <p class="kpi-value text-emerald-600">2</p>
+              <p class="field-help">Keduanya diterima portal</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Perlu Tindakan</p>
+              <p class="kpi-value text-rose-600">1</p>
+              <p class="field-help">SIPD Desember 2026 gagal validasi</p>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">Batas unggah SIPNAP tanggal 10.</h2>
+            <p class="mt-2">
+              Berkas Januari 2027 sudah siap. Ekspor CSV, unggah ke portal SIPNAP, lalu catat
+              statusnya pada riwayat ekspor.
+            </p>
+            <a href="ekspor.html#sipnap" class="btn btn-soft-warning btn-xs mt-4">Siapkan ekspor SIPNAP</a>
+          </div>
+
+          <section class="grid gap-6 xl:grid-cols-2">
+            <div class="card card-body">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h2 class="card-title">SIPNAP</h2>
+                  <p class="text-hint">CSV ketersediaan dan pemakaian obat · template 2026</p>
+                </div>
+                <span class="badge badge-success">Siap</span>
+              </div>
+              <dl class="mt-3 space-y-2 text-sm">
+                <div class="flex items-center justify-between gap-2">
+                  <dt class="text-slate-500">Periode</dt>
+                  <dd class="font-medium">Januari 2027</dd>
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <dt class="text-slate-500">Kolom wajib</dt>
+                  <dd class="font-medium">10 kolom</dd>
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <dt class="text-slate-500">Fasilitas</dt>
+                  <dd class="font-medium">4 fasilitas</dd>
+                </div>
+              </dl>
+              <a href="ekspor.html#sipnap" class="btn btn-primary btn-sm mt-4 btn-block">Siapkan CSV</a>
+            </div>
+
+            <div class="card card-body">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h2 class="card-title">SIPD</h2>
+                  <p class="text-hint">Excel SPJ dan realisasi · template BPKAD</p>
+                </div>
+                <span class="badge badge-success">Siap</span>
+              </div>
+              <dl class="mt-3 space-y-2 text-sm">
+                <div class="flex items-center justify-between gap-2">
+                  <dt class="text-slate-500">Periode</dt>
+                  <dd class="font-medium">Januari 2027</dd>
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <dt class="text-slate-500">Kode akun obat</dt>
+                  <dd class="font-mono text-xs">5.2.02.01.01</dd>
+                </div>
+                <div class="flex items-center justify-between gap-2">
+                  <dt class="text-slate-500">Kode akun BMHP</dt>
+                  <dd class="font-mono text-xs">5.2.02.01.02</dd>
+                </div>
+              </dl>
+              <a href="ekspor.html#sipd" class="btn btn-primary btn-sm mt-4 btn-block">Siapkan Excel</a>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Laporan Standar</h2>
+                <p class="text-hint">Dibuat otomatis sesuai jadwal.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>6</span> laporan</span>
+            </div>
+            <div class="table-toolbar">
+              <div class="relative w-full sm:w-72">
+                <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                <input type="search" data-table-search placeholder="Cari laporan…" class="search-field" aria-label="Cari laporan" />
+              </div>
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="lap-rows">Baris per halaman</label>
+                <select id="lap-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head" data-table aria-label="Laporan standar">
+                <thead>
+                  <tr>
+                    <th>Laporan</th>
+                    <th>Periode</th>
+                    <th>Frekuensi</th>
+                    <th>Terakhir Dibuat</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Mutasi stok harian</td>
+                    <td>2027-01-29</td>
+                    <td>Harian</td>
+                    <td>29 Jan 2027 06:00</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                    <td class="num"><button data-toast="Laporan mutasi harian diunduh (mockup)" class="btn btn-outline btn-2xs">Unduh</button></td>
+                  </tr>
+                  <tr>
+                    <td>Ketersediaan obat dan BMHP</td>
+                    <td>2027-01</td>
+                    <td>Bulanan</td>
+                    <td>1 Feb 2027 05:30</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                    <td class="num"><button data-toast="Laporan ketersediaan diunduh (mockup)" class="btn btn-outline btn-2xs">Unduh</button></td>
+                  </tr>
+                  <tr>
+                    <td>Realisasi RKO dan ABC-VEN</td>
+                    <td>2026-Q4</td>
+                    <td>Triwulanan</td>
+                    <td>5 Jan 2027 09:10</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                    <td class="num"><button data-toast="Laporan triwulanan diunduh (mockup)" class="btn btn-outline btn-2xs">Unduh</button></td>
+                  </tr>
+                  <tr>
+                    <td>Kedaluwarsa dan pemusnahan</td>
+                    <td>2027-01</td>
+                    <td>Bulanan</td>
+                    <td>1 Feb 2027 05:30</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                    <td class="num"><button data-toast="Laporan kedaluwarsa diunduh (mockup)" class="btn btn-outline btn-2xs">Unduh</button></td>
+                  </tr>
+                  <tr>
+                    <td>Kinerja fasilitas</td>
+                    <td>2027-01</td>
+                    <td>Bulanan</td>
+                    <td>1 Feb 2027 05:35</td>
+                    <td><span class="badge badge-warning">Menunggu data</span></td>
+                    <td class="num"><button data-toast="Laporan kinerja belum lengkap (mockup)" data-toast-type="warning" class="btn btn-outline btn-2xs">Tinjau</button></td>
+                  </tr>
+                  <tr>
+                    <td>Rekap pemakaian per fasilitas</td>
+                    <td>2027-01</td>
+                    <td>Bulanan</td>
+                    <td>1 Feb 2027 05:40</td>
+                    <td><span class="badge badge-success">Siap</span></td>
+                    <td class="num"><button data-toast="Rekap pemakaian diunduh (mockup)" class="btn btn-outline btn-2xs">Unduh</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>6</span> laporan
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Riwayat Ekspor</h2>
+                <p class="text-hint">Status unggah manual ke portal SIPNAP/SIPD.</p>
+              </div>
+              <a href="ekspor.html" class="btn btn-outline btn-xs">Ekspor baru</a>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Jenis</th>
+                    <th>Periode</th>
+                    <th>Fasilitas</th>
+                    <th>Berkas</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>2027-02-01</td>
+                    <td><span class="badge badge-brand">SIPNAP</span></td>
+                    <td>Januari 2027</td>
+                    <td>4 fasilitas</td>
+                    <td class="font-mono text-xs">sipnap_2027-01.csv</td>
+                    <td><span class="badge badge-success">Diterima portal</span></td>
+                  </tr>
+                  <tr>
+                    <td>2027-02-01</td>
+                    <td><span class="badge badge-brand">SIPD</span></td>
+                    <td>Januari 2027</td>
+                    <td>Dinas Kesehatan</td>
+                    <td class="font-mono text-xs">sipd_2027-01.xlsx</td>
+                    <td><span class="badge badge-success">Diterima BPKAD</span></td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-03</td>
+                    <td><span class="badge badge-brand">SIPNAP</span></td>
+                    <td>Desember 2026</td>
+                    <td>4 fasilitas</td>
+                    <td class="font-mono text-xs">sipnap_2026-12.csv</td>
+                    <td><span class="badge badge-success">Diterima portal</span></td>
+                  </tr>
+                  <tr>
+                    <td>2027-01-03</td>
+                    <td><span class="badge badge-brand">SIPD</span></td>
+                    <td>Desember 2026</td>
+                    <td>Dinas Kesehatan</td>
+                    <td class="font-mono text-xs">sipd_2026-12.xlsx</td>
+                    <td><span class="badge badge-danger">Gagal validasi</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Jadwal Laporan Otomatis</h2>
+                <p class="text-hint">Ekspor terjadwal dan pengiriman ke penerima.</p>
+              </div>
+              <button data-toast="Form jadwal laporan dibuka (mockup)" class="btn btn-primary btn-sm">Tambah jadwal</button>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Jenis Laporan</th>
+                    <th>Frekuensi</th>
+                    <th>Penerima</th>
+                    <th>Format</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Mutasi stok harian</td>
+                    <td>Setiap hari 07:00</td>
+                    <td>Apoteker Gudang Dinas</td>
+                    <td>PDF</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td>Ketersediaan bulanan</td>
+                    <td>Tanggal 5 08:00</td>
+                    <td>Kepala Bidang Farmasi</td>
+                    <td>Excel</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td>Realisasi RKO triwulanan</td>
+                    <td>Tanggal 10 tiap triwulan</td>
+                    <td>Kepala Bidang Farmasi</td>
+                    <td>PDF</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card card-body">
+            <h2 class="card-title">Kesiapan Integrasi</h2>
+            <div class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
+              <label class="check">
+                <input type="checkbox" checked disabled />
+                <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                <span>Akun SIPNAP per fasilitas tersedia</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" checked disabled />
+                <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                <span>Template SIPNAP versi 2026 terpasang</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" checked disabled />
+                <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                <span>Pemetaan kode akun SIPD disetujui BPKAD</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" disabled />
+                <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                <span>Jadwal unggah bulanan disepakati</span>
+              </label>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buat Permintaan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="permintaan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Permintaan</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Permintaan baru</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Buat Permintaan Obat</h1>
+              <p class="text-hint">
+                Permintaan manual untuk kebutuhan di luar LPLPO bulanan. Tetap divalidasi terhadap
+                RKO, pagu, dan stok Dinas.
+              </p>
+            </div>
+            <span class="badge badge-neutral">Draf</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Aturan validasi</p>
+            <p class="mt-1">
+              Melebihi sisa pagu atau stok Dinas memblokir pengajuan. Melebihi sisa RKO hanya
+              memberi peringatan dan wajib disertai alasan tertulis.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Dokumen Permintaan</h2>
+                  <span class="text-hint">PMT/2027/0046</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="field-label" for="req-fasilitas">Fasilitas pemohon</label>
+                    <select id="req-fasilitas" class="field w-full">
+                      <option>Puskesmas A</option>
+                      <option>Puskesmas B</option>
+                      <option>Puskesmas C</option>
+                      <option>RSUD (program)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="req-periode">Periode kebutuhan</label>
+                    <input id="req-periode" type="date" data-date value="2027-01-01" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="req-sumber">Sumber permintaan</label>
+                    <select id="req-sumber" class="field w-full">
+                      <option>Manual</option>
+                      <option>LPLPO 2027-01</option>
+                    </select>
+                    <p class="field-help">Pilih LPLPO bila permintaan dibentuk dari dokumen bulanan.</p>
+                  </div>
+                  <div>
+                    <label class="field-label" for="req-prioritas">Prioritas</label>
+                    <select id="req-prioritas" class="field w-full">
+                      <option>1 Kritis · stok di bawah safety stock</option>
+                      <option>2 Waspada · stok di bawah ROP</option>
+                      <option selected>3 Normal · stok dalam batas aman</option>
+                      <option>4 Rendah · stok di atas maksimum</option>
+                    </select>
+                    <p class="field-help">Rekomendasi dihitung dari kekritisan stok fasilitas.</p>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="req-catatan">Catatan pemohon</label>
+                    <textarea id="req-catatan" rows="2" class="field w-full">Permintaan tambahan karena lonjakan kunjungan pasien minggu keempat.</textarea>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item Permintaan</h2>
+                    <p class="text-hint">Jumlah diisi lewat modal item. Gunakan tombol Ubah untuk merevisi.</p>
+                  </div>
+                  <button data-modal-open="#modal-tambah-item" class="btn btn-outline btn-xs flex gap-2">
+                    <i class="ri-add-line icon-xs" aria-hidden="true"></i>
+                    Tambah item
+                  </button>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Diminta</th>
+                        <th class="num">Stok Dinas</th>
+                        <th class="num">Sisa RKO</th>
+                        <th class="num">Subtotal (Rp)</th>
+                        <th>Validasi</th>
+                        <th class="w-10"></th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Tablet 500 mg</p>
+                        </td>
+                        <td class="num">2.000</td>
+                        <td class="num">4.360</td>
+                        <td class="num">3.500</td>
+                        <td class="num">2.500.000</td>
+                        <td><span class="badge badge-success">Valid</span></td>
+                        <td class="num">
+                          <div class="flex items-center justify-end gap-1">
+                            <button data-modal-open="#modal-ubah-item" class="icon-btn" aria-label="Ubah Amoksisilin">
+                              <i class="ri-edit-line icon-sm text-slate-400" aria-hidden="true"></i>
+                            </button>
+                            <button data-toast="Baris Amoksisilin dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Amoksisilin">
+                              <i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Salbutamol Inhaler</p>
+                          <p class="text-hint">OBT-007 · Inhaler 100 mcg</p>
+                        </td>
+                        <td class="num">20</td>
+                        <td class="num">18</td>
+                        <td class="num">8</td>
+                        <td class="num">840.000</td>
+                        <td><span class="badge badge-danger">Lewat stok &amp; RKO</span><p class="text-hint">Kurangi jumlah</p></td>
+                        <td class="num">
+                          <div class="flex items-center justify-end gap-1">
+                            <button data-modal-open="#modal-ubah-item" class="icon-btn" aria-label="Ubah Salbutamol">
+                              <i class="ri-edit-line icon-sm text-slate-400" aria-hidden="true"></i>
+                            </button>
+                            <button data-toast="Baris Salbutamol dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Salbutamol">
+                              <i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Insulin Glargine</p>
+                          <p class="text-hint">OBT-008 · Vial 100 IU/mL</p>
+                        </td>
+                        <td class="num">10</td>
+                        <td class="num">28</td>
+                        <td class="num">0</td>
+                        <td class="num">3.850.000</td>
+                        <td><span class="badge badge-warning">Lewat RKO</span><p class="text-hint">Alasan diisi</p></td>
+                        <td class="num">
+                          <div class="flex items-center justify-end gap-1">
+                            <button data-modal-open="#modal-ubah-item" class="icon-btn" aria-label="Ubah Insulin">
+                              <i class="ri-edit-line icon-sm text-slate-400" aria-hidden="true"></i>
+                            </button>
+                            <button data-toast="Baris Insulin dihapus dari draf (mockup)" class="icon-btn" aria-label="Hapus Insulin">
+                              <i class="ri-delete-bin-line icon-sm text-slate-400" aria-hidden="true"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="4">Total 3 item</td>
+                        <td class="num font-semibold">7.190.000</td>
+                        <td colspan="2"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Harga mengikuti harga perolehan terakhir Dinas.</p>
+                  <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah item</dt>
+                    <dd class="font-medium">3</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Item perlu alasan</dt>
+                    <dd class="font-medium">1</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Nilai permintaan</dt>
+                    <dd class="font-medium">Rp 7.190.000</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Sisa pagu</dt>
+                    <dd class="font-medium">Rp 50.500.000</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Sisa pagu setelah ajuan</dt>
+                    <dd class="font-medium">Rp 43.310.000</dd>
+                  </div>
+                </dl>
+                <div class="mt-3">
+                  <div class="mb-1 flex justify-between gap-3 text-xs text-slate-500">
+                    <span>Pemakaian pagu</span>
+                    <span>14%</span>
+                  </div>
+                  <div class="progress"><div class="progress-bar bg-amber-500" style="width: 14%"></div></div>
+                </div>
+                <label class="check mt-4">
+                  <input type="checkbox" checked />
+                  <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                  <span class="text-sm">Saya sudah meninjau peringatan RKO dan mengisi alasan pada item terkait.</span>
+                </label>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf PMT/2027/0046 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <button class="btn btn-primary btn-sm is-disabled" disabled aria-disabled="true">Ajukan ke Dinas</button>
+                  <p class="field-error-text">Pengajuan diblokir: 1 item melebihi stok Dinas.</p>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Dampak ke RKO</h2>
+                <p class="mt-2">
+                  Dua item memakai sisa RKO triwulan I. Setelah disetujui, sisa RKO dan pagu
+                  langsung diperbarui.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-tambah-item" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-md rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Tambah item permintaan</h3>
+        <p class="text-hint">Stok dan sisa RKO ditampilkan otomatis setelah obat dipilih.</p>
+        <div class="mt-4 space-y-3">
+          <div>
+            <label class="field-label" for="item-obat">Obat</label>
+            <select id="item-obat" class="field w-full">
+              <option>Amoksisilin 500 mg · OBT-001</option>
+              <option>Parasetamol 500 mg · OBT-002</option>
+              <option>Salbutamol Inhaler · OBT-007</option>
+              <option>Insulin Glargine · OBT-008</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="item-jumlah">Jumlah diminta</label>
+            <div class="qty" data-qty>
+              <button type="button" data-qty-step="-1" aria-label="Kurangi jumlah">
+                <i class="ri-subtract-line icon-sm" aria-hidden="true"></i>
+              </button>
+              <input id="item-jumlah" type="number" value="100" min="0" aria-label="Jumlah diminta" />
+              <button type="button" data-qty-step="1" aria-label="Tambah jumlah">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="item-catatan">Catatan / alasan item</label>
+            <textarea id="item-catatan" rows="2" class="field w-full"></textarea>
+            <p class="field-help">Wajib diisi bila jumlah melebihi sisa RKO.</p>
+          </div>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Item ditambahkan ke draf (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Tambah</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-ubah-item" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-md rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Ubah item permintaan</h3>
+        <p class="text-hint">Salbutamol Inhaler · OBT-007 · stok Dinas 18 · sisa RKO 8</p>
+        <div class="mt-4 space-y-3">
+          <div>
+            <label class="field-label" for="ubah-obat">Obat</label>
+            <input id="ubah-obat" value="Salbutamol Inhaler · Inhaler 100 mcg" readonly class="field w-full" />
+            <p class="field-help">Ganti obat dengan menghapus baris lalu menambah item baru.</p>
+          </div>
+          <div>
+            <label class="field-label" for="ubah-jumlah">Jumlah diminta</label>
+            <div class="qty" data-qty>
+              <button type="button" data-qty-step="-1" aria-label="Kurangi jumlah">
+                <i class="ri-subtract-line icon-sm" aria-hidden="true"></i>
+              </button>
+              <input id="ubah-jumlah" type="number" value="20" min="0" max="18" aria-label="Jumlah diminta" />
+              <button type="button" data-qty-step="1" aria-label="Tambah jumlah">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+              </button>
+            </div>
+            <p class="field-warning-text">Melebihi stok Dinas (18) dan sisa RKO (8).</p>
+          </div>
+          <div>
+            <label class="field-label" for="ubah-catatan">Alasan melebihi sisa RKO (wajib)</label>
+            <textarea id="ubah-catatan" rows="2" class="field w-full">Sisa RKO triwulan I sudah terpakai untuk Puskesmas B.</textarea>
+            <p class="field-warning-text">Permintaan tetap dapat diajukan dengan alasan ini.</p>
+          </div>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Perubahan item Salbutamol disimpan (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Simpan perubahan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

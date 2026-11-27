@@ -5,6 +5,7 @@ Halaman ini menggambarkan dashboard pimpinan sesuai PRD bagian 8.7.
 ## Cakupan Layar
 
 - Empat kartu KPI: availability, stockout, nilai inventori, peringatan aktif.
+- Pemenuhan permintaan (order fulfillment) bulan berjalan.
 - Serapan anggaran per fasilitas.
 - Peringatan kritis stok dan kedaluwarsa.
 - Peringkat ketersediaan fasilitas.

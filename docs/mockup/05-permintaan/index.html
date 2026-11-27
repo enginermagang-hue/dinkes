@@ -1,32 +1,479 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Distribusi - Mockup SMSOD</title>
+    <title>Permintaan - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="distribusi" class="app-page">
+  <body data-page="permintaan" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
+
       <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
-        <main class="flex flex-1 items-start p-4 lg:p-6">
-          <div class="w-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <p class="text-xs uppercase tracking-widest text-slate-400">Modul Distribusi</p>
-            <h1 class="mt-2 text-xl font-semibold">Halaman sedang disiapkan</h1>
-            <p class="mx-auto mt-2 max-w-md text-sm text-slate-500">
-              Halaman ini akan dibuat setelah katalog komponen disetujui. Gunakan
-              <a href="../components/index.html" class="text-brand-600 hover:underline">Katalog Komponen</a>
-              sebagai acuan tampilan.
-            </p>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">Permintaan Obat Fasilitas</h1>
+              <p class="text-hint">Puskesmas A · Januari 2027 · 5 permintaan bulan ini</p>
+              <p class="field-help">
+                Permintaan rutin dibentuk dari LPLPO bulan berjalan.
+                <a href="../06-lplpo/index.html" class="text-brand-600 hover:underline">Buka LPLPO</a>
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Rekap permintaan diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+                Unduh rekap
+              </button>
+              <button data-toast="Cetak daftar permintaan disiapkan (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                Cetak daftar
+              </button>
+              <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                Buat permintaan
+              </a>
+            </div>
           </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Permintaan Januari</p>
+              <p class="kpi-value">5</p>
+              <p class="field-help">18 item, nilai Rp 69,4 jt</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Menunggu Verifikasi</p>
+              <p class="kpi-value text-amber-600">1</p>
+              <p class="field-help">PMT/2027/0042, diajukan hari ini</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Disetujui Sebagian</p>
+              <p class="kpi-value text-brand-600">1</p>
+              <p class="field-help">PMT/2027/0041, 3 item dikurangi</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Ditolak</p>
+              <p class="kpi-value text-rose-600">1</p>
+              <p class="field-help">PMT/2027/0044, sisa pagu tidak cukup</p>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">Permintaan melebihi sisa RKO</h2>
+            <p class="mt-2">
+              PMT/2027/0042 meminta Insulin Glargine 20 vial, sedangkan sisa RKO triwulan I
+              hanya 12 vial. Permintaan tetap dapat diajukan dengan alasan tertulis.
+            </p>
+            <a href="detail.html" class="btn btn-soft-warning btn-xs mt-4">Tinjau permintaan</a>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar Permintaan</h2>
+                <p class="text-hint">Nomor permintaan tidak dapat digunakan ulang.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>8</span> dokumen</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari nomor atau fasilitas…" class="search-field" aria-label="Cari permintaan" />
+                </div>
+
+                <details class="relative">
+                  <summary class="btn btn-outline btn-sm flex cursor-pointer list-none items-center gap-2">
+                    <i class="ri-filter-3-line icon-sm" aria-hidden="true"></i>
+                    Filter
+                    <span class="badge badge-brand">2</span>
+                    <i class="ri-arrow-down-s-line icon-xs chevron text-slate-400" aria-hidden="true"></i>
+                  </summary>
+                  <div class="card dropdown-panel absolute left-0 z-30 mt-2 w-72 p-3 text-left shadow-lg">
+                    <div class="space-y-2">
+                      <div>
+                        <label class="field-label" for="req-fasilitas">Fasilitas</label>
+                        <select id="req-fasilitas" class="field w-full">
+                          <option>Semua fasilitas</option>
+                          <option>Puskesmas A</option>
+                          <option>Puskesmas B</option>
+                          <option>Puskesmas C</option>
+                          <option>RSUD (program)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="req-sumber">Sumber</label>
+                        <select id="req-sumber" class="field w-full">
+                          <option>Semua sumber</option>
+                          <option>LPLPO</option>
+                          <option>Manual</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="req-prioritas">Prioritas</label>
+                        <select id="req-prioritas" class="field w-full">
+                          <option>Semua prioritas</option>
+                          <option>1 Kritis</option>
+                          <option>2 Waspada</option>
+                          <option>3 Normal</option>
+                          <option>4 Rendah</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="req-status">Status</label>
+                        <select id="req-status" class="field w-full">
+                          <option>Semua status</option>
+                          <option>Draf</option>
+                          <option>Diajukan</option>
+                          <option>Disetujui</option>
+                          <option>Sebagian</option>
+                          <option>Ditolak</option>
+                          <option>Selesai</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <a href="index.html" class="btn btn-ghost btn-sm">Reset</a>
+                      <button type="button" data-dropdown-close data-toast="Filter diterapkan (mockup)" class="btn btn-primary btn-sm">Terapkan</button>
+                    </div>
+                  </div>
+                </details>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="text-hint hidden" data-check-count>0 dipilih</span>
+                <div data-check-action-group class="hidden">
+                  <button data-check-action data-toast="Permintaan draf terpilih diajukan ke Dinas (mockup)" data-toast-type="success" title="Hanya permintaan berstatus draf yang dapat diajukan" class="btn btn-primary btn-xs">
+                    Ajukan ke Dinas
+                  </button>
+                </div>
+                <label class="text-hint" for="rows-per-page">Baris per halaman</label>
+                <select id="rows-per-page" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Daftar permintaan">
+                <thead>
+                  <tr>
+                    <th class="w-10"><input type="checkbox" data-check-all class="rounded border-slate-300" aria-label="Pilih semua permintaan" /></th>
+                    <th>Nomor</th>
+                    <th>Fasilitas</th>
+                    <th>Sumber</th>
+                    <th>Prioritas</th>
+                    <th class="num">Item</th>
+                    <th class="num">Nilai (Rp)</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50" data-status="draf">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0045" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0045</td>
+                    <td>RSUD (program)</td>
+                    <td>
+                      <p class="text-xs">LPLPO</p>
+                      <p class="text-hint">2027-01</p>
+                    </td>
+                    <td><span class="badge badge-warning">2 Waspada</span></td>
+                    <td class="num">4</td>
+                    <td class="num">26.300.000</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="tambah.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah draf
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0045" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="ditolak">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0044" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0044</td>
+                    <td>Puskesmas A</td>
+                    <td>
+                      <p class="text-xs">Manual</p>
+                      <p class="text-hint">Permintaan tambahan</p>
+                    </td>
+                    <td><span class="badge badge-brand">3 Normal</span></td>
+                    <td class="num">2</td>
+                    <td class="num">4.100.000</td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="Alasan penolakan dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-error-warning-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat alasan
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0044" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="disetujui">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0043" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0043</td>
+                    <td>Puskesmas C</td>
+                    <td>
+                      <p class="text-xs">Manual</p>
+                      <p class="text-hint">Permintaan tambahan</p>
+                    </td>
+                    <td><span class="badge badge-danger">1 Kritis</span></td>
+                    <td class="num">3</td>
+                    <td class="num">7.820.000</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../14-distribusi/index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-truck-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat pengiriman
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0043" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="diajukan">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0042" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0042</td>
+                    <td>Puskesmas B</td>
+                    <td>
+                      <p class="text-xs">LPLPO</p>
+                      <p class="text-hint">2027-01</p>
+                    </td>
+                    <td><span class="badge badge-warning">2 Waspada</span></td>
+                    <td class="num">4</td>
+                    <td class="num">18.730.000</td>
+                    <td><span class="badge badge-brand">Diajukan</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Verifikasi
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="Permintaan dikembalikan ke Puskesmas B (mockup)" data-toast-type="warning" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-arrow-go-back-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Kembalikan
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0042" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="sebagian">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0041" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0041</td>
+                    <td>Puskesmas A</td>
+                    <td>
+                      <p class="text-xs">LPLPO</p>
+                      <p class="text-hint">2027-01</p>
+                    </td>
+                    <td><span class="badge badge-danger">1 Kritis</span></td>
+                    <td class="num">5</td>
+                    <td class="num">12.450.000</td>
+                    <td><span class="badge badge-warning">Sebagian</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../14-distribusi/index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-truck-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat pengiriman
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0041" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="selesai">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0040" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0040</td>
+                    <td>Puskesmas B</td>
+                    <td>
+                      <p class="text-xs">LPLPO</p>
+                      <p class="text-hint">2026-12</p>
+                    </td>
+                    <td><span class="badge badge-brand">3 Normal</span></td>
+                    <td class="num">6</td>
+                    <td class="num">15.600.000</td>
+                    <td><span class="badge badge-neutral">Selesai</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../14-distribusi/index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-truck-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat pengiriman
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0040" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="selesai">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0039" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0039</td>
+                    <td>Puskesmas C</td>
+                    <td>
+                      <p class="text-xs">LPLPO</p>
+                      <p class="text-hint">2026-12</p>
+                    </td>
+                    <td><span class="badge badge-warning">2 Waspada</span></td>
+                    <td class="num">5</td>
+                    <td class="num">11.250.000</td>
+                    <td><span class="badge badge-neutral">Selesai</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../14-distribusi/index.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-truck-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat pengiriman
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PMT/2027/0039" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50" data-status="ditolak">
+                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PMT/2027/0038" /></td>
+                    <td class="font-mono text-xs">PMT/2027/0038</td>
+                    <td>Puskesmas A</td>
+                    <td>
+                      <p class="text-xs">Manual</p>
+                      <p class="text-hint">Desember 2026</p>
+                    </td>
+                    <td><span class="badge badge-neutral">4 Rendah</span></td>
+                    <td class="num">2</td>
+                    <td class="num">2.400.000</td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="Alasan penolakan dibuka (mockup)" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-error-warning-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat alasan
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>8</span> permintaan
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
         </main>
+
         <div data-include="../components/footer.html"></div>
       </div>
     </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>
 </html>
-

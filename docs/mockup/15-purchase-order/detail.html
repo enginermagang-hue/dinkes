@@ -6,7 +6,7 @@
     <title>Detail PO - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
-  <body data-page="pengadaan" class="app-page">
+  <body data-page="po" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
 
@@ -14,14 +14,9 @@
         <div data-include="../components/header.html"></div>
 
         <main class="space-y-6 p-4 lg:p-6">
-          <nav class="pill-nav" aria-label="Sub-halaman pengadaan">
-            <a href="index.html" class="pill-nav-item">Daftar PO</a>
-            <a href="detail.html" class="pill-nav-item pill-nav-item-active" aria-current="page">Detail PO</a>
-          </nav>
-
           <div class="card card-body">
             <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
-              <a href="index.html" class="hover:text-brand-600">Pengadaan</a>
+              <a href="index.html" class="hover:text-brand-600">Purchase Order</a>
               <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
               <span>PO/2027/0002</span>
             </nav>
@@ -287,7 +282,11 @@
                 </li>
                 <li class="flex items-center justify-between gap-2">
                   <span>Rencana asal</span>
-                  <a href="../07-rko/index.html" class="hover:text-brand-600">RKO/2027/Q1/003</a>
+                  <a href="../07-rko/detail.html" class="hover:text-brand-600">RKO/2027/Q1/003</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Keranjang asal</span>
+                  <a href="../04-pengadaan/index.html" class="hover:text-brand-600">Keranjang Januari 2027</a>
                 </li>
               </ul>
             </div>

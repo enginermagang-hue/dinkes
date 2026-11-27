@@ -322,11 +322,17 @@ function initCheckAll() {
     const table = master.closest('table')
     if (!table) return
 
-    const counter = table.closest('.card')?.querySelector('[data-check-count]')
+    const card = table.closest('.card')
+    const counter = card ? card.querySelector('[data-check-count]') : null
+    const actionGroup = card ? card.querySelector('[data-check-action-group]') : null
     const updateCounter = () => {
-      if (!counter) return
-      const total = table.querySelectorAll('[data-check-row]:checked').length
-      counter.textContent = `${total} dokumen dipilih`
+      const selected = Array.from(table.querySelectorAll('[data-check-row]:checked'))
+      const eligible = selected.filter((box) => box.closest('tr')?.dataset.status === 'draf')
+      if (counter) {
+        counter.textContent = `${selected.length} dipilih`
+        counter.classList.toggle('hidden', selected.length === 0)
+      }
+      if (actionGroup) actionGroup.classList.toggle('hidden', eligible.length === 0)
     }
 
     master.addEventListener('change', () => {

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buat Pengiriman - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="distribusi" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Distribusi</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Pengiriman baru</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Buat Pengiriman</h1>
+              <p class="text-hint">
+                Pengiriman dibentuk dari permintaan yang sudah disetujui. Batch dipilih otomatis
+                dengan metode FEFO.
+              </p>
+            </div>
+            <span class="badge badge-neutral">Draf</span>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Pengiriman tidak boleh melebihi jumlah yang disetujui.</p>
+            <p class="mt-1">
+              Jumlah kirim per item dibatasi jumlah disetujui pada permintaan. Selisih hanya
+              dicatat saat konfirmasi penerimaan di fasilitas.
+            </p>
+          </div>
+
+          <div class="grid items-start gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Dokumen Pengiriman</h2>
+                  <span class="text-hint">Nomor surat jalan mengikuti nomor DO</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2">
+                  <div class="sm:col-span-2">
+                    <label class="field-label" for="do-permintaan">Permintaan rujukan</label>
+                    <select id="do-permintaan" class="field w-full">
+                      <option>PMT/2027/0047 · Puskesmas B · disetujui 9 Feb 2027</option>
+                      <option>PMT/2027/0045 · RSUD (program) · disetujui 8 Feb 2027</option>
+                    </select>
+                    <p class="field-help">Hanya permintaan berstatus disetujui atau sebagian yang dapat dikirim.</p>
+                  </div>
+                  <div>
+                    <label class="field-label" for="do-nomor">Nomor DO</label>
+                    <input id="do-nomor" value="DO/2027/0037" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="do-tanggal">Tanggal kirim</label>
+                    <input id="do-tanggal" type="date" data-date value="2027-02-10" class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="do-asal">Lokasi asal</label>
+                    <select id="do-asal" class="field w-full">
+                      <option>Gudang Farmasi Pusat</option>
+                      <option>Ruang Obat Puskesmas A</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="do-tujuan">Fasilitas tujuan</label>
+                    <input id="do-tujuan" value="Puskesmas B" readonly class="field w-full" />
+                  </div>
+                  <div>
+                    <label class="field-label" for="do-kurir">Kurir</label>
+                    <select id="do-kurir" class="field w-full">
+                      <option>Joko</option>
+                      <option>Budi</option>
+                      <option>Sari</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="field-label" for="do-kendaraan">Nomor kendaraan</label>
+                    <input id="do-kendaraan" value="B 1234 XY" class="field w-full" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Item dan Batch</h2>
+                    <p class="text-hint">Batch terdekat kedaluwarsa diambil lebih dulu (FEFO).</p>
+                  </div>
+                  <span class="badge badge-brand">FEFO</span>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Obat</th>
+                        <th class="num">Disetujui</th>
+                        <th>Batch</th>
+                        <th>Kedaluwarsa</th>
+                        <th class="num">Jumlah Kirim</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>
+                          <p class="font-medium">Amoksisilin 500 mg</p>
+                          <p class="text-hint">OBT-001 · Tablet 500 mg</p>
+                        </td>
+                        <td class="num">1.500</td>
+                        <td class="font-mono text-xs">AMX2401</td>
+                        <td>31-12-2028</td>
+                        <td class="num"><input type="number" value="1500" min="0" max="1500" class="field w-24 text-right" aria-label="Jumlah kirim Amoksisilin" /></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Parasetamol 500 mg</p>
+                          <p class="text-hint">OBT-002 · Tablet 500 mg</p>
+                        </td>
+                        <td class="num">1.000</td>
+                        <td class="font-mono text-xs">PCS2402</td>
+                        <td>31-03-2029</td>
+                        <td class="num"><input type="number" value="1000" min="0" max="1000" class="field w-24 text-right" aria-label="Jumlah kirim Parasetamol" /></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Salbutamol Inhaler</p>
+                          <p class="text-hint">OBT-007 · Inhaler 100 mcg</p>
+                        </td>
+                        <td class="num">20</td>
+                        <td class="font-mono text-xs">SLB2403</td>
+                        <td>31-08-2028</td>
+                        <td class="num"><input type="number" value="20" min="0" max="20" class="field w-24 text-right" aria-label="Jumlah kirim Salbutamol" /></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <p class="font-medium">Insulin Glargine</p>
+                          <p class="text-hint">OBT-008 · Vial 100 IU/mL</p>
+                        </td>
+                        <td class="num">15</td>
+                        <td class="font-mono text-xs">IG2404</td>
+                        <td>31-05-2029</td>
+                        <td class="num"><input type="number" value="15" min="0" max="15" class="field w-24 text-right" aria-label="Jumlah kirim Insulin" /></td>
+                      </tr>
+                      <tr class="bg-slate-50">
+                        <td class="font-medium" colspan="4">Total 4 item</td>
+                        <td class="num font-semibold">2.535</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Batch mendekati kedaluwarsa ditandai otomatis pada picking list.</p>
+                  <a href="index.html" class="btn btn-outline btn-sm">Batal</a>
+                </div>
+              </section>
+
+              <section class="card card-body">
+                <h2 class="card-title">Checklist Sebelum Kirim</h2>
+                <div class="mt-3 space-y-2">
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Jumlah fisik sesuai picking list</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" checked />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Batch dan tanggal kedaluwarsa terverifikasi</span>
+                  </label>
+                  <label class="check">
+                    <input type="checkbox" />
+                    <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                    <span>Surat jalan dicetak dan ditandatangani</span>
+                  </label>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Ringkasan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Jumlah item</dt>
+                    <dd class="font-medium">4</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Total unit</dt>
+                    <dd class="font-medium">2.535</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Tujuan</dt>
+                    <dd class="font-medium">Puskesmas B</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Kurir</dt>
+                    <dd class="font-medium">Joko</dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Draf DO/2027/0037 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                  <a href="surat-jalan.html" class="btn btn-primary btn-sm">Terbitkan surat jalan</a>
+                </div>
+              </section>
+
+              <div class="alert alert-warning">
+                <h2 class="font-semibold">Selisih stok</h2>
+                <p class="mt-2">
+                  Jika jumlah fisik kurang, kurangi jumlah kirim. Selisih terhadap permintaan
+                  dicatat pada konfirmasi penerimaan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

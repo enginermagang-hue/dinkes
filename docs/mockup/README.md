@@ -39,42 +39,170 @@ Katalog komponen dipecah agar mudah direview:
 
 ## Daftar Modul
 
-| Folder            | Halaman                         | Rujukan PRD |
-| ----------------- | ------------------------------- | ----------- |
-| `01-login`        | Login, 2FA, tautan Google       | 8.9         |
-| `02-dashboard`    | Dashboard pimpinan dan KPI      | 8.7         |
-| `03-stok`         | Stok, batch, kartu stok, mutasi | 8.3, 8.6    |
-| `04-pengadaan`    | PO dan persetujuan              | 8.2         |
-| `05-distribusi`   | Permintaan, pengiriman, selisih | 8.4         |
-| `06-lplpo`        | LPLPO bulanan dan verifikasi    | 8.11        |
-| `07-rko`          | RKO triwulanan dan konsolidasi  | 8.1         |
-| `08-pelayanan`    | Resep, telaah, dispensing       | 8.5         |
-| `09-pengendalian` | Opname, ABC-VEN, kedaluwarsa    | 8.6         |
-| `10-anggaran`     | Pagu, komitmen, realisasi       | 8.8         |
-| `11-prediksi`     | Prediksi kebutuhan, peringatan  | 8.10        |
-| `12-pengguna`     | Pengguna, peran, whitelist      | 8.9         |
-| `13-penerimaan`   | Penerimaan, selisih, BAST       | 8.3         |
+| Folder              | Halaman                              | Rujukan PRD |
+| ------------------- | ------------------------------------ | ----------- |
+| `01-login`          | Login, 2FA, tautan Google            | 8.9         |
+| `02-dashboard`      | Dashboard pimpinan dan KPI           | 8.7         |
+| `03-stok`           | Stok, batch, kartu stok, mutasi      | 8.3, 8.6    |
+| `04-pengadaan`      | Keranjang pengadaan, penyedia        | 8.2         |
+| `05-permintaan`     | Permintaan, validasi RKO/pagu        | 8.4         |
+| `06-lplpo`          | LPLPO bulanan, verifikasi, cetak     | 8.11        |
+| `07-rko`            | RKO triwulanan dan konsolidasi       | 8.1         |
+| `08-pelayanan`      | Pelayanan, telaah resep, rekap       | 8.5         |
+| `09-pengendalian`   | Opname, ABC-VEN, kedaluwarsa         | 8.6         |
+| `10-anggaran`       | Pagu, komitmen, realisasi            | 8.8         |
+| `11-prediksi`       | Prediksi kebutuhan, peringatan       | 8.10        |
+| `12-pengguna`       | Pengguna, peran, whitelist           | 8.9         |
+| `13-penerimaan`     | Penerimaan, selisih, BAST            | 8.3         |
+| `14-distribusi`     | Pengiriman, surat jalan, selisih     | 8.4         |
+| `15-purchase-order` | PO, persetujuan, penerimaan sebagian | 8.2         |
+| `16-laporan`        | Laporan standar, ekspor SIPNAP/SIPD  | 8.7         |
+| `17-master`         | Master obat, fasilitas, lokasi       | 8.12        |
 
 ### Sub-halaman Pengadaan
 
-Modul `04-pengadaan` terdiri dari dua halaman:
+Modul `04-pengadaan` kini hanya memuat perencanaan pengadaan. Dokumen PO berada di
+modul `15-purchase-order`.
 
-| Halaman                    | Isi                                                        |
-| -------------------------- | ---------------------------------------------------------- |
-| `04-pengadaan/index.html`  | Daftar PO, keranjang dari RKO, perbandingan penyedia       |
-| `04-pengadaan/detail.html` | Detail PO/2027/0002: item, penerimaan, riwayat persetujuan |
+| Halaman                   | Isi                                                      |
+| ------------------------- | -------------------------------------------------------- |
+| `04-pengadaan/index.html` | Keranjang dari RKO, perbandingan harga, kinerja penyedia |
+
+### Sub-halaman RKO
+
+| Halaman                   | Isi                                                         |
+| ------------------------- | ----------------------------------------------------------- |
+| `07-rko/index.html`       | Daftar RKO: KPI, filter, pencarian, pagination              |
+| `07-rko/tambah.html`      | Form RKO dengan perhitungan kebutuhan otomatis              |
+| `07-rko/detail.html`      | Detail RKO/2027/Q1/001: item, riwayat versi, persetujuan    |
+| `07-rko/konsolidasi.html` | Rencana gabungan RKO/2027/Q1/003 menuju keranjang pengadaan |
+
+### Sub-halaman Pengendalian
+
+| Halaman                              | Isi                                                  |
+| ------------------------------------ | ---------------------------------------------------- |
+| `09-pengendalian/index.html`         | Peringatan stok dan parameter safety/ROP/min/max     |
+| `09-pengendalian/kedaluwarsa.html`   | Batch kedaluwarsa + berita acara pemusnahan          |
+| `09-pengendalian/abc-ven.html`       | Analisis ABC-VEN, matriks prioritas, perputaran stok |
+| `09-pengendalian/opname.html`        | Daftar sesi stock opname per lokasi                  |
+| `09-pengendalian/opname-detail.html` | Blanko hitung fisik + pratinjau mutasi penyesuaian   |
+
+### Sub-halaman Anggaran
+
+| Halaman                      | Isi                                                    |
+| ---------------------------- | ------------------------------------------------------ |
+| `10-anggaran/index.html`     | Pagu per fasilitas: KPI, filter, tabel, pagination     |
+| `10-anggaran/detail.html`    | Detail pagu Puskesmas A: mutasi komitmen dan realisasi |
+| `10-anggaran/tetapkan.html`  | Form penetapan pagu per fasilitas, tahun, sumber dana  |
+| `10-anggaran/realisasi.html` | Rekap realisasi + rekonsiliasi dokumen pembayaran      |
+| `10-anggaran/realokasi.html` | Usulan realokasi pagu + alur persetujuan Kepala Dinas  |
+
+### Sub-halaman Prediksi
+
+| Halaman                       | Isi                                                      |
+| ----------------------------- | -------------------------------------------------------- |
+| `11-prediksi/index.html`      | Hasil prediksi kebutuhan 1–3 bulan + confidence dan tren |
+| `11-prediksi/peringatan.html` | Peringatan dini kekosongan + rekomendasi jumlah          |
+| `11-prediksi/tren.html`       | Tren, musiman, ROP dinamis, dan deteksi anomali          |
+| `11-prediksi/detail.html`     | Detail per item: prediksi vs aktual + koreksi apoteker   |
+| `11-prediksi/akurasi.html`    | Akurasi model per periode + rekomendasi latih ulang      |
+
+### Sub-halaman Pengguna
+
+| Halaman                      | Isi                                                   |
+| ---------------------------- | ----------------------------------------------------- |
+| `12-pengguna/index.html`     | Daftar pengguna: KPI, filter, pencarian, pagination   |
+| `12-pengguna/tambah.html`    | Buat akun, peran, penugasan fasilitas, kirim undangan |
+| `12-pengguna/detail.html`    | Profil, keamanan, peran, dan audit terakhir pengguna  |
+| `12-pengguna/peran.html`     | 15 peran baku + matriks hak akses per modul           |
+| `12-pengguna/whitelist.html` | Google whitelist dan akun Google terhubung            |
+| `12-pengguna/audit.html`     | Audit log login dan aksi kritis                       |
+
+### Sub-halaman Pelaporan
+
+| Halaman                  | Isi                                                   |
+| ------------------------ | ----------------------------------------------------- |
+| `16-laporan/index.html`  | Ringkasan laporan standar, kartu SIPNAP/SIPD, riwayat |
+| `16-laporan/ekspor.html` | Form ekspor SIPNAP (CSV) dan SIPD (Excel) + pratinjau |
+
+### Sub-halaman Purchase Order
+
+| Halaman                         | Isi                                                        |
+| ------------------------------- | ---------------------------------------------------------- |
+| `15-purchase-order/index.html`  | Daftar PO: KPI, filter, pencarian, pagination              |
+| `15-purchase-order/tambah.html` | Form buat PO dari keranjang yang disetujui                 |
+| `15-purchase-order/detail.html` | Detail PO/2027/0002: item, penerimaan, riwayat persetujuan |
+
+### Sub-halaman LPLPO
+
+| Halaman                    | Isi                                                      |
+| -------------------------- | -------------------------------------------------------- |
+| `06-lplpo/index.html`      | Daftar LPLPO: KPI, filter, pencarian, pagination         |
+| `06-lplpo/tambah.html`     | Form LPLPO bulanan dengan stok otomatis dari mutasi      |
+| `06-lplpo/detail.html`     | Detail LPLPO/2027/01/004: item, alasan, riwayat          |
+| `06-lplpo/verifikasi.html` | Layar verifikasi Dinas: usul, disetujui, alasan, setujui |
+| `06-lplpo/edit.html`       | Revisi LPLPO yang dikembalikan + riwayat versi           |
+| `06-lplpo/pdf.html`        | Dokumen LPLPO resmi siap cetak                           |
+
+### Sub-halaman Pelayanan
+
+| Halaman                          | Isi                                                   |
+| -------------------------------- | ----------------------------------------------------- |
+| `08-pelayanan/index.html`        | Antrean pelayanan: KPI, filter, pencarian, pagination |
+| `08-pelayanan/tambah.html`       | Catat pelayanan: item obat, batch FEFO, telaah, serah |
+| `08-pelayanan/detail.html`       | Detail PLY/2027/01/0004: item, telaah, riwayat        |
+| `08-pelayanan/racikan.html`      | Resep racikan dengan komposisi bahan per bungkus      |
+| `08-pelayanan/pengembalian.html` | Retur obat dari unit: kondisi, tujuan, verifikasi     |
+| `08-pelayanan/rekap.html`        | Rekap pemakaian bulanan dan umpan balik perencanaan   |
 
 ### Sub-halaman Penerimaan
 
 Modul `13-penerimaan` terdiri dari lima halaman:
 
-| Halaman                     | Isi                                                     |
-| --------------------------- | ------------------------------------------------------- |
-| `13-penerimaan/index.html`  | Daftar penerimaan: KPI, filter, pencarian, pagination   |
-| `13-penerimaan/detail.html` | Detail PNR/2027/0031: item, status dokumen, jejak audit |
-| `13-penerimaan/tambah.html` | Formulir penerimaan baru dengan checklist validasi      |
-| `13-penerimaan/edit.html`   | Edit penerimaan terverifikasi, alasan perubahan, audit  |
-| `13-penerimaan/bast.html`   | Dokumen BAST/2027/0012 siap cetak                       |
+| Halaman                     | Isi                                                         |
+| --------------------------- | ----------------------------------------------------------- |
+| `13-penerimaan/index.html`  | Daftar penerimaan: KPI, filter, pencarian, pagination       |
+| `13-penerimaan/detail.html` | Detail PNR/2027/0031: item, status dokumen, jejak audit     |
+| `13-penerimaan/tambah.html` | Formulir penerimaan: zona, rak, barcode, checklist validasi |
+| `13-penerimaan/edit.html`   | Edit penerimaan terverifikasi, alasan perubahan, audit      |
+| `13-penerimaan/bast.html`   | Dokumen BAST/2027/0012 siap cetak                           |
+
+### Sub-halaman Master Data
+
+| Halaman                | Isi                                                    |
+| ---------------------- | ------------------------------------------------------ |
+| `17-master/index.html` | Tiga tab: obat dan BMHP, fasilitas, lokasi penyimpanan |
+
+### Sub-halaman Permintaan
+
+Modul `05-permintaan` menangani pengajuan dan verifikasi permintaan fasilitas:
+
+| Halaman                     | Isi                                                        |
+| --------------------------- | ---------------------------------------------------------- |
+| `05-permintaan/index.html`  | Daftar permintaan: KPI, filter sumber/prioritas, tabel     |
+| `05-permintaan/tambah.html` | Form permintaan manual dengan validasi RKO, pagu, dan stok |
+| `05-permintaan/detail.html` | Detail PMT/2027/0041: item, verifikasi, riwayat audit      |
+
+Catatan data dummy: nomor permintaan memakai format `PMT/2027/00xx`. Format resmi belum
+ditetapkan pada PRD, sehingga penomoran ini hanya contoh untuk mockup.
+
+### Sub-halaman Distribusi
+
+Modul `14-distribusi` mengeksekusi permintaan yang sudah disetujui: menyiapkan barang,
+mengirim, lalu mencatat penerimaan dan selisih.
+
+| Halaman                          | Isi                                                         |
+| -------------------------------- | ----------------------------------------------------------- |
+| `14-distribusi/index.html`       | Daftar pengiriman + tab redistribusi, filter, pagination    |
+| `14-distribusi/tambah.html`      | Form pengiriman: permintaan rujukan, kurir, item batch FEFO |
+| `14-distribusi/detail.html`      | Detail DO/2027/0035: item, status, riwayat, dokumen terkait |
+| `14-distribusi/picking.html`     | Picking list FEFO per rak dan progres penyiapan             |
+| `14-distribusi/terima.html`      | Konfirmasi penerimaan, selisih, alasan, tanda tangan        |
+| `14-distribusi/surat-jalan.html` | Dokumen surat jalan SJ/2027/0035 siap cetak                 |
+
+PRD 8.4 masih menggabungkan permintaan dan pengiriman dalam satu modul Distribusi.
+Mockup memisahkannya menjadi dua menu agar sesuai tugas pengguna: Puskesmas mengajukan
+permintaan, gudang mengirim barang.
 
 ## Build dan Watch CSS
 

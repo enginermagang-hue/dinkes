@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ABC-VEN - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengendalian" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pengendalian</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>ABC-VEN</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Analisis ABC-VEN</h1>
+              <p class="text-hint">Gudang Farmasi Pusat · Januari 2027 · dasar prioritas pengendalian</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Analisis ABC-VEN diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+                Unduh
+              </button>
+              <button data-toast="Perhitungan ABC-VEN dijalankan (mockup)" class="btn btn-primary btn-sm">Hitung ulang</button>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Kelas A</p>
+              <p class="kpi-value text-rose-600">3</p>
+              <p class="field-help">78% nilai pemakaian</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Prioritas AV</p>
+              <p class="kpi-value text-rose-600">1</p>
+              <p class="field-help">Kendali ketat, pantau harian</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Fast Moving</p>
+              <p class="kpi-value text-emerald-600">4</p>
+              <p class="field-help">Keluar setiap bulan</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Nilai Pemakaian</p>
+              <p class="kpi-value">Rp 480 jt</p>
+              <p class="field-help">7 item dalam analisis</p>
+            </div>
+          </section>
+
+          <section class="card card-body-sm grid gap-3 sm:grid-cols-4">
+            <div>
+              <label class="field-label" for="abc-periode">Periode</label>
+              <select id="abc-periode" class="field w-full">
+                <option>Januari 2027</option>
+                <option>Triwulan IV 2026</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="abc-kelas">Kelas</label>
+              <select id="abc-kelas" class="field w-full">
+                <option>Semua kelas</option>
+                <option>A</option>
+                <option>B</option>
+                <option>C</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="abc-ven">Kategori VEN</label>
+              <select id="abc-ven" class="field w-full">
+                <option>Semua kategori</option>
+                <option>Vital</option>
+                <option>Essential</option>
+                <option>Non-Essential</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <button data-toast="Filter ABC-VEN diterapkan (mockup)" class="btn btn-neutral btn-sm btn-block">Terapkan</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Nilai Pemakaian dan Prioritas</h2>
+                <p class="text-hint">Kelas ABC berdasarkan kumulatif nilai pemakaian.</p>
+              </div>
+              <span class="text-hint">7 item</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Obat</th>
+                    <th class="num">Nilai Pemakaian (Rp)</th>
+                    <th>Kumulatif</th>
+                    <th>Kelas</th>
+                    <th>VEN</th>
+                    <th>Prioritas</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">OBT-004</td>
+                    <td>Amlodipin 10 mg</td>
+                    <td class="num">180.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-rose-500" style="width: 38%"></div></div>
+                        <span class="text-hint">38%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-danger">A</span></td>
+                    <td>Vital</td>
+                    <td><span class="badge badge-danger">AV</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-003</td>
+                    <td>Metformin 500 mg</td>
+                    <td class="num">120.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-rose-500" style="width: 63%"></div></div>
+                        <span class="text-hint">63%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-danger">A</span></td>
+                    <td>Essential</td>
+                    <td><span class="badge badge-warning">AE</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-002</td>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="num">72.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-rose-500" style="width: 78%"></div></div>
+                        <span class="text-hint">78%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-danger">A</span></td>
+                    <td>Essential</td>
+                    <td><span class="badge badge-warning">AE</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-001</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num">54.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-amber-500" style="width: 89%"></div></div>
+                        <span class="text-hint">89%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-warning">B</span></td>
+                    <td>Vital</td>
+                    <td><span class="badge badge-warning">BV</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-007</td>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="num">36.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-amber-500" style="width: 96%"></div></div>
+                        <span class="text-hint">96%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-warning">B</span></td>
+                    <td>Essential</td>
+                    <td><span class="badge badge-warning">BE</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-005</td>
+                    <td>Kotrimoksazol 480 mg</td>
+                    <td class="num">12.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-slate-400" style="width: 99%"></div></div>
+                        <span class="text-hint">99%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-neutral">C</span></td>
+                    <td>Essential</td>
+                    <td><span class="badge badge-neutral">CE</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-006</td>
+                    <td>Oralit Serbuk</td>
+                    <td class="num">6.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-slate-400" style="width: 100%"></div></div>
+                        <span class="text-hint">100%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-neutral">C</span></td>
+                    <td>Non-Essential</td>
+                    <td><span class="badge badge-neutral">CN</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <p class="field-help">
+                Prioritas AV dan BV mendapat kendali ketat dan pemantauan harian. Prioritas CN
+                dapat dikurangi frekuensi pengadaannya.
+              </p>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Matriks ABC-VEN</h2>
+                <span class="text-hint">Jumlah item per kombinasi</span>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-compact">
+                  <thead>
+                    <tr>
+                      <th>Kelas</th>
+                      <th class="num">Vital</th>
+                      <th class="num">Essential</th>
+                      <th class="num">Non-Essential</th>
+                      <th class="num">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr>
+                      <td><span class="badge badge-danger">A</span></td>
+                      <td class="num">1</td>
+                      <td class="num">2</td>
+                      <td class="num">0</td>
+                      <td class="num font-semibold">3</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-warning">B</span></td>
+                      <td class="num">1</td>
+                      <td class="num">1</td>
+                      <td class="num">0</td>
+                      <td class="num font-semibold">2</td>
+                    </tr>
+                    <tr>
+                      <td><span class="badge badge-neutral">C</span></td>
+                      <td class="num">0</td>
+                      <td class="num">1</td>
+                      <td class="num">1</td>
+                      <td class="num font-semibold">2</td>
+                    </tr>
+                    <tr class="bg-slate-50">
+                      <td class="font-medium">Total</td>
+                      <td class="num font-semibold">2</td>
+                      <td class="num font-semibold">4</td>
+                      <td class="num font-semibold">1</td>
+                      <td class="num font-semibold">7</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Perputaran Stok</h2>
+              <dl class="mt-3 space-y-3 text-sm">
+                <div>
+                  <dt class="flex items-center justify-between gap-2">
+                    <span class="font-medium">Fast moving</span>
+                    <span class="badge badge-success">4 item</span>
+                  </dt>
+                  <dd class="text-hint">Amlodipin, Metformin, Parasetamol, Amoksisilin.</dd>
+                </div>
+                <div>
+                  <dt class="flex items-center justify-between gap-2">
+                    <span class="font-medium">Slow moving</span>
+                    <span class="badge badge-warning">2 item</span>
+                  </dt>
+                  <dd class="text-hint">Salbutamol Inhaler, Kotrimoksazol.</dd>
+                </div>
+                <div>
+                  <dt class="flex items-center justify-between gap-2">
+                    <span class="font-medium">Non-moving</span>
+                    <span class="badge badge-neutral">1 item</span>
+                  </dt>
+                  <dd class="text-hint">Oralit Serbuk, tidak keluar 3 bulan terakhir.</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

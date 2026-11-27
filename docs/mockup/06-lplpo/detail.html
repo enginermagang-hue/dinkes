@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail LPLPO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="lplpo" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">LPLPO</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>LPLPO/2027/01/004</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">LPLPO/2027/01/004</h1>
+                  <span class="badge badge-warning">Disetujui sebagian</span>
+                </div>
+                <p class="text-hint">
+                  Puskesmas A · periode Januari 2027 · 5 item · nilai diminta Rp 10.185.000
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <a href="pdf.html" class="btn btn-outline btn-sm flex gap-2">
+                  <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                  Cetak PDF
+                </a>
+                <a href="../05-permintaan/detail.html" class="btn btn-primary btn-sm">Bentuk permintaan</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">3 item disetujui di bawah jumlah diminta</h2>
+            <p class="mt-2">
+              Total disetujui 1.025 dari 1.150 unit. Setiap pengurangan memiliki alasan yang
+              tercatat dan menjadi dasar permintaan distribusi.
+            </p>
+          </div>
+
+          <section class="card card-body">
+            <div class="steps">
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Diajukan</div>
+              <span class="step-line"></span>
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Diverifikasi</div>
+              <span class="step-line"></span>
+              <div class="step step-active"><span class="step-dot">3</span> Disetujui sebagian</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">4</span> Permintaan distribusi</div>
+            </div>
+            <p class="field-help">LPLPO yang disetujui menjadi dasar permintaan distribusi bulanan.</p>
+          </section>
+
+          <section class="grid gap-4 xl:grid-cols-3">
+            <div class="card card-body">
+              <p class="kpi-label">Diajukan</p>
+              <p class="mt-1 font-medium">3 Februari 2027 09:20</p>
+              <p class="field-help">Dewi, S.Farm., Apt. · sebelum batas tanggal 5.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Diverifikasi</p>
+              <p class="mt-1 font-medium">4 Februari 2027 14:05</p>
+              <p class="field-help">Ratna, S.Farm., Apt. · Apoteker Gudang Dinas.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Total disetujui</p>
+              <p class="mt-1 font-medium">1.025 unit</p>
+              <p class="field-help">89% dari 1.150 unit yang diminta.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Item LPLPO</h2>
+                <p class="text-hint">Stok dan pemakaian berasal dari mutasi stok periode ini.</p>
+              </div>
+              <span class="text-hint">5 item · 3 dikurangi</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th class="num">Stok Awal</th>
+                    <th class="num">Stok Akhir</th>
+                    <th class="num">Pakai</th>
+                    <th class="num">Diminta</th>
+                    <th class="num">Usul</th>
+                    <th class="num">Disetujui</th>
+                    <th class="num">Selisih</th>
+                    <th>Alasan</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>
+                      <p class="font-medium">Amoksisilin 500 mg</p>
+                      <p class="text-hint">OBT-001</p>
+                    </td>
+                    <td class="num">1.500</td>
+                    <td class="num">300</td>
+                    <td class="num">1.200</td>
+                    <td class="num">400</td>
+                    <td class="num">400</td>
+                    <td class="num">400</td>
+                    <td class="num">0</td>
+                    <td class="text-hint">—</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Parasetamol 500 mg</p>
+                      <p class="text-hint">OBT-002</p>
+                    </td>
+                    <td class="num">2.500</td>
+                    <td class="num">700</td>
+                    <td class="num">1.800</td>
+                    <td class="num">500</td>
+                    <td class="num">500</td>
+                    <td class="num">500</td>
+                    <td class="num">0</td>
+                    <td class="text-hint">—</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Salbutamol Inhaler</p>
+                      <p class="text-hint">OBT-007</p>
+                    </td>
+                    <td class="num">12</td>
+                    <td class="num">3</td>
+                    <td class="num">9</td>
+                    <td class="num">30</td>
+                    <td class="num">20</td>
+                    <td class="num">15</td>
+                    <td class="num text-rose-600">-15</td>
+                    <td>Stok pusat terbatas</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Vitamin A Kapsul</p>
+                      <p class="text-hint">OBT-009</p>
+                    </td>
+                    <td class="num">500</td>
+                    <td class="num">450</td>
+                    <td class="num">50</td>
+                    <td class="num">200</td>
+                    <td class="num">100</td>
+                    <td class="num">100</td>
+                    <td class="num text-rose-600">-100</td>
+                    <td>Stok cukup 6 bulan</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Insulin Glargine</p>
+                      <p class="text-hint">OBT-011</p>
+                    </td>
+                    <td class="num">6</td>
+                    <td class="num">2</td>
+                    <td class="num">4</td>
+                    <td class="num">20</td>
+                    <td class="num">12</td>
+                    <td class="num">10</td>
+                    <td class="num text-rose-600">-10</td>
+                    <td>Prioritas fasilitas lain</td>
+                  </tr>
+                  <tr class="bg-slate-50">
+                    <td class="font-medium">Total</td>
+                    <td class="num">4.518</td>
+                    <td class="num">1.455</td>
+                    <td class="num">3.063</td>
+                    <td class="num font-semibold">1.150</td>
+                    <td class="num font-semibold">1.032</td>
+                    <td class="num font-semibold">1.025</td>
+                    <td class="num font-semibold text-rose-600">-125</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Perubahan setelah disetujui dibuat sebagai dokumen baru.</p>
+              <a href="pdf.html" class="btn btn-outline btn-sm">Lihat dokumen resmi</a>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Riwayat LPLPO</h2>
+                <span class="text-hint">Jejak audit</span>
+              </div>
+              <div class="card-body">
+                <ol class="space-y-4 text-sm">
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-neutral mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Draf dibuat</p>
+                      <p class="text-hint">2027-01-02 08:10 · stok awal, stok akhir, dan pakai ditarik dari mutasi</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Diajukan ke Dinas</p>
+                      <p class="text-hint">2027-01-03 09:20 · Dewi, S.Farm., Apt. · 5 item, 1.150 unit</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Diverifikasi Apoteker Gudang Dinas</p>
+                      <p class="text-hint">2027-01-04 14:05 · jumlah usul ditetapkan 1.032 unit</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Disetujui sebagian</p>
+                      <p class="text-hint">2027-01-05 10:30 · 1.025 unit · 3 item dikurangi dengan alasan</p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Dokumen Terkait</h2>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li class="flex items-center justify-between gap-2">
+                  <span>Permintaan distribusi</span>
+                  <a href="../05-permintaan/detail.html" class="hover:text-brand-600">PMT/2027/0041</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Rencana (RKO)</span>
+                  <a href="../07-rko/detail.html" class="hover:text-brand-600">RKO/2027/Q1/003</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Dokumen PDF</span>
+                  <a href="pdf.html" class="hover:text-brand-600">LPLPO/2027/01/004</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Pengiriman</span>
+                  <a href="../14-distribusi/detail.html" class="hover:text-brand-600">DO/2027/0035</a>
+                </li>
+              </ul>
+              <p class="field-help">LPLPO tidak menggantikan RKO; keduanya berjalan paralel.</p>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

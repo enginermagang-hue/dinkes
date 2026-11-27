@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pengadaan - Mockup SMSOD</title>
+    <title>Perencanaan Pengadaan - Mockup SMSOD</title>
     <link rel="stylesheet" href="../assets/mockup.css" />
   </head>
   <body data-page="pengadaan" class="app-page">
@@ -14,52 +14,51 @@
         <div data-include="../components/header.html"></div>
 
         <main class="space-y-6 p-4 lg:p-6">
-          <nav class="pill-nav" aria-label="Sub-halaman pengadaan">
-            <a href="index.html" class="pill-nav-item pill-nav-item-active" aria-current="page">Daftar PO</a>
-            <a href="detail.html" class="pill-nav-item">Detail PO</a>
-          </nav>
-
           <div class="flex flex-wrap items-start justify-between gap-3">
             <div>
-              <h1 class="text-xl font-semibold">Pengadaan Obat dan BMHP</h1>
-              <p class="text-hint">Rencana Januari 2027 · RKO/2027/Q1/003 · 5 PO aktif</p>
+              <h1 class="text-xl font-semibold">Perencanaan Pengadaan</h1>
+              <p class="text-hint">RKO/2027/Q1/003 disetujui · 4 dari 11 item · Januari 2027</p>
+              <p class="field-help">
+                Keranjang dibentuk dari rencana konsolidasi.
+                <a href="../07-rko/konsolidasi.html" class="text-brand-600 hover:underline">Lihat RKO</a>
+              </p>
             </div>
             <div class="flex flex-wrap gap-2">
               <button data-toast="Berkas ekspor SIPD disiapkan (mockup)" data-toast-type="info" class="btn btn-outline btn-sm flex gap-2">
                 <i class="ri-download-line icon-sm" aria-hidden="true"></i>
                 Ekspor SIPD
               </button>
-              <button data-modal-open="#modal-buat-po" class="btn btn-primary btn-sm flex gap-2">
-                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
-                Buat PO
-              </button>
+              <a href="../15-purchase-order/index.html" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-file-text-line icon-sm" aria-hidden="true"></i>
+                Lihat Purchase Order
+              </a>
             </div>
           </div>
 
           <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <div class="kpi">
-              <p class="kpi-label">Nilai PO Januari</p>
-              <p class="kpi-value">Rp 830,45 jt</p>
-              <p class="field-help">5 PO, 68 item</p>
+              <p class="kpi-label">Rencana Aktif</p>
+              <p class="kpi-value">1</p>
+              <p class="field-help">RKO/2027/Q1/003, disetujui 4 Jan</p>
             </div>
             <div class="kpi">
-              <p class="kpi-label">Menunggu Persetujuan</p>
-              <p class="kpi-value text-amber-600">2</p>
-              <p class="field-help">PO/2027/0004 dan PO/2027/0005</p>
+              <p class="kpi-label">Item Kebutuhan RKO</p>
+              <p class="kpi-value">11</p>
+              <p class="field-help">4 item sudah masuk keranjang</p>
             </div>
             <div class="kpi">
-              <p class="kpi-label">Dalam Pengiriman</p>
-              <p class="kpi-value text-brand-600">1</p>
-              <p class="field-help">PO/2027/0003, estimasi 3 hari</p>
+              <p class="kpi-label">Nilai Keranjang</p>
+              <p class="kpi-value">Rp 81,45 jt</p>
+              <p class="field-help">Harga e-Katalog, bukan harga historis</p>
             </div>
             <div class="kpi">
-              <p class="kpi-label">Penerimaan Sebagian</p>
-              <p class="kpi-value text-rose-600">1</p>
-              <p class="field-help">PO/2027/0002, 7 dari 12 item</p>
+              <p class="kpi-label">Penyedia Dibandingkan</p>
+              <p class="kpi-value text-brand-600">3</p>
+              <p class="field-help">PT Sehat Farma, Medika Jaya, Global Medika</p>
             </div>
           </section>
 
-          <section class="card card-body-sm grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <section class="card card-body-sm grid gap-3 sm:grid-cols-3">
             <div>
               <label class="field-label" for="filter-rko">Rencana (RKO)</label>
               <select id="filter-rko" class="field w-full">
@@ -78,113 +77,8 @@
                 <option>PT Nusantara Obat</option>
               </select>
             </div>
-            <div>
-              <label class="field-label" for="filter-status">Status</label>
-              <select id="filter-status" class="field w-full">
-                <option>Semua status</option>
-                <option>Draf</option>
-                <option>Disetujui</option>
-                <option>Dikirim</option>
-                <option>Sebagian</option>
-                <option>Diterima</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="filter-tanggal">Tanggal PO</label>
-              <input id="filter-tanggal" type="date" data-date value="2027-01-01" class="field w-full" />
-            </div>
             <div class="flex items-end">
               <button class="btn btn-neutral btn-sm btn-block">Terapkan</button>
-            </div>
-          </section>
-
-          <section class="card">
-            <div class="card-header">
-              <div>
-                <h2 class="card-title">Daftar Purchase Order</h2>
-                <p class="text-hint">Nomor PO tidak dapat digunakan ulang.</p>
-              </div>
-              <span class="text-hint">5 dokumen</span>
-            </div>
-            <div class="table-wrap">
-              <table class="table table-head">
-                <thead>
-                  <tr>
-                    <th class="w-10"><input type="checkbox" data-check-all class="rounded border-slate-300" aria-label="Pilih semua PO" /></th>
-                    <th>No PO</th>
-                    <th>Tanggal</th>
-                    <th>Penyedia</th>
-                    <th class="num">Item</th>
-                    <th class="num">Nilai (Rp)</th>
-                    <th>Status</th>
-                    <th class="num">Aksi</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-100">
-                  <tr class="hover:bg-slate-50">
-                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PO/2027/0001" /></td>
-                    <td class="font-mono text-xs">PO/2027/0001</td>
-                    <td>2027-01-05</td>
-                    <td>PT Sehat Farma</td>
-                    <td class="num">18</td>
-                    <td class="num">245.000.000</td>
-                    <td><span class="badge badge-success">Diterima</span></td>
-                    <td class="num"><a href="detail.html" class="btn btn-outline btn-2xs">Detail</a></td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PO/2027/0002" /></td>
-                    <td class="font-mono text-xs">PO/2027/0002</td>
-                    <td>2027-01-08</td>
-                    <td>PT Medika Jaya</td>
-                    <td class="num">12</td>
-                    <td class="num">132.500.000</td>
-                    <td><span class="badge badge-warning">Sebagian</span></td>
-                    <td class="num"><a href="detail.html" class="btn btn-outline btn-2xs">Detail</a></td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PO/2027/0003" /></td>
-                    <td class="font-mono text-xs">PO/2027/0003</td>
-                    <td>2027-01-12</td>
-                    <td>PT Global Medika</td>
-                    <td class="num">9</td>
-                    <td class="num">87.300.000</td>
-                    <td><span class="badge badge-brand">Dikirim</span></td>
-                    <td class="num"><a href="detail.html" class="btn btn-outline btn-2xs">Detail</a></td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PO/2027/0004" /></td>
-                    <td class="font-mono text-xs">PO/2027/0004</td>
-                    <td>2027-01-15</td>
-                    <td>PT Sehat Farma</td>
-                    <td class="num">22</td>
-                    <td class="num">310.750.000</td>
-                    <td><span class="badge badge-brand">Disetujui</span></td>
-                    <td class="num"><a href="detail.html" class="btn btn-outline btn-2xs">Detail</a></td>
-                  </tr>
-                  <tr class="hover:bg-slate-50">
-                    <td><input type="checkbox" data-check-row class="rounded border-slate-300" aria-label="Pilih PO/2027/0005" /></td>
-                    <td class="font-mono text-xs">PO/2027/0005</td>
-                    <td>2027-01-20</td>
-                    <td>PT Nusantara Obat</td>
-                    <td class="num">7</td>
-                    <td class="num">54.900.000</td>
-                    <td><span class="badge badge-neutral">Draf</span></td>
-                    <td class="num"><a href="detail.html" class="btn btn-outline btn-2xs">Detail</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
-              <span class="text-hint" data-check-count>0 dokumen dipilih</span>
-              <div class="flex gap-2">
-                <button data-toast="Cetak daftar PO disiapkan (mockup)" class="btn btn-outline btn-xs flex gap-2">
-                  <i class="ri-printer-line icon-xs" aria-hidden="true"></i>
-                  Cetak daftar
-                </button>
-                <button data-toast="PO terpilih diajukan untuk persetujuan (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">
-                  Ajukan persetujuan
-                </button>
-              </div>
             </div>
           </section>
 
@@ -297,8 +191,9 @@
             </div>
             <div class="card-footer flex flex-wrap items-center justify-between gap-2">
               <p class="text-hint">Harga mengikuti e-Katalog, bukan harga historis terakhir.</p>
-              <div class="flex gap-2">
+              <div class="flex flex-wrap gap-2">
                 <button data-toast="Draf keranjang pengadaan disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+                <a href="../15-purchase-order/tambah.html" class="btn btn-outline btn-sm">Terbitkan PO</a>
                 <button data-modal-open="#modal-ajukan" class="btn btn-primary btn-sm">Ajukan persetujuan</button>
               </div>
             </div>
@@ -306,7 +201,7 @@
 
           <section class="grid gap-6 xl:grid-cols-3">
             <div class="card card-body xl:col-span-2">
-              <div class="mb-4 flex items-center justify-between">
+              <div class="mb-4 flex items-center justify-between gap-3">
                 <h2 class="card-title">Perbandingan Harga Rata-rata</h2>
                 <span class="text-hint">Indeks harga, PT Sehat Farma = 100</span>
               </div>
@@ -339,60 +234,6 @@
       </div>
     </div>
 
-    <div id="modal-buat-po" data-modal class="fixed inset-0 z-50 hidden">
-      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
-      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-lg rounded-xl bg-white p-5 shadow-xl">
-        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
-          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
-        </button>
-        <h3 class="text-base font-semibold">Buat Purchase Order</h3>
-        <p class="text-hint">PO wajib merujuk RKO yang telah disetujui.</p>
-        <div class="mt-4 space-y-3">
-          <div>
-            <label class="field-label" for="po-rko">Rencana (RKO)</label>
-            <select id="po-rko" class="field w-full">
-              <option>RKO/2027/Q1/003</option>
-              <option>RKO/2027/Q1/002</option>
-            </select>
-          </div>
-          <div>
-            <label class="field-label" for="po-penyedia">Penyedia</label>
-            <select id="po-penyedia" class="field w-full">
-              <option>PT Sehat Farma</option>
-              <option>PT Medika Jaya</option>
-              <option>PT Global Medika</option>
-            </select>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <div>
-              <label class="field-label" for="po-lokasi">Lokasi tujuan</label>
-              <select id="po-lokasi" class="field w-full">
-                <option>Gudang Farmasi Pusat</option>
-                <option>Ruang Obat Puskesmas A</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="po-tanggal">Tanggal PO</label>
-              <input id="po-tanggal" type="date" data-date value="2027-01-22" class="field w-full" />
-            </div>
-          </div>
-          <div>
-            <label class="field-label" for="po-catatan">Catatan</label>
-            <textarea id="po-catatan" rows="3" class="field w-full">Pengiriman bertahap, maksimal 5 hari kerja per pengiriman.</textarea>
-          </div>
-          <label class="check">
-            <input type="checkbox" checked />
-            <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
-            <span>Ajukan persetujuan berjenjang setelah dokumen dibuat</span>
-          </label>
-        </div>
-        <div class="mt-4 flex justify-end gap-2">
-          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
-          <button data-modal-close data-toast="Draf PO/2027/0006 dibuat (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Buat PO</button>
-        </div>
-      </div>
-    </div>
-
     <div id="modal-ajukan" data-modal class="fixed inset-0 z-50 hidden">
       <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
       <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
@@ -413,9 +254,6 @@
 
     <script src="../assets/tom-select.min.js"></script>
     <script src="../assets/select-picker.js"></script>
-    <script src="../assets/flatpickr.min.js"></script>
-    <script src="../assets/flatpickr-id.js"></script>
-    <script src="../assets/date-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>

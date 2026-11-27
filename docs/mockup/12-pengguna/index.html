@@ -9,24 +9,319 @@
   <body data-page="pengguna" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
+
       <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
-        <main class="flex flex-1 items-start p-4 lg:p-6">
-          <div class="w-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <p class="text-xs uppercase tracking-widest text-slate-400">Modul Pengguna</p>
-            <h1 class="mt-2 text-xl font-semibold">Halaman sedang disiapkan</h1>
-            <p class="mx-auto mt-2 max-w-md text-sm text-slate-500">
-              Halaman ini akan dibuat setelah katalog komponen disetujui. Gunakan
-              <a href="../components/index.html" class="text-brand-600 hover:underline">Katalog Komponen</a>
-              sebagai acuan tampilan.
-            </p>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">Manajemen Pengguna</h1>
+              <p class="text-hint">9 akun · 15 peran · Dinas Kesehatan dan fasilitas</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <a href="audit.html" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-history-line icon-sm" aria-hidden="true"></i>
+                Audit log
+              </a>
+              <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                Tambah pengguna
+              </a>
+            </div>
           </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Total Pengguna</p>
+              <p class="kpi-value">9</p>
+              <p class="field-help">Termasuk 1 undangan terkirim</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Aktif</p>
+              <p class="kpi-value text-emerald-600">6</p>
+              <p class="field-help">Login dalam 30 hari terakhir</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">2FA Aktif</p>
+              <p class="kpi-value text-brand-600">5</p>
+              <p class="field-help">Wajib untuk peran administrator dan kepala</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Perlu Tindakan</p>
+              <p class="kpi-value text-rose-600">3</p>
+              <p class="field-help">Nonaktif, terkunci, dan terundang</p>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">1 akun terkunci sementara.</h2>
+            <p class="mt-2">
+              joko.gudang terkunci setelah 5 percobaan login gagal. Buka kunci setelah verifikasi
+              identitas oleh Administrator Dinas.
+            </p>
+            <button data-toast="Akun joko.gudang dibuka (mockup)" data-toast-type="success" class="btn btn-soft-warning btn-xs mt-4">Buka kunci</button>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar Pengguna</h2>
+                <p class="text-hint">Akses mengikuti peran dan fasilitas yang ditugaskan.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>9</span> pengguna</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari nama, username, atau email…" class="search-field" aria-label="Cari pengguna" />
+                </div>
+                <div class="w-full sm:w-48">
+                  <select class="field w-full" aria-label="Filter peran">
+                    <option>Semua peran</option>
+                    <option>Administrator Dinas</option>
+                    <option>Kepala Dinas</option>
+                    <option>Kepala Bidang Farmasi</option>
+                    <option>Apoteker Gudang Dinas</option>
+                    <option>Apoteker Puskesmas</option>
+                    <option>Apoteker RSUD</option>
+                    <option>Direktur RSUD</option>
+                    <option>Kepala Puskesmas</option>
+                    <option>Petugas Gudang</option>
+                    <option>Petugas Farmasi</option>
+                    <option>Dokter</option>
+                    <option>Pejabat Pengadaan</option>
+                    <option>Pejabat Keuangan</option>
+                    <option>Kurir</option>
+                    <option>Auditor</option>
+                  </select>
+                </div>
+                <div class="w-full sm:w-40">
+                  <select class="field w-full" aria-label="Filter status">
+                    <option>Semua status</option>
+                    <option>Aktif</option>
+                    <option>Nonaktif</option>
+                    <option>Terkunci</option>
+                    <option>Terundang</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="usr-rows">Baris per halaman</label>
+                <select id="usr-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Daftar pengguna">
+                <thead>
+                  <tr>
+                    <th>Pengguna</th>
+                    <th>Peran</th>
+                    <th>Fasilitas</th>
+                    <th>2FA</th>
+                    <th>Login Terakhir</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Ratna</p>
+                      <p class="text-hint font-mono text-xs">ratna.apoteker</p>
+                    </td>
+                    <td>Apoteker Gudang Dinas</td>
+                    <td>Dinas Kesehatan</td>
+                    <td><span class="badge badge-success">Ya</span></td>
+                    <td>2027-01-29 08:05</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <button data-toast="Reset kata sandi ratna.apoteker dikirim (mockup)" class="btn btn-outline btn-2xs">Reset</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Hendra</p>
+                      <p class="text-hint font-mono text-xs">hendra.kabid</p>
+                    </td>
+                    <td>Kepala Bidang Farmasi</td>
+                    <td>Dinas Kesehatan</td>
+                    <td><span class="badge badge-success">Ya</span></td>
+                    <td>2027-01-28 16:20</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <button data-toast="Reset kata sandi hendra.kabid dikirim (mockup)" class="btn btn-outline btn-2xs">Reset</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Andi</p>
+                      <p class="text-hint font-mono text-xs">andi.apoteker</p>
+                    </td>
+                    <td>Apoteker Puskesmas</td>
+                    <td>Puskesmas A</td>
+                    <td><span class="badge badge-neutral">Tidak</span></td>
+                    <td>2027-01-29 08:15</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <button data-toast="Reset kata sandi andi.apoteker dikirim (mockup)" class="btn btn-outline btn-2xs">Reset</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Sari</p>
+                      <p class="text-hint font-mono text-xs">sari.apoteker</p>
+                    </td>
+                    <td>Apoteker RSUD</td>
+                    <td>RSUD</td>
+                    <td><span class="badge badge-success">Ya</span></td>
+                    <td>2027-01-28 13:45</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <button data-toast="Reset kata sandi sari.apoteker dikirim (mockup)" class="btn btn-outline btn-2xs">Reset</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Rina</p>
+                      <p class="text-hint font-mono text-xs">rina.auditor</p>
+                    </td>
+                    <td>Auditor</td>
+                    <td>Dinas Kesehatan</td>
+                    <td><span class="badge badge-success">Ya</span></td>
+                    <td>2027-01-27 10:12</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Admin Dinas</p>
+                      <p class="text-hint font-mono text-xs">admin.dinkes</p>
+                    </td>
+                    <td>Administrator Dinas</td>
+                    <td>Dinas Kesehatan</td>
+                    <td><span class="badge badge-success">Ya</span></td>
+                    <td>2027-01-29 07:40</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Joko</p>
+                      <p class="text-hint font-mono text-xs">joko.gudang</p>
+                    </td>
+                    <td>Petugas Gudang</td>
+                    <td>Puskesmas B</td>
+                    <td><span class="badge badge-neutral">Tidak</span></td>
+                    <td>2027-01-29 06:55</td>
+                    <td><span class="badge badge-danger">Terkunci</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <button data-toast="Akun joko.gudang dibuka (mockup)" data-toast-type="success" class="btn btn-outline btn-2xs">Buka</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Budi</p>
+                      <p class="text-hint font-mono text-xs">budi.gudang</p>
+                    </td>
+                    <td>Petugas Gudang</td>
+                    <td>Puskesmas A</td>
+                    <td><span class="badge badge-neutral">Tidak</span></td>
+                    <td>2026-12-20 14:00</td>
+                    <td><span class="badge badge-neutral">Nonaktif</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <button data-toast="Akun budi.gudang diaktifkan kembali (mockup)" class="btn btn-outline btn-2xs">Aktifkan</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td>
+                      <p class="font-medium">Dewi</p>
+                      <p class="text-hint font-mono text-xs">dewi.puskesmas</p>
+                    </td>
+                    <td>Apoteker Puskesmas</td>
+                    <td>Puskesmas A, Puskesmas B</td>
+                    <td><span class="badge badge-neutral">Tidak</span></td>
+                    <td class="text-hint">Belum pernah</td>
+                    <td><span class="badge badge-warning">Terundang</span></td>
+                    <td class="num">
+                      <button data-toast="Undangan dewi.puskesmas dikirim ulang (mockup)" class="btn btn-outline btn-2xs">Kirim ulang</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>9</span> pengguna
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card card-body xl:col-span-2">
+              <div class="mb-3 flex items-center justify-between gap-3">
+                <h2 class="card-title">Kebijakan Keamanan</h2>
+                <span class="badge badge-neutral">Berlaku</span>
+              </div>
+              <ul class="space-y-2 text-sm">
+                <li>Kata sandi minimal 12 karakter, kedaluwarsa setiap 90 hari.</li>
+                <li>Tidak boleh sama dengan tiga kata sandi terakhir.</li>
+                <li>Akun terkunci sementara setelah 5 percobaan login gagal.</li>
+                <li>2FA wajib untuk Administrator, Kepala Dinas, dan Kepala Bidang.</li>
+                <li>Login Google hanya untuk peran non-administrator yang masuk whitelist.</li>
+              </ul>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Tautan Cepat</h2>
+              <div class="mt-3 flex flex-col gap-2">
+                <a href="peran.html" class="btn btn-outline btn-sm">Peran dan hak akses</a>
+                <a href="whitelist.html" class="btn btn-outline btn-sm">Google whitelist</a>
+                <a href="audit.html" class="btn btn-outline btn-sm">Audit log</a>
+              </div>
+            </div>
+          </section>
         </main>
+
         <div data-include="../components/footer.html"></div>
       </div>
     </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>
 </html>
-

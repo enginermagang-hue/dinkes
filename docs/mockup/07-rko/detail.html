@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail RKO - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="rko" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">RKO</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>RKO/2027/Q1/001</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">RKO/2027/Q1/001</h1>
+                  <span class="badge badge-success">Disetujui</span>
+                  <span class="badge badge-neutral">Versi 2</span>
+                </div>
+                <p class="text-hint">
+                  Puskesmas A · Triwulan I 2027 · 8 item · kebutuhan 14.886 unit · disetujui
+                  2 Januari 2027
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-print class="btn btn-outline btn-sm flex gap-2 no-print">
+                  <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                  Cetak
+                </button>
+                <a href="konsolidasi.html" class="btn btn-outline btn-sm">Lihat konsolidasi</a>
+                <button data-toast="Versi baru RKO/2027/Q1/001 dibuat sebagai draf (mockup)" class="btn btn-primary btn-sm">Buat versi baru</button>
+              </div>
+            </div>
+          </div>
+
+          <section class="card card-body">
+            <div class="steps">
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Draf</div>
+              <span class="step-line"></span>
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Diajukan</div>
+              <span class="step-line"></span>
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Diverifikasi</div>
+              <span class="step-line"></span>
+              <div class="step step-active"><span class="step-dot">4</span> Disetujui</div>
+            </div>
+            <p class="field-help">Perubahan setelah disetujui memerlukan persetujuan ulang.</p>
+          </section>
+
+          <section class="grid gap-4 xl:grid-cols-3">
+            <div class="card card-body">
+              <p class="kpi-label">Total kebutuhan</p>
+              <p class="mt-1 text-2xl font-bold">14.886</p>
+              <p class="field-help">8 item, termasuk 6 item vital.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Nilai rencana</p>
+              <p class="mt-1 text-2xl font-bold">Rp 245 jt</p>
+              <p class="field-help">Harga perkiraan e-Katalog.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Metode</p>
+              <p class="mt-1 font-medium">Konsumsi 3 bulan</p>
+              <p class="field-help">Buffer standar Dinas 10%, kategori V 15%.</p>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Item RKO</h2>
+                <p class="text-hint">Kebutuhan = pemakaian + buffer − sisa stok.</p>
+              </div>
+              <span class="text-hint">8 item</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Obat</th>
+                    <th class="num">Pemakaian 3 Bln</th>
+                    <th class="num">Sisa Stok</th>
+                    <th class="num">Buffer</th>
+                    <th class="num">Kebutuhan</th>
+                    <th>ABC/VEN</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">OBT-001</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num">3.600</td>
+                    <td class="num">400</td>
+                    <td class="num">300</td>
+                    <td class="num font-semibold">3.500</td>
+                    <td><span class="badge badge-danger">A/V</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-002</td>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="num">5.400</td>
+                    <td class="num">800</td>
+                    <td class="num">450</td>
+                    <td class="num font-semibold">5.050</td>
+                    <td><span class="badge badge-danger">A/V</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-003</td>
+                    <td>Metformin 500 mg</td>
+                    <td class="num">1.800</td>
+                    <td class="num">250</td>
+                    <td class="num">150</td>
+                    <td class="num font-semibold">1.700</td>
+                    <td><span class="badge badge-neutral">B/E</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-004</td>
+                    <td>Amlodipin 10 mg</td>
+                    <td class="num">2.700</td>
+                    <td class="num">300</td>
+                    <td class="num">220</td>
+                    <td class="num font-semibold">2.620</td>
+                    <td><span class="badge badge-warning">A/E</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-005</td>
+                    <td>Kotrimoksazol 480 mg</td>
+                    <td class="num">900</td>
+                    <td class="num">150</td>
+                    <td class="num">80</td>
+                    <td class="num font-semibold">830</td>
+                    <td><span class="badge badge-neutral">B/V</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-006</td>
+                    <td>Oralit Serbuk</td>
+                    <td class="num">1.200</td>
+                    <td class="num">200</td>
+                    <td class="num">100</td>
+                    <td class="num font-semibold">1.100</td>
+                    <td><span class="badge badge-neutral">C/V</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-007</td>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="num">60</td>
+                    <td class="num">12</td>
+                    <td class="num">10</td>
+                    <td class="num font-semibold">58</td>
+                    <td><span class="badge badge-neutral">B/V</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-008</td>
+                    <td>Insulin Glargine</td>
+                    <td class="num">30</td>
+                    <td class="num">6</td>
+                    <td class="num">4</td>
+                    <td class="num font-semibold">28</td>
+                    <td><span class="badge badge-danger">A/V</span></td>
+                  </tr>
+                  <tr class="bg-slate-50">
+                    <td class="font-medium" colspan="5">Total 8 item</td>
+                    <td class="num font-semibold">14.886</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Riwayat Versi</h2>
+                <span class="text-hint">2 versi</span>
+              </div>
+              <div class="table-wrap">
+                <table class="table table-compact">
+                  <thead>
+                    <tr>
+                      <th>Versi</th>
+                      <th>Tanggal</th>
+                      <th>Status</th>
+                      <th>Perubahan</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr>
+                      <td>v1</td>
+                      <td>2026-12-20</td>
+                      <td><span class="badge badge-brand">Diajukan</span></td>
+                      <td>Usulan awal, buffer Amoksisilin 250.</td>
+                    </tr>
+                    <tr>
+                      <td>v2</td>
+                      <td>2027-01-02</td>
+                      <td><span class="badge badge-success">Disetujui</span></td>
+                      <td>Buffer Amoksisilin dinaikkan 250 → 300 setelah verifikasi Dinas.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                <p class="text-hint">Versi lama tetap tersimpan untuk audit.</p>
+                <button data-toast="Perbandingan versi dibuka (mockup)" class="btn btn-outline btn-xs">Bandingkan versi</button>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Jejak Persetujuan</h2>
+              <ol class="mt-3 space-y-4 text-sm">
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Diajukan Puskesmas A</p>
+                    <p class="text-hint">2026-12-20 · Dewi, S.Farm., Apt.</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Diverifikasi Apoteker Gudang Dinas</p>
+                    <p class="text-hint">2026-12-28 · buffer disesuaikan</p>
+                  </div>
+                </li>
+                <li class="flex gap-3">
+                  <span class="status-dot status-dot-success mt-2 shrink-0"></span>
+                  <div>
+                    <p class="font-medium">Disetujui Kepala Bidang Farmasi</p>
+                    <p class="text-hint">2027-01-02 · masuk konsolidasi RKO/2027/Q1/003</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </section>
+
+          <section class="card card-body">
+            <h2 class="card-title">Dokumen Terkait</h2>
+            <div class="mt-3 grid gap-2 text-sm sm:grid-cols-3">
+              <a href="konsolidasi.html" class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 px-3 py-2 hover:bg-slate-50">
+                <span>Konsolidasi</span>
+                <span class="font-mono text-xs">RKO/2027/Q1/003</span>
+              </a>
+              <a href="../04-pengadaan/index.html" class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 px-3 py-2 hover:bg-slate-50">
+                <span>Keranjang pengadaan</span>
+                <span class="text-hint">4 dari 11 item</span>
+              </a>
+              <a href="../06-lplpo/detail.html" class="flex items-center justify-between gap-2 rounded-lg border border-slate-200 px-3 py-2 hover:bg-slate-50">
+                <span>LPLPO</span>
+                <span class="font-mono text-xs">2027/01/004</span>
+              </a>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

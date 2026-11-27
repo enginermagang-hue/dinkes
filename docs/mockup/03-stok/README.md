@@ -8,6 +8,7 @@ Halaman ini menggambarkan modul penyimpanan dan pengendalian sesuai PRD bagian 8
 - Tabel saldo stok dengan minimum, ROP, dan status.
 - Kartu stok dari tabel `mutasi_stok`.
 - Daftar batch mendekati kedaluwarsa dan usulan redistribusi.
+- Banner mode luring dan antrean sinkronisasi transaksi Pustu.
 
 ## Aktor
 
@@ -25,7 +26,8 @@ OBT-010 Vaksin Campak, dan kartu stok Januari 2027.
 ## Catatan Implementasi
 
 - Saldo berasal dari agregat `mutasi_stok`, bukan input manual.
-- Status dihitung dari perbandingan saldo dengan ROP dan safety stock.
-- Batch mendekati kedaluwarsa memakai urutan FEFO.
+- Status mengikuti §8.6.5: di bawah ROP = Waspada, di bawah safety stock = Kritis,
+  dan nol = Kosong.
+- Batch mendekati kedaluwarsa memakai urutan FEFO dan ambang §8.6.8.
 
 Rujukan: `docs/PRD.md` bagian 8.3 dan 8.6, serta `docs/API-CONTRACT.md` bagian 6.

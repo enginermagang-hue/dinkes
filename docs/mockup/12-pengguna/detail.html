@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail Pengguna - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengguna" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Pengguna</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>ratna.apoteker</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">Ratna, S.Farm., Apt.</h1>
+                  <span class="badge badge-success">Aktif</span>
+                  <span class="badge badge-brand">2FA aktif</span>
+                </div>
+                <p class="text-hint">
+                  ratna.apoteker · Apoteker Gudang Dinas · Dinas Kesehatan · login terakhir
+                  29 Jan 2027 08:05
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-toast="Reset kata sandi ratna.apoteker dikirim (mockup)" class="btn btn-outline btn-sm">Reset kata sandi</button>
+                <button data-modal-open="#modal-kunci" class="btn btn-danger btn-sm">Kunci akun</button>
+              </div>
+            </div>
+          </div>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="min-w-0 space-y-6 xl:col-span-2">
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Profil</h2>
+                  <span class="text-hint">Data akun</span>
+                </div>
+                <div class="card-body grid gap-3 sm:grid-cols-2 text-sm">
+                  <div>
+                    <p class="field-label">Nama lengkap</p>
+                    <p class="font-medium">Ratna, S.Farm., Apt.</p>
+                  </div>
+                  <div>
+                    <p class="field-label">Username</p>
+                    <p class="font-mono text-xs">ratna.apoteker</p>
+                  </div>
+                  <div>
+                    <p class="field-label">Email</p>
+                    <p>ratna.apoteker@dinkes.go.id</p>
+                  </div>
+                  <div>
+                    <p class="field-label">Fasilitas utama</p>
+                    <p>Dinas Kesehatan</p>
+                  </div>
+                  <div>
+                    <p class="field-label">Login terakhir</p>
+                    <p>2027-01-29 08:05 · 10.10.1.24</p>
+                  </div>
+                  <div>
+                    <p class="field-label">Dibuat</p>
+                    <p>2026-12-01 · admin.dinkes</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <div>
+                    <h2 class="card-title">Peran dan Penugasan</h2>
+                    <p class="text-hint">Hak akses mengikuti peran; cakupan data mengikuti fasilitas.</p>
+                  </div>
+                  <a href="peran.html" class="btn btn-outline btn-xs">Lihat peran</a>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Peran</th>
+                        <th>Kode</th>
+                        <th>Cakupan</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>Apoteker Gudang Dinas</td>
+                        <td class="font-mono text-xs">APOTEKER_GUDANG</td>
+                        <td>Penerimaan, penyimpanan, distribusi, stok</td>
+                      </tr>
+                      <tr>
+                        <td>Petugas Gudang</td>
+                        <td class="font-mono text-xs">PETUGAS_GUDANG</td>
+                        <td>Penerimaan, picking, stock opname</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+                  <p class="text-hint">Fasilitas: Dinas Kesehatan (utama), Puskesmas A.</p>
+                  <button data-toast="Pengaturan peran dibuka (mockup)" class="btn btn-outline btn-xs">Ubah peran</button>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Audit Terakhir</h2>
+                  <a href="audit.html" class="text-sm text-brand-600 hover:underline">Lihat semua</a>
+                </div>
+                <div class="table-wrap">
+                  <table class="table table-compact">
+                    <thead>
+                      <tr>
+                        <th>Waktu</th>
+                        <th>Aksi</th>
+                        <th>Entitas</th>
+                        <th>IP</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td>2027-01-29 08:05</td>
+                        <td><span class="badge badge-brand">Login</span></td>
+                        <td>auth</td>
+                        <td class="font-mono text-xs">10.10.1.24</td>
+                      </tr>
+                      <tr>
+                        <td>2027-01-28 14:22</td>
+                        <td><span class="badge badge-warning">Update</span></td>
+                        <td>pengguna_peran</td>
+                        <td class="font-mono text-xs">10.10.1.24</td>
+                      </tr>
+                      <tr>
+                        <td>2027-01-27 09:10</td>
+                        <td><span class="badge badge-neutral">Export</span></td>
+                        <td>laporan_sipd</td>
+                        <td class="font-mono text-xs">10.10.1.24</td>
+                      </tr>
+                      <tr>
+                        <td>2027-01-26 16:40</td>
+                        <td><span class="badge badge-brand">Login</span></td>
+                        <td>auth</td>
+                        <td class="font-mono text-xs">10.10.1.31</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+
+            <div class="space-y-6 xl:sticky xl:top-6">
+              <section class="card card-body">
+                <h2 class="card-title">Keamanan</h2>
+                <dl class="mt-3 space-y-2 text-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">2FA</dt>
+                    <dd><span class="badge badge-success">TOTP aktif</span></dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Kata sandi terakhir</dt>
+                    <dd class="font-medium">12 Des 2026</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Kedaluwarsa</dt>
+                    <dd class="font-medium">12 Mar 2027</dd>
+                  </div>
+                  <div class="flex items-center justify-between gap-2">
+                    <dt class="text-slate-500">Google terhubung</dt>
+                    <dd><span class="badge badge-brand">ratna.apoteker@gmail.com</span></dd>
+                  </div>
+                </dl>
+                <div class="mt-4 flex flex-col gap-2">
+                  <button data-toast="Reset 2FA ratna.apoteker disiapkan (mockup)" class="btn btn-outline btn-sm">Reset 2FA</button>
+                  <button data-toast="Akun Google diputuskan (mockup)" class="btn btn-outline btn-sm">Putuskan Google</button>
+                </div>
+              </section>
+
+              <div class="alert alert-brand">
+                <h2 class="font-semibold">Login Google</h2>
+                <p class="mt-2">
+                  Hanya untuk peran non-administrator dan email harus ada di whitelist. Peran yang
+                  mewajibkan 2FA tetap harus menyelesaikan verifikasi.
+                </p>
+                <a href="whitelist.html" class="btn btn-soft btn-xs mt-4">Kelola whitelist</a>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-kunci" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Kunci akun ini?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          Akun tidak dapat login sampai dibuka Administrator. Riwayat audit dan transaksi tetap
+          tersimpan.
+        </p>
+        <div class="mt-3">
+          <label class="field-label" for="kunci-alasan">Alasan</label>
+          <textarea id="kunci-alasan" rows="2" class="field field-error w-full">Permintaan pengguna, dugaan akses tidak sah.</textarea>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Akun ratna.apoteker dikunci (mockup)" data-toast-type="warning" class="btn btn-danger btn-xs">Kunci akun</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

@@ -9,24 +9,255 @@
   <body data-page="lplpo" class="app-page">
     <div class="app-shell">
       <div data-include="../components/sidebar.html"></div>
+
       <div class="app-body app-content">
         <div data-include="../components/header.html"></div>
-        <main class="flex flex-1 items-start p-4 lg:p-6">
-          <div class="w-full rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
-            <p class="text-xs uppercase tracking-widest text-slate-400">Modul LPLPO</p>
-            <h1 class="mt-2 text-xl font-semibold">Halaman sedang disiapkan</h1>
-            <p class="mx-auto mt-2 max-w-md text-sm text-slate-500">
-              Halaman ini akan dibuat setelah katalog komponen disetujui. Gunakan
-              <a href="../components/index.html" class="text-brand-600 hover:underline">Katalog Komponen</a>
-              sebagai acuan tampilan.
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">LPLPO</h1>
+              <p class="text-hint">
+                Laporan Pemakaian dan Lembar Permintaan Obat · Januari 2027 · 4 fasilitas
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Rekap LPLPO diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+                Unduh rekap
+              </button>
+              <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                Buat LPLPO
+              </a>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Menunggu Verifikasi</p>
+              <p class="kpi-value text-amber-600">1</p>
+              <p class="field-help">LPLPO/2027/01/003 Puskesmas B</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Disetujui</p>
+              <p class="kpi-value text-emerald-600">1</p>
+              <p class="field-help">LPLPO/2027/01/005 RSUD (program)</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Total Diminta</p>
+              <p class="kpi-value">1.150</p>
+              <p class="field-help">5 item pada LPLPO yang disetujui sebagian</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Total Disetujui</p>
+              <p class="kpi-value text-brand-600">1.025</p>
+              <p class="field-help">89% dari jumlah diminta</p>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">LPLPO diajukan paling lambat tanggal 5 bulan berikutnya.</p>
+            <p class="mt-1">
+              Stok awal, penerimaan, stok akhir, dan jumlah pakai diambil otomatis dari mutasi
+              stok. Satu fasilitas hanya memiliki satu LPLPO per periode.
             </p>
           </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar LPLPO</h2>
+                <p class="text-hint">LPLPO yang disetujui menjadi dasar permintaan distribusi bulanan.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>6</span> dokumen</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari nomor atau fasilitas…" class="search-field" aria-label="Cari LPLPO" />
+                </div>
+
+                <details class="relative">
+                  <summary class="btn btn-outline btn-sm flex cursor-pointer list-none items-center gap-2">
+                    <i class="ri-filter-3-line icon-sm" aria-hidden="true"></i>
+                    Filter
+                    <span class="badge badge-brand">2</span>
+                    <i class="ri-arrow-down-s-line icon-xs chevron text-slate-400" aria-hidden="true"></i>
+                  </summary>
+                  <div class="card dropdown-panel absolute left-0 z-30 mt-2 w-72 p-3 text-left shadow-lg">
+                    <div class="space-y-2">
+                      <div>
+                        <label class="field-label" for="lplpo-periode">Periode</label>
+                        <select id="lplpo-periode" class="field w-full">
+                          <option>Januari 2027</option>
+                          <option>Desember 2026</option>
+                          <option>Semua periode</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="lplpo-fasilitas">Fasilitas</label>
+                        <select id="lplpo-fasilitas" class="field w-full">
+                          <option>Semua fasilitas</option>
+                          <option>Puskesmas A</option>
+                          <option>Puskesmas B</option>
+                          <option>Puskesmas C</option>
+                          <option>RSUD (program)</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="lplpo-status">Status</label>
+                        <select id="lplpo-status" class="field w-full">
+                          <option>Semua status</option>
+                          <option>Draf</option>
+                          <option>Diajukan</option>
+                          <option>Disetujui</option>
+                          <option>Sebagian</option>
+                          <option>Ditolak</option>
+                          <option>Selesai</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <a href="index.html" class="btn btn-ghost btn-sm">Reset</a>
+                      <button type="button" data-dropdown-close data-toast="Filter LPLPO diterapkan (mockup)" class="btn btn-primary btn-sm">Terapkan</button>
+                    </div>
+                  </div>
+                </details>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="lplpo-rows">Baris per halaman</label>
+                <select id="lplpo-rows" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Daftar LPLPO">
+                <thead>
+                  <tr>
+                    <th>Nomor</th>
+                    <th>Fasilitas</th>
+                    <th>Periode</th>
+                    <th class="num">Item</th>
+                    <th class="num">Diminta</th>
+                    <th class="num">Disetujui</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">LPLPO/2027/01/005</td>
+                    <td>RSUD (program)</td>
+                    <td>2027-01</td>
+                    <td class="num">4</td>
+                    <td class="num">300</td>
+                    <td class="num">300</td>
+                    <td><span class="badge badge-success">Disetujui</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <a href="pdf.html" class="btn btn-outline btn-2xs">Cetak</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">LPLPO/2027/01/004</td>
+                    <td>Puskesmas A</td>
+                    <td>2027-01</td>
+                    <td class="num">5</td>
+                    <td class="num">1.150</td>
+                    <td class="num">1.025</td>
+                    <td><span class="badge badge-warning">Sebagian</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                        <a href="pdf.html" class="btn btn-outline btn-2xs">Cetak</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">LPLPO/2027/01/003</td>
+                    <td>Puskesmas B</td>
+                    <td>2027-01</td>
+                    <td class="num">5</td>
+                    <td class="num">1.140</td>
+                    <td class="num">—</td>
+                    <td><span class="badge badge-brand">Diajukan</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="verifikasi.html" class="btn btn-primary btn-2xs">Verifikasi</a>
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">LPLPO/2027/01/002</td>
+                    <td>Puskesmas C</td>
+                    <td>2027-01</td>
+                    <td class="num">4</td>
+                    <td class="num">640</td>
+                    <td class="num">—</td>
+                    <td><span class="badge badge-danger">Ditolak</span></td>
+                    <td class="num">
+                      <div class="flex items-center justify-end gap-1">
+                        <a href="edit.html" class="btn btn-outline btn-2xs">Revisi</a>
+                        <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">LPLPO/2026/12/002</td>
+                    <td>Puskesmas B</td>
+                    <td>2026-12</td>
+                    <td class="num">6</td>
+                    <td class="num">1.210</td>
+                    <td class="num">1.100</td>
+                    <td><span class="badge badge-neutral">Selesai</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">LPLPO/2026/12/001</td>
+                    <td>Puskesmas A</td>
+                    <td>2026-12</td>
+                    <td class="num">5</td>
+                    <td class="num">980</td>
+                    <td class="num">940</td>
+                    <td><span class="badge badge-neutral">Selesai</span></td>
+                    <td class="num">
+                      <a href="detail.html" class="btn btn-outline btn-2xs">Detail</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>6</span> LPLPO
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
         </main>
+
         <div data-include="../components/footer.html"></div>
       </div>
     </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
     <script src="../assets/mockup.js"></script>
     <script src="../assets/layout.js"></script>
   </body>
 </html>
-

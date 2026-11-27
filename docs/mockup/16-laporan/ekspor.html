@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ekspor Laporan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="laporan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pelaporan</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Ekspor laporan</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Ekspor Laporan</h1>
+              <p class="text-hint">SIPNAP (CSV) dan SIPD (Excel) · unggah manual ke portal</p>
+            </div>
+            <a href="index.html" class="btn btn-outline btn-sm">Kembali ke ringkasan</a>
+          </div>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Integrasi MVP memakai berkas, bukan API langsung.</p>
+            <p class="mt-1">
+              Sistem menyiapkan berkas sesuai template, operator mengunduh, mengunggah ke portal,
+              lalu status unggah dicatat pada riwayat ekspor.
+            </p>
+          </div>
+
+          <section id="sipnap" class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Ekspor SIPNAP</h2>
+                <p class="text-hint">CSV ketersediaan dan pemakaian obat · template 2026</p>
+              </div>
+              <span class="badge badge-success">Siap</span>
+            </div>
+
+            <div class="card-body grid gap-3 sm:grid-cols-3">
+              <div>
+                <label class="field-label" for="sipnap-periode">Periode</label>
+                <select id="sipnap-periode" class="field w-full">
+                  <option>Januari 2027</option>
+                  <option>Desember 2026</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="sipnap-fasilitas">Fasilitas</label>
+                <select id="sipnap-fasilitas" class="field w-full">
+                  <option>Semua fasilitas</option>
+                  <option>Puskesmas A</option>
+                  <option>Puskesmas B</option>
+                  <option>Puskesmas C</option>
+                  <option>RSUD</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="sipnap-template">Versi template</label>
+                <input id="sipnap-template" value="SIPNAP 2026" readonly class="field w-full" />
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Kode fasilitas</th>
+                    <th>Periode</th>
+                    <th>Kode obat</th>
+                    <th>Nama obat</th>
+                    <th>Satuan</th>
+                    <th class="num">Stok awal</th>
+                    <th class="num">Penerimaan</th>
+                    <th class="num">Pemakaian</th>
+                    <th class="num">Stok akhir</th>
+                    <th>Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">PKM-A</td>
+                    <td>2027-01</td>
+                    <td class="font-mono text-xs">OBT-001</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td>Tablet</td>
+                    <td class="num">500</td>
+                    <td class="num">0</td>
+                    <td class="num">300</td>
+                    <td class="num">200</td>
+                    <td class="text-hint">—</td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">PKM-A</td>
+                    <td>2027-01</td>
+                    <td class="font-mono text-xs">OBT-002</td>
+                    <td>Parasetamol 500 mg</td>
+                    <td>Tablet</td>
+                    <td class="num">1.000</td>
+                    <td class="num">0</td>
+                    <td class="num">400</td>
+                    <td class="num">600</td>
+                    <td class="text-hint">—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-body border-t border-slate-100">
+              <div class="grid gap-2 text-sm sm:grid-cols-3">
+                <p><span class="text-slate-500">Kolom wajib:</span> 10 lengkap</p>
+                <p><span class="text-slate-500">Baris data:</span> 48 baris</p>
+                <p><span class="text-slate-500">Validasi:</span> 0 error, 0 peringatan</p>
+              </div>
+              <label class="check mt-3">
+                <input type="checkbox" checked />
+                <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                <span>Validasi kolom wajib dan tipe data sebelum berkas dibuat</span>
+              </label>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Hasil terakhir: sipnap_2027-01.csv · 48 baris · 8 KB</p>
+              <div class="flex flex-wrap gap-2">
+                <button data-toast="Validasi SIPNAP selesai: 0 error (mockup)" class="btn btn-outline btn-sm">Validasi</button>
+                <button data-toast="Berkas sipnap_2027-01.csv disiapkan (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Unduh CSV</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="sipd" class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Ekspor SIPD</h2>
+                <p class="text-hint">Excel SPJ dan realisasi · template BPKAD</p>
+              </div>
+              <span class="badge badge-success">Siap</span>
+            </div>
+
+            <div class="card-body grid gap-3 sm:grid-cols-3">
+              <div>
+                <label class="field-label" for="sipd-periode">Periode</label>
+                <select id="sipd-periode" class="field w-full">
+                  <option>Januari 2027</option>
+                  <option>Desember 2026</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="sipd-fasilitas">Fasilitas</label>
+                <select id="sipd-fasilitas" class="field w-full">
+                  <option>Dinas Kesehatan</option>
+                  <option>Puskesmas A</option>
+                  <option>Puskesmas B</option>
+                  <option>Puskesmas C</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="sipd-jenis">Jenis belanja</label>
+                <select id="sipd-jenis" class="field w-full">
+                  <option>Obat-obatan</option>
+                  <option>BMHP</option>
+                  <option>Alat kesehatan</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Nomor dokumen</th>
+                    <th>Tanggal</th>
+                    <th>Jenis belanja</th>
+                    <th>Kode akun</th>
+                    <th class="num">Nilai (Rp)</th>
+                    <th>Uraian</th>
+                    <th>Penyedia</th>
+                    <th>Nomor BAST</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">SP2D/2027/004</td>
+                    <td>2027-01-18</td>
+                    <td>Obat</td>
+                    <td class="font-mono text-xs">5.2.02.01.01</td>
+                    <td class="num">30.000.000</td>
+                    <td>Amoksisilin 3.000 tablet</td>
+                    <td>PT Sehat Farma</td>
+                    <td class="font-mono text-xs">BAST/2027/0012</td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">UP/2027/003</td>
+                    <td>2027-01-30</td>
+                    <td>BMHP</td>
+                    <td class="font-mono text-xs">5.2.02.01.02</td>
+                    <td class="num">12.500.000</td>
+                    <td>Masker dan sarung tangan</td>
+                    <td>PT Medika Jaya</td>
+                    <td class="font-mono text-xs">BAST/2027/0021</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-body border-t border-slate-100">
+              <div class="grid gap-2 text-sm sm:grid-cols-3">
+                <p><span class="text-slate-500">Kolom template:</span> 8 lengkap</p>
+                <p><span class="text-slate-500">Baris data:</span> 14 baris</p>
+                <p><span class="text-slate-500">Pemetaan akun:</span> disetujui BPKAD</p>
+              </div>
+              <label class="check mt-3">
+                <input type="checkbox" checked />
+                <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+                <span>Sertakan nomor BAST dan dokumen pembayaran pada setiap baris</span>
+              </label>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Hasil terakhir: sipd_2027-01.xlsx · 14 baris · 22 KB</p>
+              <div class="flex flex-wrap gap-2">
+                <button data-toast="Validasi SIPD selesai: 0 error (mockup)" class="btn btn-outline btn-sm">Validasi</button>
+                <button data-toast="Berkas sipd_2027-01.xlsx disiapkan (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Unduh Excel</button>
+              </div>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">Status unggah dicatat manual.</h2>
+            <p class="mt-2">
+              Setelah berkas diunggah ke portal SIPNAP atau BPKAD, tandai status pada riwayat
+              ekspor. Ekspor Desember 2026 untuk SIPD masih berstatus gagal validasi.
+            </p>
+            <a href="index.html" class="btn btn-soft-warning btn-xs mt-4">Buka riwayat ekspor</a>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Peran dan Hak Akses - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengguna" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Pengguna</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Peran</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Peran dan Hak Akses</h1>
+              <p class="text-hint">15 peran baku · hak akses per modul · status penggunaan</p>
+            </div>
+            <button data-toast="Formulir peran baru dibuka (mockup)" class="btn btn-primary btn-sm">Tambah peran</button>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar Peran</h2>
+                <p class="text-hint">Peran Dinas dapat melihat lintas fasilitas.</p>
+              </div>
+              <span class="text-hint">15 peran</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama Peran</th>
+                    <th>Cakupan Akses</th>
+                    <th class="num">Pengguna</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">ADMIN_DINKES</td>
+                    <td>Administrator Dinas</td>
+                    <td>Seluruh modul dan seluruh fasilitas</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses ADMIN_DINKES dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">KEPALA_DINAS</td>
+                    <td>Kepala Dinas</td>
+                    <td>Baca seluruh fasilitas dan persetujuan</td>
+                    <td class="num">0</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses KEPALA_DINAS dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">KEPALA_BIDANG</td>
+                    <td>Kepala Bidang Farmasi</td>
+                    <td>Baca seluruh fasilitas, setujui RKO dan realokasi</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses KEPALA_BIDANG dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">APOTEKER_GUDANG</td>
+                    <td>Apoteker Gudang Dinas</td>
+                    <td>Penerimaan, penyimpanan, distribusi, stok</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses APOTEKER_GUDANG dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">APOTEKER_PUSKESMAS</td>
+                    <td>Apoteker Puskesmas</td>
+                    <td>RKO, stok, dan dispensing pada fasilitasnya</td>
+                    <td class="num">3</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses APOTEKER_PUSKESMAS dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">DIREKTUR_RSUD</td>
+                    <td>Direktur RSUD</td>
+                    <td>Monitoring dan pelaporan RSUD</td>
+                    <td class="num">0</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses DIREKTUR_RSUD dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">PETUGAS_GUDANG</td>
+                    <td>Petugas Gudang</td>
+                    <td>Penerimaan, picking, dan stock opname</td>
+                    <td class="num">2</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses PETUGAS_GUDANG dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">APOTEKER_RSUD</td>
+                    <td>Apoteker RSUD</td>
+                    <td>RKO obat program, stok, dispensing, dan pelaporan RSUD</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses APOTEKER_RSUD dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">KEPALA_PUSKESMAS</td>
+                    <td>Kepala Puskesmas</td>
+                    <td>Monitoring, persetujuan, dan pelaporan Puskesmas</td>
+                    <td class="num">2</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses KEPALA_PUSKESMAS dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">PETUGAS_FARMASI</td>
+                    <td>Petugas Farmasi</td>
+                    <td>Menyiapkan dan menyerahkan obat</td>
+                    <td class="num">3</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses PETUGAS_FARMASI dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">DOKTER</td>
+                    <td>Dokter</td>
+                    <td>Menulis resep elektronik pada fasilitasnya</td>
+                    <td class="num">4</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses DOKTER dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">PEJABAT_PENGADAAN</td>
+                    <td>Pejabat Pengadaan</td>
+                    <td>Membuat PO dan memilih penyedia</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses PEJABAT_PENGADAAN dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">PEJABAT_KEUANGAN</td>
+                    <td>Pejabat Keuangan</td>
+                    <td>Merekonsiliasi komitmen, pembayaran, dan BAST</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses PEJABAT_KEUANGAN dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">KURIR</td>
+                    <td>Kurir</td>
+                    <td>Memperbarui status pengiriman</td>
+                    <td class="num">2</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses KURIR dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">AUDITOR</td>
+                    <td>Auditor</td>
+                    <td>Baca seluruh data tanpa hak ubah</td>
+                    <td class="num">1</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                    <td class="num"><button data-toast="Hak akses AUDITOR dibuka (mockup)" class="btn btn-outline btn-2xs">Hak akses</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Hak Akses per Modul</h2>
+                <p class="text-hint">Contoh untuk peran Administrator Dinas.</p>
+              </div>
+              <div class="w-56">
+                <select class="field w-full" aria-label="Pilih peran">
+                  <option>Administrator Dinas</option>
+                  <option>Kepala Bidang Farmasi</option>
+                  <option>Apoteker Gudang Dinas</option>
+                  <option>Apoteker Puskesmas</option>
+                  <option>Auditor</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Modul</th>
+                    <th>Lihat</th>
+                    <th>Buat</th>
+                    <th>Ubah</th>
+                    <th>Setujui</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Stok dan Mutasi</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat stok" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat stok" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah stok" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui stok" /></td>
+                  </tr>
+                  <tr>
+                    <td>Pengadaan</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat pengadaan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat pengadaan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah pengadaan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui pengadaan" /></td>
+                  </tr>
+                  <tr>
+                    <td>Purchase Order</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat PO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat PO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah PO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui PO" /></td>
+                  </tr>
+                  <tr>
+                    <td>Permintaan</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat permintaan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat permintaan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah permintaan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui permintaan" /></td>
+                  </tr>
+                  <tr>
+                    <td>Distribusi</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat distribusi" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat distribusi" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah distribusi" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui distribusi" /></td>
+                  </tr>
+                  <tr>
+                    <td>LPLPO</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat LPLPO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat LPLPO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah LPLPO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui LPLPO" /></td>
+                  </tr>
+                  <tr>
+                    <td>RKO</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat RKO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat RKO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah RKO" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui RKO" /></td>
+                  </tr>
+                  <tr>
+                    <td>Pelayanan</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat pelayanan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat pelayanan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah pelayanan" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui pelayanan" /></td>
+                  </tr>
+                  <tr>
+                    <td>Pengendalian</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat pengendalian" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat pengendalian" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah pengendalian" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui pengendalian" /></td>
+                  </tr>
+                  <tr>
+                    <td>Anggaran</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat anggaran" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat anggaran" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah anggaran" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui anggaran" /></td>
+                  </tr>
+                  <tr>
+                    <td>Prediksi</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat prediksi" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat prediksi" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah prediksi" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui prediksi" /></td>
+                  </tr>
+                  <tr>
+                    <td>Pengguna</td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Lihat pengguna" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Buat pengguna" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Ubah pengguna" /></td>
+                    <td><input type="checkbox" checked class="rounded border-slate-300" aria-label="Setujui pengguna" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Perubahan hak akses dicatat pada audit log.</p>
+              <button data-toast="Hak akses Administrator Dinas disimpan (mockup)" data-toast-type="success" class="btn btn-primary btn-sm">Simpan hak akses</button>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

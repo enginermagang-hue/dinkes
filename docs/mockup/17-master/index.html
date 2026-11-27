@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Master Data - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="master" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div>
+            <h1 class="text-xl font-semibold">Master Data</h1>
+            <p class="text-hint">Obat, fasilitas, dan lokasi penyimpanan</p>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Item Obat Aktif</p>
+              <p class="kpi-value">1.248</p>
+              <p class="field-help">Termasuk BMHP</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Fasilitas</p>
+              <p class="kpi-value">34</p>
+              <p class="field-help">1 Dinas, 1 RSUD, 24 Puskesmas, 8 Pustu</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Lokasi Penyimpanan</p>
+              <p class="kpi-value">41</p>
+              <p class="field-help">Gudang, ruang obat, instalasi farmasi</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Perubahan Bulan Ini</p>
+              <p class="kpi-value text-amber-600">12</p>
+              <p class="field-help">Semua tercatat di audit log</p>
+            </div>
+          </section>
+
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="tabs">
+              <button data-tab="obat" data-tab-group="master" class="tab tab-active">Obat dan BMHP</button>
+              <button data-tab="fasilitas" data-tab-group="master" class="tab">Fasilitas</button>
+              <button data-tab="lokasi" data-tab-group="master" class="tab">Lokasi Penyimpanan</button>
+            </div>
+            <button data-toast="Form master data dibuka (mockup)" class="btn btn-primary btn-sm">Tambah data</button>
+          </div>
+
+          <section class="card" data-panel="obat" data-panel-group="master">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Obat dan BMHP</h2>
+                <p class="text-hint">NIE wajib berlaku sebelum item dapat dipesan.</p>
+              </div>
+              <div class="relative w-full sm:w-64">
+                <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                <input type="search" data-table-search placeholder="Cari kode atau nama obat." class="search-field" aria-label="Cari obat" />
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head" data-table aria-label="Daftar obat">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama Obat</th>
+                    <th>NIE</th>
+                    <th>Satuan</th>
+                    <th>Kategori</th>
+                    <th>ABC-VEN</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">OBT-001</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="font-mono text-xs">DBL1234567890A1</td>
+                    <td>Tablet</td>
+                    <td>Antibiotik</td>
+                    <td><span class="badge badge-warning">AV</span></td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-002</td>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="font-mono text-xs">DBL1234567891A1</td>
+                    <td>Tablet</td>
+                    <td>Analgesik</td>
+                    <td><span class="badge badge-warning">AE</span></td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-007</td>
+                    <td>Salbutamol Inhaler</td>
+                    <td class="font-mono text-xs">DBL1234567892A1</td>
+                    <td>Botol</td>
+                    <td>Bronkodilator</td>
+                    <td><span class="badge badge-warning">BE</span></td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-010</td>
+                    <td>Vaksin Campak</td>
+                    <td class="font-mono text-xs">DBL1234567893A1</td>
+                    <td>Vial</td>
+                    <td>Vaksin</td>
+                    <td><span class="badge badge-warning">AV</span></td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-011</td>
+                    <td>Insulin Glargine</td>
+                    <td class="font-mono text-xs">DBL1234567894A1</td>
+                    <td>Vial</td>
+                    <td>Antidiabetik</td>
+                    <td><span class="badge badge-warning">AV</span></td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card hidden" data-panel="fasilitas" data-panel-group="master">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Fasilitas</h2>
+                <p class="text-hint">Pustu wajib memiliki Puskesmas induk.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head" aria-label="Daftar fasilitas">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Nama Fasilitas</th>
+                    <th>Jenis</th>
+                    <th>Induk</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">FASKES-01</td>
+                    <td>Dinas Kesehatan Kabupaten</td>
+                    <td>Dinas</td>
+                    <td>—</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">FASKES-02</td>
+                    <td>RSUD</td>
+                    <td>RSUD</td>
+                    <td>—</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">FASKES-03</td>
+                    <td>Puskesmas A</td>
+                    <td>Puskesmas</td>
+                    <td>—</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">FASKES-04</td>
+                    <td>Puskesmas B</td>
+                    <td>Puskesmas</td>
+                    <td>—</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">FASKES-05</td>
+                    <td>Pustu A1</td>
+                    <td>Pustu</td>
+                    <td>Puskesmas A</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card hidden" data-panel="lokasi" data-panel-group="master">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Lokasi Penyimpanan</h2>
+                <p class="text-hint">Zona mengikuti kategori dan suhu penyimpanan.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head" aria-label="Daftar lokasi penyimpanan">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nama Lokasi</th>
+                    <th>Fasilitas</th>
+                    <th>Jenis</th>
+                    <th>Zona</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">LP-001</td>
+                    <td>Gudang Farmasi Pusat</td>
+                    <td>Dinas Kesehatan</td>
+                    <td>gudang</td>
+                    <td>A, B, C, Cold, Frozen, Narkotika, Karantina, Retur, Musnah</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">LP-002</td>
+                    <td>Ruang Obat Puskesmas A</td>
+                    <td>Puskesmas A</td>
+                    <td>ruang_obat</td>
+                    <td>A, B, C</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">LP-005</td>
+                    <td>Ruang Obat Pustu A1</td>
+                    <td>Pustu A1</td>
+                    <td>ruang_obat</td>
+                    <td>A</td>
+                    <td><span class="badge badge-success">Aktif</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

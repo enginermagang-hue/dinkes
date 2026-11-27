@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Detail Permintaan - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="permintaan" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Permintaan</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>PMT/2027/0041</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">PMT/2027/0041</h1>
+                  <span class="badge badge-warning">Disetujui sebagian</span>
+                  <span class="badge badge-danger">Prioritas 1 · Kritis</span>
+                </div>
+                <p class="text-hint">
+                  Puskesmas A · LPLPO 2027-01 · diajukan 6 Januari 2027 · 5 item ·
+                  Rp 12.450.000
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-print class="btn btn-outline btn-sm flex gap-2 no-print">
+                  <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                  Cetak
+                </button>
+                <a href="../14-distribusi/detail.html" class="btn btn-outline btn-sm no-print">Lihat pengiriman</a>
+                <button data-modal-open="#modal-setujui" class="btn btn-primary btn-sm no-print">Verifikasi</button>
+                <button data-modal-open="#modal-tolak" class="btn btn-danger btn-sm no-print">Tolak</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">3 item disetujui di bawah jumlah diminta</h2>
+            <p class="mt-2">
+              Salbutamol Inhaler dikurangi dari 30 menjadi 15, Vitamin A Kapsul dari 200 menjadi
+              100, dan Insulin Glargine dari 20 menjadi 10. Setiap pengurangan wajib memiliki
+              alasan tercatat.
+            </p>
+          </div>
+
+          <section class="card card-body">
+            <div class="steps">
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Diajukan</div>
+              <span class="step-line"></span>
+              <div class="step step-done"><span class="step-dot"><i class="ri-check-line icon-xs" aria-hidden="true"></i></span> Diverifikasi</div>
+              <span class="step-line"></span>
+              <div class="step step-active"><span class="step-dot">3</span> Disetujui sebagian</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">4</span> Dikirim</div>
+              <span class="step-line"></span>
+              <div class="step"><span class="step-dot">5</span> Selesai</div>
+            </div>
+            <p class="field-help">Status berubah otomatis saat pengiriman dan konfirmasi penerimaan dicatat.</p>
+          </section>
+
+          <section class="grid gap-4 xl:grid-cols-3">
+            <div class="card card-body">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="kpi-label">Acuan RKO</p>
+                  <p class="kpi-value">5 item</p>
+                </div>
+                <span class="badge badge-success">Dalam rencana</span>
+              </div>
+              <p class="field-help">RKO/2027/Q1/003 disetujui 4 Januari 2027.</p>
+              <div class="mt-3">
+                <div class="mb-1 flex justify-between gap-3 text-xs text-slate-500">
+                  <span>Terpakai</span>
+                  <span>62%</span>
+                </div>
+                <div class="progress"><div class="progress-bar" style="width: 62%"></div></div>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="kpi-label">Sisa pagu fasilitas</p>
+                  <p class="kpi-value">Rp 50,5 jt</p>
+                </div>
+                <span class="badge badge-brand">Aman</span>
+              </div>
+              <p class="field-help">Nilai disetujui Rp 5.555.000, sisa setelah komitmen Rp 44,9 jt.</p>
+              <div class="mt-3">
+                <div class="mb-1 flex justify-between gap-3 text-xs text-slate-500">
+                  <span>Serapan pagu</span>
+                  <span>58%</span>
+                </div>
+                <div class="progress"><div class="progress-bar bg-amber-500" style="width: 58%"></div></div>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <p class="kpi-label">Stok Dinas</p>
+                  <p class="kpi-value text-amber-600">1 terbatas</p>
+                </div>
+                <span class="badge badge-warning">Sebagian</span>
+              </div>
+              <p class="field-help">Salbutamol tersedia 15 unit dari 30 unit yang diminta.</p>
+              <div class="mt-3">
+                <div class="mb-1 flex justify-between gap-3 text-xs text-slate-500">
+                  <span>Keterpenuhan item</span>
+                  <span>83%</span>
+                </div>
+                <div class="progress"><div class="progress-bar bg-emerald-500" style="width: 83%"></div></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Item Permintaan</h2>
+                <p class="text-hint">Ubah jumlah disetujui; selisih wajib disertai alasan.</p>
+              </div>
+              <span class="text-hint">5 item · 3 dikurangi</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th class="num">Diminta</th>
+                    <th class="num">Stok Dinas</th>
+                    <th class="num">Sisa RKO</th>
+                    <th class="num">Disetujui</th>
+                    <th class="num">Selisih</th>
+                    <th>Alasan</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>
+                      <p class="font-medium">Amoksisilin 500 mg</p>
+                      <p class="text-hint">OBT-001 · Tablet 500 mg</p>
+                    </td>
+                    <td class="num">400</td>
+                    <td class="num">4.360</td>
+                    <td class="num">3.500</td>
+                    <td class="num"><input type="number" value="400" min="0" max="400" class="field w-24 text-right" aria-label="Disetujui Amoksisilin" /></td>
+                    <td class="num">0</td>
+                    <td class="text-hint">—</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Parasetamol 500 mg</p>
+                      <p class="text-hint">OBT-002 · Tablet 500 mg</p>
+                    </td>
+                    <td class="num">500</td>
+                    <td class="num">6.000</td>
+                    <td class="num">6.000</td>
+                    <td class="num"><input type="number" value="500" min="0" max="500" class="field w-24 text-right" aria-label="Disetujui Parasetamol" /></td>
+                    <td class="num">0</td>
+                    <td class="text-hint">—</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Salbutamol Inhaler</p>
+                      <p class="text-hint">OBT-007 · Inhaler 100 mcg</p>
+                    </td>
+                    <td class="num">30</td>
+                    <td class="num">15</td>
+                    <td class="num">40</td>
+                    <td class="num"><input type="number" value="15" min="0" max="30" class="field w-24 text-right" aria-label="Disetujui Salbutamol" /></td>
+                    <td class="num text-rose-600">-15</td>
+                    <td>Stok pusat terbatas setelah alokasi prioritas</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Vitamin A Kapsul</p>
+                      <p class="text-hint">OBT-009 · Kapsul 200.000 IU</p>
+                    </td>
+                    <td class="num">200</td>
+                    <td class="num">1.250</td>
+                    <td class="num">250</td>
+                    <td class="num"><input type="number" value="100" min="0" max="200" class="field w-24 text-right" aria-label="Disetujui Vitamin A" /></td>
+                    <td class="num text-rose-600">-100</td>
+                    <td>Stok fasilitas masih cukup 6 bulan</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="font-medium">Insulin Glargine</p>
+                      <p class="text-hint">OBT-008 · Vial 100 IU/mL</p>
+                    </td>
+                    <td class="num">20</td>
+                    <td class="num">28</td>
+                    <td class="num">25</td>
+                    <td class="num"><input type="number" value="10" min="0" max="20" class="field w-24 text-right" aria-label="Disetujui Insulin" /></td>
+                    <td class="num text-rose-600">-10</td>
+                    <td>Prioritas fasilitas lain dengan stok di bawah safety stock</td>
+                  </tr>
+                  <tr class="bg-slate-50">
+                    <td class="font-medium">Total</td>
+                    <td class="num font-semibold">1.150</td>
+                    <td class="num">—</td>
+                    <td class="num">—</td>
+                    <td class="num font-semibold">1.025</td>
+                    <td class="num font-semibold text-rose-600">-125</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Perubahan setelah disetujui memerlukan dokumen permintaan baru.</p>
+              <div class="flex gap-2">
+                <button data-modal-open="#modal-tolak" class="btn btn-outline btn-sm">Tolak</button>
+                <button data-modal-open="#modal-setujui" class="btn btn-primary btn-sm">Setujui jumlah ini</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid gap-6 xl:grid-cols-3">
+            <div class="card xl:col-span-2">
+              <div class="card-header">
+                <h2 class="card-title">Riwayat Permintaan</h2>
+                <span class="text-hint">Jejak audit lengkap</span>
+              </div>
+              <div class="card-body">
+                <ol class="space-y-4 text-sm">
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-neutral mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Draf dibuat dari LPLPO 2027-01</p>
+                      <p class="text-hint">2027-01-05 08:40 · andi.apoteker · Apoteker Puskesmas A</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Diajukan ke Dinas Kesehatan</p>
+                      <p class="text-hint">2027-01-06 09:15 · 5 item · Rp 12.450.000</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Diverifikasi Apoteker Gudang Dinas</p>
+                      <p class="text-hint">2027-01-06 13:05 · RKO, pagu, dan stok Dinas dicek</p>
+                    </div>
+                  </li>
+                  <li class="flex gap-3">
+                    <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                    <div>
+                      <p class="font-medium">Disetujui sebagian</p>
+                      <p class="text-hint">2027-01-07 10:20 · ratna.apoteker · 3 item dikurangi dengan alasan</p>
+                    </div>
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="card card-body">
+              <h2 class="card-title">Dokumen Terkait</h2>
+              <ul class="mt-3 space-y-2 text-sm">
+                <li class="flex items-center justify-between gap-2">
+                  <span>LPLPO asal</span>
+                  <a href="../06-lplpo/detail.html" class="hover:text-brand-600">LPLPO/2027/01/004</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Rencana (RKO)</span>
+                  <a href="../07-rko/detail.html" class="hover:text-brand-600">RKO/2027/Q1/003</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Pengiriman</span>
+                  <a href="../14-distribusi/index.html" class="hover:text-brand-600">Dalam penyiapan</a>
+                </li>
+                <li class="flex items-center justify-between gap-2">
+                  <span>Pagu fasilitas</span>
+                  <a href="../10-anggaran/index.html" class="hover:text-brand-600">APBD · sisa Rp 50,5 jt</a>
+                </li>
+              </ul>
+              <p class="field-help">
+                Permintaan manual tidak memiliki LPLPO asal, tetapi tetap merujuk RKO periode
+                berjalan.
+              </p>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-setujui" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-md rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Setujui permintaan</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          1.025 unit akan disetujui dari 1.150 unit yang diminta. Nilai disetujui
+          Rp 5.555.000 dan masih di bawah ambang Kepala Dinas.
+        </p>
+        <div class="mt-3 space-y-2">
+          <div>
+            <label class="field-label" for="setujui-catatan">Catatan persetujuan</label>
+            <textarea id="setujui-catatan" rows="2" class="field w-full">Disetujui sesuai alokasi prioritas triwulan I.</textarea>
+          </div>
+          <label class="check">
+            <input type="checkbox" checked />
+            <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+            <span>Kirim notifikasi hasil verifikasi ke Puskesmas A</span>
+          </label>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="PMT/2027/0041 disetujui sebagian (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Setujui</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-tolak" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-24 w-[92%] max-w-sm rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Tolak permintaan ini?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          Penolakan menghentikan seluruh item. Untuk menolak sebagian, ubah jumlah disetujui
+          menjadi nol pada item terkait.
+        </p>
+        <div class="mt-3">
+          <label class="field-label" for="tolak-alasan">Alasan penolakan</label>
+          <textarea id="tolak-alasan" rows="2" class="field field-error w-full">Sisa pagu fasilitas tidak mencukupi.</textarea>
+          <p class="field-error-text">Alasan wajib diisi dan tercatat pada audit log.</p>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Kembali</button>
+          <button data-modal-close data-toast="PMT/2027/0041 ditolak (mockup)" data-toast-type="warning" class="btn btn-danger btn-xs">Tolak permintaan</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

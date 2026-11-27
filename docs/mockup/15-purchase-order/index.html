@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Purchase Order - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="po" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <h1 class="text-xl font-semibold">Purchase Order</h1>
+              <p class="text-hint">Januari 2027 · 5 PO aktif · nilai Rp 830,45 jt</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Rekap PO diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+                Unduh rekap
+              </button>
+              <a href="tambah.html" class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-add-line icon-sm" aria-hidden="true"></i>
+                Buat PO
+              </a>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Nilai PO Januari</p>
+              <p class="kpi-value">Rp 830,45 jt</p>
+              <p class="field-help">5 PO, 68 item</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Menunggu Persetujuan</p>
+              <p class="kpi-value text-amber-600">2</p>
+              <p class="field-help">PO/2027/0004 dan PO/2027/0005</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Dalam Pengiriman</p>
+              <p class="kpi-value text-brand-600">1</p>
+              <p class="field-help">PO/2027/0003, estimasi 3 hari</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Penerimaan Sebagian</p>
+              <p class="kpi-value text-rose-600">1</p>
+              <p class="field-help">PO/2027/0002, 7 dari 12 item</p>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">PO di atas Rp 50 juta memerlukan persetujuan Kepala Dinas.</p>
+            <p class="mt-1">
+              Persetujuan berjenjang dihitung dari nilai PO. Nomor PO tidak dapat digunakan ulang.
+            </p>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Daftar Purchase Order</h2>
+                <p class="text-hint">Setiap PO wajib merujuk keranjang pengadaan yang disetujui.</p>
+              </div>
+              <span class="text-hint"><span data-table-total>5</span> dokumen</span>
+            </div>
+
+            <div class="table-toolbar">
+              <div class="flex w-full flex-wrap items-center gap-2 sm:w-auto">
+                <div class="relative w-full sm:w-72">
+                  <i class="ri-search-line icon-sm icon-muted pointer-events-none absolute left-3 top-1/2 -translate-y-1/2" aria-hidden="true"></i>
+                  <input type="search" data-table-search placeholder="Cari nomor PO atau penyedia…" class="search-field" aria-label="Cari PO" />
+                </div>
+
+                <details class="relative">
+                  <summary class="btn btn-outline btn-sm flex cursor-pointer list-none items-center gap-2">
+                    <i class="ri-filter-3-line icon-sm" aria-hidden="true"></i>
+                    Filter
+                    <span class="badge badge-brand">2</span>
+                    <i class="ri-arrow-down-s-line icon-xs chevron text-slate-400" aria-hidden="true"></i>
+                  </summary>
+                  <div class="card dropdown-panel absolute left-0 z-30 mt-2 w-72 p-3 text-left shadow-lg">
+                    <div class="space-y-2">
+                      <div>
+                        <label class="field-label" for="po-filter-rko">Rencana (RKO)</label>
+                        <select id="po-filter-rko" class="field w-full">
+                          <option>Semua rencana</option>
+                          <option>RKO/2027/Q1/003</option>
+                          <option>RKO/2027/Q1/002</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="po-filter-penyedia">Penyedia</label>
+                        <select id="po-filter-penyedia" class="field w-full">
+                          <option>Semua penyedia</option>
+                          <option>PT Sehat Farma</option>
+                          <option>PT Medika Jaya</option>
+                          <option>PT Global Medika</option>
+                          <option>PT Nusantara Obat</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="po-filter-status">Status</label>
+                        <select id="po-filter-status" class="field w-full">
+                          <option>Semua status</option>
+                          <option>Draf</option>
+                          <option>Disetujui</option>
+                          <option>Dikirim</option>
+                          <option>Sebagian</option>
+                          <option>Diterima</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="field-label" for="po-filter-tanggal">Tanggal PO</label>
+                        <input id="po-filter-tanggal" type="date" data-date value="2027-01-01" class="field w-full" />
+                      </div>
+                    </div>
+                    <div class="mt-2 flex items-center justify-between gap-2">
+                      <a href="index.html" class="btn btn-ghost btn-sm">Reset</a>
+                      <button type="button" data-dropdown-close data-toast="Filter PO diterapkan (mockup)" class="btn btn-primary btn-sm">Terapkan</button>
+                    </div>
+                  </div>
+                </details>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label class="text-hint" for="po-rows-per-page">Baris per halaman</label>
+                <select id="po-rows-per-page" data-table-size class="field w-20">
+                  <option value="5" selected>5</option>
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap lg:overflow-visible">
+              <table class="table table-head" data-table aria-label="Daftar purchase order">
+                <thead>
+                  <tr>
+                    <th>No PO</th>
+                    <th>Tanggal</th>
+                    <th>Penyedia</th>
+                    <th>RKO</th>
+                    <th class="num">Item</th>
+                    <th class="num">Nilai (Rp)</th>
+                    <th>Status</th>
+                    <th class="num">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PO/2027/0001</td>
+                    <td>2027-01-05</td>
+                    <td>PT Sehat Farma</td>
+                    <td class="font-mono text-xs">RKO/Q1/003</td>
+                    <td class="num">18</td>
+                    <td class="num">245.000.000</td>
+                    <td><span class="badge badge-success">Diterima</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../13-penerimaan/tambah.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-inbox-archive-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Catat penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PO/2027/0001" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PO/2027/0002</td>
+                    <td>2027-01-08</td>
+                    <td>PT Medika Jaya</td>
+                    <td class="font-mono text-xs">RKO/Q1/003</td>
+                    <td class="num">12</td>
+                    <td class="num">132.500.000</td>
+                    <td><span class="badge badge-warning">Sebagian</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../13-penerimaan/tambah.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-inbox-archive-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Catat penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PO/2027/0002" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PO/2027/0003</td>
+                    <td>2027-01-12</td>
+                    <td>PT Global Medika</td>
+                    <td class="font-mono text-xs">RKO/Q1/003</td>
+                    <td class="num">9</td>
+                    <td class="num">87.300.000</td>
+                    <td><span class="badge badge-brand">Dikirim</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="../13-penerimaan/tambah.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-inbox-archive-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Catat penerimaan
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PO/2027/0003" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PO/2027/0004</td>
+                    <td>2027-01-15</td>
+                    <td>PT Sehat Farma</td>
+                    <td class="font-mono text-xs">RKO/Q1/003</td>
+                    <td class="num">22</td>
+                    <td class="num">310.750.000</td>
+                    <td><span class="badge badge-brand">Disetujui</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <button type="button" data-dropdown-close data-toast="PO/2027/0004 menunggu persetujuan Kepala Dinas (mockup)" data-toast-type="warning" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-shield-check-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Status persetujuan
+                          </button>
+                          <button type="button" data-dropdown-close data-copy="PO/2027/0004" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="font-mono text-xs">PO/2027/0005</td>
+                    <td>2027-01-20</td>
+                    <td>PT Nusantara Obat</td>
+                    <td class="font-mono text-xs">RKO/Q1/003</td>
+                    <td class="num">7</td>
+                    <td class="num">54.900.000</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                    <td class="num">
+                      <details class="relative inline-block text-left">
+                        <summary class="btn btn-outline btn-2xs flex list-none items-center gap-1">
+                          Aksi
+                          <i class="ri-arrow-down-s-line icon-xs" aria-hidden="true"></i>
+                        </summary>
+                        <div class="dropdown-panel absolute right-0 z-30 mt-1 w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                          <a href="detail.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-list-3-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Lihat detail
+                          </a>
+                          <a href="tambah.html" class="flex items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-edit-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Ubah draf
+                          </a>
+                          <button type="button" data-dropdown-close data-copy="PO/2027/0005" class="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-slate-50">
+                            <i class="ri-file-copy-line icon-sm icon-muted" aria-hidden="true"></i>
+                            Salin nomor
+                          </button>
+                        </div>
+                      </details>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">
+                Menampilkan <span data-table-range>1–5</span> dari
+                <span data-table-total>5</span> PO
+              </p>
+              <div class="flex items-center gap-1" data-table-nav></div>
+            </div>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/flatpickr.min.js"></script>
+    <script src="../assets/flatpickr-id.js"></script>
+    <script src="../assets/date-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

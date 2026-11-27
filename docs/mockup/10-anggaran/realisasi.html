@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Realisasi Anggaran - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="anggaran" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <nav class="mb-2 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+                <a href="index.html" class="hover:text-brand-600">Anggaran</a>
+                <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+                <span>Realisasi</span>
+              </nav>
+              <h1 class="text-xl font-semibold">Realisasi dan Rekonsiliasi</h1>
+              <p class="text-hint">Tahun anggaran 2027 · realisasi per fasilitas dan dokumen pembayaran</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button data-toast="Rekap realisasi diunduh (mockup)" class="btn btn-outline btn-sm flex gap-2">
+                <i class="ri-download-line icon-sm" aria-hidden="true"></i>
+                Unduh
+              </button>
+              <button data-print class="btn btn-primary btn-sm flex gap-2">
+                <i class="ri-printer-line icon-sm" aria-hidden="true"></i>
+                Cetak
+              </button>
+            </div>
+          </div>
+
+          <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div class="kpi">
+              <p class="kpi-label">Realisasi</p>
+              <p class="kpi-value">Rp 283,5 jt</p>
+              <p class="field-help">Dari 4 fasilitas</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Serapan</p>
+              <p class="kpi-value text-brand-600">64%</p>
+              <p class="field-help">Target akhir tahun 95%</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Sisa Pagu</p>
+              <p class="kpi-value text-emerald-600">Rp 136,5 jt</p>
+              <p class="field-help">Termasuk komitmen Rp 20 jt</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-label">Dokumen Direkonsiliasi</p>
+              <p class="kpi-value">12 / 14</p>
+              <p class="field-help">2 dokumen perlu tinjau</p>
+            </div>
+          </section>
+
+          <div class="alert alert-warning">
+            <h2 class="font-semibold">1 dokumen pembayaran perlu ditinjau</h2>
+            <p class="mt-2">
+              SP2D/2027/007 senilai Rp 22,5 jt belum cocok dengan BAST/2027/0021. Rekonsiliasi
+              diperlukan sebelum realisasi dikunci.
+            </p>
+          </div>
+
+          <section class="card card-body-sm grid gap-3 sm:grid-cols-4">
+            <div>
+              <label class="field-label" for="real-tahun">Tahun anggaran</label>
+              <select id="real-tahun" class="field w-full">
+                <option>2027</option>
+                <option>2026</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="real-fasilitas">Fasilitas</label>
+              <select id="real-fasilitas" class="field w-full">
+                <option>Semua fasilitas</option>
+                <option>Puskesmas A</option>
+                <option>Puskesmas B</option>
+                <option>Puskesmas C</option>
+                <option>RSUD program</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="real-sumber">Sumber dana</label>
+              <select id="real-sumber" class="field w-full">
+                <option>Semua sumber</option>
+                <option>APBD</option>
+                <option>DAK</option>
+                <option>BLUD</option>
+              </select>
+            </div>
+            <div class="flex items-end">
+              <button data-toast="Filter realisasi diterapkan (mockup)" class="btn btn-neutral btn-sm btn-block">Terapkan</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Realisasi per Fasilitas</h2>
+                <p class="text-hint">Sisa = pagu − komitmen − realisasi.</p>
+              </div>
+              <span class="text-hint">4 fasilitas</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Fasilitas</th>
+                    <th class="num">Pagu (Rp)</th>
+                    <th class="num">Komitmen</th>
+                    <th class="num">Realisasi</th>
+                    <th class="num">Sisa</th>
+                    <th>Serapan</th>
+                    <th>Rekonsiliasi</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Puskesmas A</td>
+                    <td class="num">150.000.000</td>
+                    <td class="num">12.000.000</td>
+                    <td class="num">87.500.000</td>
+                    <td class="num">50.500.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar" style="width: 58%"></div></div>
+                        <span class="text-hint">58%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-success">Cocok</span></td>
+                  </tr>
+                  <tr>
+                    <td>Puskesmas B</td>
+                    <td class="num">120.000.000</td>
+                    <td class="num">0</td>
+                    <td class="num">108.000.000</td>
+                    <td class="num">12.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-rose-500" style="width: 90%"></div></div>
+                        <span class="text-hint">90%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-success">Cocok</span></td>
+                  </tr>
+                  <tr>
+                    <td>Puskesmas C</td>
+                    <td class="num">90.000.000</td>
+                    <td class="num">8.000.000</td>
+                    <td class="num">36.000.000</td>
+                    <td class="num">46.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-amber-500" style="width: 40%"></div></div>
+                        <span class="text-hint">40%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-warning">Perlu tinjau</span></td>
+                  </tr>
+                  <tr>
+                    <td>RSUD program</td>
+                    <td class="num">80.000.000</td>
+                    <td class="num">0</td>
+                    <td class="num">52.000.000</td>
+                    <td class="num">28.000.000</td>
+                    <td>
+                      <div class="flex items-center gap-2">
+                        <div class="progress w-20"><div class="progress-bar bg-emerald-500" style="width: 65%"></div></div>
+                        <span class="text-hint">65%</span>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-success">Cocok</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Rekonsiliasi Dokumen</h2>
+                <p class="text-hint">Cocokkan realisasi dengan BAST dan dokumen pembayaran.</p>
+              </div>
+              <span class="text-hint">4 dokumen</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Dokumen</th>
+                    <th>Nomor</th>
+                    <th>Tanggal</th>
+                    <th class="num">Nilai (Rp)</th>
+                    <th>BAST Terkait</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>SP2D</td>
+                    <td class="font-mono text-xs">SP2D/2027/004</td>
+                    <td>2027-01-18</td>
+                    <td class="num">30.000.000</td>
+                    <td class="font-mono text-xs">BAST/2027/0012</td>
+                    <td><span class="badge badge-success">Cocok</span></td>
+                  </tr>
+                  <tr>
+                    <td>SP2D</td>
+                    <td class="font-mono text-xs">SP2D/2027/007</td>
+                    <td>2027-01-26</td>
+                    <td class="num">22.500.000</td>
+                    <td class="font-mono text-xs">BAST/2027/0021</td>
+                    <td><span class="badge badge-danger">Selisih</span></td>
+                  </tr>
+                  <tr>
+                    <td>BAST</td>
+                    <td class="font-mono text-xs">BAST/2027/0021</td>
+                    <td>2027-01-22</td>
+                    <td class="num">22.500.000</td>
+                    <td class="font-mono text-xs">PNR/2027/0044</td>
+                    <td><span class="badge badge-success">Cocok</span></td>
+                  </tr>
+                  <tr>
+                    <td>UP</td>
+                    <td class="font-mono text-xs">UP/2027/003</td>
+                    <td>2027-01-30</td>
+                    <td class="num">35.000.000</td>
+                    <td class="font-mono text-xs">PNR/2027/0052</td>
+                    <td><span class="badge badge-warning">Menunggu verifikasi</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Selisih wajib diselesaikan sebelum periode anggaran ditutup.</p>
+              <button data-toast="Rekonsiliasi SP2D/2027/007 dibuka (mockup)" class="btn btn-primary btn-sm">Tinjau selisih</button>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <h2 class="font-semibold">Realisasi BLUD RSUD</h2>
+            <p class="mt-2">
+              RSUD mengelola pagu mandiri Rp 200 jt dengan realisasi Rp 120 jt (60%). Angka ini
+              dilaporkan terpisah dan tidak masuk total APBD/DAK.
+            </p>
+          </div>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>

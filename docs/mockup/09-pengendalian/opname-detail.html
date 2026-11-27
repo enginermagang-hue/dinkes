@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blanko Opname - Mockup SMSOD</title>
+    <link rel="stylesheet" href="../assets/mockup.css" />
+  </head>
+  <body data-page="pengendalian" class="app-page">
+    <div class="app-shell">
+      <div data-include="../components/sidebar.html"></div>
+
+      <div class="app-body app-content">
+        <div data-include="../components/header.html"></div>
+
+        <main class="space-y-6 p-4 lg:p-6">
+          <div class="card card-body">
+            <nav class="mb-3 flex flex-wrap items-center gap-1 text-xs text-slate-500" aria-label="Breadcrumb">
+              <a href="index.html" class="hover:text-brand-600">Pengendalian</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <a href="opname.html" class="hover:text-brand-600">Stock opname</a>
+              <i class="ri-arrow-right-s-line icon-xs" aria-hidden="true"></i>
+              <span>OPN/2027/001</span>
+            </nav>
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <h1 class="text-xl font-semibold">OPN/2027/001</h1>
+                  <span class="badge badge-brand">Berjalan</span>
+                </div>
+                <p class="text-hint">
+                  Gudang Farmasi Pusat · 29 Januari 2027 · petugas Ratna, S.Farm., Apt. · 5 item
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button data-toast="Hasil hitung OPN/2027/001 disimpan (mockup)" class="btn btn-outline btn-sm">Simpan hitung</button>
+                <button data-modal-open="#modal-selesai" class="btn btn-primary btn-sm">Selesaikan opname</button>
+              </div>
+            </div>
+          </div>
+
+          <section class="grid gap-4 xl:grid-cols-3">
+            <div class="card card-body">
+              <p class="kpi-label">Lokasi</p>
+              <p class="mt-1 font-medium">Gudang Farmasi Pusat</p>
+              <p class="field-help">Zona A, B, C, dan Cold.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Progres Hitung</p>
+              <p class="mt-1 font-medium">60%</p>
+              <div class="progress mt-2"><div class="progress-bar bg-amber-500" style="width: 60%"></div></div>
+              <p class="field-help">3 dari 5 item sudah dicocokkan.</p>
+            </div>
+            <div class="card card-body">
+              <p class="kpi-label">Nilai Selisih</p>
+              <p class="mt-1 font-medium text-rose-600">-Rp 33.500</p>
+              <p class="field-help">Belum menjadi mutasi sampai sesi ditutup.</p>
+            </div>
+          </section>
+
+          <div class="alert alert-brand">
+            <p class="font-medium">Transaksi stok pada lokasi ini ditahan.</p>
+            <p class="mt-1">
+              Pastikan hitungan fisik selesai sebelum menutup sesi. Penyesuaian memerlukan
+              persetujuan Apoteker Gudang dan tercatat pada kartu stok.
+            </p>
+          </div>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Blanko Hitung Fisik</h2>
+                <p class="text-hint">Selisih = stok fisik − stok sistem.</p>
+              </div>
+              <span class="text-hint">5 item</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-head">
+                <thead>
+                  <tr>
+                    <th>Kode</th>
+                    <th>Obat</th>
+                    <th class="num">Stok Sistem</th>
+                    <th class="num">Stok Fisik</th>
+                    <th class="num">Selisih</th>
+                    <th>Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-mono text-xs">OBT-001</td>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="num">4.360</td>
+                    <td class="num"><input type="number" value="4350" class="field w-24 text-right" aria-label="Stok fisik Amoksisilin" /></td>
+                    <td class="num text-rose-600">-10</td>
+                    <td><input value="Selisih hitung" class="field w-44" aria-label="Keterangan Amoksisilin" /></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-002</td>
+                    <td>Parasetamol 500 mg</td>
+                    <td class="num">6.200</td>
+                    <td class="num"><input type="number" value="6200" class="field w-24 text-right" aria-label="Stok fisik Parasetamol" /></td>
+                    <td class="num">0</td>
+                    <td><input value="Sesuai" class="field w-44" aria-label="Keterangan Parasetamol" /></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-003</td>
+                    <td>Metformin 500 mg</td>
+                    <td class="num">1.850</td>
+                    <td class="num"><input type="number" value="1880" class="field w-24 text-right" aria-label="Stok fisik Metformin" /></td>
+                    <td class="num text-emerald-600">+30</td>
+                    <td><input value="Input distribusi kurang" class="field w-44" aria-label="Keterangan Metformin" /></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-004</td>
+                    <td>Amlodipin 10 mg</td>
+                    <td class="num">2.640</td>
+                    <td class="num"><input type="number" value="2640" class="field w-24 text-right" aria-label="Stok fisik Amlodipin" /></td>
+                    <td class="num">0</td>
+                    <td><input value="Sesuai" class="field w-44" aria-label="Keterangan Amlodipin" /></td>
+                  </tr>
+                  <tr>
+                    <td class="font-mono text-xs">OBT-009</td>
+                    <td>Vitamin A Kapsul</td>
+                    <td class="num">500</td>
+                    <td class="num"><input type="number" value="480" class="field w-24 text-right" aria-label="Stok fisik Vitamin A" /></td>
+                    <td class="num text-rose-600">-20</td>
+                    <td><input value="Kemasan rusak" class="field w-44" aria-label="Keterangan Vitamin A" /></td>
+                  </tr>
+                  <tr class="bg-slate-50">
+                    <td class="font-medium" colspan="4">Total selisih</td>
+                    <td class="num font-semibold text-rose-600">0</td>
+                    <td class="text-hint">Nilai -Rp 33.500</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer flex flex-wrap items-center justify-between gap-2">
+              <p class="text-hint">Kolom selisih dihitung otomatis saat stok fisik diubah.</p>
+              <button data-toast="Blanko opname disimpan (mockup)" class="btn btn-outline btn-sm">Simpan draf</button>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Pratinjau Mutasi Penyesuaian</h2>
+                <p class="text-hint">Dibuat otomatis saat opname ditutup dan disetujui.</p>
+              </div>
+              <span class="badge badge-warning">Menunggu penyelesaian</span>
+            </div>
+            <div class="table-wrap">
+              <table class="table table-compact">
+                <thead>
+                  <tr>
+                    <th>Obat</th>
+                    <th>Batch</th>
+                    <th class="num">Selisih</th>
+                    <th>Jenis Mutasi</th>
+                    <th>Alasan</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td>Amoksisilin 500 mg</td>
+                    <td class="font-mono text-xs">AMX2401</td>
+                    <td class="num text-rose-600">-10</td>
+                    <td>Penyesuaian opname</td>
+                    <td>Selisih hitung</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                  </tr>
+                  <tr>
+                    <td>Metformin 500 mg</td>
+                    <td class="font-mono text-xs">MTF2401</td>
+                    <td class="num text-emerald-600">+30</td>
+                    <td>Penyesuaian opname</td>
+                    <td>Input distribusi kurang</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                  </tr>
+                  <tr>
+                    <td>Vitamin A Kapsul</td>
+                    <td class="font-mono text-xs">VTA2401</td>
+                    <td class="num text-rose-600">-20</td>
+                    <td>Penyesuaian opname</td>
+                    <td>Kemasan rusak</td>
+                    <td><span class="badge badge-neutral">Draf</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+              <p class="text-hint">Setelah disetujui, mutasi masuk ke kartu stok dan laporan pengendalian.</p>
+            </div>
+          </section>
+
+          <section class="card card-body">
+            <h2 class="card-title">Riwayat Sesi</h2>
+            <ol class="mt-3 space-y-4 text-sm">
+              <li class="flex gap-3">
+                <span class="status-dot status-dot-brand mt-2 shrink-0"></span>
+                <div>
+                  <p class="font-medium">Sesi dimulai</p>
+                  <p class="text-hint">2027-01-29 08:15 · Ratna, S.Farm., Apt. · transaksi ditahan</p>
+                </div>
+              </li>
+              <li class="flex gap-3">
+                <span class="status-dot status-dot-warning mt-2 shrink-0"></span>
+                <div>
+                  <p class="font-medium">Hitung fisik berjalan</p>
+                  <p class="text-hint">3 dari 5 item dicocokkan · 2 item menunggu</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </main>
+
+        <div data-include="../components/footer.html"></div>
+      </div>
+    </div>
+
+    <div id="modal-selesai" data-modal class="fixed inset-0 z-50 hidden">
+      <div class="modal-backdrop absolute inset-0 bg-slate-900/50" data-modal-close></div>
+      <div class="modal-panel relative mx-auto mt-20 w-[92%] max-w-md rounded-xl bg-white p-5 shadow-xl">
+        <button data-modal-close class="icon-btn absolute right-2 top-2" aria-label="Tutup">
+          <i class="ri-close-line icon-sm" aria-hidden="true"></i>
+        </button>
+        <h3 class="text-base font-semibold">Selesaikan opname?</h3>
+        <p class="mt-2 text-sm text-slate-600">
+          Sesi ditutup dan 3 mutasi penyesuaian dibuat dengan nilai selisih -Rp 33.500. Stok
+          sistem akan mengikuti hasil hitung fisik.
+        </p>
+        <div class="mt-3 space-y-2">
+          <label class="check">
+            <input type="checkbox" checked />
+            <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+            <span>Semua item sudah dihitung dan diverifikasi</span>
+          </label>
+          <label class="check">
+            <input type="checkbox" />
+            <span class="check-box"><i class="ri-check-line" aria-hidden="true"></i></span>
+            <span>Setujui sebagai Apoteker Gudang dan buka kembali transaksi</span>
+          </label>
+        </div>
+        <div class="mt-4 flex justify-end gap-2">
+          <button data-modal-close class="btn btn-outline btn-xs">Batal</button>
+          <button data-modal-close data-toast="Opname ditutup dan stok disesuaikan (mockup)" data-toast-type="success" class="btn btn-primary btn-xs">Tutup sesi</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/tom-select.min.js"></script>
+    <script src="../assets/select-picker.js"></script>
+    <script src="../assets/mockup.js"></script>
+    <script src="../assets/layout.js"></script>
+  </body>
+</html>
